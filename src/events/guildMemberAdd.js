@@ -12,6 +12,7 @@ module.exports = (client) => {
 			} finally {
 				mongoose.connection.close();
 			}
+			if (!response.guildId || !response.roles) return;
 			const roles = client.guilds.cache.get(response.guildId).roles.cache.filter((r) => response.roles.includes(r.id));
 			member.roles.add(roles);
 		});
