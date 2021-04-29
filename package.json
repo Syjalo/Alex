@@ -1,0 +1,27 @@
+{
+  "name": "alex",
+  "version": "0.0.0",
+  "description": "Alex is an open-source Discord Bot for the PojavLauncher Server.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Syjalo/Alex.git"
+  },
+  "author": "Synbulat Biishev <syjalo.dev@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Syjalo/Alex/issues"
+  },
+  "homepage": "https://github.com/Syjalo/Alex#readme",
+  "dependencies": {
+    "discord.js": "^12.5.3",
+    "dotenv": "^8.2.0",
+    "mongodb": "^3.6.6",
+    "mongoose": "^5.12.6",
+    "node-fetch": "^2.6.1",
+    "puppeteer": "^9.0.0"
+  }
+}
