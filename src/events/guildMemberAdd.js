@@ -11,9 +11,9 @@ module.exports = (client) => {
 				});
 			} finally {
 				mongoose.connection.close();
-      }
-      const roles = client.guilds.cache.get(response.guildId).roles.cache.filter(r => response.roles.includes(r.id))
-      member.roles.add(roles)
+			}
+			const roles = client.guilds.cache.get(response.guildId).roles.cache.filter((r) => response.roles.includes(r.id));
+			member.roles.add(roles);
 		});
 	});
 };

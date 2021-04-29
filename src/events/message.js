@@ -7,12 +7,11 @@ module.exports = (client) => {
 				.setTitle('The commands are temporarily disabled')
 				.setDescription('We apologize')
 				.setColor('#FF0000');
-			message.channel.send(embed)
-        .then(msg => {
-          setTimeout(() => {
-          if(!msg.deleted) msg.delete()
-        }, 20000)
-      });
+			message.channel.send(embed).then((msg) => {
+				setTimeout(() => {
+					if (!msg.deleted) msg.delete();
+				}, 20000);
+			});
 		}
 	});
 };
