@@ -1,16 +1,21 @@
-const userSchema = require('../schemas/user-schema');
+const usersSchema = require('../schemas/users-schema');
 
 module.exports = (client) => {
 	client.on('guildMemberRemove', async (member) => {
 		await client.mongo().then(async (mongoose) => {
 			try {
-				await userSchema.findOneAndUpdate(
+				const response = await usersSchema.findOne({
+					userId: member.id,
+				});
+				let guilds = response?.guilds || {};
+				if (!guilds[member.guild.id]) guilds[member.guild.id] = {};
+				guilds[member.guild.id].roles = member.roles.cache.keyArray();
+				await usersSchema.findOneAndUpdate(
 					{
-						guildId: member.guild.id,
 						userId: member.id,
 					},
 					{
-						roles: member.roles.cache.keyArray(),
+						guilds,
 					},
 					{
 						upsert: true,
