@@ -1,5 +1,5 @@
 module.exports = (client) => {
-	client.on('ready', () => {
-		console.log('Ready!');
-	});
+  client.on('ready', () => {
+    console.log('Ready!');
+  });
 };
