@@ -13,11 +13,13 @@ module.exports = (client) => {
     let allowed = true
     if(command.permsBlacklist) {
       command.permsBlacklist.forEach(p => {
+        allowed = true
         if(message.member.hasPermission(p)) allowed = false
       })
     }
     if(command.permsWhitelist) {
       command.permsWhitelist.forEach(p => {
+        allowed = false
         if(message.member.hasPermission(p)) allowed = true
       })
     }
