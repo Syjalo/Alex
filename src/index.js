@@ -2,10 +2,8 @@ require('dotenv').config()
 
 const Discord = require('discord.js')
 
-const loader = require('./utils/loader')
+const ABClient = require('./utils/ABClient')
 
-const client = new Discord.Client()
+const client = new ABClient({ intents: Discord.Intents.ALL })
 
-loader(client)
-
-client.login(process.env.TOKEN)
+client.login()

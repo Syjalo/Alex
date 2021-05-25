@@ -1,6 +1,6 @@
 {
   "name": "alex",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Alex is an open-source Discord Bot for the PojavLauncher Server.",
   "main": "src/index.js",
   "scripts": {
@@ -17,11 +17,11 @@
   },
   "homepage": "https://github.com/Syjalo/Alex#readme",
   "dependencies": {
-    "discord.js": "^12.5.3",
-    "dotenv": "^8.2.0",
-    "mongodb": "^3.6.6",
-    "mongoose": "^5.12.6",
+    "discord.js": "github:discordjs/discord.js",
+    "dotenv": "^8.6.0",
+    "mongodb": "^3.6.8",
+    "mongoose": "^5.12.11",
     "node-fetch": "^2.6.1",
-    "puppeteer": "^9.0.0"
+    "puppeteer": "^9.1.1"
   }
 }

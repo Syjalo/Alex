@@ -1,29 +1,28 @@
 const Discord = require('discord.js')
 
-module.exports = (client) => {
-  client.on('message', async (message) => {
-    if(message.author.bot || !message.content.startsWith(client.config.prefix)) return
-    const args = message.content.slice(client.config.prefix.length).split(' ')
+module.exports = {
+  name: 'message',
+  async execute(message, client) {
+    if(message.author.bot || !message.content.startsWith(client.config.prefix) || message.channel.type === 'dm') return
+    const args = message.content.slice(client.config.prefix.length).trim().split(' ')
     const commandName = args.shift().toLowerCase()
     const command = client.commands.get(commandName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName))
     if(!command) return
-
-    if(message.channel.type === 'dm') return
 
     let allowed = true
     if(command.permsBlacklist) {
       command.permsBlacklist.forEach(p => {
         allowed = true
-        if(message.member.hasPermission(p)) allowed = false
+        if(message.member.permissions.has(p)) allowed = false
       })
     }
     if(command.permsWhitelist) {
       command.permsWhitelist.forEach(p => {
         allowed = false
-        if(message.member.hasPermission(p)) allowed = true
+        if(message.member.permissions.has(p)) allowed = true
       })
     }
-    if(message.member.hasPermission('ADMINISTRATOR')) allowed = true
+    if(message.member.permissions.has('ADMINISTRATOR')) allowed = true
 
     if(!allowed) {
       message.react('❌')
@@ -39,5 +38,5 @@ module.exports = (client) => {
     } catch (error) {
       console.log(error)
     }
-  })
+  }
 }
