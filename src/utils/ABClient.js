@@ -11,6 +11,7 @@ class ABClient extends Discord.Client {
     this.commands = new Discord.Collection()
     this.mongo = require('./mongo')
     this.config = require('../config.json')
+    this.constants = require('./constants.json')
   
     const readCommands = (dir) => {
       const files = fs.readdirSync(path.join(__dirname, dir))
