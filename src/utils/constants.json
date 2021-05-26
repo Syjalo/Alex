@@ -1,4 +1,6 @@
 {
-  "defaultColor": "#B9BBBE",
-  "redColor": "#FF0000"
+  "defaultColor": "#5662F6",
+  "defaultRoleColor": "#B9BBBE",
+  "redColor": "#FF0000",
+  "greenColor": "#00FF00"
 }

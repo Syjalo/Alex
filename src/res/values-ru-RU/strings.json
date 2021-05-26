@@ -1,0 +1,20 @@
+{
+  "embed.specifyChannel": "Пожалуйста, укажите канал для отправки вложения",
+  "invalidJSON": "Неверный JSON: `%errorMessage%`",
+  "dateLocale": "ru-RU",
+  "userinfo.id": "ID пользователя",
+  "userinfo.joinedDiscord": "Присоединился к Discord",
+  "userinfo.joinedServer": "Присоединился к серверу",
+  "userinfo.serverBooster": "Статус Nitro бустера сервера ",
+  "userinfo.boosterSince": "С %date%",
+  "userinfo.notBooster": "Не бустер",
+  "userinfo.roles": "Роли",
+  "userinfo.failedToFindOne": "Не удалось найти следуйщего пользователя",
+  "userinfo.failedToFindMany": "Не удалось найти следующих пользователей",
+  "language.specifyLocale": "Пожалуйста, укажите локаль языка после команды",
+  "language.supportedLanguages": "Поддерживаемые языки:\n%langs%",
+  "language.currentlyNotSupported": "Язык с этой локалью в настоящее время не поддерживается",
+  "language.changedTitle": "Язык изменён",
+  "language.changedDescription": "Ваш язык был изменен на русский"
+  
+}

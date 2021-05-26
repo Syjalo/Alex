@@ -1,6 +1,18 @@
 {
 	"prefix": "-",
 
-	"colorDefault": "#7289DA",
-	"colorRed": "#FF0000"
+	"supportedLangs": {
+		"en-GB": {
+			"name": "English (United Kingdom)",
+			"locale": "en-GB"
+		},
+		"en-US": {
+			"name": "English (United States)",
+			"locale": "en-US"
+		},
+		"ru": {
+			"name": "Русский",
+			"locale": "ru-RU"
+		}
+	}
 }

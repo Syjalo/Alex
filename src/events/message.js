@@ -27,7 +27,6 @@ module.exports = {
     if(!allowed) {
       message.react('❌')
       setTimeout(async () => {
-        await message.fetch(true)
         if(!message.deleted) message.delete()
       }, 3000)
       return
