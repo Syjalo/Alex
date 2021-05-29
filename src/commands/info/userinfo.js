@@ -38,7 +38,7 @@ module.exports = {
           { name: client.getString('userinfo.id', message), value: member.user.id },
           { name: client.getString('userinfo.joinedDiscord', message), value: member.user.createdAt.toLocaleString(client.getString('global.dateLocale', message), { day: 'numeric', month: 'long', year: 'numeric' }) },
           { name: client.getString('userinfo.joinedServer', message), value: member.joinedAt.toLocaleString(client.getString('global.dateLocale', message), { day: 'numeric', month: 'long', year: 'numeric' }) },
-          { name: client.getString('userinfo.serverBooster', message), value: `${member.premiumSince ? client.getString('userinfo.boosterSince', { data: member.premiumSince.toLocaleString(client.getString('global.dateLocale', message), { day: 'numeric', month: 'long', year: 'numeric' }) }, message) : client.getString('userinfo.notBooster', message)}` },
+          { name: client.getString('userinfo.serverBooster', message), value: `${member.premiumSince ? client.getString('userinfo.boosterSince', { date: member.premiumSince.toLocaleString(client.getString('global.dateLocale', message), { day: 'numeric', month: 'long', year: 'numeric' }) }, message) : client.getString('userinfo.notBooster', message)}` },
           { name: client.getString('userinfo.roles', message), value: member.roles.cache.filter(role => role.name !== '@everyone').map(role => role).length ? `(${member.roles.cache.filter(role => role.name !== '@everyone').map(role => role).length}) ${(() => member.roles.cache.filter(role => role.name !== '@everyone').map(role => role).join(', '))()}` : client.getString('userinfo.noRoles', message) },
         )
         .setColor(member.displayColor || client.constants.defaultRoleColor)
