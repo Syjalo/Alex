@@ -6,6 +6,7 @@
   "boosterSince": "С %date%",
   "notBooster": "Не бустер",
   "roles": "Роли",
+  "noRoles": "Нет ролей",
   "failedToFindOne": "Не удалось найти следуйщего пользователя",
   "failedToFindMany": "Не удалось найти следующих пользователей"
 }

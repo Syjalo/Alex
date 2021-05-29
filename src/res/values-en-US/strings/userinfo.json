@@ -6,6 +6,7 @@
   "boosterSince": "Since %date%",
   "notBooster": "Not a Booster",
   "roles": "Roles",
+  "noRoles": "No roles",
   "failedToFindOne": "Failed to find the following user",
   "failedToFindMany": "Failed to find the following users"
 }

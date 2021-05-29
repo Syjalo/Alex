@@ -5,14 +5,17 @@ module.exports = {
   aliases: ['memberinfo', 'uinfo', 'minfo'],
   async execute(message, args, client) {
     const failedToFind = []
+    if(args.length === 0) args[0] = message.author.id
     for(let i = 0; i < args.length; i++) {
       const userId = args[i].replace(/[<@!>\\]/g, '')
-      const member = message.guild.members.resolve(userId)
+      let member = message.guild.members.resolve(userId)
+      if(!member) member = message.guild.members.cache.find(member => member.user.username === args[i] || member.user.tag === args[i])
       if(!member) {
-        let user
-        try {
-          user = await client.users.fetch(userId)
-        } catch {
+        let user = await client.users.fetch(userId)
+        .catch(() => {
+          return client.users.cache.find(user => user.username === args[i] || user.tag === args[i])
+        })
+        if(!user) {
           failedToFind.push(userId)
           continue
         }
@@ -36,7 +39,7 @@ module.exports = {
           { name: client.getString('userinfo.joinedDiscord', message), value: member.user.createdAt.toLocaleString(client.getString('global.dateLocale', message), { day: 'numeric', month: 'long', year: 'numeric' }) },
           { name: client.getString('userinfo.joinedServer', message), value: member.joinedAt.toLocaleString(client.getString('global.dateLocale', message), { day: 'numeric', month: 'long', year: 'numeric' }) },
           { name: client.getString('userinfo.serverBooster', message), value: `${member.premiumSince ? client.getString('userinfo.boosterSince', { data: member.premiumSince.toLocaleString(client.getString('global.dateLocale', message), { day: 'numeric', month: 'long', year: 'numeric' }) }, message) : client.getString('userinfo.notBooster', message)}` },
-          { name: client.getString('userinfo.roles', message), value: `(${member.roles.cache.filter(role => role.name !== '@everyone').map(role => role).length}) ${(() => member.roles.cache.filter(role => role.name !== '@everyone').map(role => role).join(', '))()}` },
+          { name: client.getString('userinfo.roles', message), value: member.roles.cache.filter(role => role.name !== '@everyone').map(role => role).length ? `(${member.roles.cache.filter(role => role.name !== '@everyone').map(role => role).length}) ${(() => member.roles.cache.filter(role => role.name !== '@everyone').map(role => role).join(', '))()}` : client.getString('userinfo.noRoles', message) },
         )
         .setColor(member.displayColor || client.constants.defaultRoleColor)
         message.channel.send(embed)
