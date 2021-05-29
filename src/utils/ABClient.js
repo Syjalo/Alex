@@ -11,6 +11,7 @@ class ABClient extends Discord.Client {
 
   async login(token) {
     this.commands = new Discord.Collection()
+    this.cooldowns = new Discord.Collection()
     this.languages = new Discord.Collection()
     this.mongo = require('./mongo')
     this.config = require('../config.json')
@@ -63,13 +64,25 @@ class ABClient extends Discord.Client {
     return super.login(token)
   }
 
-  getString(path, variables = {}, locale = 'en-US') {
-    if(typeof variables === 'string') locale = variables
+  getString(path, variables = {}, locale) {
+    if(typeof variables !== 'object' || variables instanceof Discord.Message) locale = variables
 
-    let stringsEn = require('../res/values-en-US/strings.json')
-    let strings = require(`../res/values-${this.config.supportedLangs[locale].locale || 'en-US'}/strings.json`)
-    try { stringsEn = stringsEn[path]; strings = strings[path] }
-    catch {}
+    if(locale instanceof Discord.Message) {
+      locale = this.languages.get(locale.author.id) || locale.guild.preferredLocale
+    }
+
+    const splittedPath = path.split('.')
+    const fileName = splittedPath.shift()
+
+    let stringsEn = require(`../res/values-en-US/strings/${fileName}.json`)
+    let strings
+    try { strings = require(`../res/values-${this.config.supportedLangs[locale]?.locale || 'en-US'}/strings/${fileName}.json`) }
+    catch { strings = require(`../res/values-en-US/strings/${fileName}.json`) }
+
+    splittedPath.forEach(pathPart => {
+      try { stringsEn = stringsEn[pathPart]; strings = strings[pathPart] }
+      catch {}
+    })
 
     let string
     if(strings) string = strings
@@ -82,6 +95,18 @@ class ABClient extends Discord.Client {
     }
 
     return string
+  }
+
+  get owner() {
+    return this.users.cache.get(this.config.ownerId)
+  }
+
+  isOwner(user) {
+    return user.id === this.config.ownerId
+  }
+
+  toString() {
+    
   }
 }
 

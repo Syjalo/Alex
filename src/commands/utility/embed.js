@@ -6,7 +6,7 @@ module.exports = {
   execute(message, args, client) {
     const targetChannel = message.mentions.channels.first()
     if (!targetChannel) {
-      message.reply(client.getString('embed.specifyChannel'))
+      message.reply(client.getString('embed.specifyChannel', message))
       return
     }
 
@@ -20,7 +20,7 @@ module.exports = {
         embed: json,
       })
     } catch (error) {
-      message.reply(client.getString('invalidJSON', { errorMessage: error.message }))
+      message.reply(client.getString('embed.invalidJSON', { errorMessage: error.message }, message))
     }
   }
 }

@@ -1,0 +1,26 @@
+{
+  "page": {
+    "title": "Help Page",
+    "description": "%botMention% is an open source bot that is created by %developer%."
+  }, 
+  "userinfo": {
+    "usage": "userinfo <...users>",
+    "shortDescription": "Gives you specified user information.",
+    "fullDescription": ""
+  },
+  "embed": {
+    "usage": "embed <channel> <json>",
+    "shortDescription": "Sends an embed to the specified channel.",
+    "fullDescription": ""
+  },
+  "help": {
+    "usage": "help",
+    "shortDescription": "Shows you the help page.",
+    "fullDescription": ""
+  },
+  "language": {
+    "usage": "language [locale]",
+    "shortDescription": "Changes your language.",
+    "fullDescription": ""
+  }
+}

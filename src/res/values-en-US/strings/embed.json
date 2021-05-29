@@ -1,0 +1,4 @@
+{
+  "specifyChannel": "Please specify a channel to send the embed in",
+  "invalidJSON": "Invalid JSON: `%errorMessage%`"
+}

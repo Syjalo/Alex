@@ -1,0 +1,11 @@
+{
+  "id": "User ID",
+  "joinedDiscord": "Joined Discord",
+  "joinedServer": "Joined Server",
+  "serverBooster": "Server Nitro Booster Status",
+  "boosterSince": "Since %date%",
+  "notBooster": "Not a Booster",
+  "roles": "Roles",
+  "failedToFindOne": "Failed to find the following user",
+  "failedToFindMany": "Failed to find the following users"
+}

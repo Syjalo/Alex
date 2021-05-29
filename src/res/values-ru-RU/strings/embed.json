@@ -1,0 +1,4 @@
+{
+  "specifyChannel": "Пожалуйста, укажите канал для отправки вложения",
+  "invalidJSON": "Неверный JSON: `%errorMessage%`"
+}

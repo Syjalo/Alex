@@ -1,0 +1,26 @@
+{
+  "page": {
+    "title": "Страница помощи",
+    "description": "%botMention% — это бот с открытым исходным кодом, который создан пользователем %developer%."
+  }, 
+  "userinfo": {
+    "usage": "userinfo <...пользователи>",
+    "shortDescription": "Даёт вам информацию об указанном пользователе.",
+    "fullDescription": ""
+  },
+  "embed": {
+    "usage": "embed <канал> <json>",
+    "shortDescription": "Отправляет вложение в указанный канал.",
+    "fullDescription": ""
+  },
+  "help": {
+    "usage": "help",
+    "shortDescription": "Показывает вам страницу помощи.",
+    "fullDescription": ""
+  },
+  "language": {
+    "usage": "language [локаль]",
+    "shortDescription": "Изменяет ваш язык.",
+    "fullDescription": ""
+  }
+}

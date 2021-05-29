@@ -1,0 +1,11 @@
+{
+  "id": "ID пользователя",
+  "joinedDiscord": "Присоединился к Discord",
+  "joinedServer": "Присоединился к серверу",
+  "serverBooster": "Статус Nitro бустера сервера ",
+  "boosterSince": "С %date%",
+  "notBooster": "Не бустер",
+  "roles": "Роли",
+  "failedToFindOne": "Не удалось найти следуйщего пользователя",
+  "failedToFindMany": "Не удалось найти следующих пользователей"
+}
