@@ -64,8 +64,8 @@ class ABClient extends Discord.Client {
     return super.login(token)
   }
 
-  getString(path, variables = {}, locale) {
-    if(typeof variables !== 'object' || variables instanceof Discord.Message) locale = variables
+  getString(path, options) {
+    let { variables, locale } = options
 
     if(locale instanceof Discord.Message) {
       locale = this.languages.get(locale.author.id) || locale.guild.preferredLocale
@@ -101,8 +101,10 @@ class ABClient extends Discord.Client {
     return this.users.cache.get(this.config.ownerId)
   }
 
-  isOwner(user) {
-    return user.id === this.config.ownerId
+  isOwner(u) {
+    if(u instanceof Discord.User || u instanceof Discord.GuildMember) return u.id === this.config.ownerId
+    if(u instanceof Discord.Message) return u.author.id === this.config.ownerId
+    return false
   }
 
   toString() {

@@ -11,15 +11,15 @@ module.exports = {
         langs.push(`**${value.name}**: \`${locale}\``)
       }
       const embed = new Discord.MessageEmbed()
-      .setTitle(client.getString('language.specifyLocale', message))
-      .setDescription(client.getString('language.supportedLanguages', { langs: langs.sort().join('\n') }, message))
+      .setTitle(client.getString('language.specifyLocale', { locale: message }))
+      .setDescription(client.getString('language.supportedLanguages', { langs: langs.sort().join('\n') }, { locale: message }))
       .setColor(client.constants.defaultColor)
       message.channel.send(embed)
       return
     }
     if(!Object.keys(client.config.supportedLangs).includes(args[0])) {
       const embed = new Discord.MessageEmbed()
-      .setTitle(client.getString('language.currentlyNotSupported', message))
+      .setTitle(client.getString('language.currentlyNotSupported', { locale: message }))
       .setColor(client.constants.redColor)
       message.channel.send(embed)
       return
@@ -39,8 +39,8 @@ module.exports = {
         mongoose.connection.close()
         client.languages.set(message.author.id, args[0])
         const embed = new Discord.MessageEmbed()
-        .setTitle(client.getString('language.changedTitle', message))
-        .setDescription(client.getString('language.changedDescription', message))
+        .setTitle(client.getString('language.changedTitle', { locale: message }))
+        .setDescription(client.getString('language.changedDescription', { locale: message }))
         .setColor(client.constants.greenColor)
         message.channel.send(embed)
       }

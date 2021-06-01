@@ -23,7 +23,7 @@ module.exports = {
       })
     }
     if(message.member.permissions.has(Discord.Permissions.FLAGS.ADMINISTRATOR)) allowed = true
-    if(client.isOwner(message.author)) allowed = true
+    if(client.isOwner(message)) allowed = true
 
     if(!allowed) {
       message.react('❌')
@@ -56,7 +56,7 @@ module.exports = {
       }
     }
 
-    if(!message.member.permissions.has(Discord.Permissions.FLAGS.ADMINISTRATOR) && !client.isOwner(message.author)) {
+    if(!message.member.permissions.has(Discord.Permissions.FLAGS.ADMINISTRATOR) && !client.isOwner(message)) {
       timestamps.set(message.author.id, now)
       client.setTimeout(() => timestamps.delete(message.author.id), cooldownAmount)
     }

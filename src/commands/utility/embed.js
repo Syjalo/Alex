@@ -4,9 +4,15 @@ module.exports = {
   name: 'embed',
   permsWhitelist: [Discord.Permissions.FLAGS.ADMINISTRATOR],
   execute(message, args, client) {
-    const targetChannel = message.mentions.channels.first()
-    if (!targetChannel) {
-      message.reply(client.getString('embed.specifyChannel', message))
+    const targetChannelID = args[0].replace(/[<@!&#>\\]/g, '')
+    const targetChannel = client.channels.resolve(targetChannelID)
+
+    if(!targetChannel) {
+      message.reply(client.getString('embed.specifyChannel', { locale: message }))
+      return
+    }
+    if(targetChannel.guild.id !== message.guild.id && !client.isOwner(message)){
+      message.reply(client.getString('embed.anotherServer', { locale: message }))
       return
     }
 
@@ -20,7 +26,7 @@ module.exports = {
         embed: json,
       })
     } catch (error) {
-      message.reply(client.getString('embed.invalidJSON', { errorMessage: error.message }, message))
+      message.reply(client.getString('embed.invalidJSON', { variables: { errorMessage: error.message }, locale: message }))
     }
   }
 }
