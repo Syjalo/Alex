@@ -22,5 +22,10 @@
     "usage": "language [locale]",
     "shortDescription": "Changes your language.",
     "fullDescription": ""
+  },
+  "say": {
+    "usage": "say <channel> <message>",
+    "shortDescription": "Sends a message to the specified channel",
+    "fullDescription": ""
   }
 }
