@@ -1,9 +1,11 @@
 const Discord = require('discord.js')
+const TimeAgo = require('javascript-time-ago')
 
 module.exports = {
   name: 'userinfo',
   aliases: ['memberinfo', 'uinfo', 'minfo'],
   async execute(message, args, client) {
+    const timeAgo = new TimeAgo(client.languages.get(message.author.id || message.guild.preferredLocale || 'en-US'))
     const failedToFind = []
     if(args.length === 0) args[0] = message.author.id
     for(let i = 0; i < args.length; i++) {
@@ -36,8 +38,8 @@ module.exports = {
         .setDescription(member)
         .addFields(
           { name: client.getString('userinfo.id', { locale: message }), value: member.user.id },
-          { name: client.getString('userinfo.joinedDiscord', { locale: message }), value: member.user.createdAt.toLocaleString(client.getString('global.dateLocale', { locale: message }), { day: 'numeric', month: 'long', year: 'numeric' }) },
-          { name: client.getString('userinfo.joinedServer', { locale: message }), value: member.joinedAt.toLocaleString(client.getString('global.dateLocale', { locale: message }), { day: 'numeric', month: 'long', year: 'numeric' }) },
+          { name: client.getString('userinfo.joinedDiscord', { locale: message }), value: `${member.user.createdAt.toLocaleString(client.getString('global.dateLocale', { locale: message }), { day: 'numeric', month: 'long', year: 'numeric' })}\n(${timeAgo.format(member.user.createdTimestamp)})` },
+          { name: client.getString('userinfo.joinedServer', { locale: message }), value: `${member.joinedAt.toLocaleString(client.getString('global.dateLocale', { locale: message }), { day: 'numeric', month: 'long', year: 'numeric' })}\n(${timeAgo.format(member.joinedTimestamp)})` },
           { name: client.getString('userinfo.serverBooster', { locale: message }), value: `${member.premiumSince ? client.getString('userinfo.boosterSince', { variables: { date: member.premiumSince.toLocaleString(client.getString('global.dateLocale', { locale: message }), { day: 'numeric', month: 'long', year: 'numeric' }) }, locale: message }) : client.getString('userinfo.notBooster', { locale: message })}` },
           { name: client.getString('userinfo.roles', { locale: message }), value: member.roles.cache.filter(role => role.name !== '@everyone').map(role => role).length ? `(${member.roles.cache.filter(role => role.name !== '@everyone').map(role => role).length}) ${(() => member.roles.cache.filter(role => role.name !== '@everyone').map(role => role).join(', '))()}` : client.getString('userinfo.noRoles', { locale: message }) },
         )

@@ -1,4 +1,5 @@
 const Discord = require('discord.js')
+const TimeAgo = require('javascript-time-ago')
 const fs = require('fs')
 const path = require('path')
 
@@ -16,6 +17,10 @@ class ABClient extends Discord.Client {
     this.mongo = require('./mongo')
     this.config = require('../config.json')
     this.constants = require('./constants.json')
+
+    for(const locale in this.config.supportedLangs) {
+      TimeAgo.addLocale(require(`javascript-time-ago/locale/${locale.split('-')[0]}`))
+    }
 
     const fetchDataBase = async () => {
       let users

@@ -19,6 +19,7 @@
   "dependencies": {
     "discord.js": "github:discordjs/discord.js",
     "dotenv": "^8.6.0",
+    "javascript-time-ago": "^2.3.6",
     "mongodb": "^3.6.8",
     "mongoose": "^5.12.11",
     "node-fetch": "^2.6.1",
