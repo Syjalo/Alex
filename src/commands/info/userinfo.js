@@ -24,7 +24,7 @@ module.exports = {
         const embed = new Discord.MessageEmbed()
         .setAuthor(user.tag)
         .setThumbnail(user.displayAvatarURL())
-        .setDescription(user)
+        .setDescription(user.toString())
         .addFields(
           { name: client.getString('userinfo.id', { locale: message }), value: user.id },
           { name: client.getString('userinfo.joinedDiscord', { locale: message }), value: user.createdAt.toLocaleString(client.getString('global.dateLocale', { locale: message }), { day: 'numeric', month: 'long', year: 'numeric' }) },
@@ -35,7 +35,7 @@ module.exports = {
         const embed = new Discord.MessageEmbed()
         .setAuthor(member.user.tag)
         .setThumbnail(member.user.displayAvatarURL())
-        .setDescription(member)
+        .setDescription(member.toString())
         .addFields(
           { name: client.getString('userinfo.id', { locale: message }), value: member.user.id },
           { name: client.getString('userinfo.joinedDiscord', { locale: message }), value: `${member.user.createdAt.toLocaleString(client.getString('global.dateLocale', { locale: message }), { day: 'numeric', month: 'long', year: 'numeric' })}\n(${timeAgo.format(member.user.createdTimestamp)})` },
