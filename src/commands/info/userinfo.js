@@ -27,7 +27,7 @@ module.exports = {
         .setDescription(user.toString())
         .addFields(
           { name: client.getString('userinfo.id', { locale: message }), value: user.id },
-          { name: client.getString('userinfo.joinedDiscord', { locale: message }), value: user.createdAt.toLocaleString(client.getString('global.dateLocale', { locale: message }), { day: 'numeric', month: 'long', year: 'numeric' }) },
+          { name: client.getString('userinfo.joinedDiscord', { locale: message }), value: `${user.createdAt.toLocaleString(client.getString('global.dateLocale', { locale: message }), { day: 'numeric', month: 'long', year: 'numeric' })}\n(${timeAgo.format(user.createdTimestamp)})` },
         )
         .setColor(client.constants.defaultRoleColor)
         message.channel.send(embed)
