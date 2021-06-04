@@ -70,7 +70,26 @@ class ABClient extends Discord.Client {
     return super.login(token)
   }
 
-  getString(path, options) {
+  allowedToExecuteCommand(message, command) {
+    let allowed = true
+    if(command.permsBlacklist) {
+      command.permsBlacklist.forEach(p => {
+        allowed = true
+        if(message.member.permissions.has(p)) allowed = false
+      })
+    }
+    if(command.permsWhitelist) {
+      command.permsWhitelist.forEach(p => {
+        allowed = false
+        if(message.member.permissions.has(p)) allowed = true
+      })
+    }
+    if(message.member.permissions.has(Discord.Permissions.FLAGS.ADMINISTRATOR)) allowed = true
+    if(this.isOwner(message)) allowed = true
+    return allowed
+  }
+
+  getString(path, options = {}) {
     let { variables, locale = 'en-US' } = options
 
     if(locale instanceof Discord.Message) {

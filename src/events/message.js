@@ -9,23 +9,7 @@ module.exports = {
     const command = client.commands.get(commandName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName))
     if(!command) return
 
-    let allowed = true
-    if(command.permsBlacklist) {
-      command.permsBlacklist.forEach(p => {
-        allowed = true
-        if(message.member.permissions.has(p)) allowed = false
-      })
-    }
-    if(command.permsWhitelist) {
-      command.permsWhitelist.forEach(p => {
-        allowed = false
-        if(message.member.permissions.has(p)) allowed = true
-      })
-    }
-    if(message.member.permissions.has(Discord.Permissions.FLAGS.ADMINISTRATOR)) allowed = true
-    if(client.isOwner(message)) allowed = true
-
-    if(!allowed) {
+    if(!client.allowedToExecuteCommand(message, command)) {
       message.react('❌')
       setTimeout(async () => {
         if(!message.deleted) message.delete()
