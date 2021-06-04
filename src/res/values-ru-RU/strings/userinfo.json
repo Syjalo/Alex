@@ -6,6 +6,5 @@
   "boosterSince": "С {date}",
   "notBooster": "Не бустер",
   "roles": "{count, plural, =0 {Нет ролей} one {# роль} few {# роли} other {# ролей}}",
-  "failedToFindOne": "Не удалось найти следуйщего пользователя",
-  "failedToFindMany": "Не удалось найти следующих пользователей"
+  "failedToFind": "Не удалось найти {count, plural, one {# пользователя} other {# пользователей}}"
 }

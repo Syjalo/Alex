@@ -12,10 +12,15 @@ module.exports = {
     if(args.length === 0) args[0] = message.author.id
 
     for(const guildMemberResolvable of args) {
-      const member = message.guild.members.resolve(guildMemberResolvable) || message.guild.members.cache.find(member => member.user.username === guildMemberResolvable || member.user.tag === guildMemberResolvable)
-      const user = await client.users.fetch(guildMemberResolvable)
+      let member
+      let user
+      try {
+        member = message.guild.members.resolve(guildMemberResolvable) || message.guild.members.cache.find(member => member.user.username === guildMemberResolvable || member.user.tag === guildMemberResolvable)
+        user = await client.users.fetch(guildMemberResolvable)
+      } catch {}
       if(member) data.push(member)
-      else data.push(user)
+      else if(user) data.push(user)
+      else failedToFind.push(guildMemberResolvable)
     }
 
     data.forEach(d => {
@@ -47,5 +52,13 @@ module.exports = {
       }
       message.channel.send(embed)
     })
+
+    if(failedToFind.length > 0) {
+      const embed = new Discord.MessageEmbed()
+      .setTitle(client.getString('userinfo.failedToFind', { locale: message, variables: { count: failedToFind.length } }))
+      .setDescription(`\`${failedToFind.join('`, `')}\``)
+      .setColor(client.constants.redColor)
+      message.channel.send(embed)
+    }
   }
 }
