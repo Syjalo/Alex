@@ -1,5 +1,6 @@
 const Discord = require('discord.js')
 const TimeAgo = require('javascript-time-ago')
+const intlMessageformat = require('intl-messageformat')
 const fs = require('fs')
 const path = require('path')
 
@@ -70,7 +71,7 @@ class ABClient extends Discord.Client {
   }
 
   getString(path, options) {
-    let { variables, locale } = options
+    let { variables, locale = 'en-US' } = options
 
     if(locale instanceof Discord.Message) {
       locale = this.languages.get(locale.author.id) || locale.guild.preferredLocale
@@ -94,9 +95,7 @@ class ABClient extends Discord.Client {
     else string = stringsEn
 
     if(typeof string === 'string' && typeof variables === 'object') {
-      for(const [variable, value] of Object.entries(variables)) {
-        string = string.split(`%${variable}%`).join(value)
-      }
+      string = new intlMessageformat.IntlMessageFormat(string, locale).format(variables)
     }
 
     return string
