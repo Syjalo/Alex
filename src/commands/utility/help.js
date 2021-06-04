@@ -11,11 +11,20 @@ module.exports = {
     .setColor(client.constants.defaultColor)
 
     if(commands.map(c => c).length > 0) {
-      commands.each(command => embed.addField(`\`${client.config.prefix}${client.getString(`help.${command.name}.usage`, { locale: message })}\``, client.getString(`help.${command.name}.shortDescription`, { locale: message })))
+      commands.each(command => {
+        if(command.category !== 'dev') embed.addField(`\`${client.config.prefix}${client.getString(`help.${command.name}.usage`, { locale: message })}\``, client.getString(`help.${command.name}.shortDescription`, { locale: message }))
+      })
       embed.addField(client.getString('help.note.title', { locale: message }), client.getString('help.note.description', { locale: message }))
     }
 
+    const row = new Discord.MessageActionRow()
+    .addComponents(
+      new Discord.MessageButton()
+      .setLabel(client.getString('help.page.buttonOpenGitHub', { locale: message }))
+      .setStyle('LINK')
+      .setURL('https://github.com/Syjalo/Alex')
+    )
 
-    message.channel.send(embed)
+    message.channel.send(null, { embed: embed, components: [row] })
   }
 }

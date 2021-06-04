@@ -1,7 +1,8 @@
 {
   "page": {
     "title": "Help Page",
-    "description": "{botMention} is an open source bot that is created by {developer}.\nYou {count, plural, =0 {don't have any commands} one {have # command} other {have # commands}} available to execute."
+    "description": "{botMention} is an open source bot that is created by {developer}.\nYou {count, plural, =0 {don't have any commands} one {have # command} other {have # commands}} available to execute.",
+    "buttonOpenGitHub": "Open repository on GitHub"
   }, 
   "userinfo": {
     "usage": "userinfo <...users>",
