@@ -22,7 +22,7 @@ module.exports = {
       const json = JSON.parse(args.join(' '))
       const { text = '' } = json
 
-      targetChannel.send(text, {
+      targetChannel.send(text || null, {
         embed: json,
       })
     } catch (error) {
