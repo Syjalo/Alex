@@ -1,5 +1,5 @@
 {
   "specifyChannel": "Please specify a channel to send the embed in",
   "anotherServer": "I can't send an embed to another server.",
-  "invalidJSON": "Invalid JSON: `%errorMessage%`"
+  "invalidJSON": "Invalid JSON: `{errorMessage}`"
 }

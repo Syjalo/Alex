@@ -3,10 +3,9 @@
   "joinedDiscord": "Joined Discord",
   "joinedServer": "Joined Server",
   "serverBooster": "Server Nitro Booster Status",
-  "boosterSince": "Since %date%",
+  "boosterSince": "Since {date}",
   "notBooster": "Not a Booster",
-  "roles": "Roles",
-  "noRoles": "No roles",
+  "roles": "{count, plural, =0 {No roles} one {# role} other {# roles}}",
   "failedToFindOne": "Failed to find the following user",
   "failedToFindMany": "Failed to find the following users"
 }

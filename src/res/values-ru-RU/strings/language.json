@@ -1,6 +1,6 @@
 {
   "specifyLocale": "Пожалуйста, укажите локаль языка после команды",
-  "supportedLanguages": "Поддерживаемые языки:\n%langs%",
+  "supportedLanguages": "Поддерживаемые языки:\n{langs}",
   "currentlyNotSupported": "Язык с этой локалью в настоящее время не поддерживается",
   "changedTitle": "Язык изменён",
   "changedDescription": "Ваш язык был изменен на русский"
