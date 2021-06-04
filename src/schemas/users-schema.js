@@ -14,7 +14,7 @@ const string = {
 }
 
 const usersSchema = mongoose.Schema({
-  userId: reqString,
+  id: reqString,
   guilds: object,
   locale: string
 })

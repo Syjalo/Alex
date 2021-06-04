@@ -7,7 +7,7 @@ module.exports = {
     await client.mongo().then(async (mongoose) => {
       try {
         response = await usersSchema.findOne({
-          userId: member.id,
+          id: member.id,
         })
       } finally {
         mongoose.connection.close()

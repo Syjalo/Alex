@@ -7,7 +7,7 @@ module.exports = {
       await client.mongo().then(async (mongoose) => {
         try {
           const response = await usersSchema.findOne({
-            userId: member.id,
+            id: member.id,
           })
           let guilds = response?.guilds || {}
           if(!guilds[member.guild.id]) guilds[member.guild.id] = {}
@@ -15,7 +15,7 @@ module.exports = {
           if(!guilds[member.guild.id]?.roles?.length) return
           await usersSchema.findOneAndUpdate(
             {
-              userId: member.id,
+              id: member.id,
             },
             {
               guilds,
