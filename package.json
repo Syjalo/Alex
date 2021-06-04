@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/Syjalo/Alex#readme",
   "dependencies": {
-    "discord.js": "github:discordjs/discord.js",
+    "discord.js": "^13.0.0-dev.cbd7f2b9aa44a9240947ed716d0e72257ac499f7",
     "dotenv": "^8.6.0",
     "intl-messageformat": "^9.6.17",
     "javascript-time-ago": "^2.3.6",
