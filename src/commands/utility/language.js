@@ -27,7 +27,7 @@ module.exports = {
     await client.mongo().then(async (mongoose) => {
       try {
         users = await usersSchema.findOneAndUpdate({
-          userId: message.author.id
+          id: message.author.id
         },
         {
           locale: args[0]
