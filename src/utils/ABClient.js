@@ -33,7 +33,7 @@ class ABClient extends Discord.Client {
         }
       })
       users.forEach(user => {
-        if(user.locale) this.languages.set(user.userId, user.locale)
+        if(user.locale) this.languages.set(user.id, user.locale)
       })
     }
     fetchDataBase()
