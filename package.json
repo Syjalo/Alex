@@ -23,7 +23,6 @@
     "javascript-time-ago": "^2.3.6",
     "mongodb": "^3.6.9",
     "mongoose": "^5.12.12",
-    "node-fetch": "^2.6.1",
-    "puppeteer": "^9.1.1"
+    "node-fetch": "^2.6.1"
   }
 }
