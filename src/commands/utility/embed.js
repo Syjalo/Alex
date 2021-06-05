@@ -20,9 +20,9 @@ module.exports = {
 
     try {
       const json = JSON.parse(args.join(' '))
-      const { text = '' } = json
+      const { text = null } = json
 
-      targetChannel.send(text || null, {
+      targetChannel.send(text, {
         embed: json,
       })
     } catch (error) {
