@@ -1,3 +1,5 @@
+const Discord = require('discord.js')
+
 module.exports = {
   name: 'say',
   permsWhitelist: ['ADMINISTRATOR'],
@@ -12,6 +14,13 @@ module.exports = {
     }
 
     if(message.deletable) message.delete()
-    if(targetChannel) targetChannel.send(args.join(' '))
+
+    try {
+      const json = JSON.parse(args.join(' '))
+      const { text = null, replyTo = null, mention = true } = json
+      if(targetChannel) targetChannel.send(text, { allowedMentions: { repliedUser: mention }, reply: { messageReference: replyTo, failIfNotExists: false } })
+    } catch {
+      if(targetChannel) targetChannel.send(args.join(' '))
+    }
   }
 }
