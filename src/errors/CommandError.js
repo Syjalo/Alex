@@ -1,25 +1,18 @@
-const kCode = Symbol('code')
-
 class CommandError {
   constructor(code, stringPath, message) {
     if(!code) {
-      this[kCode] = 'UNKNOWN_ERROR'
-      this.stringPath = 'errors.unknownError'
+      this.code = 'UNKNOWN_ERROR'
+      this.stringPath = 'errors.unknown'
       this.message = 'An unknown error occurred'
     } else {
-      this[kCode] = code
+      this.code = code
       this.stringPath = stringPath
       this.message = message
     }
-    if (Error.captureStackTrace) Error.captureStackTrace(this, CommandError)
   }
 
   get name() {
-    return `CommandError [${this[kCode]}]`
-  }
-
-  get code() {
-    return this[kCode]
+    return `CommandError [${this.code}]`
   }
 
   get fullMessage() {
