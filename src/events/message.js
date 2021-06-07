@@ -1,9 +1,10 @@
 const Discord = require('discord.js')
+const CommandError = require('../errors/CommandError')
 
 module.exports = {
   name: 'message',
   async execute(message, client) {
-    if(message.author.bot || !message.content.startsWith(client.config.prefix) || message.channel.type === 'dm') return
+    if(message.author.bot || !message.content.startsWith(client.config.prefix)) return
     const args = message.content.slice(client.config.prefix.length).trim().split(' ')
     const commandName = args.shift().toLowerCase()
     const command = client.commands.get(commandName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName))
@@ -40,7 +41,7 @@ module.exports = {
       }
     }
 
-    if(!message.member.permissions.has(Discord.Permissions.FLAGS.ADMINISTRATOR) && !client.isOwner(message)) {
+    if(message.channel.type !== 'dm' && !message.member.permissions.has(Discord.Permissions.FLAGS.ADMINISTRATOR) && !client.isOwner(message)) {
       timestamps.set(message.author.id, now)
       client.setTimeout(() => timestamps.delete(message.author.id), cooldownAmount)
     }
@@ -48,7 +49,50 @@ module.exports = {
     try {
       await command.execute(message, args, client)
     } catch (error) {
-      console.log(error)
+      if(error instanceof CommandError) {
+        const embed = new Discord.MessageEmbed()
+        .setTitle(client.getString(error.stringPath, { locale: message }))
+        .setColor(client.constants.redColor)
+        message.reply(null, { embed, failIfNotExists: false })
+        .then(errorMsg => {
+          client.setTimeout(() => {
+            if(errorMsg.deletable) errorMsg.delete()
+            if(message.deletable) message.delete()
+          }, 10000)
+        })
+      } else if(error.stack) {
+        const devEmbed = new Discord.MessageEmbed()
+        .setTitle('A fatal error occurred')
+        .setDescription(`Channel type: \`${message.channel.type}\`\nExecuted by: \`${message.author.tag} (${message.author.id})\`\n\n\`\`\`${error.stack}\`\`\``)
+        .setColor(client.constants.redColor)
+        client.owner.send(devEmbed)
+        const embed = new Discord.MessageEmbed()
+        .setTitle(client.getString('errors.fatal', { locale: message }))
+        .setColor(client.constants.redColor)
+        message.reply(null, { embed, failIfNotExists: false })
+        .then(errorMsg => {
+          client.setTimeout(() => {
+            if(errorMsg.deletable) errorMsg.delete()
+            if(message.deletable) message.delete()
+          }, 10000)
+        })
+      } else {
+        const devEmbed = new Discord.MessageEmbed()
+        .setTitle('An unknown error occurred')
+        .setDescription(`Channel type: \`${message.channel.type}\`\nExecuted by: \`${message.author.tag} (${message.author.id})\`\n\n\`\`\`${error.stack}\`\`\``)
+        .setColor(client.constants.redColor)
+        client.owner.send(devEmbed)
+        const embed = new Discord.MessageEmbed()
+        .setTitle(client.getString('errors.unknown', { locale: message }))
+        .setColor(client.constants.redColor)
+        message.reply(null, { embed, failIfNotExists: false })
+        .then(errorMsg => {
+          client.setTimeout(() => {
+            if(errorMsg.deletable) errorMsg.delete()
+            if(message.deletable) message.delete()
+          }, 10000)
+        })
+      }
     }
   }
 }

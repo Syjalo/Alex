@@ -71,6 +71,10 @@ class ABClient extends Discord.Client {
   }
 
   allowedToExecuteCommand(message, command) {
+    if(command.ownerOnly && !this.isOwner(message)) return false
+    if(this.isOwner(message)) return true
+    if(!command.allowedInDM && message.channel.type === 'dm') return false
+    if(message.member.permissions.has(Discord.Permissions.FLAGS.ADMINISTRATOR)) return true
     let allowed = true
     if(command.permsBlacklist) {
       command.permsBlacklist.forEach(p => {
@@ -84,8 +88,6 @@ class ABClient extends Discord.Client {
         if(message.member.permissions.has(p)) allowed = true
       })
     }
-    if(message.member.permissions.has(Discord.Permissions.FLAGS.ADMINISTRATOR)) allowed = true
-    if(this.isOwner(message)) allowed = true
     return allowed
   }
 
