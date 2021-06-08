@@ -1,7 +1,7 @@
 {
-  "defaultColor": "#5662F6",
-  "defaultRoleColor": "#B9BBBE",
-  "redColor": "#DC3F42",
-  "yellowColor": "#BE7F17",
-  "greenColor": "#3BA55C"
+  "blurpleColor": "#5865F2",
+  "redColor": "#ED4245",
+  "yellowColor": "#FAA61A",
+  "greenColor": "#3BA55C",
+  "defaultRoleColor": "#B9BBBE"
 }

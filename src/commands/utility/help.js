@@ -9,7 +9,7 @@ module.exports = {
     const embed = new Discord.MessageEmbed()
     .setTitle(client.getString('help.page.title', { locale: message }))
     .setDescription(`${client.getString('help.page.description', { variables: { botMention: client.user.toString(), developer: client.owner.toString(), count: commands.map(c => c).length }, locale: message })}`)
-    .setColor(client.constants.defaultColor)
+    .setColor(client.constants.blurpleColor)
 
     if(commands.map(c => c).length > 0) {
       commands.each(command => {

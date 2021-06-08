@@ -15,7 +15,7 @@ module.exports = {
       const embed = new Discord.MessageEmbed()
       .setTitle(client.getString('language.specifyLocale', { locale: message }))
       .setDescription(client.getString('language.supportedLanguages', { variables: { langs: langs.sort().join('\n') }, locale: message }))
-      .setColor(client.constants.defaultColor)
+      .setColor(client.constants.blurpleColor)
       message.channel.send(embed)
       return
     }
