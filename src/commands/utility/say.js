@@ -2,6 +2,7 @@ const Discord = require('discord.js')
 
 module.exports = {
   name: 'say',
+  minArgs: 2,
   permsWhitelist: ['ADMINISTRATOR'],
   execute(message, args, client) {
     const targetChannelID = args[0].replace(/[<@!&#>\\]/g, '')

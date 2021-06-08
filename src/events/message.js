@@ -18,6 +18,21 @@ module.exports = {
       return
     }
 
+    if(command?.minArgs > args.length || command?.maxArgs < args.length) {
+      const embed = new Discord.MessageEmbed()
+      .setTitle(client.getString('errors.invalidCommandArgs.title', { locale: message }))
+      .setDescription(client.getString('errors.invalidCommandArgs.description', { locale: message, variables: { usage: `${client.config.prefix}${client.getString(`help.${command.name}.usage`, { locale: message })}` } }))
+      .setColor(client.constants.redColor)
+      message.reply(null, { embed, failIfNotExists: false })
+      .then(errorMsg => {
+        client.setTimeout(() => {
+          if(errorMsg.deletable) errorMsg.delete()
+          if(message.deletable) message.delete()
+        }, 10000)
+      })
+      return
+    }
+
     const { cooldowns } = client
 
     if (!cooldowns.has(command.name)) {
@@ -60,14 +75,17 @@ module.exports = {
             if(message.deletable) message.delete()
           }, 10000)
         })
-      } else if(error.stack) {
+        return
+      }
+      console.error(error)
+      if(error.stack && process.env.PROCESS === 'production') {
         const devEmbed = new Discord.MessageEmbed()
         .setTitle('A fatal error occurred')
         .setDescription(`Channel type: \`${message.channel.type}\`\nExecuted by: \`${message.author.tag} (${message.author.id})\`\n\n\`\`\`${error.stack}\`\`\``)
         .setColor(client.constants.redColor)
         client.owner.send(devEmbed)
         const embed = new Discord.MessageEmbed()
-        .setTitle(client.getString('errors.fatal', { locale: message }))
+        .setTitle(client.getString('errors.fatal.message', { locale: message }))
         .setColor(client.constants.redColor)
         message.reply(null, { embed, failIfNotExists: false })
         .then(errorMsg => {
@@ -76,14 +94,14 @@ module.exports = {
             if(message.deletable) message.delete()
           }, 10000)
         })
-      } else {
+      } else if(process.env.PROCESS === 'production') {
         const devEmbed = new Discord.MessageEmbed()
         .setTitle('An unknown error occurred')
         .setDescription(`Channel type: \`${message.channel.type}\`\nExecuted by: \`${message.author.tag} (${message.author.id})\`\n\n\`\`\`${error.stack}\`\`\``)
         .setColor(client.constants.redColor)
         client.owner.send(devEmbed)
         const embed = new Discord.MessageEmbed()
-        .setTitle(client.getString('errors.unknown', { locale: message }))
+        .setTitle(client.getString('errors.unknown.message', { locale: message }))
         .setColor(client.constants.redColor)
         message.reply(null, { embed, failIfNotExists: false })
         .then(errorMsg => {

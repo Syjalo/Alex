@@ -2,6 +2,7 @@ const Discord = require('discord.js')
 
 module.exports = {
   name: 'embed',
+  minArgs: 2,
   permsWhitelist: [Discord.Permissions.FLAGS.ADMINISTRATOR],
   execute(message, args, client) {
     const targetChannelID = args[0].replace(/[<@!&#>\\]/g, '')
