@@ -24,6 +24,11 @@
     "shortDescription": "Изменяет ваш язык.",
     "fullDescription": ""
   },
+  "restart": {
+    "usage": "restart",
+    "shortDescription": "Перезапускает бота.",
+    "fullDescription": ""
+  },
   "say": {
     "usage": "say <канал> <сообщение>",
     "shortDescription": "Отправляет сообщение в указанный канал",

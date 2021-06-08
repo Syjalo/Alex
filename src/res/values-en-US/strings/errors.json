@@ -1,4 +1,12 @@
 {
-  "fatal": "A fatal error occurred\nI reported this to the developer",
-  "unknown": "An unknown error occurred\nI reported this to the developer"
+  "fatal": {
+    "message": "A fatal error occurred\nI reported this to the developer"
+  },
+  "unknown": {
+    "message": "An unknown error occurred\nI reported this to the developer"
+  },
+  "invalidCommandArgs": {
+    "title": "Command arguments is invalid",
+    "description": "Correct usage is `{usage}`"
+  }
 }

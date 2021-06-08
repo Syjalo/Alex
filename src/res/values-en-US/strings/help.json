@@ -24,6 +24,11 @@
     "shortDescription": "Changes your language.",
     "fullDescription": ""
   },
+  "restart": {
+    "usage": "restart",
+    "shortDescription": "Restarts the bot.",
+    "fullDescription": ""
+  },
   "say": {
     "usage": "say <channel> <message>",
     "shortDescription": "Sends a message to the specified channel",
