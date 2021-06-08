@@ -70,6 +70,10 @@ class ABClient extends Discord.Client {
     return super.login(token)
   }
 
+  getCommand(name) {
+    return this.commands.get(name) || this.commands.find(cmd => cmd.aliases && cmd.aliases.includes(name)) || null
+  }
+
   allowedToExecuteCommand(message, command) {
     if(command.ownerOnly && !this.isOwner(message)) return false
     if(this.isOwner(message)) return true
