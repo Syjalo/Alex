@@ -116,6 +116,10 @@ class ABClient extends Discord.Client {
     else string = stringsEn
 
     if(typeof string === 'string' && typeof variables === 'object') {
+      for(const [key, variable] of Object.entries(variables)) {
+        try { string = new intlMessageformat.IntlMessageFormat(string, locale).format(Object.create()[key] = variable) }
+        catch {}
+      }
       string = new intlMessageformat.IntlMessageFormat(string, locale).format(variables)
     }
 
