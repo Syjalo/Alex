@@ -6,8 +6,7 @@ module.exports = {
   async execute(message, client) {
     if(message.author.bot || !message.content.startsWith(client.config.prefix)) return
     const args = message.content.slice(client.config.prefix.length).trim().split(' ')
-    const commandName = args.shift().toLowerCase()
-    const command = client.commands.get(commandName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName))
+    const command = client.getCommand(args.shift().toLowerCase())
     if(!command) return
 
     if(!client.allowedToExecuteCommand(message, command)) {
