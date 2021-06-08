@@ -2,37 +2,43 @@
   "page": {
     "title": "Help Page",
     "description": "{botMention} is an open source bot that is created by {developer}.\nYou {count, plural, =0 {don't have any commands} one {have # command} other {have # commands}} available to execute.",
-    "buttonOpenGitHub": "Open repository on GitHub"
+    "commandInformation": "`{commandName}` command information",
+    "usage": "Usage",
+    "cooldown": "Cooldown",
+    "maxUsage": "Maximum amount of usage before cooldown",
+    "aliases": "{amount, plural, =0 {No any aliases} one {# alias} other {# aliases}}",
+    "cooldownSeconds": "{time, plural, one {# second} other {# seconds}}",
+    "usageAmount": "{times, plural, one {# time} other {# times}}"
   }, 
   "userinfo": {
     "usage": "userinfo <...users>",
-    "shortDescription": "Gives you specified user information.",
-    "fullDescription": ""
+    "shortDescription": "Gives you the specified user information.",
+    "fullDescription": "Gives you the specified user information. As an argument, you can specify the user ID, the username or the username with tag. The search by the user ID is performing on all Discord users. You can specify multiple arguments separated by a space to search for multiple users."
   },
   "embed": {
     "usage": "embed <channel> <json>",
     "shortDescription": "Sends an embed to the specified channel.",
-    "fullDescription": ""
+    "fullDescription": "Sends an embed to the specified channel. The first argument is the channel. You can specify the channel ID or mention it. The second argument is the text in JSON format. [Learn more on the Discord Developer Portal](https://discord.com/developers/docs/resources/channel#embed-object)."
   },
   "help": {
     "usage": "help",
     "shortDescription": "Shows you the help page.",
-    "fullDescription": ""
+    "fullDescription": "Shows you the help page."
   },
   "language": {
     "usage": "language [locale]",
     "shortDescription": "Changes your language.",
-    "fullDescription": ""
+    "fullDescription": "Changes your language."
   },
   "restart": {
     "usage": "restart",
     "shortDescription": "Restarts the bot.",
-    "fullDescription": ""
+    "fullDescription": "Restarts the bot."
   },
   "say": {
     "usage": "say <channel> <message>",
-    "shortDescription": "Sends a message to the specified channel",
-    "fullDescription": ""
+    "shortDescription": "Sends a message to the specified channel.",
+    "fullDescription": "Sends a message to the specified channel."
   },
   "note": {
     "title": "Note",

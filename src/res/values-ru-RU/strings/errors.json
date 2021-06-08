@@ -8,6 +8,12 @@
   "cooldownExist": {
     "message": "Пожалуйста, подождите ещё {timeLeft, plural, =1 {секунду} one {# секунду} few {# секунды} other {# секунд}}, чтобы снова выполнить команду `{commandName}`"
   },
+  "falseCommand": {
+    "message": "Эта команда не может быть найдена!"
+  },
+  "noAccessSpecifiedCommand": {
+    "message": "Вам нельзя выполнять указанную команду!"
+  },
   "invalidCommandArgs": {
     "title": "Аргументы команды неверны",
     "description": "Правильное использование: `{usage}`"

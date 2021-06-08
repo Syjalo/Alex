@@ -1,3 +1,6 @@
 {
-  "dateLocale": "ru-RU"
+  "dateLocale": "ru-RU",
+  "button": {
+    "openGitHub": "Открыть репозиторий на GitHub"
+  }
 }

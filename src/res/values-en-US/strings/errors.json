@@ -8,6 +8,12 @@
   "cooldownExist": {
     "message": "Please wait {timeLeft, plural, =1 {more second} other {# more seconds}} to execute the `{commandName}` command again"
   },
+  "falseCommand": {
+    "message": "That command couldn't be found!"
+  },
+  "noAccessSpecifiedCommand": {
+    "message": "You're not allowed to execute the specified command!"
+  },
   "invalidCommandArgs": {
     "title": "Command arguments is invalid",
     "description": "Correct usage is `{usage}`"

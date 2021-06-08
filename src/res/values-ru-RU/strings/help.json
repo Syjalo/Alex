@@ -2,37 +2,43 @@
   "page": {
     "title": "Страница помощи",
     "description": "{botMention} — это бот с открытым исходным кодом, который создан пользователем {developer}.\nВы {count, plural, =0 {не имеете ни одну команду доступных для выполнения} one {имеете # команду доступную для выполнения} few {имеете # команды доступных для выполнения} other {имеете # команд доступных для выполнения}}.",
-    "buttonOpenGitHub": "Открыть репозиторий на GitHub"
+    "commandInformation": "Информация команды `{commandName}`",
+    "usage": "Использование",
+    "cooldown": "Кулдаун",
+    "maxUsage": "Максимальное количество использования до кулдауна",
+    "aliases": "{amount, plural, =0 {Альтернатив нет} one {# альтернатива} few {# альтернативы} other {# альтернатив}}",
+    "cooldownSeconds": "{time, plural, one {# секунда} few {# секунды} other {# секунд}}",
+    "usageAmount": "{times, plural, few {# раза} other {# раз}}"
   }, 
   "userinfo": {
     "usage": "userinfo <...пользователи>",
     "shortDescription": "Даёт вам информацию об указанном пользователе.",
-    "fullDescription": ""
+    "fullDescription": "Даёт вам информацию об указанном пользователе. В качестве аргумента можно указать ID пользователя, его имя пользователя или имя пользователя с тегом. Поиск по ID пользователя происходит по всем пользователям Discord. Можно указать несколько аргументов через пробел для поиска нескольких пользователей."
   },
   "embed": {
     "usage": "embed <канал> <json>",
     "shortDescription": "Отправляет вложение в указанный канал.",
-    "fullDescription": ""
+    "fullDescription": "Отправляет вложение в указанный канал. В качестве первого аргумента указывается канал. Можно указать ID канала или упомянуть его. В качестве второго аргумента указывается текст в формате JSON. [Подробнее на портале разработчиков Discord](https://discord.com/developers/docs/resources/channel#embed-object)."
   },
   "help": {
     "usage": "help",
     "shortDescription": "Показывает вам страницу помощи.",
-    "fullDescription": ""
+    "fullDescription": "Показывает вам страницу помощи."
   },
   "language": {
     "usage": "language [локаль]",
     "shortDescription": "Изменяет ваш язык.",
-    "fullDescription": ""
+    "fullDescription": "Изменяет ваш язык"
   },
   "restart": {
     "usage": "restart",
     "shortDescription": "Перезапускает бота.",
-    "fullDescription": ""
+    "fullDescription": "Перезапускает бота."
   },
   "say": {
     "usage": "say <канал> <сообщение>",
-    "shortDescription": "Отправляет сообщение в указанный канал",
-    "fullDescription": ""
+    "shortDescription": "Отправляет сообщение в указанный канал.",
+    "fullDescription": "Отправляет сообщение в указанный канал."
   },
   "note": {
     "title": "Примечание",

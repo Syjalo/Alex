@@ -1,5 +1,6 @@
 {
   "dateLocale": "en-US",
-  "cooldownExistSecond": "Please wait {time} more second(s) before reusing the {command} command.",
-  "cooldownExistMinute": "Please wait {time} more minute(s) before reusing the {command} command."
+  "button": {
+    "openGitHub": "Open repository on GitHub"
+  }
 }
