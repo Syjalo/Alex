@@ -1,5 +1,4 @@
 const Discord = require('discord.js')
-const { Collection } = require('mongoose')
 const CommandError = require('../errors/CommandError')
 
 module.exports = {
