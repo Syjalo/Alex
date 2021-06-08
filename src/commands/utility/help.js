@@ -12,7 +12,7 @@ module.exports = {
 
     if(commands.map(c => c).length > 0) {
       commands.each(command => {
-        if(command.category !== 'dev') embed.addField(`\`${client.config.prefix}${client.getString(`help.${command.name}.usage`, { locale: message })}\``, client.getString(`help.${command.name}.shortDescription`, { locale: message }))
+        if(command.category !== 'dev') embed.addField(`\`${client.config.prefix}${client.getString(`help.${command.name}.usage`, { locale: message })}\``, `${client.getString(`help.${command.name}.shortDescription`, { locale: message })}`)
       })
       embed.addField(client.getString('help.note.title', { locale: message }), client.getString('help.note.description', { locale: message }))
     }
