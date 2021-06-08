@@ -4,7 +4,7 @@ const usersSchema = require('../../schemas/users-schema')
 module.exports = {
   name: 'language',
   cooldown: 60,
-  maxUsageCount: 2,
+  maxUsageAmount: 2,
   aliases: ['lang'],
   async execute(message, args, client) {
     if(args.length === 0) {

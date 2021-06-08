@@ -38,13 +38,13 @@ module.exports = {
     if (!cooldowns.has(command.name)) cooldowns.set(command.name, { timestamps: new Discord.Collection(), usage: new Discord.Collection() })
     const now = Date.now()
     const { timestamps, usage } = cooldowns.get(command.name)
-    let usageCount = usage.get(message.author.id) || 0
+    let usageAmount = usage.get(message.author.id) || 0
     const cooldownAmount = (command.cooldown || 3) * 1000
-    const maxUsageCount = command.maxUsageCount || 1
+    const maxUsageAmount = command.maxUsageAmount || 1
     if(timestamps.has(message.author.id)) {
       const expirationTime = timestamps.get(message.author.id) + cooldownAmount
       if(now < expirationTime) {
-        if(usageCount >= maxUsageCount) {
+        if(usageAmount >= maxUsageAmount) {
           const timeLeft = (expirationTime - now) / 1000
           const embed = new Discord.MessageEmbed()
           .setTitle(client.getString('errors.cooldownExist.message', { locale: message, variables: { timeLeft: Math.ceil(timeLeft), commandName: `${client.config.prefix}${command.name}` } }))
@@ -59,18 +59,19 @@ module.exports = {
         }
       }
     } else {
-      usageCount = usage.set(message.author.id, 0).get(message.author.id)
+      usageAmount = usage.set(message.author.id, 0).get(message.author.id)
     }
 
     if(message.channel.type !== 'dm' && !message.member.permissions.has(Discord.Permissions.FLAGS.ADMINISTRATOR) && !client.isOwner(message)) {
-      if(usageCount === 0) timestamps.set(message.author.id, now)
-      usage.set(message.author.id, usageCount + 1)
+      if(usageAmount === 0) timestamps.set(message.author.id, now)
+      usage.set(message.author.id, usageAmount + 1)
       client.setTimeout(() => timestamps.delete(message.author.id), cooldownAmount)
     }
 
     try {
       await command.execute(message, args, client)
     } catch (error) {
+      usage.set(message.author.id, usageAmount)
       if(error instanceof CommandError) {
         const embed = new Discord.MessageEmbed()
         .setTitle(client.getString(error.stringPath, { locale: message }))
