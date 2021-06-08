@@ -5,6 +5,9 @@
   "unknown": {
     "message": "An unknown error occurred\nI reported this to the developer"
   },
+  "cooldownExist": {
+    "message": "Please wait {timeLeft, plural, =1 {more second} other {# more seconds}} to execute the `{commandName}` command again"
+  },
   "invalidCommandArgs": {
     "title": "Command arguments is invalid",
     "description": "Correct usage is `{usage}`"

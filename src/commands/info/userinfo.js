@@ -3,6 +3,8 @@ const TimeAgo = require('javascript-time-ago')
 
 module.exports = {
   name: 'userinfo',
+  cooldown: 10,
+  maxUsageCount: 2,
   aliases: ['memberinfo', 'uinfo', 'minfo'],
   async execute(message, args, client) {
     const timeAgo = new TimeAgo(client.languages.get(message.author.id || message.guild.preferredLocale || 'en-US'))

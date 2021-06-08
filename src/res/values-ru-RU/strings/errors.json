@@ -5,6 +5,9 @@
   "unknown": {
     "message": "Произошла неизвестная ошибка\nЯ сообщил об этом разработчику"
   },
+  "cooldownExist": {
+    "message": "Пожалуйста, подождите ещё {timeLeft, plural, =1 {секунду} one {# секунду} few {# секунды} other {# секунд}}, чтобы снова выполнить команду `{commandName}`"
+  },
   "invalidCommandArgs": {
     "title": "Аргументы команды неверны",
     "description": "Правильное использование: `{usage}`"

@@ -1,4 +1,5 @@
 const Discord = require('discord.js')
+const { Collection } = require('mongoose')
 const CommandError = require('../errors/CommandError')
 
 module.exports = {
@@ -34,30 +35,36 @@ module.exports = {
     }
 
     const { cooldowns } = client
-
-    if (!cooldowns.has(command.name)) {
-      cooldowns.set(command.name, new Discord.Collection())
-    }
-
+    if (!cooldowns.has(command.name)) cooldowns.set(command.name, { timestamps: new Discord.Collection(), usage: new Discord.Collection() })
     const now = Date.now()
-    const timestamps = cooldowns.get(command.name)
+    const { timestamps, usage } = cooldowns.get(command.name)
+    let usageCount = usage.get(message.author.id) || 0
     const cooldownAmount = (command.cooldown || 3) * 1000
-    if (timestamps.has(message.author.id)) {
+    const maxUsageCount = command.maxUsageCount || 1
+    if(timestamps.has(message.author.id)) {
       const expirationTime = timestamps.get(message.author.id) + cooldownAmount
-      if (now < expirationTime) {
-        const timeLeft = (expirationTime - now) / 1000
-        return message.reply(`Please wait ${timeLeft.toFixed(1)} more second(s) before reusing the \`${command.name}\` command.`)
-        .then(msg => {
-          client.setTimeout(() => {
-            if(!message.deleted && message.deletable) message.delete()
-            if(!msg.deleted) msg.delete()
-          }, 5000)
-        })
+      if(now < expirationTime) {
+        if(usageCount >= maxUsageCount) {
+          const timeLeft = (expirationTime - now) / 1000
+          const embed = new Discord.MessageEmbed()
+          .setTitle(client.getString('errors.cooldownExist.message', { locale: message, variables: { timeLeft: Math.ceil(timeLeft), commandName: `${client.config.prefix}${command.name}` } }))
+          .setColor(client.constants.redColor)
+          return message.reply(null, { embed, failIfNotExists: false })
+          .then(msg => {
+            client.setTimeout(() => {
+              if(msg.deletable) msg.delete()
+              if(message.deletable) message.delete()
+            }, 10000)
+          })
+        }
       }
+    } else {
+      usageCount = usage.set(message.author.id, 0).get(message.author.id)
     }
 
     if(message.channel.type !== 'dm' && !message.member.permissions.has(Discord.Permissions.FLAGS.ADMINISTRATOR) && !client.isOwner(message)) {
-      timestamps.set(message.author.id, now)
+      if(usageCount === 0) timestamps.set(message.author.id, now)
+      usage.set(message.author.id, usageCount + 1)
       client.setTimeout(() => timestamps.delete(message.author.id), cooldownAmount)
     }
 

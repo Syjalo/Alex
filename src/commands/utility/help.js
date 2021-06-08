@@ -2,6 +2,7 @@ const Discord = require('discord.js')
 
 module.exports = {
   name: 'help',
+  cooldown: 30,
   execute(message, args, client) {
     const commands = client.commands.sort((commandA, commandB) => commandA.name >= commandB.name ? 1 : -1).filter(command => client.allowedToExecuteCommand(message, command) && command.category !== 'dev')
 
