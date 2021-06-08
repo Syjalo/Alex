@@ -5,9 +5,11 @@ module.exports = {
   once: true,
   execute(client) {
     console.log('Ready!')
-    const embed = new Discord.MessageEmbed()
-    .setTitle('Ready!')
-    .setColor(client.constants.greenColor)
-    client.owner.send(embed)
+    if(process.env.PROCESS === 'production') {
+      const embed = new Discord.MessageEmbed()
+      .setTitle('Ready!')
+      .setColor(client.constants.greenColor)
+      client.owner.send(embed)
+    }
   }
 }
