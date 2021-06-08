@@ -13,7 +13,7 @@ module.exports = {
     if(!client.allowedToExecuteCommand(message, command)) {
       message.react('❌')
       setTimeout(async () => {
-        if(!message.deleted) message.delete()
+        if(message.deletable) message.delete()
       }, 3000)
       return
     }
