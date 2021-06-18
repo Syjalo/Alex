@@ -10,7 +10,7 @@ module.exports = {
       const embed = new Discord.MessageEmbed()
       .setTitle('Ready!')
       .setTimestamp(client.readyAt)
-      .setColor(client.constants.greenColor)
+      .setColor(client.constants.Colors.green)
       client.owner.send(embed)
     }
   }
