@@ -9,6 +9,7 @@ module.exports = {
     if(process.env.PROCESS === 'production') {
       const embed = new Discord.MessageEmbed()
       .setTitle('Ready!')
+      .setTimestamp(client.readyAt)
       .setColor(client.constants.greenColor)
       client.owner.send(embed)
     }

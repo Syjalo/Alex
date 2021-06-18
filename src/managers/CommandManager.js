@@ -95,7 +95,7 @@ class CommandManager {
         .setDescription(error.getDescriptionString(message))
         .setColor(this.client.constants.Colors.red)
         let errorMsg
-        error.options.replyToAuthor ? errorMsg = message.reply(null, { embed, failIfNotExists: false }) : errorMsg = message.channel.send(null, { embed, failIfNotExists: false })
+        error.options.replyToAuthor ? errorMsg = message.reply({ embeds: [embed], failIfNotExists: false }) : errorMsg = message.channel.send({ embeds: [embed]})
         errorMsg.then(errorMsg => {
           this.client.setTimeout(() => {
             if(errorMsg.deletable && error.options.deleteErrorMessage) errorMsg.delete()
@@ -110,7 +110,7 @@ class CommandManager {
         .setTitle('A fatal error occurred')
         .setDescription(`Channel type: \`${message.channel.type}\`\nExecuted by: \`${message.author.tag} (${message.author.id})\`\n\n\`\`\`${error.stack}\`\`\``)
         .setColor(this.client.constants.Colors.red)
-        this.client.owner.send(devEmbed)
+        this.client.owner.send({ embeds: [devEmbed] })
         const embed = new Discord.MessageEmbed()
         .setTitle(this.client.getString('errors.fatal.message', { locale: message }))
         .setColor(this.client.constants.Colors.red)
@@ -126,7 +126,7 @@ class CommandManager {
         .setTitle('An unknown error occurred')
         .setDescription(`Channel type: \`${message.channel.type}\`\nExecuted by: \`${message.author.tag} (${message.author.id})\`\n\n\`\`\`${error.stack}\`\`\``)
         .setColor(client.constants.Colors.red)
-        this.client.owner.send(devEmbed)
+        this.client.owner.send({ embeds: [evEmbed] })
         const embed = new Discord.MessageEmbed()
         .setTitle(this.client.getString('errors.unknown.message', { locale: message }))
         .setColor(this.client.constants.Colors.red)

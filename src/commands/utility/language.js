@@ -52,7 +52,7 @@ module.exports = new Command()
       .setTitle(client.getString('language.changedTitle', { locale: message }))
       .setDescription(client.getString('language.changedDescription', { locale: message }))
       .setColor(client.constants.Colors.green)
-      message.channel.send(embed)
+      message.channel.send({ embeds: [embed] })
     }
   })
 })

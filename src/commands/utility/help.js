@@ -32,7 +32,7 @@ module.exports = new Command()
       .setURL('https://github.com/Syjalo/Alex')
     )
 
-    message.channel.send(null, { embed: embed, components: [row] })
+    message.channel.send({ embeds: [embed], components: [row] })
   } else {
     const command = client.commands.resolve(args.join(' '))
     if(!command) {
@@ -40,7 +40,7 @@ module.exports = new Command()
       .setCode('FALSE_COMMAND')
       .setMessageStringPath('errors.falseCommand.message')
     }
-    if(!client.allowedToExecuteCommand(message, command)) {
+    if(!command.allowedToExecute(message)) {
       throw new CommandError(client)
       .setCode('NO_ACCESS_SPECIFIED_COMMAND')
       .setMessageStringPath('errors.noAccessSpecifiedCommand.message')
@@ -55,6 +55,6 @@ module.exports = new Command()
       { name: client.getString('help.page.aliases', { locale: message, variables: { amount: command.aliases?.length || 0 } }), value: command.aliases ? `\`${client.constants.Options.prefix}${command.aliases.join(`\`, \`${client.constants.Options.prefix}`)}\`` : '———' }
     ])
     .setColor(client.constants.Colors.blurple)
-    message.channel.send(embed)
+    message.channel.send({ embeds: [embed] })
   }
 })

@@ -11,7 +11,7 @@ class Command {
 
     this.category = null
 
-    this.aliases = []
+    this.aliases = null
 
     this.cooldown = 3
 
@@ -48,7 +48,7 @@ class Command {
   }
   
   setAliases(...aliases) {
-    this.aliases = this.aliases.concat(aliases)
+    this.aliases = aliases
     return this
   }
 
