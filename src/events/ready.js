@@ -11,7 +11,7 @@ module.exports = {
       .setTitle('Ready!')
       .setTimestamp(client.readyAt)
       .setColor(client.constants.Colors.green)
-      client.owner.send(embed)
+      client.owner.send({ embeds: embed })
     }
   }
 }
