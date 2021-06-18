@@ -1,7 +1,6 @@
 {
   "specifyLocale": "Please specify the language locale after the command",
   "supportedLanguages": "Supported Languages:\n{langs}",
-  "currentlyNotSupported": "Language with this locale is currently not supported",
   "changedTitle": "Language changed",
   "changedDescription": "Your language has been successfully changed to English (United States)"
 }

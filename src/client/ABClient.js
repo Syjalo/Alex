@@ -1,10 +1,10 @@
 const Discord = require('discord.js')
 const TimeAgo = require('javascript-time-ago')
-const intlMessageformat = require('intl-messageformat')
+const { IntlMessageFormat } = require('intl-messageformat')
 const fs = require('fs')
 const path = require('path')
-
 const usersSchema = require('../schemas/users-schema')
+const CommandManager = require('../managers/CommandManager')
 
 class ABClient extends Discord.Client {
   constructor(options) {
@@ -12,14 +12,14 @@ class ABClient extends Discord.Client {
   }
 
   async login(token) {
-    this.commands = new Discord.Collection()
+    this.commands = new CommandManager(this)
     this.cooldowns = new Discord.Collection()
     this.languages = new Discord.Collection()
-    this.mongo = require('./mongo')
-    this.config = require('../config.json')
-    this.constants = require('./constants.json')
+    this.mongo = require('../utils/mongo')
+    this.constants = require('../utils/constants')
 
-    for(const locale in this.config.supportedLangs) {
+    TimeAgo.setDefaultLocale('en-US')
+    for(const locale in this.constants.SupportedLangs) {
       TimeAgo.addLocale(require(`javascript-time-ago/locale/${locale.split('-')[0]}`))
     }
 
@@ -46,7 +46,7 @@ class ABClient extends Discord.Client {
           readCommands(path.join(dir, file))
         } else {
           const command = require(path.join(__dirname, dir, file))
-          this.commands.set(command.name, command)
+          this.commands.add(command)
         }
       }
     }
@@ -70,32 +70,8 @@ class ABClient extends Discord.Client {
     return super.login(token)
   }
 
-  getCommand(name) {
-    return this.commands.get(name) || this.commands.find(cmd => cmd.aliases && cmd.aliases.includes(name)) || null
-  }
-
-  allowedToExecuteCommand(message, command) {
-    if(command.ownerOnly && !this.isOwner(message)) return false
-    if(this.isOwner(message)) return true
-    if(!command.allowedInDM && message.channel.type === 'dm') return false
-    if(message.member.permissions.has(Discord.Permissions.FLAGS.ADMINISTRATOR)) return true
-    let allowed = true
-    if(command.permsBlacklist) {
-      command.permsBlacklist.forEach(p => {
-        allowed = true
-        if(message.member.permissions.has(p)) allowed = false
-      })
-    }
-    if(command.permsWhitelist) {
-      command.permsWhitelist.forEach(p => {
-        allowed = false
-        if(message.member.permissions.has(p)) allowed = true
-      })
-    }
-    return allowed
-  }
-
   getString(path, options = {}) {
+    if(!path) return null
     let { variables, locale = 'en-US' } = options
 
     if(locale instanceof Discord.Message) {
@@ -107,7 +83,7 @@ class ABClient extends Discord.Client {
 
     let stringsEn = require(`../res/values-en-US/strings/${fileName}.json`)
     let strings
-    try { strings = require(`../res/values-${this.config.supportedLangs[locale]?.locale || 'en-US'}/strings/${fileName}.json`) }
+    try { strings = require(`../res/values-${this.constants.SupportedLangs[locale]?.locale || 'en-US'}/strings/${fileName}.json`) }
     catch { strings = require(`../res/values-en-US/strings/${fileName}.json`) }
 
     splittedPath.forEach(pathPart => {
@@ -120,28 +96,21 @@ class ABClient extends Discord.Client {
     else string = stringsEn
 
     if(typeof string === 'string' && typeof variables === 'object') {
-      for(const [key, variable] of Object.entries(variables)) {
-        try { string = new intlMessageformat.IntlMessageFormat(string, locale).format(Object.create()[key] = variable) }
-        catch {}
-      }
-      string = new intlMessageformat.IntlMessageFormat(string, locale).format(variables)
+      try { string = new IntlMessageFormat(string, locale).format(variables) }
+      catch {}
     }
 
     return string
   }
 
   get owner() {
-    return this.users.cache.get(this.config.ownerId)
+    return this.application.owner
   }
 
   isOwner(u) {
-    if(u instanceof Discord.User || u instanceof Discord.GuildMember) return u.id === this.config.ownerId
-    if(u instanceof Discord.Message) return u.author.id === this.config.ownerId
+    if(u instanceof Discord.User || u instanceof Discord.GuildMember) return u.id === this.application.owner.id
+    if(u instanceof Discord.Message) return u.author.id === this.application.owner.id
     return false
-  }
-
-  toString() {
-    
   }
 }
 

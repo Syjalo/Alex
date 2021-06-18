@@ -11,6 +11,9 @@
   "falseCommand": {
     "message": "Эта команда не может быть найдена!"
   },
+  "falseUser": {
+    "title": "Не удалось найти {count, plural, one {следующего пользователя} other {следующих пользователей}}!"
+  },
   "noAccessSpecifiedCommand": {
     "message": "Вам нельзя выполнять указанную команду!"
   },

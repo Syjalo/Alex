@@ -5,6 +5,5 @@
   "serverBooster": "Статус Nitro бустера сервера ",
   "boosterSince": "С {date}",
   "notBooster": "Не бустер",
-  "roles": "{count, plural, =0 {Нет ролей} one {# роль} few {# роли} other {# ролей}}",
-  "failedToFind": "Не удалось найти {count, plural, one {# пользователя} other {# пользователей}}"
+  "roles": "{count, plural, =0 {Нет ролей} one {# роль} few {# роли} other {# ролей}}"
 }

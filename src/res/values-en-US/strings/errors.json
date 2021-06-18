@@ -8,8 +8,20 @@
   "cooldownExist": {
     "message": "Please wait {timeLeft, plural, =1 {more second} other {# more seconds}} to execute the `{commandName}` command again"
   },
+  "invalidJSON": {
+    "message": "Invalid JSON: `{errorMessage}`"
+  },
   "falseCommand": {
     "message": "That command couldn't be found!"
+  },
+  "falseUser": {
+    "title": "Following {count, plural, one {user} other {users}} couldn't be found!"
+  },
+  "falseLanguageLocale": {
+    "message": "That language locale couldn't be found!"
+  },
+  "dbError": {
+    "message": "Something went wrong while contacting the Data Base!"
   },
   "noAccessSpecifiedCommand": {
     "message": "You're not allowed to execute the specified command!"

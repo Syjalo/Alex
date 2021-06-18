@@ -1,5 +1,6 @@
 {
   "dateLocale": "en-US",
+  "dateTimeZone": "America/New_York",
   "button": {
     "openGitHub": "Open repository on GitHub"
   }

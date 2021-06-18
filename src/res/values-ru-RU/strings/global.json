@@ -1,5 +1,6 @@
 {
   "dateLocale": "ru-RU",
+  "dateTimeZone": "Europe/Moscow",
   "button": {
     "openGitHub": "Открыть репозиторий на GitHub"
   }

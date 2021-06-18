@@ -1,3 +1,4 @@
 {
-  "dateLocale": "en-GB"
+  "dateLocale": "en-GB",
+  "dateTimeZone": "Europe/London"
 }
