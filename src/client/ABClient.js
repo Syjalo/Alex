@@ -108,9 +108,8 @@ class ABClient extends Discord.Client {
   }
 
   isOwner(u) {
-    if(u instanceof Discord.User || u instanceof Discord.GuildMember) return u.id === this.application.owner.id
-    if(u instanceof Discord.Message) return u.author.id === this.application.owner.id
-    return false
+    const id = this.users.resolveID(u) || u
+    return id === this.owner.id
   }
 }
 

@@ -1,5 +1,3 @@
-const Discord = require('discord.js')
-const CommandError = require('../errors/CommandError')
 
 module.exports = {
   name: 'message',

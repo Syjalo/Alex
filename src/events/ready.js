@@ -6,7 +6,6 @@ module.exports = {
   async execute(client) {
     await client.application.fetch()
     console.log('Ready!')
-    console.log(client.application)
     if(process.env.PROCESS === 'production') {
       const embed = new Discord.MessageEmbed()
       .setTitle('Ready!')
