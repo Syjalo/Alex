@@ -18,10 +18,8 @@ module.exports = (member) => {
         { name: member.client.getString('userinfo.id'), value: member.user.id },
         { name: member.client.getString('userinfo.joinedDiscord'), value: `${getDateToLocaleString(member.user.createdAt)}\n(${timeAgo.format(member.user.createdTimestamp)})` },
         { name: member.client.getString('userinfo.joinedServer'), value: `${getDateToLocaleString(member.joinedAt)}\n(${timeAgo.format(member.joinedTimestamp)})` },
-        { name: member.client.getString('userinfo.serverBooster'), value: `${member.premiumSince ? `${member.client.getString('userinfo.boosterSince', { variables: { date: getDateToLocaleString(member.premiumSince) } })}\n(${timeAgo.format(member.premiumSinceTimestamp)})` : member.client.getString('userinfo.notBooster')}` },
-        { name: member.client.getString('userinfo.roles', { variables: { count: member.roles.cache.filter(role => role.name !== '@everyone').map(role => role).length } }), value: member.roles.cache.filter(role => role.name !== '@everyone').map(role => role).length ? (() => member.roles.cache.filter(role => role.name !== '@everyone').sort((role1, role2) => role1 - role2).map(role => role).join(', '))() : '———' },
       )
-      .setColor(member.displayColor || member.client.constants.Colors.defaultRole)
+      .setColor(member.client.constants.Colors.blurple)
     channel.send({ embeds: [embed] })
   }
 }
