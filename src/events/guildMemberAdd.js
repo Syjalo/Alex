@@ -1,8 +1,10 @@
 const usersSchema = require('../schemas/users-schema')
+const altDetector = require('../utils/altdetector')
 
 module.exports = {
   name: 'guildMemberAdd',
   async execute(member, client) {
+    altDetector(member)
     let response
     await client.mongo().then(async (mongoose) => {
       try {
