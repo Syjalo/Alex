@@ -104,7 +104,7 @@ class ABClient extends Discord.Client {
   }
 
   get owner() {
-    return this.application.owner.members.find(user => user.id === this.application.owner.ownerID).user
+    return this.application.owner.owner.user
   }
 
   isOwner(u) {
