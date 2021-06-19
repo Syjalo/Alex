@@ -2,7 +2,10 @@ const Discord = require('discord.js')
 const TimeAgo = require('javascript-time-ago')
 
 module.exports = (member) => {
-  if(member.user.createdTimestamp - member.joinedTimestamp < 604800) {
+  if(member.joinedTimestamp - member.user.createdTimestamp < 604800000) {
+    console.log(member.user.createdTimestamp)
+    console.log(member.joinedTimestamp)
+    console.log(member.user.createdTimestamp - member.joinedTimestamp)
     const channel = member.client.channels.resolve('855823003392933898')
     if(!channel) return
     const timeAgo = new TimeAgo('en-US')
