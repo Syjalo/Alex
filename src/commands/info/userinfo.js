@@ -59,7 +59,7 @@ module.exports = new Command()
       )
       .setColor(client.constants.Colors.defaultRole)
     }
-    message.channel.send(embed)
+    message.channel.send({ embeds: [embed] })
   })
 
   if(failedToFind.length > 0) {
