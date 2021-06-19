@@ -19,7 +19,7 @@ module.exports = new Command()
     const embed = new Discord.MessageEmbed()
     .setTitle(client.getString('language.specifyLocale', { locale: message }))
     .setDescription(client.getString('language.supportedLanguages', { variables: { langs: langs.sort().join('\n') }, locale: message }))
-    .setColor(client.constants.Colors.blurple)
+    .setColor('BLURPLE')
     message.channel.send(embed)
     return
   }
@@ -51,7 +51,7 @@ module.exports = new Command()
       const embed = new Discord.MessageEmbed()
       .setTitle(client.getString('language.changedTitle', { locale: message }))
       .setDescription(client.getString('language.changedDescription', { locale: message }))
-      .setColor(client.constants.Colors.green)
+      .setColor('GREEN')
       message.channel.send({ embeds: [embed] })
     }
   })

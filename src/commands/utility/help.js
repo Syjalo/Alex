@@ -15,7 +15,7 @@ module.exports = new Command()
     const embed = new Discord.MessageEmbed()
     .setTitle(client.getString('help.page.title', { locale: message }))
     .setDescription(`${client.getString('help.page.description', { variables: { botMention: client.user.toString(), developer: client.owner.toString(), count: commands.map(c => c).length }, locale: message })}`)
-    .setColor(client.constants.Colors.blurple)
+    .setColor('BLURPLE')
 
     if(commands.map(c => c).length > 0) {
       commands.each(command => {
@@ -54,7 +54,7 @@ module.exports = new Command()
       { name: client.getString('help.page.maxUsage', { locale: message }), value: client.getString('help.page.usageAmount', { locale: message, variables: { times: command.maxUsageAmount || 1 } }) },
       { name: client.getString('help.page.aliases', { locale: message, variables: { amount: command.aliases?.length || 0 } }), value: command.aliases ? `\`${client.constants.Options.prefix}${command.aliases.join(`\`, \`${client.constants.Options.prefix}`)}\`` : '———' }
     ])
-    .setColor(client.constants.Colors.blurple)
+    .setColor('BLURPLE')
     message.channel.send({ embeds: [embed] })
   }
 })

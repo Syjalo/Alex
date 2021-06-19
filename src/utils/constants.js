@@ -16,11 +16,3 @@ module.exports.SupportedLangs = {
     locale: 'ru-RU'
   }
 }
-
-module.exports.Colors = {
-  blurple: '#5865F2',
-  red: '#ED4245',
-  yellow: '#FAA61A',
-  green: '#3BA55C',
-  defaultRole: '#B9BBBE'
-}

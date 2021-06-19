@@ -19,7 +19,7 @@ module.exports = (member) => {
         { name: member.client.getString('userinfo.joinedDiscord'), value: `${getDateToLocaleString(member.user.createdAt)}\n(${timeAgo.format(member.user.createdTimestamp)})` },
         { name: member.client.getString('userinfo.joinedServer'), value: `${getDateToLocaleString(member.joinedAt)}\n(${timeAgo.format(member.joinedTimestamp)})` },
       )
-      .setColor(member.client.constants.Colors.blurple)
+      .setColor('BLURPLE')
     channel.send({ embeds: [embed] })
   }
 }

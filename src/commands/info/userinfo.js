@@ -46,7 +46,7 @@ module.exports = new Command()
         { name: client.getString('userinfo.serverBooster', { locale: message }), value: `${d.premiumSince ? `${client.getString('userinfo.boosterSince', { variables: { date: getDateToLocaleString(d.premiumSince) }, locale: message })}\n(${timeAgo.format(d.premiumSinceTimestamp)})` : client.getString('userinfo.notBooster', { locale: message })}` },
         { name: client.getString('userinfo.roles', { locale: message, variables: { count: d.roles.cache.filter(role => role.name !== '@everyone').map(role => role).length } }), value: d.roles.cache.filter(role => role.name !== '@everyone').map(role => role).length ? (() => d.roles.cache.filter(role => role.name !== '@everyone').sort((role1, role2) => role1 - role2).map(role => role).join(', '))() : '———' },
       )
-      .setColor(d.displayColor || client.constants.Colors.defaultRole)
+      .setColor(d.displayColor || 'LIGHT_GREY')
     }
     if(d instanceof Discord.User) {
       embed
@@ -57,7 +57,7 @@ module.exports = new Command()
         { name: client.getString('userinfo.id', { locale: message }), value: d.id },
         { name: client.getString('userinfo.joinedDiscord', { locale: message }), value: `${getDateToLocaleString(d.createdAt)}\n(${timeAgo.format(d.createdTimestamp)})` },
       )
-      .setColor(client.constants.Colors.defaultRole)
+      .setColor('LIGHT_GREY')
     }
     message.channel.send({ embeds: [embed] })
   })
