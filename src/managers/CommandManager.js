@@ -40,7 +40,7 @@ class CommandManager {
       const embed = new Discord.MessageEmbed()
       .setTitle(this.client.getString('errors.invalidCommandArgs.title', { locale: message }))
       .setDescription(this.client.getString('errors.invalidCommandArgs.description', { locale: message, variables: { usage: `${this.client.constants.Options.prefix}${this.client.getString(`help.${command.name}.usage`, { locale: message })}` } }))
-      .setColor(this.client.constants.Colors.red)
+      .setColor('RED')
       message.reply(null, { embed, failIfNotExists: false })
       .then(errorMsg => {
         this.client.setTimeout(() => {
@@ -65,7 +65,7 @@ class CommandManager {
           const timeLeft = (expirationTime - now) / 1000
           const embed = new Discord.MessageEmbed()
           .setTitle(this.client.getString('errors.cooldownExist.message', { locale: message, variables: { timeLeft: Math.ceil(timeLeft), commandName: `${this.client.constants.Options.prefix}${command.name}` } }))
-          .setColor(this.client.constants.Colors.red)
+          .setColor('RED')
           return message.reply(null, { embed, failIfNotExists: false })
           .then(msg => {
             client.setTimeout(() => {
@@ -93,7 +93,7 @@ class CommandManager {
         const embed = new Discord.MessageEmbed()
         .setTitle(error.getTitleString(message))
         .setDescription(error.getDescriptionString(message))
-        .setColor(this.client.constants.Colors.red)
+        .setColor('RED')
         let errorMsg
         error.options.replyToAuthor ? errorMsg = message.reply({ embeds: [embed], failIfNotExists: false }) : errorMsg = message.channel.send({ embeds: [embed]})
         errorMsg.then(errorMsg => {
@@ -109,11 +109,11 @@ class CommandManager {
         const devEmbed = new Discord.MessageEmbed()
         .setTitle('A fatal error occurred')
         .setDescription(`Channel type: \`${message.channel.type}\`\nExecuted by: \`${message.author.tag} (${message.author.id})\`\n\n\`\`\`${error.stack}\`\`\``)
-        .setColor(this.client.constants.Colors.red)
+        .setColor('RED')
         this.client.owner.send({ embeds: [devEmbed] })
         const embed = new Discord.MessageEmbed()
         .setTitle(this.client.getString('errors.fatal.message', { locale: message }))
-        .setColor(this.client.constants.Colors.red)
+        .setColor('RED')
         message.reply(null, { embed, failIfNotExists: false })
         .then(errorMsg => {
           this.client.setTimeout(() => {
@@ -125,11 +125,11 @@ class CommandManager {
         const devEmbed = new Discord.MessageEmbed()
         .setTitle('An unknown error occurred')
         .setDescription(`Channel type: \`${message.channel.type}\`\nExecuted by: \`${message.author.tag} (${message.author.id})\`\n\n\`\`\`${error.stack}\`\`\``)
-        .setColor(client.constants.Colors.red)
+        .setColor('RED')
         this.client.owner.send({ embeds: [evEmbed] })
         const embed = new Discord.MessageEmbed()
         .setTitle(this.client.getString('errors.unknown.message', { locale: message }))
-        .setColor(this.client.constants.Colors.red)
+        .setColor('RED')
         message.reply(null, { embed, failIfNotExists: false })
         .then(errorMsg => {
           client.setTimeout(() => {
