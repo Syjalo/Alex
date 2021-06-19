@@ -6,7 +6,8 @@ module.exports = {
   async execute(client) {
     await client.application.fetch()
     console.log('Ready!')
-    if(process.env.PROCESS !== 'production') {
+    console.log(client.application)
+    if(process.env.PROCESS === 'production') {
       const embed = new Discord.MessageEmbed()
       .setTitle('Ready!')
       .setTimestamp(client.readyAt)
