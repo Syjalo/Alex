@@ -32,7 +32,7 @@ class CommandManager {
         this.setup(path.join(dir, file))
       } else {
         const command = require(path.join(__dirname, dir, file))
-        const slashCommand = await this.client.guilds.cache.get('724163890803638273').commands.create(command.toJSON())
+        const slashCommand = await this.client.mainGuild.commands.create(command.toJSON())
         command.setCommand(slashCommand)
         this.add(command, slashCommand.id)
       }

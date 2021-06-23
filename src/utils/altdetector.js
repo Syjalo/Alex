@@ -3,11 +3,6 @@ const TimeAgo = require('javascript-time-ago')
 
 module.exports = (member) => {
   if(member.joinedTimestamp - member.user.createdTimestamp < 604800000) {
-    console.log(member.user.createdTimestamp)
-    console.log(member.joinedTimestamp)
-    console.log(member.user.createdTimestamp - member.joinedTimestamp)
-    const channel = member.client.channels.resolve('855823003392933898')
-    if(!channel) return
     const timeAgo = new TimeAgo('en-US')
     const getDateToLocaleString = (date) => date.toLocaleString(member.client.getString('global.dateLocale'), { timeZone: member.client.getString('global.dateTimeZone'), day: 'numeric', month: 'long', year: 'numeric', hour: 'numeric', minute: 'numeric', timeZoneName: 'long' })
     const embed = new Discord.MessageEmbed()
@@ -20,6 +15,6 @@ module.exports = (member) => {
         { name: member.client.getString('userinfo.joinedServer'), value: `${getDateToLocaleString(member.joinedAt)}\n(${timeAgo.format(member.joinedTimestamp)})` },
       )
       .setColor('BLURPLE')
-    channel.send({ embeds: [embed] })
+    member.client.altDetectorChannel.send({ embeds: [embed] })
   }
 }
