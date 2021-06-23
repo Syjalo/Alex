@@ -47,11 +47,27 @@ module.exports = new Command()
   data.forEach(async d => {
     const embed = new Discord.MessageEmbed()
     if(d instanceof Discord.GuildMember) {
+      let statusValue
+      switch(d.user.presence.status) {
+        case 'online':
+          statusValue = `<:online:857221997845807105> ${client.getString('userinfo.status.online', { locale: interaction })}`
+          break
+        case 'idle':
+          statusValue = `<:idle:857221995983667202> ${client.getString('userinfo.status.idle', { locale: interaction })}`
+          break
+        case 'offline':
+          statusValue = `<:offline:857221997145751562> ${client.getString('userinfo.status.offline', { locale: interaction })}`
+          break
+        case 'dnd':
+          statusValue = `<:dnd:857221996912050206> ${client.getString('userinfo.status.dnd', { locale: interaction })}`
+          break
+      }
       embed
       .setAuthor(d.user.tag, null, `https://discordapp.com/users/${d.user.id}`)
       .setThumbnail(d.user.displayAvatarURL({ dynamic: true }))
       .setDescription(d.toString())
       .addFields(
+        { name: client.getString('userinfo.status.title', { locale: interaction }), value: statusValue },
         { name: client.getString('userinfo.id', { locale: interaction }), value: d.user.id },
         { name: client.getString('userinfo.joinedDiscord', { locale: interaction }), value: `${getDateToLocaleString(d.user.createdAt)}\n(${timeAgo.format(d.user.createdTimestamp)})` },
         { name: client.getString('userinfo.joinedServer', { locale: interaction }), value: `${getDateToLocaleString(d.joinedAt)}\n(${timeAgo.format(d.joinedTimestamp)})` },
