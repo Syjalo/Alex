@@ -73,7 +73,7 @@ module.exports = new Command()
         { name: client.getString('userinfo.joinedDiscord', { locale: interaction }), value: `${getDateToLocaleString(d.user.createdAt)}\n(${timeAgo.format(d.user.createdTimestamp)})` },
         { name: client.getString('userinfo.joinedServer', { locale: interaction }), value: `${getDateToLocaleString(d.joinedAt)}\n(${timeAgo.format(d.joinedTimestamp)})` },
         { name: client.getString('userinfo.serverBooster', { locale: interaction }), value: `${d.premiumSince ? `${client.getString('userinfo.boosterSince', { variables: { date: getDateToLocaleString(d.premiumSince) }, locale: interaction })}\n(${timeAgo.format(d.premiumSinceTimestamp)})` : client.getString('userinfo.notBooster', { locale: interaction })}` },
-        { name: client.getString('userinfo.roles', { locale: interaction, variables: { count: d.roles.cache.filter(role => role.name !== '@everyone').map(role => role).length } }), value: d.roles.cache.filter(role => role.name !== '@everyone').map(role => role).length ? (() => d.roles.cache.filter(role => role.name !== '@everyone').sort((role1, role2) => role2.rawPosition - role1.rawPosition).map(role => role).join(', '))() : '———' },
+        { name: client.getString('userinfo.roles', { locale: interaction, variables: { count: d.roles.cache.filter(role => role.name !== '@everyone').size } }), value: d.roles.cache.filter(role => role.name !== '@everyone').size ? (() => d.roles.cache.filter(role => role.name !== '@everyone').sort((role1, role2) => role2.rawPosition - role1.rawPosition).map(role => role).join(', '))() : '———' },
       )
       .setColor(d.displayColor || 'LIGHT_GREY')
     }
