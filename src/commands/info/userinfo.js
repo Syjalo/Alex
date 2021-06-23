@@ -50,18 +50,19 @@ module.exports = new Command()
       let statusValue
       switch(d.user.presence.status) {
         case 'online':
-          statusValue = `<:online:857254722276294656> ${client.getString('userinfo.status.online', { locale: interaction })}`
+          statusValue = `<:online:857254722276294656>${client.getString('userinfo.status.online', { locale: interaction })}`
           break
         case 'idle':
-          statusValue = `<:idle:857254721281327145> ${client.getString('userinfo.status.idle', { locale: interaction })}`
+          statusValue = `<:idle:857254721281327145>${client.getString('userinfo.status.idle', { locale: interaction })}`
           break
         case 'offline':
-          statusValue = `<:offline:857254722590343199> ${client.getString('userinfo.status.offline', { locale: interaction })}`
+          statusValue = `<:offline:857254722590343199>${client.getString('userinfo.status.offline', { locale: interaction })}`
           break
         case 'dnd':
-          statusValue = `<:dnd:857254721748598786> ${client.getString('userinfo.status.dnd', { locale: interaction })}`
+          statusValue = `<:dnd:857254721748598786>${client.getString('userinfo.status.dnd', { locale: interaction })}`
           break
       }
+      if(d.user.presence.clientStatus?.mobile) statusValue += `${client.getString('userinfo.status.mobile', { locale: interaction })}`
       embed
       .setAuthor(d.user.tag, null, `https://discordapp.com/users/${d.user.id}`)
       .setThumbnail(d.user.displayAvatarURL({ dynamic: true }))
