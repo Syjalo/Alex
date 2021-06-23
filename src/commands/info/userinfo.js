@@ -50,16 +50,16 @@ module.exports = new Command()
       let statusValue
       switch(d.user.presence.status) {
         case 'online':
-          statusValue = `<:online:857221997845807105> ${client.getString('userinfo.status.online', { locale: interaction })}`
+          statusValue = `<:online:857254722276294656> ${client.getString('userinfo.status.online', { locale: interaction })}`
           break
         case 'idle':
-          statusValue = `<:idle:857221995983667202> ${client.getString('userinfo.status.idle', { locale: interaction })}`
+          statusValue = `<:idle:857254721281327145> ${client.getString('userinfo.status.idle', { locale: interaction })}`
           break
         case 'offline':
-          statusValue = `<:offline:857221997145751562> ${client.getString('userinfo.status.offline', { locale: interaction })}`
+          statusValue = `<:offline:857254722590343199> ${client.getString('userinfo.status.offline', { locale: interaction })}`
           break
         case 'dnd':
-          statusValue = `<:dnd:857221996912050206> ${client.getString('userinfo.status.dnd', { locale: interaction })}`
+          statusValue = `<:dnd:857254721748598786> ${client.getString('userinfo.status.dnd', { locale: interaction })}`
           break
       }
       embed
