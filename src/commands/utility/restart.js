@@ -3,14 +3,15 @@ const Command = require('../../structures/Command')
 
 module.exports = new Command()
 .setName('restart')
+.setDescription('Restarts the bot.')
 .setCategory('utility')
 .allowInDM
 .allowOnlyOwner
-.setFunction(async (message, args, client) => {
+.setFunction(async (interaction, client) => {
   const embed = new Discord.MessageEmbed()
   .setTitle('Restarting...')
   .setTimestamp()
   .setColor('YELLOW')
-  await Promise.all([client.owner.send({ embeds: [embed] }), message.channel.type !== 'dm' ? message.channel.send({ embeds: [embed] }) : null])
+  await Promise.all([client.owner.send({ embeds: [embed] }), interaction.channel.type !== 'dm' ? client.interactionSend(interaction, { embeds: [embed], ephemeral: true }) : null])
   process.exit(143)
 })

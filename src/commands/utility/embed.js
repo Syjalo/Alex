@@ -1,38 +1,43 @@
 const Discord = require('discord.js')
 const Command = require('../../structures/Command')
+const CommadOption = require('../../structures/CommandOption')
 const CommandError = require('../../errors/CommandError')
 
 module.exports = new Command()
 .setName('embed')
+.setDescription('Sends an embed to the specified channel.')
 .setCategory('utility')
-.setMinArgs(2)
 .addPermsToWhitelist(Discord.Permissions.FLAGS.ADMINISTRATOR)
-.setFunction((message, args, client) => {
-  const targetChannelID = args[0].replace(/[<@!&#>\\]/g, '')
-  const targetChannel = client.channels.resolve(targetChannelID)
+.setOptions([
+  new CommadOption()
+  .setName('channel')
+  .setDescription('Specify the channel')
+  .setRequired()
+  .setType('CHANNEL'),
+  new CommadOption()
+  .setName('json')
+  .setDescription('Specify the text in JSON format.')
+  .setRequired()
+  .setType('STRING')
+])
+.setFunction((interaction, client) => {
+  const targetChannel = interaction.options.first().channel
 
   if(!targetChannel) {
-    message.reply(client.getString('embed.specifyChannel', { locale: message }))
+    client.interactionSend(interaction, { constent: client.getString('embed.specifyChannel', { locale: interaction }), ephemeral: true })
     return
   }
-  if(targetChannel.guild.id !== message.guild.id && !client.isOwner(message)){
-    message.reply(client.getString('embed.anotherServer', { locale: message }))
-    return
-  }
-
-  args.shift()
 
   try {
-    const json = JSON.parse(args.join(' '))
-    const { text = null } = json
+    const json = JSON.parse(interaction.options.last().value)
 
-    targetChannel.send(text, {
-      embed: json,
-    })
+    targetChannel.send(json)
   } catch (error) {
     throw new CommandError(client)
     .setCode('INVALID_JSON')
     .setMessageStringPath('errors.invalidJSON')
     .setMessageStringVariables({ errorMessage: error.message })
+  } finally {
+    client.interactionSend(interaction, { content: client.getString('embed.sended', { locale: interaction }), ephemeral: true })
   }
 })

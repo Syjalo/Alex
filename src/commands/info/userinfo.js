@@ -2,37 +2,49 @@ const Discord = require('discord.js')
 const TimeAgo = require('javascript-time-ago')
 const Command = require('../../structures/Command')
 const CommandError = require('../../errors/CommandError')
+const CommandOption = require('../../structures/CommandOption')
 
 module.exports = new Command()
 .setName('userinfo')
+.setDescription('Gives you the specified user information.')
 .setCategory('info')
-.setAliases('memberinfo', 'uinfo', 'minfo')
 .setCooldown(10)
 .setMaxUsageAmount(2)
-.setFunction(async (message, args, client) => {
-  const timeAgo = new TimeAgo(client.languages.get(message.author.id || message.guild.preferredLocale || 'en-US'))
+.setOption(
+  new CommandOption()
+  .setType('STRING')
+  .setName('users')
+  .setDescription('Specify the user(s)')
+  .toJSON()
+)
+.setFunction(async (interaction, client) => {
+  await interaction.defer()
+  const timeAgo = new TimeAgo(client.languages.get(interaction.user.id || interaction.member.guild.preferredLocale || 'en-US'))
   const data = []
   const failedToFind = []
+  let instances = []
 
-  if(args.length === 0) args[0] = message.author.id
+  if (interaction.options.first()) instances = instances.concat(interaction.options.first().value.split(' '))
 
-  for(let instance of args) {
+  if (instances.length === 0) instances.push(interaction.user.id)
+
+  for (let instance of instances) {
     let member
     let user
     try {
-      member = message.guild.members.resolve(instance.replace(/[<@!>]/g, '')) || message.guild.members.cache.find(member => member.user.username.toLowerCase() === instance.toLowerCase() || member.displayName.toLowerCase() === instance.toLowerCase() || member.user.tag.toLowerCase() === instance.toLowerCase())
+      member = interaction.member.guild.members.resolve(instance.replace(/[<@!>]/g, '')) || interaction.member.guild.members.cache.find(member => member.user.username.toLowerCase() === instance.toLowerCase() || member.displayName.toLowerCase() === instance.toLowerCase() || member.user.tag.toLowerCase() === instance.toLowerCase())
       user = client.users.cache.find(user => user.username.toLowerCase() === instance.toLowerCase() || user.tag.toLowerCase() === instance) || await client.users.fetch(instance.toLowerCase())
     } catch {}
     
-    if(member) data.push(member)
-    else if(user) data.push(user)
+    if (member) data.push(member)
+    else if (user) data.push(user)
     else failedToFind.push(instance)
   }
   const getDateToLocaleString = (date) => {
-    return date.toLocaleString(client.getString('global.dateLocale', { locale: message }), { timeZone: client.getString('global.dateTimeZone', { locale: message }), day: 'numeric', month: 'long', year: 'numeric', hour: 'numeric', minute: 'numeric', timeZoneName: 'long' })
+    return date.toLocaleString(client.getString('global.dateLocale', { locale: interaction }), { timeZone: client.getString('global.dateTimeZone', { locale: interaction }), day: 'numeric', month: 'long', year: 'numeric', hour: 'numeric', minute: 'numeric', timeZoneName: 'long' })
   }
 
-  data.forEach(d => {
+  data.forEach(async d => {
     const embed = new Discord.MessageEmbed()
     if(d instanceof Discord.GuildMember) {
       embed
@@ -40,34 +52,34 @@ module.exports = new Command()
       .setThumbnail(d.user.displayAvatarURL({ dynamic: true }))
       .setDescription(d.toString())
       .addFields(
-        { name: client.getString('userinfo.id', { locale: message }), value: d.user.id },
-        { name: client.getString('userinfo.joinedDiscord', { locale: message }), value: `${getDateToLocaleString(d.user.createdAt)}\n(${timeAgo.format(d.user.createdTimestamp)})` },
-        { name: client.getString('userinfo.joinedServer', { locale: message }), value: `${getDateToLocaleString(d.joinedAt)}\n(${timeAgo.format(d.joinedTimestamp)})` },
-        { name: client.getString('userinfo.serverBooster', { locale: message }), value: `${d.premiumSince ? `${client.getString('userinfo.boosterSince', { variables: { date: getDateToLocaleString(d.premiumSince) }, locale: message })}\n(${timeAgo.format(d.premiumSinceTimestamp)})` : client.getString('userinfo.notBooster', { locale: message })}` },
-        { name: client.getString('userinfo.roles', { locale: message, variables: { count: d.roles.cache.filter(role => role.name !== '@everyone').map(role => role).length } }), value: d.roles.cache.filter(role => role.name !== '@everyone').map(role => role).length ? (() => d.roles.cache.filter(role => role.name !== '@everyone').sort((role1, role2) => role1 - role2).map(role => role).join(', '))() : '———' },
+        { name: client.getString('userinfo.id', { locale: interaction }), value: d.user.id },
+        { name: client.getString('userinfo.joinedDiscord', { locale: interaction }), value: `${getDateToLocaleString(d.user.createdAt)}\n(${timeAgo.format(d.user.createdTimestamp)})` },
+        { name: client.getString('userinfo.joinedServer', { locale: interaction }), value: `${getDateToLocaleString(d.joinedAt)}\n(${timeAgo.format(d.joinedTimestamp)})` },
+        { name: client.getString('userinfo.serverBooster', { locale: interaction }), value: `${d.premiumSince ? `${client.getString('userinfo.boosterSince', { variables: { date: getDateToLocaleString(d.premiumSince) }, locale: interaction })}\n(${timeAgo.format(d.premiumSinceTimestamp)})` : client.getString('userinfo.notBooster', { locale: interaction })}` },
+        { name: client.getString('userinfo.roles', { locale: interaction, variables: { count: d.roles.cache.filter(role => role.name !== '@everyone').map(role => role).length } }), value: d.roles.cache.filter(role => role.name !== '@everyone').map(role => role).length ? (() => d.roles.cache.filter(role => role.name !== '@everyone').sort((role1, role2) => role1 - role2).map(role => role).join(', '))() : '———' },
       )
       .setColor(d.displayColor || 'LIGHT_GREY')
     }
-    if(d instanceof Discord.User) {
+    if (d instanceof Discord.User) {
       embed
       .setAuthor(d.tag, null, `https://discordapp.com/users/${d.id}`)
       .setThumbnail(d.displayAvatarURL({ dynamic: true }))
       .setDescription(d.toString())
       .addFields(
-        { name: client.getString('userinfo.id', { locale: message }), value: d.id },
-        { name: client.getString('userinfo.joinedDiscord', { locale: message }), value: `${getDateToLocaleString(d.createdAt)}\n(${timeAgo.format(d.createdTimestamp)})` },
+        { name: client.getString('userinfo.id', { locale: interaction }), value: d.id },
+        { name: client.getString('userinfo.joinedDiscord', { locale: interaction }), value: `${getDateToLocaleString(d.createdAt)}\n(${timeAgo.format(d.createdTimestamp)})` },
       )
       .setColor('LIGHT_GREY')
     }
-    message.channel.send({ embeds: [embed] })
+    await client.interactionSend(interaction, { embeds: [embed] })
   })
 
-  if(failedToFind.length > 0) {
+  if (failedToFind.length > 0) {
     throw new CommandError(client)
     .setCode('FALSE_USER')
     .setTitleStringPath('errors.falseUser.title')
     .setDescriptionString(`\`${failedToFind.join('`, `')}\``)
     .setTitleStringVariables({ count: failedToFind.length })
-    .setOptions({ deleteAuthorMessage: false, deleteErrorMessage: false, replyToAuthor: false })
+    .setOptions({ ephemeral: false })
   }
 })

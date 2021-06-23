@@ -22,7 +22,7 @@ class CommandError {
 
     this.messageStringVariables = {}
 
-    this.options = { deleteAuthorMessage: true, deleteErrorMessage: true, replyToAuthor: true }
+    this.options = { ephemeral: true }
   }
 
   setCode(code) {

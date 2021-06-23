@@ -1,5 +1,7 @@
 const Discord = require("discord.js")
 const CommandError = require('../errors/CommandError')
+const fs = require('fs')
+const path = require('path')
 
 class CommandManager {
   constructor(client, ...cacheOptions) {
@@ -10,44 +12,40 @@ class CommandManager {
 
   add(cmd, name) {
     cmd.manager = this
-    this.cache.set(name || cmd?.name || 'e', cmd)
+    this.cache.set(name || cmd?.name, cmd)
     return cmd
   }
 
-  resolve(name) {
-    return this.cache.get(name) || this.cache.find(cmd => cmd.aliases && cmd.aliases.includes(name)) || null
+  resolve(instance) {
+    return this.cache.get(instance) || this.cache.find(cmd => cmd.name === instance) || null
   }
 
-  resolveName(nameOrInstance) {
-    return nameOrInstance?.name || this.resolve(nameOrInstance)?.name || null
+  resolveName(instance) {
+    return this.resolve(instance)?.name || null
   }
 
-  async handle(message) {
-    if(message.author.bot || !message.content.startsWith(this.client.constants.Options.prefix)) return
-    const args = message.content.slice(this.client.constants.Options.prefix.length).trim().split(' ')
-    const command = this.resolve(args.shift().toLowerCase())
+  async setup(dir = '../commands') {
+    const files = fs.readdirSync(path.join(__dirname, dir))
+    for(const file of files) {
+      const stat = fs.lstatSync(path.join(__dirname, dir, file))
+      if(stat.isDirectory()) {
+        this.setup(path.join(dir, file))
+      } else {
+        const command = require(path.join(__dirname, dir, file))
+        const slashCommand = await this.client.guilds.cache.get('724163890803638273').commands.create(command.toJSON())
+        command.setCommand(slashCommand)
+        this.add(command, slashCommand.id)
+      }
+    }
+  }
+
+  async handle(interaction) {
+    if(!interaction.isCommand() || interaction.user.bot) return
+    const command = this.resolve(interaction.commandID)
     if(!command) return
 
-    if(!command.allowedToExecute(message)) {
-      message.react('❌')
-      setTimeout(async () => {
-        if(message.deletable) message.delete()
-      }, 3000)
-      return
-    }
-
-    if(command?.minArgs && command?.minArgs > args.length || command?.maxArgs && command?.maxArgs < args.length) {
-      const embed = new Discord.MessageEmbed()
-      .setTitle(this.client.getString('errors.invalidCommandArgs.title', { locale: message }))
-      .setDescription(this.client.getString('errors.invalidCommandArgs.description', { locale: message, variables: { usage: `${this.client.constants.Options.prefix}${this.client.getString(`help.${command.name}.usage`, { locale: message })}` } }))
-      .setColor('RED')
-      message.reply(null, { embed, failIfNotExists: false })
-      .then(errorMsg => {
-        this.client.setTimeout(() => {
-          if(errorMsg.deletable) errorMsg.delete()
-          if(message.deletable) message.delete()
-        }, 10000)
-      })
+    if(!command.allowedToExecute(interaction)) {
+      this.client.interactionSend(interaction, { content: this.client.getString('global.notAllowedUseCommand', { locale: interaction }), ephemeral: true })
       return
     }
 
@@ -55,88 +53,64 @@ class CommandManager {
     if (!cooldowns.has(command.name)) cooldowns.set(command.name, { timestamps: new Discord.Collection(), usage: new Discord.Collection() })
     const now = Date.now()
     const { timestamps, usage } = cooldowns.get(command.name)
-    let usageAmount = usage.get(message.author.id) || 0
+    let usageAmount = usage.get(interaction.user.id) || 0
     const cooldownAmount = (command.cooldown || 3) * 1000
     const maxUsageAmount = command.maxUsageAmount || 1
-    if(timestamps.has(message.author.id)) {
-      const expirationTime = timestamps.get(message.author.id) + cooldownAmount
+    if(timestamps.has(interaction.user.id)) {
+      const expirationTime = timestamps.get(interaction.user.id) + cooldownAmount
       if(now < expirationTime) {
         if(usageAmount >= maxUsageAmount) {
           const timeLeft = (expirationTime - now) / 1000
           const embed = new Discord.MessageEmbed()
-          .setTitle(this.client.getString('errors.cooldownExist.message', { locale: message, variables: { timeLeft: Math.ceil(timeLeft), commandName: `${this.client.constants.Options.prefix}${command.name}` } }))
+          .setTitle(this.client.getString('errors.cooldownExist.message', { locale: interaction, variables: { timeLeft: Math.ceil(timeLeft), commandName: `${this.client.constants.Options.prefix}${command.name}` } }))
           .setColor('RED')
-          return message.reply(null, { embed, failIfNotExists: false })
-          .then(msg => {
-            client.setTimeout(() => {
-              if(msg.deletable) msg.delete()
-              if(message.deletable) message.delete()
-            }, 10000)
-          })
+          this.client.interactionSend(interaction, { embeds: [embed], ephemeral: true })
+          return
         }
       }
     } else {
-      usageAmount = usage.set(message.author.id, 0).get(message.author.id)
+      usageAmount = usage.set(interaction.user.id, 0).get(interaction.user.id)
     }
 
-    if(message.channel.type !== 'dm' && !message.member.permissions.has(Discord.Permissions.FLAGS.ADMINISTRATOR) && !this.client.isOwner(message)) {
-      if(usageAmount === 0) timestamps.set(message.author.id, now)
-      usage.set(message.author.id, usageAmount + 1)
-      this.client.setTimeout(() => timestamps.delete(message.author.id), cooldownAmount)
+    if(interaction.channel.type !== 'dm' && !interaction.member.permissions.has(Discord.Permissions.FLAGS.ADMINISTRATOR) && !this.client.isOwner(interaction.user)) {
+      if(usageAmount === 0) timestamps.set(interaction.user.id, now)
+      usage.set(interaction.user.id, usageAmount + 1)
+      this.client.setTimeout(() => timestamps.delete(interaction.user.id), cooldownAmount)
     }
 
     try {
-      await command.execute(message, args, this.client)
+      await command.execute(interaction, this.client)
     } catch (error) {
-      usage.set(message.author.id, usageAmount)
+      usage.set(interaction.user.id, usageAmount)
       if(error instanceof CommandError) {
         const embed = new Discord.MessageEmbed()
-        .setTitle(error.getTitleString(message))
-        .setDescription(error.getDescriptionString(message))
+        .setTitle(error.getTitleString(interaction))
+        .setDescription(error.getDescriptionString(interaction))
         .setColor('RED')
-        let errorMsg
-        error.options.replyToAuthor ? errorMsg = message.reply({ embeds: [embed], failIfNotExists: false }) : errorMsg = message.channel.send({ embeds: [embed]})
-        errorMsg.then(errorMsg => {
-          this.client.setTimeout(() => {
-            if(errorMsg.deletable && error.options.deleteErrorMessage) errorMsg.delete()
-            if(message.deletable && error.options.deleteAuthorMessage) message.delete()
-          }, 10000)
-        })
+        this.client.interactionSend(interaction, { embeds: [embed], ephemeral: error.options.ephemeral })
         return
       }
       console.error(error)
       if(error.stack && process.env.PROCESS === 'production') {
         const devEmbed = new Discord.MessageEmbed()
         .setTitle('A fatal error occurred')
-        .setDescription(`Channel type: \`${message.channel.type}\`\nExecuted by: \`${message.author.tag} (${message.author.id})\`\n\n\`\`\`${error.stack}\`\`\``)
+        .setDescription(`Channel type: \`${interaction.channel.type}\`\nExecuted by: \`${interaction.user.tag} (${interaction.user.id})\`\n\n\`\`\`${error.stack}\`\`\``)
         .setColor('RED')
         this.client.owner.send({ embeds: [devEmbed] })
         const embed = new Discord.MessageEmbed()
-        .setTitle(this.client.getString('errors.fatal.message', { locale: message }))
+        .setTitle(this.client.getString('errors.fatal.message', { locale: interaction }))
         .setColor('RED')
-        message.reply(null, { embed, failIfNotExists: false })
-        .then(errorMsg => {
-          this.client.setTimeout(() => {
-            if(errorMsg.deletable) errorMsg.delete()
-            if(message.deletable) message.delete()
-          }, 10000)
-        })
+        this.client.interactionSend(interaction, { embeds: [embed], ephemeral: true })
       } else if(process.env.PROCESS === 'production') {
         const devEmbed = new Discord.MessageEmbed()
         .setTitle('An unknown error occurred')
-        .setDescription(`Channel type: \`${message.channel.type}\`\nExecuted by: \`${message.author.tag} (${message.author.id})\`\n\n\`\`\`${error.stack}\`\`\``)
+        .setDescription(`Channel type: \`${message.channel.type}\`\nExecuted by: \`${interaction.user.tag} (${interaction.user.id})\`\n\n\`\`\`${error.stack}\`\`\``)
         .setColor('RED')
-        this.client.owner.send({ embeds: [evEmbed] })
+        this.client.owner.send({ embeds: [devEmbed] })
         const embed = new Discord.MessageEmbed()
         .setTitle(this.client.getString('errors.unknown.message', { locale: message }))
         .setColor('RED')
-        message.reply(null, { embed, failIfNotExists: false })
-        .then(errorMsg => {
-          client.setTimeout(() => {
-            if(errorMsg.deletable) errorMsg.delete()
-            if(message.deletable) message.delete()
-          }, 10000)
-        })
+        this.client.interactionSend(interaction, { embeds: [embed], ephemeral: true })
       }
     }
   }

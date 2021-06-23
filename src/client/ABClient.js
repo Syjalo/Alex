@@ -38,20 +38,6 @@ class ABClient extends Discord.Client {
     }
     fetchDataBase()
   
-    const readCommands = (dir) => {
-      const files = fs.readdirSync(path.join(__dirname, dir))
-      for(const file of files) {
-        const stat = fs.lstatSync(path.join(__dirname, dir, file))
-        if(stat.isDirectory()) {
-          readCommands(path.join(dir, file))
-        } else {
-          const command = require(path.join(__dirname, dir, file))
-          this.commands.add(command)
-        }
-      }
-    }
-    readCommands('../commands')
-  
     const readEvents = (dir) => {
       const files = fs.readdirSync(path.join(__dirname, dir))
       for(const file of files) {
@@ -74,8 +60,8 @@ class ABClient extends Discord.Client {
     if(!path) return null
     let { variables, locale = 'en-US' } = options
 
-    if(locale instanceof Discord.Message) {
-      locale = this.languages.get(locale.author.id) || locale.guild.preferredLocale
+    if(locale instanceof Discord.CommandInteraction) {
+      locale = this.languages.get(locale.user.id) || locale.member.guild.preferredLocale
     }
 
     const splittedPath = path.split('.')
@@ -101,6 +87,11 @@ class ABClient extends Discord.Client {
     }
 
     return string
+  }
+
+  async interactionSend(interaction, options) {
+    if(interaction.deferred || interaction.replied) return await interaction.followUp(options)
+    else return await interaction.reply(options)
   }
 
   get owner() {

@@ -1,6 +1,7 @@
 {
   "dateLocale": "en-US",
   "dateTimeZone": "America/New_York",
+  "notAllowedUseCommand": "You are not allowed to use this command",
   "button": {
     "openGitHub": "Open repository on GitHub"
   }

@@ -1,3 +1,4 @@
 {
-  "anotherServer": "I can't send a message to another server."
+  "anotherServer": "I can't send a message to another server.",
+  "sended": "Message sended to the specified channel."
 }

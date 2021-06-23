@@ -1,28 +1,39 @@
 const Discord = require('discord.js')
+const CommandError = require('../../errors/CommandError')
 const Command = require('../../structures/Command')
+const CommandOption = require('../../structures/CommandOption')
 
 module.exports = new Command()
 .setName('say')
+.setDescription('Sends a message to the specified channel.')
 .setCategory('utility')
-.setMinArgs(2)
 .addPermsToWhitelist(Discord.Permissions.FLAGS.ADMINISTRATOR)
-.setFunction((message, args, client) => {
-  const targetChannelID = args[0].replace(/[<@!&#>\\]/g, '')
-  const targetChannel = client.channels.resolve(targetChannelID)
-  args.shift()
+.setOptions([
+  new CommandOption()
+  .setName('channel')
+  .setDescription('Specify the channel')
+  .setRequired()
+  .setType('CHANNEL'),
+  new CommandOption()
+  .setName('message')
+  .setDescription('The message to send')
+  .setRequired()
+  .setType('STRING')
+])
+.setFunction((interaction, client) => {
+  const targetChannel = interaction.options.first().channel
 
-  if(message.guild.id !== targetChannel?.guild.id && !client.isOwner(message)) {
-    message.reply(client.getString('say.anotherServer', { locale: message }))
-    return
+  if(!targetChannel.isText()) {
+    throw new CommandError(client)
+    .setCode('NOT_TEXT_CHANNEL')
+    .setMessageStringPath('errors.notTextChannel.message')
   }
-
-  if(message.deletable) message.delete()
 
   try {
-    const json = JSON.parse(args.join(' '))
-    const { text = null, replyTo = null, mention = true } = json
-    if(targetChannel) targetChannel.send(text, { allowedMentions: { repliedUser: mention }, reply: { messageReference: replyTo, failIfNotExists: false } })
+    const json = JSON.parse(interaction.options.last().value)
+    if(targetChannel) targetChannel.send(json)
   } catch {
-    if(targetChannel) targetChannel.send(args.join(' '))
+    if(targetChannel) targetChannel.send({ content: interaction.options.last().value })
   }
+  client.interactionSend(interaction, { content: client.getString('say.sended', { locale: interaction }), ephemeral: true })
 })

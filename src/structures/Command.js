@@ -1,25 +1,22 @@
 const Discord = require('discord.js')
-const CommandError = require('../errors/CommandError')
 
 class Command {
   constructor() {
     this.manager = null
 
-    this.CommandError = CommandError
+    this.command = null
+
+    this.options = null
 
     this.name = null
 
-    this.category = null
+    this.description = null
 
-    this.aliases = null
+    this.category = null
 
     this.cooldown = 3
 
     this.maxUsageAmount = 1
-
-    this.minArgs = null
-
-    this.maxArgs = null
 
     this.permsBlacklist = null
 
@@ -37,18 +34,33 @@ class Command {
     return this
   }
 
+  setCommand(command) {
+    this.command = command
+    return this
+  }
+
+  setOption(option) {
+    this.options = [option]
+    return this
+  }
+
+  setOptions(options) {
+    this.options = options
+    return this
+  }
+
   setName(name) {
     this.name = name
     return this
   }
 
-  setCategory(category) {
-    this.category = category
+  setDescription(description) {
+    this.description = description
     return this
   }
-  
-  setAliases(...aliases) {
-    this.aliases = aliases
+
+  setCategory(category) {
+    this.category = category
     return this
   }
 
@@ -59,16 +71,6 @@ class Command {
 
   setMaxUsageAmount(maxUsageAmount) {
     this.maxUsageAmount = maxUsageAmount
-    return this
-  }
-
-  setMinArgs(minArgs) {
-    this.minArgs = minArgs
-    return this
-  }
-
-  setMaxArgs(maxArgs) {
-    this.maxArgs = maxArgs
     return this
   }
 
@@ -98,10 +100,10 @@ class Command {
   }
 
   allowedToExecute(instance) {
-    const userInstance = (user, message) => {
+    const userInstance = (user, interaction) => {
       if(this.allowedOnlyOwner && !this.manager.client.isOwner(user)) return false
       if(this.manager.client.isOwner(user)) return true
-      if(!this.allowedInDM && message?.channel.type === 'dm') return false
+      if(!this.allowedInDM && interaction?.channel.type === 'dm') return false
       return true
     }
     const memberInstance = (member) => {
@@ -121,12 +123,20 @@ class Command {
       return allowed
     }
     
-    if(instance instanceof Discord.Message) {
-      if(instance.channel.type === 'dm') return userInstance(instance.author, instance)
+    if(instance instanceof Discord.CommandInteraction) {
+      if(instance.channel.type === 'dm') return userInstance(instance.user, instance)
       else return memberInstance(instance.member)
     }
     if(instance instanceof Discord.GuildMember) return memberInstance(instance)
     return false
+  }
+
+  toJSON() {
+    return {
+      name: this.name,
+      description: this.description,
+      options: this.options
+    }
   }
 }
 

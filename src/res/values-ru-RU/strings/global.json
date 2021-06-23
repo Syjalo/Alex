@@ -1,6 +1,7 @@
 {
   "dateLocale": "ru-RU",
   "dateTimeZone": "Europe/Moscow",
+  "notAllowedUseCommand": "Вы не можете использовать эту команду",
   "button": {
     "openGitHub": "Открыть репозиторий на GitHub"
   }

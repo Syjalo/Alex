@@ -11,32 +11,26 @@
     "usageAmount": "{times, plural, one {# time} other {# times}}"
   }, 
   "userinfo": {
-    "usage": "userinfo <...users>",
     "shortDescription": "Gives you the specified user information.",
     "fullDescription": "Gives you the specified user information. As an argument, you can specify the user ID, the username or the username with tag. The search by the user ID is performing on all Discord users. You can specify multiple arguments separated by a space to search for multiple users."
   },
   "embed": {
-    "usage": "embed <channel> <json>",
     "shortDescription": "Sends an embed to the specified channel.",
     "fullDescription": "Sends an embed to the specified channel. The first argument is the channel. You can specify the channel ID or mention it. The second argument is the text in JSON format. [Learn more on the Discord Developer Portal](https://discord.com/developers/docs/resources/channel#embed-object)."
   },
   "help": {
-    "usage": "help",
     "shortDescription": "Shows you the help page.",
     "fullDescription": "Shows you the help page."
   },
   "language": {
-    "usage": "language [locale]",
     "shortDescription": "Changes your language.",
     "fullDescription": "Changes your language."
   },
   "restart": {
-    "usage": "restart",
     "shortDescription": "Restarts the bot.",
     "fullDescription": "Restarts the bot."
   },
   "say": {
-    "usage": "say <channel> <message>",
     "shortDescription": "Sends a message to the specified channel.",
     "fullDescription": "Sends a message to the specified channel."
   },

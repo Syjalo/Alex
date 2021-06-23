@@ -2,39 +2,47 @@ const Discord = require('discord.js')
 const CommandError = require('../../errors/CommandError')
 const usersSchema = require('../../schemas/users-schema')
 const Command = require('../../structures/Command')
+const CommandOption = require('../../structures/CommandOption')
 
 module.exports = new Command()
 .setName('language')
+.setDescription('Changes your language.')
 .setCategory('utility')
-.setAliases('lang')
 .setCooldown(60)
 .setMaxUsageAmount(2)
 .allowInDM
-.setFunction(async (message, args, client) => {
-  if(args.length === 0) {
+.setOption(
+  new CommandOption()
+  .setType('STRING')
+  .setName('locale')
+  .setDescription('Specify the language locale')
+)
+.setFunction(async (interaction, client) => {
+  if(!interaction.options.first()) {
     const langs = []
     for (const [locale, value] of Object.entries(client.constants.SupportedLangs)) {
       langs.push(`**${value.name}**: \`${locale}\``)
     }
     const embed = new Discord.MessageEmbed()
-    .setTitle(client.getString('language.specifyLocale', { locale: message }))
-    .setDescription(client.getString('language.supportedLanguages', { variables: { langs: langs.sort().join('\n') }, locale: message }))
+    .setTitle(client.getString('language.specifyLocale', { locale: interaction }))
+    .setDescription(client.getString('language.supportedLanguages', { variables: { langs: langs.sort().join('\n') }, locale: interaction }))
     .setColor('BLURPLE')
-    message.channel.send(embed)
+    client.interactionSend(interaction, { embeds: [embed], ephemeral: true })
     return
   }
-  if(!Object.keys(client.constants.SupportedLangs).includes(args[0])) {
+  if(!Object.keys(client.constants.SupportedLangs).includes(interaction.options.first().value)) {
     throw new CommandError(client)
     .setCode('FALSE_LANGUAGE_LOCALE')
-    .setMessageStringPath('errors.falseLanguageLocale')
+    .setMessageStringPath('errors.falseLanguageLocale.message')
   }
+  await interaction.defer({ ephemeral: true })
   await client.mongo().then(async (mongoose) => {
     try {
       users = await usersSchema.findOneAndUpdate({
-        id: message.author.id
+        id: interaction.user.id
       },
       {
-        locale: args[0]
+        locale: interaction.options.first().value
       },
       {
         upsert: true
@@ -47,12 +55,12 @@ module.exports = new Command()
       } else throw error
     } finally {
       mongoose.connection.close()
-      client.languages.set(message.author.id, args[0])
+      client.languages.set(interaction.user.id, interaction.options.first().value)
       const embed = new Discord.MessageEmbed()
-      .setTitle(client.getString('language.changedTitle', { locale: message }))
-      .setDescription(client.getString('language.changedDescription', { locale: message }))
+      .setTitle(client.getString('language.changedTitle', { locale: interaction }))
+      .setDescription(client.getString('language.changedDescription', { locale: interaction }))
       .setColor('GREEN')
-      message.channel.send({ embeds: [embed] })
+      client.interactionSend(interaction, { embeds: [embed], ephemeral: true })
     }
   })
 })

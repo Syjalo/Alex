@@ -20,6 +20,9 @@
   "falseLanguageLocale": {
     "message": "That language locale couldn't be found!"
   },
+  "notTextChannel": {
+    "message": "I can't send an message to the not text channel!"
+  },
   "dbError": {
     "message": "Something went wrong while contacting the Data Base!"
   },

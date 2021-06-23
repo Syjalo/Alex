@@ -8,11 +8,23 @@
   "cooldownExist": {
     "message": "Пожалуйста, подождите ещё {timeLeft, plural, =1 {секунду} one {# секунду} few {# секунды} other {# секунд}}, чтобы снова выполнить команду `{commandName}`"
   },
+  "invalidJSON": {
+    "message": "Неверный JSON: `{errorMessage}`"
+  },
   "falseCommand": {
     "message": "Эта команда не может быть найдена!"
   },
   "falseUser": {
     "title": "Не удалось найти {count, plural, one {следующего пользователя} other {следующих пользователей}}!"
+  },
+  "falseLanguageLocale": {
+    "message": "Эта локаль языка не может быть найдена!"
+  },
+  "notTextChannel": {
+    "message": "Я не могу отправить сообщение в нетекстовый канал!"
+  },
+  "dbError": {
+    "message": "Что-то пошло не так при подключении к базе данных!"
   },
   "noAccessSpecifiedCommand": {
     "message": "Вам нельзя выполнять указанную команду!"

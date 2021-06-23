@@ -1,5 +1,5 @@
 module.exports.Options = {
-  prefix: '-'
+  prefix: '/'
 }
 
 module.exports.SupportedLangs = {
