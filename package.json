@@ -17,12 +17,12 @@
   },
   "homepage": "https://github.com/Syjalo/Alex#readme",
   "dependencies": {
-    "discord.js": "^13.0.0-dev.edf6f0ca7012b6b678367a1b5d716d0b85e23ba3",
+    "discord.js": "^13.0.0-dev.985d4d6a438fc9123264f6a1c600f34fccc1825f",
     "dotenv": "^8.6.0",
-    "intl-messageformat": "^9.6.18",
+    "intl-messageformat": "^9.7.1",
     "javascript-time-ago": "^2.3.7",
     "mongodb": "^3.6.9",
-    "mongoose": "^5.12.14",
+    "mongoose": "^5.12.15",
     "node-fetch": "^2.6.1"
   }
 }
