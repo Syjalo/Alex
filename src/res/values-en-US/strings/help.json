@@ -33,9 +33,5 @@
   "say": {
     "shortDescription": "Sends a message to the specified channel.",
     "fullDescription": "Sends a message to the specified channel."
-  },
-  "note": {
-    "title": "Note",
-    "description": "`<>` is required arguments\n`[]` is optional arguments\n`...` is means that you can specify multiple arguments"
   }
 }

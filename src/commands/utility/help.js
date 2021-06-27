@@ -30,7 +30,6 @@ module.exports = new Command()
       commands.each(command => {
         if(command.category !== 'dev') embed.addField(`\`${client.constants.Options.prefix}${command.name}\``, `${client.getString(`help.${command.name}.shortDescription`, { locale: interaction })}`)
       })
-      embed.addField(client.getString('help.note.title', { locale: interaction }), client.getString('help.note.description', { locale: interaction }))
     }
 
     const row = new Discord.MessageActionRow()
