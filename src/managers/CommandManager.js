@@ -87,7 +87,7 @@ class CommandManager {
         .setTitle(error.getTitleString(interaction))
         .setDescription(error.getDescriptionString(interaction))
         .setColor('RED')
-        this.client.interactionSend(interaction, { embeds: [embed], ephemeral: error.options.ephemeral })
+        this.client.interactionSend(interaction, { embeds: [embed], ephemeral: error.ephemeral })
         return
       }
       console.error(error)

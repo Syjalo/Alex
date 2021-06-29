@@ -20,6 +20,7 @@ class CommandError {
 
     this.messageStringVariables = {}
 
+    this.ephemeral = true
   }
 
   setTitleStringPath(path) {
@@ -93,8 +94,8 @@ class CommandError {
     return this.messageStringPath ? null : this.descriptionStringVariables
   }
 
-  setOptions(options) {
-    this.options = Object.assign(this.options, options)
+  setEphemeral(ephemeral) {
+    this.ephemeral = ephemeral
     return this
   }
 
