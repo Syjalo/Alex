@@ -56,6 +56,11 @@ class ABClient extends Discord.Client {
     return super.login(token)
   }
 
+  getDateToLocaleString(instance, locale) {
+    const date = new Date(instance)
+    return date.toLocaleString(this.getString('global.dateLocale', { locale }), { timeZone: this.getString('global.dateTimeZone', { locale }), day: 'numeric', month: 'long', year: 'numeric', hour: 'numeric', minute: 'numeric', timeZoneName: 'long' })
+  }
+
   getString(path, options = {}) {
     if(!path) return null
     let { variables, locale = 'en-US' } = options
