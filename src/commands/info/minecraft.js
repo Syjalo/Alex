@@ -130,7 +130,7 @@ module.exports = new Command()
     )
     client.interactionSend(interaction, { embeds: [getNameHistoryEmbed(username, uuid, pages, interaction, page)], components: [updateComponents(row, page, pages)] })
     const message = await interaction.fetchReply()
-    const collector = message.createMessageComponentInteractionCollector({ filter: button => button.user.id === interaction.user.id, time: (() => {let time = 30000 + 15000 * (pages.length - 1); if (time > 600000) time = 300000; return time})() })
+    const collector = message.createMessageComponentInteractionCollector({ filter: button => button.user.id === interaction.user.id, time: (() => {let time = 30000 + 20000 * (pages.length - 1); if (time > 300000) time = 300000; return time})() })
     collector.on('collect', button => {
       button.deferUpdate()
       if (button.customID === 'first') page = 0
