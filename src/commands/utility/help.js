@@ -35,7 +35,7 @@ module.exports = new Command()
     const row = new Discord.MessageActionRow()
     .addComponents(
       new Discord.MessageButton()
-      .setLabel(client.getString('global.button.openGitHub', { locale: interaction }))
+      .setLabel(client.getString('global.buttons.openGitHub', { locale: interaction }))
       .setStyle('LINK')
       .setURL('https://github.com/Syjalo/Alex')
     )

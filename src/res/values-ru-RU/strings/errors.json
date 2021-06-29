@@ -17,6 +17,9 @@
   "falseUser": {
     "title": "Не удалось найти {count, plural, one {следующего пользователя} other {следующих пользователей}}!"
   },
+  "falsePlayer": {
+    "message": "Этот игрок не может быть найдена!"
+  },
   "falseLanguageLocale": {
     "message": "Эта локаль языка не может быть найдена!"
   },
@@ -28,6 +31,9 @@
   },
   "noAccessSpecifiedCommand": {
     "message": "Вам нельзя выполнять указанную команду!"
+  },
+  "invalidPlayer": {
+    "message": "Неверне имя пользователя или UUID"
   },
   "invalidCommandArgs": {
     "title": "Аргументы команды неверны",

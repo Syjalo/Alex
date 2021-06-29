@@ -17,6 +17,9 @@
   "falseUser": {
     "title": "Following {count, plural, one {user} other {users}} couldn't be found!"
   },
+  "falsePlayer": {
+    "message": "That player couldn't be found!"
+  },
   "falseLanguageLocale": {
     "message": "That language locale couldn't be found!"
   },
@@ -28,6 +31,9 @@
   },
   "noAccessSpecifiedCommand": {
     "message": "You're not allowed to execute the specified command!"
+  },
+  "invalidPlayer": {
+    "message": "Invalid username or UUID"
   },
   "invalidCommandArgs": {
     "title": "Command arguments is invalid",
