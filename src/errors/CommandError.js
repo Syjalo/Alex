@@ -2,8 +2,6 @@ class CommandError {
   constructor(client) {    
     this.client = client
 
-    this.code = null
-
     this.titleStringPath = null
 
     this.descriptionStringPath = null
@@ -22,12 +20,6 @@ class CommandError {
 
     this.messageStringVariables = {}
 
-    this.options = { ephemeral: true }
-  }
-
-  setCode(code) {
-    this.code = code
-    return this
   }
 
   setTitleStringPath(path) {

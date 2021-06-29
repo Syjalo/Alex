@@ -25,7 +25,6 @@ module.exports = new Command()
 
   if(!targetChannel.isText()) {
     throw new CommandError(client)
-    .setCode('NOT_TEXT_CHANNEL')
     .setMessageStringPath('errors.notTextChannel.message')
   }
 

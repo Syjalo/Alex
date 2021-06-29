@@ -34,7 +34,6 @@ module.exports = new Command()
     targetChannel.send(json)
   } catch (error) {
     throw new CommandError(client)
-    .setCode('INVALID_JSON')
     .setMessageStringPath('errors.invalidJSON')
     .setMessageStringVariables({ errorMessage: error.message })
   } finally {

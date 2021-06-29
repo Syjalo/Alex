@@ -32,7 +32,6 @@ module.exports = new Command()
   }
   if(!Object.keys(client.constants.SupportedLangs).includes(interaction.options.first().value)) {
     throw new CommandError(client)
-    .setCode('FALSE_LANGUAGE_LOCALE')
     .setMessageStringPath('errors.falseLanguageLocale.message')
   }
   await interaction.defer({ ephemeral: true })
@@ -50,7 +49,6 @@ module.exports = new Command()
     } catch (error) {
       if(error instanceof mongoose.Error) {
         throw new CommandError(client)
-        .setCode('DB_ERROR')
         .setMessageStringPath('errors.dbError.message')
       } else throw error
     } finally {

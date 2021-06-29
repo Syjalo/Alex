@@ -90,7 +90,6 @@ module.exports = new Command()
 
   if (failedToFind.length > 0) {
     throw new CommandError(client)
-    .setCode('FALSE_USER')
     .setTitleStringPath('errors.falseUser.title')
     .setDescriptionString(`\`${failedToFind.join('`, `')}\``)
     .setTitleStringVariables({ count: failedToFind.length })

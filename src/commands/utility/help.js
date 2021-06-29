@@ -45,12 +45,10 @@ module.exports = new Command()
     const command = client.commands.resolve(interaction.options.first().value)
     if(!command) {
       throw new CommandError(client)
-      .setCode('FALSE_COMMAND')
       .setMessageStringPath('errors.falseCommand.message')
     }
     if(!command.allowedToExecute(interaction)) {
       throw new CommandError(client)
-      .setCode('NO_ACCESS_SPECIFIED_COMMAND')
       .setMessageStringPath('errors.noAccessSpecifiedCommand.message')
     }
     const embed = new Discord.MessageEmbed()
