@@ -18,7 +18,6 @@ module.exports = new Command()
   .toJSON()
 )
 .setFunction(async (interaction, client) => {
-  await interaction.defer()
   const timeAgo = new TimeAgo(client.languages.get(interaction.user.id || interaction.member.guild.preferredLocale || 'en-US'))
   const data = []
   const failedToFind = []
