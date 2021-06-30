@@ -93,6 +93,6 @@ module.exports = new Command()
     .setTitleStringPath('errors.falseUser.title')
     .setDescriptionString(`\`${failedToFind.join('`, `')}\``)
     .setTitleStringVariables({ count: failedToFind.length })
-    .setOptions({ ephemeral: false })
+    .setEphemeral(data.length === 0)
   }
 })
