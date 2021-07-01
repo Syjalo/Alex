@@ -1,4 +1,12 @@
 {
   "history": "{username}'s name history",
-  "firstName": "First name"
+  "firstName": "First name",
+  "accountType": {
+    "title": "Account type",
+    "newMSA": "Microsoft",
+    "migratedMSA": "Microsoft (Migrated from Mojang)",
+    "msa": "Microsoft (Unknown)",
+    "mojang": "Mojang",
+    "legacy": "Legacy"
+  }
 }

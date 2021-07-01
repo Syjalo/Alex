@@ -4,7 +4,7 @@ const CommandOption = require('../../structures/CommandOption')
 const fetch = require('node-fetch')
 const CommandError = require('../../errors/CommandError')
 
-const makeNameHistoryFields = (pages, interaction, pageNumber) => {
+const makeFields = (pages, interaction, pageNumber) => {
   const fields = []
   const page = pages[pageNumber]
   page.forEach(n => {
@@ -14,13 +14,24 @@ const makeNameHistoryFields = (pages, interaction, pageNumber) => {
   return fields
 }
 
-const getNameHistoryEmbed = (username, uuid, pages, interaction, page) => {
+const getEmbed = (username, uuid, pages, interaction, page, status) => {
   const embed = new Discord.MessageEmbed()
   .setTitle(interaction.client.getString('minecraft.history', { locale: interaction, variables: { username } }))
   .setThumbnail(`https://mc-heads.net/body/${uuid}/left`)
-  .addFields(makeNameHistoryFields(pages, interaction, page))
   .setFooter(interaction.client.getString('global.pageNumber', { locale: interaction, variables: { current: page + 1, total: pages.length } }))
   .setColor('BLURPLE')
+  if (status && page === 0) {
+    const statuses = {
+      new_msa: 'newMSA',
+      migrated_msa: 'migratedMSA',
+      msa: 'MSA',
+      mojang: 'mojang',
+      legacy: 'legacy'
+    }
+    if (statuses.hasOwnProperty(status)) status = interaction.client.getString(`minecraft.accountType.${statuses[status]}`, { locale: interaction })
+    embed.addField('Account type', status)
+  }
+  embed.addFields(makeFields(pages, interaction, page))
   return embed
 }
 
@@ -64,7 +75,7 @@ module.exports = new Command()
   const instance = interaction.options?.first()?.value
   if (!instance) return
 
-  const rx = /^[0-9a-f]{8}(-)?[0-9a-f]{4}(-)?[0-9a-f]{4}(-)?[0-9a-f]{4}(-)?[0-9a-f]{12}/g
+  const rx = /([0-9a-f]{8})(?:-|)([0-9a-f]{4})(?:-|)(4[0-9a-f]{3})(?:-|)([89ab][0-9a-f]{3})(?:-|)([0-9a-f]{12})/
   let uuid = rx.exec(instance)?.[0]
   if (!uuid) {
     if (2 <= instance.length && instance.length <= 16) {
@@ -92,6 +103,9 @@ module.exports = new Command()
       .setMessageStringPath('errors.falsePlayer.message')
     } else throw err
   })
+  const { status } = await fetch(`https://api.gapple.pw/status/${res[0].name}`)
+  .then(r => r.json())
+  .catch(() => { return { status: null } })
   const username = res[0].name.replace('_', '\\_')
   const pages = []
   for (let i = 0; i < res.length / 8; i++) {
@@ -103,7 +117,7 @@ module.exports = new Command()
   }
   let page = 0
   if (pages.length === 1) {
-    client.interactionSend(interaction, { embeds: [getNameHistoryEmbed(username, uuid, pages, interaction, page)] })
+    client.interactionSend(interaction, { embeds: [getEmbed(username, uuid, pages, interaction, page, status)] })
   } else {
     const row = new Discord.MessageActionRow()
     .addComponents(
@@ -128,7 +142,7 @@ module.exports = new Command()
       .setLabel(client.getString('global.buttons.lastPage', { locale: interaction }))
       .setStyle('PRIMARY')
     )
-    client.interactionSend(interaction, { embeds: [getNameHistoryEmbed(username, uuid, pages, interaction, page)], components: [updateComponents(row, page, pages)] })
+    client.interactionSend(interaction, { embeds: [getEmbed(username, uuid, pages, interaction, page, status)], components: [updateComponents(row, page, pages)] })
     const message = await interaction.fetchReply()
     const collector = message.createMessageComponentInteractionCollector({ filter: button => button.user.id === interaction.user.id, time: (() => {let time = 30000 + 20000 * (pages.length - 1); if (time > 300000) time = 300000; return time})() })
     collector.on('collect', button => {
@@ -137,10 +151,10 @@ module.exports = new Command()
       else if (button.customID === 'previous') page--; if (page < 0) page = 0
       else if (button.customID === 'next') page++; if (page > pages.length - 1) page = pages.length - 1
       else if (button.customID === 'last') page = pages.length - 1
-      interaction.editReply({ embeds: [getNameHistoryEmbed(username, uuid, pages, interaction, page)], components: [updateComponents(row, page, pages)] })
+      interaction.editReply({ embeds: [getEmbed(username, uuid, pages, interaction, page, status)], components: [updateComponents(row, page, pages)] })
     })
     collector.on('end', () => {
-      interaction.editReply({ embeds: [getNameHistoryEmbed(username, uuid, pages, interaction, page)], components: [updateComponents(row)] })
+      interaction.editReply({ embeds: [getEmbed(username, uuid, pages, interaction, page, status)], components: [updateComponents(row)] })
     })
   }
 })

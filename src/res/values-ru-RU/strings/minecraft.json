@@ -1,4 +1,12 @@
 {
   "history": "История имени игрока {username}",
-  "firstName": "Первое имя"
+  "firstName": "Первое имя",
+  "accountType": {
+    "title": "Тип учётной записи",
+    "newMSA": "Microsoft",
+    "migratedMSA": "Microsoft (перенесён из Mojang)",
+    "msa": "Microsoft (неизвестно)",
+    "mojang": "Mojang",
+    "legacy": "Старый"
+  }
 }
