@@ -16,7 +16,7 @@ const makeFields = (pages, interaction, pageNumber) => {
 
 const getEmbed = (username, uuid, pages, interaction, page, status) => {
   const embed = new Discord.MessageEmbed()
-  .setTitle(interaction.client.getString('minecraft.history', { locale: interaction, variables: { username } }))
+  .setTitle(interaction.client.getString('minecraft.title', { locale: interaction, variables: { username } }))
   .setThumbnail(`https://mc-heads.net/body/${uuid}/left`)
   .setFooter(interaction.client.getString('global.pageNumber', { locale: interaction, variables: { current: page + 1, total: pages.length } }))
   .setColor('BLURPLE')
@@ -29,6 +29,7 @@ const getEmbed = (username, uuid, pages, interaction, page, status) => {
       legacy: 'legacy'
     }
     if (statuses.hasOwnProperty(status)) status = interaction.client.getString(`minecraft.accountType.${statuses[status]}`, { locale: interaction })
+    else status = interaction.client.getString(`minecraft.accountType.unknown`, { locale: interaction })
     embed.addField('Account type', status)
   }
   embed.addFields(makeFields(pages, interaction, page))
