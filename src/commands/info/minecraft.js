@@ -30,7 +30,7 @@ const getEmbed = (username, uuid, pages, interaction, page, status) => {
     }
     if (statuses.hasOwnProperty(status)) status = interaction.client.getString(`minecraft.accountType.${statuses[status]}`, { locale: interaction })
     else status = interaction.client.getString(`minecraft.accountType.unknown`, { locale: interaction })
-    embed.addField('Account type', status)
+    embed.addField(interaction.client.getString(`minecraft.accountType.title`, { locale: interaction }), status)
   }
   embed.addFields(makeFields(pages, interaction, page))
   return embed
