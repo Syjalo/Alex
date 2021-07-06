@@ -1,5 +1,4 @@
 const Discord = require('discord.js')
-const TimeAgo = require('javascript-time-ago')
 const Command = require('../../structures/Command')
 const CommandError = require('../../errors/CommandError')
 const CommandOption = require('../../structures/CommandOption')
@@ -18,7 +17,6 @@ module.exports = new Command()
   .toJSON()
 )
 .setFunction(async (interaction, client) => {
-  const timeAgo = new TimeAgo(client.languages.get(interaction.user.id || interaction.member.guild.preferredLocale || 'en-US'))
   const data = []
   const failedToFind = []
   let instances = []
@@ -66,9 +64,9 @@ module.exports = new Command()
       .addFields(
         { name: client.getString('userinfo.status.title', { locale: interaction }), value: statusValue },
         { name: client.getString('userinfo.id', { locale: interaction }), value: d.user.id },
-        { name: client.getString('userinfo.joinedDiscord', { locale: interaction }), value: `${client.getDateToLocaleString(d.user.createdAt, interaction)}\n(${timeAgo.format(d.user.createdTimestamp)})` },
-        { name: client.getString('userinfo.joinedServer', { locale: interaction }), value: `${client.getDateToLocaleString(d.joinedAt, interaction)}\n(${timeAgo.format(d.joinedTimestamp)})` },
-        { name: client.getString('userinfo.serverBooster', { locale: interaction }), value: `${d.premiumSince ? `${client.getString('userinfo.boosterSince', { variables: { date: client.getDateToLocaleString(d.premiumSince, interaction) }, locale: interaction })}\n(${timeAgo.format(d.premiumSinceTimestamp)})` : client.getString('userinfo.notBooster', { locale: interaction })}` },
+        { name: client.getString('userinfo.joinedDiscord', { locale: interaction }), value: `<t:${Math.round(d.user.createdTimestamp / 1000)}:f>\n(<t:${Math.round(d.user.createdTimestamp / 1000)}:R>)` },
+        { name: client.getString('userinfo.joinedServer', { locale: interaction }), value: `<t:${Math.round(d.joinedTimestamp / 1000)}:f>\n(<t:${Math.round(d.joinedTimestamp / 1000)}:R>)` },
+        { name: client.getString('userinfo.serverBooster', { locale: interaction }), value: `${d.premiumSince ? `${client.getString('userinfo.boosterSince', { variables: { date: `<t:${Math.round(d.premiumSinceTimestamp / 1000)}:f>` }, locale: interaction })}\n(<t:${Math.round(d.premiumSinceTimestamp / 1000)}:R>)` : client.getString('userinfo.notBooster', { locale: interaction })}` },
         { name: client.getString('userinfo.roles', { locale: interaction, variables: { count: d.roles.cache.filter(role => role.name !== '@everyone').size } }), value: d.roles.cache.filter(role => role.name !== '@everyone').size ? (() => d.roles.cache.filter(role => role.name !== '@everyone').sort((role1, role2) => role2.rawPosition - role1.rawPosition).map(role => role).join(', '))() : '———' },
       )
       .setColor(d.displayColor || 'LIGHT_GREY')
@@ -80,7 +78,7 @@ module.exports = new Command()
       .setDescription(d.toString())
       .addFields(
         { name: client.getString('userinfo.id', { locale: interaction }), value: d.id },
-        { name: client.getString('userinfo.joinedDiscord', { locale: interaction }), value: `${client.getDateToLocaleString(d.createdAt, interaction)}\n(${timeAgo.format(d.createdTimestamp)})` },
+        { name: client.getString('userinfo.joinedDiscord', { locale: interaction }), value: `<t:${Math.round(d.createdTimestamp / 1000)}:f>\n(<t:${Math.round(d.createdTimestamp / 1000)}:R>)` },
       )
       .setColor('LIGHT_GREY')
     }

@@ -9,7 +9,7 @@ const makeFields = (pages, interaction, pageNumber) => {
   const page = pages[pageNumber]
   page.forEach(n => {
     const username = n.name.replace('_', '\\_')
-    fields.push({ name: username, value: `${n.changedToAt ? interaction.client.getDateToLocaleString(n.changedToAt, interaction) : interaction.client.getString('minecraft.firstName', { locale: interaction })}` })
+    fields.push({ name: username, value: `${n.changedToAt ? `<t:${Math.round(n.changedToAt / 1000)}:f>\n<t:${Math.round(n.changedToAt / 1000)}:R>` : interaction.client.getString('minecraft.firstName', { locale: interaction })}` })
   })
   return fields
 }

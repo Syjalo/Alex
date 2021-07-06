@@ -20,7 +20,6 @@
     "discord.js": "^13.0.0-dev.985d4d6a438fc9123264f6a1c600f34fccc1825f",
     "dotenv": "^8.6.0",
     "intl-messageformat": "^9.7.1",
-    "javascript-time-ago": "^2.3.7",
     "mongodb": "^3.6.9",
     "mongoose": "^5.12.15",
     "node-fetch": "^2.6.1"

@@ -1,5 +1,4 @@
 const Discord = require('discord.js')
-const TimeAgo = require('javascript-time-ago')
 const { IntlMessageFormat } = require('intl-messageformat')
 const fs = require('fs')
 const path = require('path')
@@ -17,11 +16,6 @@ class ABClient extends Discord.Client {
     this.languages = new Discord.Collection()
     this.mongo = require('../utils/mongo')
     this.constants = require('../utils/constants')
-
-    TimeAgo.setDefaultLocale('en-US')
-    for(const locale in this.constants.SupportedLangs) {
-      TimeAgo.addLocale(require(`javascript-time-ago/locale/${locale.split('-')[0]}`))
-    }
 
     const fetchDataBase = async () => {
       let users
@@ -54,11 +48,6 @@ class ABClient extends Discord.Client {
     readEvents('../events')
 
     return super.login(token)
-  }
-
-  getDateToLocaleString(instance, locale) {
-    const date = new Date(instance)
-    return date.toLocaleString(this.getString('global.dateLocale', { locale }), { timeZone: this.getString('global.dateTimeZone', { locale }), day: 'numeric', month: 'long', year: 'numeric', hour: 'numeric', minute: 'numeric', timeZoneName: 'long' })
   }
 
   getString(path, options = {}) {
