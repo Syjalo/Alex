@@ -15,7 +15,7 @@ const command: Command = {
       .addFields([
         {
           name: getString('embed.field.ping.name'),
-          value: getString('embed.field.ping.value'),
+          value: getString('embed.field.ping.value', { variables: { ms: ping } }),
         },
       ])
       .setColor(color);
