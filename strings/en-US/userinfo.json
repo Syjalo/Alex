@@ -8,9 +8,6 @@
   },
   "embed": {
     "field": {
-      "username": {
-        "name": "Username"
-      },
       "status": {
         "name": "Status",
         "values": {

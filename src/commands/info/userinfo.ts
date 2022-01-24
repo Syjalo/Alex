@@ -36,10 +36,10 @@ const command: Command = {
 
     const embed = new MessageEmbed()
       .setAuthor({ name: member?.displayName ?? user.username, url: Util.makeUserURL(user.id) })
+      .setDescription(`${user} \`${user.tag}\` (${user.id})`)
       .setThumbnail(member?.displayAvatarURL({ dynamic: true }) ?? user.displayAvatarURL({ dynamic: true }))
       .setColor(member?.displayColor || 'LIGHT_GREY');
 
-    embed.addField('Username', `${user} \`${user.tag}\` (${user.id})`);
     if (member) {
       let emoji: string,
         statusName = member?.presence?.status;
