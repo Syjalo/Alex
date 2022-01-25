@@ -23,14 +23,14 @@ const command: Command = {
       member = interaction.options.getMember('user') as GuildMember | null,
       id = interaction.options.getString('id');
 
-    if (member) user = member.user;
+    if (member) user = await member.user.fetch();
     else if (id) {
       user = await client.users.fetch(id).catch(() => {
         throw 'userNotFound';
       });
       member = interaction.guild!.members.resolve(id);
     } else {
-      user = interaction.user;
+      user = await interaction.user.fetch();
       member = interaction.member as GuildMember;
     }
 
@@ -86,7 +86,7 @@ const command: Command = {
       .map((role) => `${role}`);
     if (roles && roles.length)
       embed.addField(getString('embed.field.roles.name', { variables: { count: roles.length } }), roles.join(', '));
-    if (user.banner) embed.setImage(user.bannerURL()!);
+    if (user.banner) embed.setImage(user.bannerURL({ dynamic: true })!);
 
     interaction.reply({ embeds: [embed] });
   },
