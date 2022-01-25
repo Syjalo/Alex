@@ -3,7 +3,7 @@ import { Ids } from '../util/Constants';
 
 export default (client: AlexClient) => {
   client.on('messageCreate', async (message) => {
-    if (message.channel.id === Ids.channels.suggestions) {
+    if (message.channel.id === Ids.channels.suggestions && message.type === 'DEFAULT') {
       message.startThread({
         name: `[${message.member!.displayName}] Suggestion Discutions`,
         reason: 'New suggestion',
