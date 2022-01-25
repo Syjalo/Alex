@@ -1,6 +1,7 @@
 {
-  "cooldownExist": "Please wait. You'll be able to use {command} <t:{timestamp}:R>",
-  "notTextChannel": "Channel must be text channel",
-  "userNotFound": "User couldn't be found",
-  "unexpectedError": "Unexpected error has occurred"
+  "underDevelopment": "This command is currently under development",
+  "cooldownExist": "Please wait. You'll be able to use {command} {timestamp}",
+  "notTextChannel": "Ce salon doit être un salon textuel",
+  "userNotFound": "L'utilisateur ne peut pas être trouvé",
+  "unexpectedError": "Une erreur inattendue s'est produite"
 }

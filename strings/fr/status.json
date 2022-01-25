@@ -4,7 +4,7 @@
     "field": {
       "ping": {
         "name": "Ping",
-        "value": "My ping is {ms}ms"
+        "value": "Mon ping est {ms}ms"
       }
     }
   }
