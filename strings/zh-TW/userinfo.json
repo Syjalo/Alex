@@ -1,0 +1,42 @@
+{
+  "status": {
+    "online": "",
+    "idle": "",
+    "dnd": "",
+    "invisible": "",
+    "offline": ""
+  },
+  "embed": {
+    "field": {
+      "status": {
+        "name": "",
+        "values": {
+          "status": {
+            "online": "",
+            "idle": "",
+            "dnd": "",
+            "invisible": "",
+            "offline": ""
+          },
+          "platform": {
+            "web": "",
+            "mobile": "",
+            "desktop": ""
+          }
+        }
+      },
+      "createdAccount": {
+        "name": ""
+      },
+      "joinedServer": {
+        "name": ""
+      },
+      "serverBooster": {
+        "name": ""
+      },
+      "roles": {
+        "name": ""
+      }
+    }
+  }
+}
