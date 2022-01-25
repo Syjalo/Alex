@@ -5,27 +5,27 @@
         "name": "Status",
         "values": {
           "status": {
-            "online": "Online",
-            "idle": "Idle",
-            "dnd": "Do Not Disturb",
+            "online": "En ligne",
+            "idle": "Inactif",
+            "dnd": "Ne Pas Déranger",
             "invisible": "Invisible",
-            "offline": "Offline"
+            "offline": "Hors ligne"
           },
           "platform": {
             "web": "Web",
             "mobile": "Mobile",
-            "desktop": "Desktop"
+            "desktop": "Bureau"
           }
         }
       },
       "createdAccount": {
-        "name": "Created account"
+        "name": "Crée un compte"
       },
       "joinedServer": {
-        "name": "Joined server"
+        "name": "Rejeoins le serveur"
       },
       "serverBooster": {
-        "name": "Server Booster since"
+        "name": "Server Booster depuis"
       },
       "roles": {
         "name": "{count, plural, one {Role (#)} other {Roles (#)}}"
