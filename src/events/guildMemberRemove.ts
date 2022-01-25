@@ -13,13 +13,10 @@ export default (client: AlexClient) => {
         url: Util.makeUserURL(member.id),
       })
       .setTitle('Goodbye!')
+      .setDescription(`${member} \`${member.user.tag}\` (${member.id})`)
       .setFields([
         {
-          name: 'Username',
-          value: `${member} \`${member.user.tag}\` (${member.id})`,
-        },
-        {
-          name: 'Joined Discord',
+          name: 'Created account',
           value: `<t:${Math.floor(member.user.createdTimestamp / 1000)}> (<t:${Math.floor(
             member.user.createdTimestamp / 1000,
           )}:R>)`,

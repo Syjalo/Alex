@@ -22,11 +22,8 @@ export default (client: AlexClient) => {
         url: Util.makeUserURL(member.id),
       })
       .setTitle('Welcome!')
+      .setDescription(`${member} \`${member.user.tag}\` (${member.id})`)
       .addFields([
-        {
-          name: 'Username',
-          value: `${member} \`${member.user.tag}\` (${member.id})`,
-        },
         {
           name: 'Created account',
           value: Util.makeFormattedTime(Math.floor(member.user.createdTimestamp / 1000)),
