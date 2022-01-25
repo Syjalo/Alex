@@ -37,7 +37,7 @@ const command: Command = {
     const embed = new MessageEmbed()
       .setAuthor({ name: member?.displayName ?? user.username, url: Util.makeUserURL(user.id) })
       .setDescription(`${user} \`${user.tag}\` (${user.id})`)
-      .setThumbnail(member?.displayAvatarURL({ dynamic: true }) ?? user.displayAvatarURL({ dynamic: true }))
+      .setThumbnail(member?.displayAvatarURL({ dynamic: true }) ?? user.displayAvatarURL({ dynamic: true, size: 4096 }))
       .setColor(member?.displayColor || 'LIGHT_GREY');
 
     if (member) {
