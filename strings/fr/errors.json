@@ -1,0 +1,6 @@
+{
+  "cooldownExist": "Please wait. You'll be able to use {command} <t:{timestamp}:R>",
+  "notTextChannel": "Channel must be text channel",
+  "userNotFound": "User couldn't be found",
+  "unexpectedError": "Unexpected error has occurred"
+}

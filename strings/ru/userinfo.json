@@ -1,0 +1,42 @@
+{
+  "status": {
+    "online": "Онлайн",
+    "idle": "Не активен",
+    "dnd": "Не беспокоить",
+    "invisible": "Невидимый",
+    "offline": "Офлайн"
+  },
+  "embed": {
+    "field": {
+      "status": {
+        "name": "Статус",
+        "values": {
+          "status": {
+            "online": "Онлайн",
+            "idle": "Не активен",
+            "dnd": "Не беспокоить",
+            "invisible": "Невидимый",
+            "offline": "Офлайн"
+          },
+          "platform": {
+            "web": "сайт",
+            "mobile": "мобильное",
+            "desktop": "ПК"
+          }
+        }
+      },
+      "createdAccount": {
+        "name": "Создал учётную запись"
+      },
+      "joinedServer": {
+        "name": "Присоединился к серверу"
+      },
+      "serverBooster": {
+        "name": "Бустер сервера с"
+      },
+      "roles": {
+        "name": "{count, plural, one {Роль (#)} other {Роли (#)}}"
+      }
+    }
+  }
+}
