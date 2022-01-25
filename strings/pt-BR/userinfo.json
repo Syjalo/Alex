@@ -1,41 +1,41 @@
 {
   "status": {
-    "online": "",
-    "idle": "",
-    "dnd": "",
-    "invisible": "",
-    "offline": ""
+    "online": "Online",
+    "idle": "Idle",
+    "dnd": "Do Not Disturb",
+    "invisible": "Invisible",
+    "offline": "Offline"
   },
   "embed": {
     "field": {
       "status": {
-        "name": "",
+        "name": "Status",
         "values": {
           "status": {
-            "online": "",
-            "idle": "",
-            "dnd": "",
-            "invisible": "",
-            "offline": ""
+            "online": "Online",
+            "idle": "Idle",
+            "dnd": "Do Not Disturb",
+            "invisible": "Invisible",
+            "offline": "Offline"
           },
           "platform": {
-            "web": "",
-            "mobile": "",
-            "desktop": ""
+            "web": "Web",
+            "mobile": "Mobile",
+            "desktop": "Desktop"
           }
         }
       },
       "createdAccount": {
-        "name": ""
+        "name": "Created account"
       },
       "joinedServer": {
-        "name": ""
+        "name": "Joined server"
       },
       "serverBooster": {
-        "name": ""
+        "name": "Server Booster since"
       },
       "roles": {
-        "name": ""
+        "name": "{count, plural, one {Role (#)} other {Roles (#)}}"
       }
     }
   }
