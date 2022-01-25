@@ -81,7 +81,7 @@ export default (client: AlexClient) => {
               }),
             )
             .setColor('RED');
-          interaction.reply({ embeds: [cooldownEmbed] });
+          interaction.reply({ embeds: [cooldownEmbed], ephemeral: true });
           return;
         }
       }
