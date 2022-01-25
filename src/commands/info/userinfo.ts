@@ -86,7 +86,7 @@ const command: Command = {
       .map((role) => `${role}`);
     if (roles && roles.length)
       embed.addField(getString('embed.field.roles.name', { variables: { count: roles.length } }), roles.join(', '));
-    if (user.banner) embed.setImage(user.bannerURL({ dynamic: true })!);
+    if (user.banner) embed.setImage(user.bannerURL({ dynamic: true, size: 4096 })!);
 
     interaction.reply({ embeds: [embed] });
   },
