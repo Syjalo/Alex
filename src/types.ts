@@ -3,6 +3,7 @@ import { AlexClient } from './util/AlexClient';
 
 export interface Command extends ChatInputApplicationCommandData {
   listener(interaction: CommandInteraction, client: AlexClient, getString: GetString): Awaitable<void>;
+  dev?: true;
   allowedRoles?: Snowflake[];
   cooldown?: number;
 }
@@ -15,7 +16,39 @@ export interface DBUser {
 export interface GetStringOptions {
   variables?: Record<string, string | number>;
   fileName?: string;
-  locale?: string;
+  locale?: Locales;
 }
 
 export type GetString = <T extends any>(key: string, options?: GetStringOptions) => T;
+
+export type Locales =
+  | 'bg'
+  | 'cs'
+  | 'da'
+  | 'de'
+  | 'el'
+  | 'en-GB'
+  | 'en-US'
+  | 'es-ES'
+  | 'fi'
+  | 'fr'
+  | 'hi'
+  | 'hr'
+  | 'hu'
+  | 'it'
+  | 'ja'
+  | 'ko'
+  | 'lt'
+  | 'nl'
+  | 'no'
+  | 'pl'
+  | 'pt-BR'
+  | 'ro'
+  | 'ru'
+  | 'sv-SE'
+  | 'th'
+  | 'tr'
+  | 'uk'
+  | 'vi'
+  | 'zh-CN'
+  | 'zh-TW';

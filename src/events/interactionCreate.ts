@@ -58,6 +58,14 @@ export default (client: AlexClient) => {
         return string;
       };
 
+      if (command.dev && interaction.user.id !== Ids.users.syjalo) {
+        const embed = new MessageEmbed()
+          .setTitle(getString('underDevelopment', { fileName: 'errors' }))
+          .setColor('RED');
+        interaction.reply({ embeds: [embed], ephemeral: true });
+        return;
+      }
+
       if (!cooldowns.has(commandName)) cooldowns.set(commandName, new Collection());
       const commandCooldowns = cooldowns.get(commandName)!,
         now = Date.now(),
@@ -69,7 +77,7 @@ export default (client: AlexClient) => {
             .setTitle(
               getString('cooldownExist', {
                 fileName: 'errors',
-                variables: { timestamp: Math.floor(cooldownUntil / 1000), command: `/${commandName}` },
+                variables: { timestamp: `<t:${Math.floor(cooldownUntil / 1000)}:R>`, command: `/${commandName}` },
               }),
             )
             .setColor('RED');
