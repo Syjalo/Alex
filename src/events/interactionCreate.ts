@@ -86,7 +86,7 @@ export default (client: AlexClient) => {
         }
       }
 
-      if ((interaction.member as GuildMember)!.permissions.has('KICK_MEMBERS')) {
+      if (!(interaction.member as GuildMember)!.permissions.has('KICK_MEMBERS')) {
         commandCooldowns.set(interaction.user.id, now + cooldownAmount);
         setTimeout(() => commandCooldowns.delete(interaction.user.id), cooldownAmount);
       }
