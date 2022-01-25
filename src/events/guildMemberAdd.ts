@@ -6,11 +6,11 @@ import { Util } from '../util/Util';
 
 export default (client: AlexClient) => {
   client.on('guildMemberAdd', async (member) => {
-    const userJoinedDiscordAgo = Date.now() - member.user.createdTimestamp;
+    const userCreatedAccountAgo = Date.now() - member.user.createdTimestamp;
     let color: ColorResolvable;
-    if (userJoinedDiscordAgo > 1000 * 60 * 60 * 24 * 28 /*4 weeks*/) {
+    if (userCreatedAccountAgo > 1000 * 60 * 60 * 24 * 28 /*4 weeks*/) {
       color = 'GREEN';
-    } else if (userJoinedDiscordAgo > 1000 * 60 * 60 * 14 /*2 weeks*/) {
+    } else if (userCreatedAccountAgo > 1000 * 60 * 60 * 24 * 14 /*2 weeks*/) {
       color = 'YELLOW';
     } else {
       color = 'RED';
