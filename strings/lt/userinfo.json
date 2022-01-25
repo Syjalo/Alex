@@ -1,11 +1,4 @@
 {
-  "status": {
-    "online": "Online",
-    "idle": "Idle",
-    "dnd": "Do Not Disturb",
-    "invisible": "Invisible",
-    "offline": "Offline"
-  },
   "embed": {
     "field": {
       "status": {

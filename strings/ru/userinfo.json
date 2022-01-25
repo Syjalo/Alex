@@ -1,11 +1,4 @@
 {
-  "status": {
-    "online": "Онлайн",
-    "idle": "Не активен",
-    "dnd": "Не беспокоить",
-    "invisible": "Невидимый",
-    "offline": "Офлайн"
-  },
   "embed": {
     "field": {
       "status": {
