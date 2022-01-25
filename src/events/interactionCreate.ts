@@ -18,7 +18,7 @@ export default (client: AlexClient) => {
       }
 
       const getString = (key: string, options: GetStringOptions = {}) => {
-        let { fileName = commandName, locale, variables } = options;
+        let { fileName = commandName, locale = interaction.locale, variables } = options;
         locale = Util.resolveLocale(locale);
         let enStrings = require(`../../strings/en-US/${fileName}`);
         let strings: Record<string, any>;
