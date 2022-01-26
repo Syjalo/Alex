@@ -2,33 +2,33 @@
   "embed": {
     "field": {
       "status": {
-        "name": "Status",
+        "name": "Stav",
         "values": {
           "status": {
             "online": "Online",
-            "idle": "Idle",
-            "dnd": "Do Not Disturb",
-            "invisible": "Invisible",
+            "idle": "Nečinný",
+            "dnd": "Nerušit",
+            "invisible": "Neviditelný",
             "offline": "Offline"
           },
           "platform": {
             "web": "Web",
-            "mobile": "Mobile",
-            "desktop": "Desktop"
+            "mobile": "Mobil",
+            "desktop": "Počítač"
           }
         }
       },
       "createdAccount": {
-        "name": "Created account"
+        "name": "Vytvořil účet"
       },
       "joinedServer": {
-        "name": "Joined server"
+        "name": "Připojil se k serveru"
       },
       "serverBooster": {
-        "name": "Server Booster since"
+        "name": "Vylepšuje server od"
       },
       "roles": {
-        "name": "{count, plural, one {Role (#)} other {Roles (#)}}"
+        "name": "{count, plural, one {Role (#)} other {Role (#)}}"
       }
     }
   }
