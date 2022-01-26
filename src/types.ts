@@ -10,7 +10,14 @@ export interface Command extends ChatInputApplicationCommandData {
 
 export interface DBUser {
   id: Snowflake;
+  locale: Locales;
   savedRoles?: Snowflake[];
+}
+
+export interface DBLanguage {
+  locale: Locales;
+  name: string;
+  nativeName: string;
 }
 
 export interface GetStringOptions {
