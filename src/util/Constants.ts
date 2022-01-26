@@ -1,6 +1,7 @@
 import { readdirSync } from 'node:fs';
+import { Locales } from '../types';
 
-export const Ids = {
+export const ids = {
   channels: {
     botLog: '935189941565157398',
     suggestions: '779985257000730684',
@@ -26,4 +27,4 @@ export const Ids = {
   },
 };
 
-export const Locales = readdirSync('./strings');
+export const locales = readdirSync('./strings') as Locales[];

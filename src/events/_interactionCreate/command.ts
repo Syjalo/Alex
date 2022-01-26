@@ -1,9 +1,9 @@
 import { setTimeout } from 'node:timers';
 import { Collection, CommandInteraction, GuildMember, MessageEmbed, TextChannel } from 'discord.js';
 import IntlMessageFormat from 'intl-messageformat';
-import { DBUser, GetStringOptions } from '../../types';
+import { DBUser, GetStringOptions, Locales } from '../../types';
 import { AlexClient } from '../../util/AlexClient';
-import { Ids } from '../../util/Constants';
+import { ids } from '../../util/Constants';
 import { Util } from '../../util/Util';
 
 const cooldowns = new Collection<string, Collection<string, number>>();
@@ -18,7 +18,7 @@ export default async (interaction: CommandInteraction, client: AlexClient) => {
 
   const dbUser = await client.db.collection<DBUser>('users').findOne({ id: interaction.user.id }),
     getString = (key: string, options: GetStringOptions = {}) => {
-      let { fileName = commandName, locale = dbUser?.locale ?? interaction.locale, variables } = options;
+      let { fileName = commandName, locale = dbUser?.locale ?? interaction.locale as Locales, variables } = options;
       locale = Util.resolveLocale(locale);
       let enStrings = require(`../../../strings/en-US/${fileName}`);
       let strings: Record<string, any>;
@@ -48,8 +48,8 @@ export default async (interaction: CommandInteraction, client: AlexClient) => {
             .setTitle('There is a string with unexpected variables here')
             .setDescription(`${err}\nLocale: \`${locale}\` File: \`${fileName}\` Key: \`${key}\``)
             .setColor('RED');
-          (client.channels.resolve(Ids.channels.botLog) as TextChannel).send({
-            content: `<@${Ids.users.syjalo}>`,
+          (client.channels.resolve(ids.channels.botLog) as TextChannel).send({
+            content: `<@${ids.users.syjalo}>`,
             embeds: [embed],
           });
         }
@@ -58,7 +58,7 @@ export default async (interaction: CommandInteraction, client: AlexClient) => {
       return string;
     };
 
-  if (command.dev && interaction.user.id !== Ids.users.syjalo) {
+  if (command.dev && interaction.user.id !== ids.users.syjalo) {
     const embed = new MessageEmbed().setTitle(getString('underDevelopment', { fileName: 'errors' })).setColor('RED');
     interaction.reply({ embeds: [embed], ephemeral: true });
     return;

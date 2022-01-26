@@ -1,12 +1,12 @@
 import { MessageEmbed, TextChannel } from 'discord.js';
 import { AlexClient } from '../util/AlexClient';
-import { Ids } from '../util/Constants';
+import { ids } from '../util/Constants';
 
 export default (client: AlexClient) => {
   client.once('ready', async () => {
-    await client.guilds.resolve(Ids.guilds.main)!.commands.set(client.commands.map((c) => c));
+    await client.guilds.resolve(ids.guilds.main)!.commands.set(client.commands.map((c) => c));
     await client.guilds
-      .resolve(Ids.guilds.main)!
+      .resolve(ids.guilds.main)!
       .commands.fetch()
       .then((cmds) =>
         cmds.forEach((cmd) => {
@@ -26,6 +26,6 @@ export default (client: AlexClient) => {
     console.log('Ready!');
     if (!process.env.PRODUCTION) return;
     const readyEmbed = new MessageEmbed().setTitle('Ready!').setColor('GREEN');
-    (client.channels.resolve(Ids.channels.botLog) as TextChannel).send({ embeds: [readyEmbed] });
+    (client.channels.resolve(ids.channels.botLog) as TextChannel).send({ embeds: [readyEmbed] });
   });
 };

@@ -1,6 +1,6 @@
 import { MessageEmbed } from 'discord.js';
 import { Command, DBLanguage, DBUser, Locales } from '../../types';
-import { Locales as locales } from '../../util/Constants';
+import { locales } from '../../util/Constants';
 
 const command: Command = {
   name: 'language',

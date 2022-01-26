@@ -1,4 +1,4 @@
-import { ColorResolvable, GuildMember, MessageEmbed } from 'discord.js';
+import { ColorResolvable, MessageEmbed } from 'discord.js';
 import { Command } from '../../types';
 
 const command: Command = {

@@ -1,7 +1,7 @@
 import { MessageEmbed, TextChannel } from 'discord.js';
 import { DBUser } from '../types';
 import { AlexClient } from '../util/AlexClient';
-import { Ids } from '../util/Constants';
+import { ids } from '../util/Constants';
 import { Util } from '../util/Util';
 
 export default (client: AlexClient) => {
@@ -27,9 +27,9 @@ export default (client: AlexClient) => {
         },
       ])
       .setColor('LIGHT_GREY');
-    (client.channels.resolve(Ids.channels.joinLeave) as TextChannel).send({ embeds: [leaveEmbed] });
+    (client.channels.resolve(ids.channels.joinLeave) as TextChannel).send({ embeds: [leaveEmbed] });
 
-    const rolesToSave = Ids.rolesToSave.filter((roleId) => member.roles.cache.has(roleId));
+    const rolesToSave = ids.rolesToSave.filter((roleId) => member.roles.cache.has(roleId));
     if (rolesToSave.length > 0) {
       client.db
         .collection<DBUser>('users')

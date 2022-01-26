@@ -1,5 +1,4 @@
 import { GuildMember, MessageEmbed, Snowflake, User } from 'discord.js';
-import { ApplicationCommandOptionTypes } from 'discord.js/typings/enums';
 import { Command } from '../../types';
 import { Util } from '../../util/Util';
 

@@ -1,11 +1,10 @@
 import { Snowflake } from 'discord-api-types';
-import { GuildMember, MessageEmbed, User } from 'discord.js';
-import { GetString } from '../types';
-import { Locales } from './Constants';
+import { Locales } from '../types';
+import { locales } from './Constants';
 
 export class Util extends null {
-  static resolveLocale(locale?: string) {
-    if (!locale || !Locales.includes(locale)) return 'en-US';
+  static resolveLocale(locale?: Locales) {
+    if (!locale || !locales.includes(locale)) return 'en-US';
     return locale;
   }
 

@@ -1,7 +1,7 @@
 import { ColorResolvable, MessageEmbed, TextChannel } from 'discord.js';
 import { DBUser } from '../types';
 import { AlexClient } from '../util/AlexClient';
-import { Ids } from '../util/Constants';
+import { ids } from '../util/Constants';
 import { Util } from '../util/Util';
 
 export default (client: AlexClient) => {
@@ -34,7 +34,7 @@ export default (client: AlexClient) => {
         },
       ])
       .setColor(color);
-    (client.channels.resolve(Ids.channels.joinLeave) as TextChannel).send({ embeds: [joinEmbed] });
+    (client.channels.resolve(ids.channels.joinLeave) as TextChannel).send({ embeds: [joinEmbed] });
 
     const usersCollection = client.db.collection<DBUser>('users'),
       dbUser = await usersCollection.findOne({ id: member.id });
