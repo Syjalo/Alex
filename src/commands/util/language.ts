@@ -1,5 +1,6 @@
 import { MessageEmbed } from 'discord.js';
 import { Command, DBLanguage, DBUser, Locales } from '../../types';
+import { Locales as locales } from '../../util/Constants';
 
 const command: Command = {
   name: 'language',
@@ -33,8 +34,23 @@ const command: Command = {
 
     if (subcommand === 'set') {
       const dbLanguages = await client.db.collection<DBLanguage>('languages').find().toArray();
-      const dbLanguage = dbLanguages.find((lang) => `${lang.nativeName} (${lang.name})` === locale);
+      const dbLanguage = dbLanguages.find(
+        (language) =>
+          language.locale.toLowerCase().startsWith(locale.toLowerCase()) ||
+          language.name.toLowerCase().startsWith(locale.toLowerCase()) ||
+          language.nativeName.toLowerCase().startsWith(locale.toLowerCase()),
+      );
       if (dbLanguage) locale = dbLanguage.locale;
+      if (!locales.includes(locale)) {
+        const unknownLanguage = new MessageEmbed()
+          .setTitle(getString('subcommand.set.unknownLanguage.title'))
+          .setDescription(
+            getString('subcommand.set.unknownLanguage.description', { variables: { query: `\`${locale}\`` } }),
+          )
+          .setColor('RED');
+        interaction.reply({ embeds: [unknownLanguage], ephemeral: true });
+        return;
+      }
       if (dbUser?.locale === locale) {
         const notChangedEmbed = new MessageEmbed()
           .setTitle(getString('subcommand.set.notChangedEmbed.title'))
