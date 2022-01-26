@@ -1,7 +1,7 @@
 {
-  "underDevelopment": "This command is currently under development",
-  "cooldownExist": "Please wait. You'll be able to use {command} {timestamp}",
-  "notTextChannel": "Channel must be text channel",
-  "userNotFound": "User couldn't be found",
-  "unexpectedError": "Unexpected error has occurred"
+  "underDevelopment": "Tento příkaz je momentálně ve vývoji",
+  "cooldownExist": "Počkejte prosím. Budete moct použít {command} {timestamp}",
+  "notTextChannel": "Kanál musí být textový",
+  "userNotFound": "Uživatel nebyl nalezen",
+  "unexpectedError": "Došlo k nečekané chybě"
 }
