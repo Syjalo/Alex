@@ -1,6 +1,6 @@
 {
-  "underDevelopment": "This command is currently under development",
-  "cooldownExist": "Please wait. You'll be able to use {command} {timestamp}",
+  "underDevelopment": "В настоящее время эта команда находится в разработке",
+  "cooldownExist": "Пожалуйста, подождите. Вы сможете воспользоваться {command} {timestamp}",
   "notTextChannel": "Канал должен быть текстовым",
   "userNotFound": "Пользователь не может быть найден",
   "unexpectedError": "Произошла неожиданная ошибка"
