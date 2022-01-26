@@ -1,0 +1,19 @@
+{
+  "subcommand": {
+    "set": {
+      "notChangedEmbed": {
+        "title": "Ваш язык не был изменён",
+        "description": "Это произошло потому, что вы выбрали язык, который уже установлен"
+      },
+      "changedEmbed": {
+        "title": "Ваш язык был успешно изменён",
+        "description": "Translations may not be completed and contain errors"
+      }
+    },
+    "reset": {
+      "resetEmbed": {
+        "title": "Ваш язык был успешно сброшен"
+      }
+    }
+  }
+}
