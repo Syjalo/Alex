@@ -20,12 +20,12 @@ export default async (interaction: CommandInteraction, client: AlexClient) => {
     getString = (key: string, options: GetStringOptions = {}) => {
       let { fileName = commandName, locale = dbUser?.locale ?? interaction.locale, variables } = options;
       locale = Util.resolveLocale(locale);
-      let enStrings = require(`../../strings/en-US/${fileName}`);
+      let enStrings = require(`../../../strings/en-US/${fileName}`);
       let strings: Record<string, any>;
       try {
-        strings = require(`../../strings/${locale}/${fileName}`);
+        strings = require(`../../../strings/${locale}/${fileName}`);
       } catch {
-        strings = require(`../../strings/en-US/${fileName}`);
+        strings = require(`../../../strings/en-US/${fileName}`);
       }
 
       key.split('.').forEach((keyPart) => {
