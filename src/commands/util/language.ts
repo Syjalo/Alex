@@ -1,5 +1,5 @@
 import { MessageEmbed } from 'discord.js';
-import { Command, DBUser, Locales } from '../../types';
+import { Command, DBLanguage, DBUser, Locales } from '../../types';
 
 const command: Command = {
   name: 'language',
@@ -27,10 +27,14 @@ const command: Command = {
   ],
   async listener(interaction, client, getString) {
     const subcommand = interaction.options.getSubcommand(true),
-      locale = interaction.options.getString('language', subcommand === 'set') as Locales,
       usersCollection = client.db.collection<DBUser>('users'),
       dbUser = await usersCollection.findOne({ id: interaction.user.id });
+    let locale = interaction.options.getString('language', subcommand === 'set') as Locales;
+
     if (subcommand === 'set') {
+      const dbLanguages = await client.db.collection<DBLanguage>('languages').find().toArray();
+      const dbLanguage = dbLanguages.find((lang) => `${lang.nativeName} (${lang.name})` === locale);
+      if (dbLanguage) locale = dbLanguage.locale;
       if (dbUser?.locale === locale) {
         const notChangedEmbed = new MessageEmbed()
           .setTitle(getString('subcommand.set.notChangedEmbed.title'))
