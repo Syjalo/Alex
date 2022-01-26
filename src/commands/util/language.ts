@@ -42,6 +42,8 @@ const command: Command = {
         const changedEmbed = new MessageEmbed()
           .setTitle(getString('subcommand.set.changedEmbed.title', { locale }))
           .setColor('GREEN');
+        if (locale !== 'en-US')
+          changedEmbed.setDescription(getString('subcommand.set.changedEmbed.description', { locale }));
         interaction.reply({ embeds: [changedEmbed], ephemeral: true });
       }
     } else if (subcommand === 'reset') {

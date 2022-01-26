@@ -117,7 +117,7 @@ export default (client: AlexClient) => {
             ...languages.filter((l) => l.nativeName.toLowerCase().startsWith(value.toLowerCase())),
           ]).values(),
         ];
-        results.sort((a, b) => (a.nativeName < b.nativeName ? 1 : -1)).splice(25, results.length);
+        results.sort((a, b) => (a.nativeName > b.nativeName ? 1 : -1)).splice(25, results.length);
         interaction.respond(
           results.map((language) => ({
             name: `${language.nativeName} (${language.name})`,
