@@ -8,6 +8,10 @@
       "changedEmbed": {
         "title": "Your language has been successfully changed",
         "description": "Translations may not be completed and contain errors"
+      },
+      "unknownLanguage": {
+        "title": "Unknown language",
+        "description": "Couldn't find a language by your query: {query}"
       }
     },
     "reset": {
