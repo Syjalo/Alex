@@ -7,7 +7,11 @@
       },
       "changedEmbed": {
         "title": "Ваш язык был успешно изменён",
-        "description": "Translations may not be completed and contain errors"
+        "description": "Переводы могут быть не завершены и содержать ошибки"
+      },
+      "unknownLanguage": {
+        "title": "Неизвестный язык",
+        "description": "Не удалось найти язык по вашему запросу: {query}"
       }
     },
     "reset": {
