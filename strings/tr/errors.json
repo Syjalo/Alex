@@ -1,7 +1,7 @@
 {
-  "underDevelopment": "This command is currently under development",
-  "cooldownExist": "Please wait. You'll be able to use {command} {timestamp}",
-  "notTextChannel": "Channel must be text channel",
-  "userNotFound": "User couldn't be found",
-  "unexpectedError": "Unexpected error has occurred"
+  "underDevelopment": "Bu komut şuanlık geliştirme sürecinde",
+  "cooldownExist": "Lütfen bekleyiniz. {command} {timestamp} komutunu kullanabileceksiniz",
+  "notTextChannel": "Kanal metin kanalı olmalıdır",
+  "userNotFound": "Kullanıcı bulunamadı",
+  "unexpectedError": "Beklenmeyen bir hata oluştu"
 }
