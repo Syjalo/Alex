@@ -42,7 +42,7 @@ export default (client: AlexClient) => {
           const embed = new MessageEmbed()
               .setAuthor({
                 iconURL: message.author.displayAvatarURL(),
-                name: message.member!.displayName,
+                name: message.member?.displayName || message.author.username,
                 url: Util.makeUserURL(message.author.id),
               })
               .setTitle('An unknown link was found')
