@@ -7,7 +7,6 @@
  "license": "MIT",
  "scripts": {
   "compile": "tsc -w",
-  "deploy:commands": "tsc && node dist/scripts/deployCommands.js",
   "format": "prettier --write src",
   "postinstall": "tsc"
  },
