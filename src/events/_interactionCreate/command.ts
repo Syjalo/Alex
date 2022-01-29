@@ -18,7 +18,7 @@ export default async (interaction: CommandInteraction, client: AlexClient) => {
 
   const dbUser = await client.db.collection<DBUser>('users').findOne({ id: interaction.user.id }),
     getString = (key: string, options: GetStringOptions = {}) => {
-      let { fileName = commandName, locale = dbUser?.locale ?? interaction.locale as Locales, variables } = options;
+      let { fileName = commandName, locale = dbUser?.locale ?? (interaction.locale as Locales), variables } = options;
       locale = Util.resolveLocale(locale);
       let enStrings = require(`../../../strings/en-US/${fileName}`);
       let strings: Record<string, any>;

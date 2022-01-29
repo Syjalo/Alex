@@ -3,6 +3,16 @@ import { ids } from '../util/Constants';
 
 export default (client: AlexClient) => {
   client.on('messageCreate', async (message) => {
+    const hosts =
+      /(?:http[s]?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:\/?#[\]@!\$&'\(\)\*\+,;=.]+/
+        .exec(message.content)
+        ?.map((url) => new URL(url).hostname)
+        .filter((host) => host.toLowerCase().includes('discord') && host.toLowerCase().includes('gift')) || [];
+    if (hosts.some((host) => host !== 'discord.gift')) {
+      await message.delete();
+      return;
+    }
+
     if (message.channel.id === ids.channels.suggestions && message.type === 'DEFAULT') {
       message.startThread({
         name: `[${message.member!.displayName}] Suggestion Discutions`,
