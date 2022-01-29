@@ -4,8 +4,9 @@ import { Locales } from '../types';
 export const ids = {
   channels: {
     botLog: '935189941565157398',
-    suggestions: '779985257000730684',
+    complaints: '919554638452236308',
     joinLeave: '855823003392933898',
+    suggestions: '779985257000730684',
   },
   guilds: {
     main: '724163890803638273',
