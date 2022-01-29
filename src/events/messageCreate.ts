@@ -16,7 +16,7 @@ export default (client: AlexClient) => {
 
     if (message.channel.id === ids.channels.suggestions && message.type === 'DEFAULT') {
       message.startThread({
-        name: `[${message.member!.displayName}] Suggestion Discutions`,
+        name: `[${message.member!.displayName}] Suggestion Discussion`,
         reason: 'New suggestion',
       });
       await message.react('857336659465076737').catch(() => null);
@@ -24,7 +24,7 @@ export default (client: AlexClient) => {
       return;
     } else if (message.channel.id === '919554638452236308' && message.type === 'DEFAULT') {
       message.startThread({
-        name: `[${message.member!.displayName}] Complaint`,
+        name: `[${message.member!.displayName}] Complaint Discussion`,
         reason: 'New complaint',
       });
     }
