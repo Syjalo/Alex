@@ -7,7 +7,7 @@ import { Util } from '../util/Util';
 export default (client: AlexClient) => {
   client.on('messageCreate', async (message) => {
     if (!message.inGuild()) return;
-    const urls = [
+    const rawURLs = [
       ...new Set(
         message.content
           .split(' ')
@@ -20,10 +20,11 @@ export default (client: AlexClient) => {
             }
           })
           .map((url) => new URL(url))
-          .filter((url) => url.hostname.length),
+          .filter((url) => url.hostname.length)
+          .map((url) => url.origin),
       ).values(),
     ];
-    if (urls.length) {
+    if (rawURLs.length) {
       const [hostnamesWhitelist, hostnamesBlacklist] = await Promise.all([
         (
           await client.db.collection<DBHostname>('hostnamesWhitelist').find().toArray()
@@ -32,7 +33,8 @@ export default (client: AlexClient) => {
           await client.db.collection<DBHostname>('hostnamesBlacklist').find().toArray()
         ).map((dbHostname) => dbHostname.hostname),
       ]);
-      for (const url of urls) {
+      for (const rawURL of rawURLs) {
+        const url = new URL(rawURL);
         if (hostnamesBlacklist.includes(url.hostname)) {
           await message.delete();
           return;
