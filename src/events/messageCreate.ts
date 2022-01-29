@@ -22,6 +22,11 @@ export default (client: AlexClient) => {
       await message.react('857336659465076737').catch(() => null);
       await message.react('857336659619348540').catch(() => null);
       return;
+    } else if (message.channel.id === '919554638452236308' && message.type === 'DEFAULT') {
+      message.startThread({
+        name: `[${message.member!.displayName}] Complaint`,
+        reason: 'New complaint',
+      });
     }
   });
 };
