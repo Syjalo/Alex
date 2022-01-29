@@ -5,7 +5,7 @@ export default (client: AlexClient) => {
   client.on('messageCreate', async (message) => {
     const hosts =
       message.content
-        .match(/(?:http[s]?:\/\/)?([\w.-]+(?:\.[\w\.-]+))+[\w\-\._~:\/?#[\]@!\$&'\(\)\*\+,;=.]+/gm)
+        .match(/([\w.-]+(?:\.[\w\.-]+)+)/g)
         ?.map((host) => host.toLowerCase())
         .filter((host) => host.includes('discord') && host.includes('gift')) || [];
 
