@@ -1,17 +1,62 @@
+import { MessageActionRow, MessageButton, MessageEmbed, TextChannel } from 'discord.js';
+import { DBHostname } from '../types';
 import { AlexClient } from '../util/AlexClient';
 import { ids } from '../util/Constants';
+import { Util } from '../util/Util';
 
 export default (client: AlexClient) => {
   client.on('messageCreate', async (message) => {
-    const hosts =
-      message.content
-        .match(/([\w.-]+(?:\.[\w\.-]+)+)/g)
-        ?.map((host) => host.toLowerCase())
-        .filter((host) => host.includes('discord') && host.includes('gift')) || [];
-
-    if (hosts.some((host) => host !== 'discord.gift')) {
-      await message.delete();
-      return;
+    if (!message.inGuild()) return;
+    const urls = [
+      ...new Set(
+        message.content
+          .split(' ')
+          .filter((el) => {
+            try {
+              new URL(el);
+              return true;
+            } catch {
+              return false;
+            }
+          })
+          .map((url) => new URL(url))
+          .filter((url) => url.hostname.length),
+      ).values(),
+    ];
+    if (urls.length) {
+      const [hostnamesWhitelist, hostnamesBlacklist] = await Promise.all([
+        (
+          await client.db.collection<DBHostname>('hostnamesWhitelist').find().toArray()
+        ).map((dbHostname) => dbHostname.hostname),
+        (
+          await client.db.collection<DBHostname>('hostnamesBlacklist').find().toArray()
+        ).map((dbHostname) => dbHostname.hostname),
+      ]);
+      for (const url of urls) {
+        if (hostnamesBlacklist.includes(url.hostname)) {
+          await message.delete();
+          return;
+        } else if (!hostnamesWhitelist.includes(url.hostname)) {
+          const embed = new MessageEmbed()
+              .setAuthor({
+                iconURL: message.author.displayAvatarURL(),
+                name: message.member!.displayName,
+                url: Util.makeUserURL(message.author.id),
+              })
+              .setTitle('An unknown link was found')
+              .setDescription(`${message.content}\n\n[Jump](${message.url})`)
+              .addField('Link', url.origin)
+              .setColor('RED'),
+            buttons = new MessageActionRow().addComponents([
+              new MessageButton().setCustomId(`hostname-allow:${url.hostname}`).setLabel('Allow').setStyle('SUCCESS'),
+              new MessageButton().setCustomId(`hostname-deny:${url.hostname}`).setLabel('Deny').setStyle('DANGER'),
+            ]);
+          (client.channels.resolve(ids.channels.reports) as TextChannel).send({
+            embeds: [embed],
+            components: [buttons],
+          });
+        }
+      }
     }
 
     if (message.channel.id === ids.channels.suggestions && message.type === 'DEFAULT') {

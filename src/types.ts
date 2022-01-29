@@ -14,6 +14,10 @@ export interface DBUser {
   savedRoles?: Snowflake[];
 }
 
+export interface DBHostname {
+  hostname: string;
+}
+
 export interface DBLanguage {
   locale: Locales;
   name: string;

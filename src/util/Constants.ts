@@ -6,6 +6,7 @@ export const ids = {
     botLog: '935189941565157398',
     complaints: '919554638452236308',
     joinLeave: '855823003392933898',
+    reports: '936973723154665524',
     suggestions: '779985257000730684',
   },
   guilds: {
