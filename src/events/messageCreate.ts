@@ -9,19 +9,13 @@ export default (client: AlexClient) => {
     if (!message.inGuild()) return;
     const rawURLs = [
       ...new Set(
-        message.content
-          .split(' ')
-          .filter((el) => {
-            try {
-              new URL(el);
-              return true;
-            } catch {
-              return false;
-            }
-          })
-          .map((url) => new URL(url))
-          .filter((url) => url.hostname.length)
-          .map((url) => url.origin),
+        message.content.split(' ').filter((el) => {
+          try {
+            return new URL(el).hostname.length;
+          } catch {
+            return false;
+          }
+        }),
       ).values(),
     ];
     if (rawURLs.length) {
