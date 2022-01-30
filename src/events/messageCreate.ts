@@ -9,7 +9,7 @@ export default (client: AlexClient) => {
     if (!message.inGuild()) return;
     const rawURLs = [
       ...new Set(
-        message.content.replace('\n', ' ').split(' ').filter((el) => {
+        message.content.replaceAll('\n', ' ').split(' ').filter((el) => {
           try {
             return new URL(el).hostname.length;
           } catch {
