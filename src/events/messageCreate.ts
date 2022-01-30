@@ -5,17 +5,21 @@ import { ids } from '../util/Constants';
 import { Util } from '../util/Util';
 
 export default (client: AlexClient) => {
+  const pendingHostnames: string[] = [];
   client.on('messageCreate', async (message) => {
     if (!message.inGuild()) return;
     const rawURLs = [
       ...new Set(
-        message.content.replaceAll('\n', ' ').split(' ').filter((el) => {
-          try {
-            return new URL(el).hostname.length;
-          } catch {
-            return false;
-          }
-        }),
+        message.content
+          .replaceAll('\n', ' ')
+          .split(' ')
+          .filter((el) => {
+            try {
+              return new URL(el).hostname.length;
+            } catch {
+              return false;
+            }
+          }),
       ).values(),
     ];
     if (rawURLs.length) {
@@ -29,10 +33,13 @@ export default (client: AlexClient) => {
       ]);
       for (const rawURL of rawURLs) {
         const url = new URL(rawURL);
-        if (hostnamesBlacklist.includes(url.hostname)) {
+        const { hostname } = url;
+        if (hostnamesBlacklist.includes(hostname)) {
           await message.delete();
           return;
-        } else if (!hostnamesWhitelist.includes(url.hostname)) {
+        } else if (!hostnamesWhitelist.includes(hostname)) {
+          if (pendingHostnames.includes(hostname)) continue;
+          pendingHostnames.push(hostname);
           const embed = new MessageEmbed()
               .setAuthor({
                 iconURL: message.author.displayAvatarURL(),
@@ -44,8 +51,8 @@ export default (client: AlexClient) => {
               .addField('Link', url.origin)
               .setColor('RED'),
             buttons = new MessageActionRow().addComponents([
-              new MessageButton().setCustomId(`hostname-allow:${url.hostname}`).setLabel('Allow').setStyle('SUCCESS'),
-              new MessageButton().setCustomId(`hostname-deny:${url.hostname}`).setLabel('Deny').setStyle('DANGER'),
+              new MessageButton().setCustomId(`hostname-allow:${hostname}`).setLabel('Allow').setStyle('SUCCESS'),
+              new MessageButton().setCustomId(`hostname-deny:${hostname}`).setLabel('Deny').setStyle('DANGER'),
             ]);
           (client.channels.resolve(ids.channels.reports) as TextChannel).send({
             embeds: [embed],
