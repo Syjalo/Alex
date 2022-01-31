@@ -62,7 +62,7 @@ export default (client: AlexClient) => {
       }
     }
 
-    if (message.channel.id === ids.channels.suggestions && message.type === 'DEFAULT') {
+    if (message.channel.id === ids.channels.suggestions && !message.system) {
       message.startThread({
         name: `[${message.member!.displayName}] Suggestion Discussion`,
         reason: 'New suggestion',
@@ -70,7 +70,7 @@ export default (client: AlexClient) => {
       await message.react('857336659465076737').catch(() => null);
       await message.react('857336659619348540').catch(() => null);
       return;
-    } else if (message.channel.id === ids.channels.complaints && message.type === 'DEFAULT') {
+    } else if (message.channel.id === ids.channels.complaints && !message.system) {
       message.startThread({
         name: `[${message.member!.displayName}] Complaint Discussion`,
         reason: 'New complaint',
