@@ -64,7 +64,7 @@ export default (client: AlexClient) => {
 
     if (message.channel.id === ids.channels.suggestions && !message.system) {
       message.startThread({
-        name: `[${message.member!.displayName}] Suggestion Discussion`,
+        name: `[${message.member?.displayName || message.author.username}] Suggestion Discussion`,
         reason: 'New suggestion',
       });
       await message.react('857336659465076737').catch(() => null);
@@ -72,7 +72,7 @@ export default (client: AlexClient) => {
       return;
     } else if (message.channel.id === ids.channels.complaints && !message.system) {
       message.startThread({
-        name: `[${message.member!.displayName}] Complaint Discussion`,
+        name: `[${message.member?.displayName || message.author.username}] Complaint Discussion`,
         reason: 'New complaint',
       });
     }
