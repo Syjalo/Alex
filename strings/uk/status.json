@@ -1,10 +1,10 @@
 {
   "embed": {
-    "title": "Status",
+    "title": "Статус",
     "field": {
       "ping": {
-        "name": "Ping",
-        "value": "My ping is {ms}ms"
+        "name": "Пінґ",
+        "value": "Мій пінґ - {ms}мс"
       }
     }
   }
