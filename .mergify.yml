@@ -1,5 +1,13 @@
 pull_request_rules:
-  - name: Automatic merge translations
+  - name: Label
+    conditions:
+      - head=translations
+      - author=Syjalo
+    actions:
+      label:
+        add:
+          - translations
+  - name: Translations
     conditions:
       - head=translations
       - author=Syjalo
