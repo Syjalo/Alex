@@ -1,5 +1,6 @@
 import { ColorResolvable, MessageEmbed } from 'discord.js';
 import { Command } from '../../types';
+import { Util } from '../../util/Util';
 
 const command: Command = {
   name: 'status',
@@ -16,6 +17,10 @@ const command: Command = {
         {
           name: getString('embed.field.ping.name'),
           value: getString('embed.field.ping.value', { variables: { ms: ping } }),
+        },
+        {
+          name: getString('embed.field.onlineSince.name'),
+          value: Util.makeFormattedTime(Math.floor(client.readyTimestamp / 1000)),
         },
       ])
       .setColor(color);
