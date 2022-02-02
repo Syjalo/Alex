@@ -5,6 +5,9 @@
       "ping": {
         "name": "Пинг",
         "value": "Мой пинг — {ms} мс"
+      },
+      "onlineSince": {
+        "name": "Онлайн с"
       }
     }
   }
