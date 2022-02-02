@@ -5,6 +5,9 @@
       "ping": {
         "name": "Gecikme",
         "value": "Gecikmem {ms}ms"
+      },
+      "onlineSince": {
+        "name": "Online since"
       }
     }
   }
