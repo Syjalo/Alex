@@ -4,10 +4,10 @@
     "field": {
       "ping": {
         "name": "Ping",
-        "value": "My ping is {ms}ms"
+        "value": "Ping saya adalah {ms}ms"
       },
       "onlineSince": {
-        "name": "Online since"
+        "name": "Online sejak"
       }
     }
   }
