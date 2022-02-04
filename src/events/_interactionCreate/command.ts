@@ -92,15 +92,8 @@ export default async (interaction: CommandInteraction, client: AlexClient) => {
   try {
     await command.listener(interaction, client, getString);
   } catch (error) {
-    if (error.stack) {
-      console.log(error);
-      const unexpectedErrorEmbed = new MessageEmbed()
-        .setTitle(getString('unexpectedError', { fileName: 'errors', variables: { error: `${error.stack}` } }))
-        .setColor('RED');
-      interaction.reply({ embeds: [unexpectedErrorEmbed], ephemeral: true });
-    } else {
-      const errorEmbed = new MessageEmbed().setTitle(getString(error, { fileName: 'errors' })).setColor('RED');
-      interaction.reply({ embeds: [errorEmbed], ephemeral: true });
-    }
+    if (error.stack) console.log(error);
+    const errorEmbed = Util.makeErrorEmbed(error, getString);
+    interaction.reply({ embeds: [errorEmbed], ephemeral: true });
   }
 };
