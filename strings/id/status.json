@@ -1,0 +1,14 @@
+{
+  "embed": {
+    "title": "Status",
+    "field": {
+      "ping": {
+        "name": "Ping",
+        "value": "My ping is {ms}ms"
+      },
+      "onlineSince": {
+        "name": "Online since"
+      }
+    }
+  }
+}
