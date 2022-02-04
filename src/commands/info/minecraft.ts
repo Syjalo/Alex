@@ -106,7 +106,7 @@ const command: Command = {
       if (buttonInteraction.isButton()) {
         if (interaction.user.id !== buttonInteraction.user.id) {
           const errorEmbed = Util.makeErrorEmbed('notForYou', getString);
-          interaction.reply({ embeds: [errorEmbed], ephemeral: true });
+          buttonInteraction.reply({ embeds: [errorEmbed], ephemeral: true });
           return;
         } else if (buttonInteraction.customId === 'first') page = 0;
         else if (buttonInteraction.customId === 'previous' && --page < 0) page = 0;
