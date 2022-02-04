@@ -30,6 +30,11 @@ export interface GetStringOptions {
   locale?: Locales;
 }
 
+export interface NameHistory {
+  name: string;
+  changedToAt?: number;
+}
+
 export type GetString = <T extends any>(key: string, options?: GetStringOptions) => T;
 
 export type Locales =
