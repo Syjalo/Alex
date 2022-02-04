@@ -7,25 +7,25 @@
           "status": {
             "online": "Online",
             "idle": "Idle",
-            "dnd": "Do Not Disturb",
-            "invisible": "Invisible",
+            "dnd": "Jangan diganggu",
+            "invisible": "Tidak terlihat",
             "offline": "Offline"
           },
           "platform": {
-            "web": "Web",
-            "mobile": "Mobile",
+            "web": "Situs",
+            "mobile": "Perangkat seluler",
             "desktop": "Desktop"
           }
         }
       },
       "createdAccount": {
-        "name": "Created account"
+        "name": "Akun dibuat"
       },
       "joinedServer": {
-        "name": "Joined server"
+        "name": "Mengikuti server sejak"
       },
       "serverBooster": {
-        "name": "Server Booster since"
+        "name": "Server Booster sejak"
       },
       "roles": {
         "name": "{count, plural, one {Role (#)} other {Roles (#)}}"
