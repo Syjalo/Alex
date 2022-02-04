@@ -1,7 +1,7 @@
 {
-  "underDevelopment": "This command is currently under development",
-  "cooldownExist": "Please wait. You'll be able to use {command} {timestamp}",
-  "notTextChannel": "Channel must be text channel",
-  "userNotFound": "User couldn't be found",
-  "unexpectedError": "Unexpected error has occurred"
+  "underDevelopment": "Perintah ini sedang dalam pembuatan",
+  "cooldownExist": "Mohon menunggu. Anda bisa menggunakan {command} {timestamp}",
+  "notTextChannel": "Channel harus berupa channel teks",
+  "userNotFound": "Tidak dapat menemukan pengguna",
+  "unexpectedError": "Terjadi kesalahan yang tidak terduga"
 }
