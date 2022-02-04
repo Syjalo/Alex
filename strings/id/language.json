@@ -2,21 +2,21 @@
   "subcommand": {
     "set": {
       "notChangedEmbed": {
-        "title": "Your language hasn't changed",
-        "description": "This happened because you chose a language that is already set"
+        "title": "Bahasa anda belum diganti",
+        "description": "Ini terjadi karena anda memilih sebuah bahasa yang telah di set"
       },
       "changedEmbed": {
-        "title": "Your language has been successfully changed",
-        "description": "Translations may not be completed and contain errors"
+        "title": "Bahasa anda berhasil diganti",
+        "description": "Translasi mungkin tidak penuh dan mengandung kesalahan"
       },
       "unknownLanguage": {
-        "title": "Unknown language",
-        "description": "Couldn't find a language by your query: {query}"
+        "title": "Bahasa tidak diketahui",
+        "description": "Tidak dapat mendapatkan sebuah bahasa berdasarkan query anda: {query}"
       }
     },
     "reset": {
       "resetEmbed": {
-        "title": "Your language has been successfully reset"
+        "title": "Bahasa anda berhasil di reset"
       }
     }
   }
