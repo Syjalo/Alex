@@ -28,7 +28,7 @@
         "name": "Server Booster depuis"
       },
       "roles": {
-        "name": "{count, plural, one {Role (#)} other {Roles (#)}}"
+        "name": "{count, plural, =1 {Role (#)} other {Roles (#)}}"
       }
     }
   }
