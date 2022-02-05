@@ -1,0 +1,12 @@
+{
+  "embed": {
+    "title": "История имени {username}",
+    "field": {
+      "name": {
+        "values": {
+          "unknown": "Неизвестна"
+        }
+      }
+    }
+  }
+}
