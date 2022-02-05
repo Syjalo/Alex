@@ -1,7 +1,9 @@
 {
-  "underDevelopment": "Tento příkaz je momentálně ve vývoji",
   "cooldownExist": "Počkejte prosím. Budete moct použít {command} {timestamp}",
+  "playerNotFound": "Player couldn't be found",
+  "notForYou": "This menu is not for you",
   "notTextChannel": "Kanál musí být textový",
-  "userNotFound": "Uživatel nebyl nalezen",
-  "unexpectedError": "Došlo k nečekané chybě"
+  "underDevelopment": "Tento příkaz je momentálně ve vývoji",
+  "unexpectedError": "Došlo k nečekané chybě",
+  "userNotFound": "Uživatel nebyl nalezen"
 }
