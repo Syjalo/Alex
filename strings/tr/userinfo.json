@@ -28,7 +28,7 @@
         "name": "Şu tarihten beri sunucu takviyecisi"
       },
       "roles": {
-        "name": "{count, plural, one {Role (#)} other {Roller (#)}}"
+        "name": "{count, plural, =1 {Role (#)} other {Roles (#)}}"
       }
     }
   }
