@@ -1,7 +1,9 @@
 {
-  "underDevelopment": "This command is currently under development",
   "cooldownExist": "Please wait. You'll be able to use {command} {timestamp}",
+  "playerNotFound": "Player couldn't be found",
+  "notForYou": "This menu is not for you",
   "notTextChannel": "Ce salon doit être un salon textuel",
-  "userNotFound": "L'utilisateur ne peut pas être trouvé",
-  "unexpectedError": "Une erreur inattendue s'est produite"
+  "underDevelopment": "This command is currently under development",
+  "unexpectedError": "Une erreur inattendue s'est produite",
+  "userNotFound": "L'utilisateur ne peut pas être trouvé"
 }
