@@ -28,7 +28,7 @@
         "name": "Бустер сервера з"
       },
       "roles": {
-        "name": "{count, plural, one {Роль (#)} other {Ролі (#)}}"
+        "name": "{count, plural, =1 {Role (#)} other {Roles (#)}}"
       }
     }
   }

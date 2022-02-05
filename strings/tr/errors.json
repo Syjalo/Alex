@@ -1,7 +1,9 @@
 {
-  "underDevelopment": "Bu komut şuanlık geliştirme sürecinde",
   "cooldownExist": "Lütfen bekleyiniz. {command} {timestamp} komutunu kullanabileceksiniz",
+  "playerNotFound": "Player couldn't be found",
+  "notForYou": "This menu is not for you",
   "notTextChannel": "Kanal metin kanalı olmalıdır",
-  "userNotFound": "Kullanıcı bulunamadı",
-  "unexpectedError": "Beklenmeyen bir hata oluştu"
+  "underDevelopment": "Bu komut şuanlık geliştirme sürecinde",
+  "unexpectedError": "Beklenmeyen bir hata oluştu",
+  "userNotFound": "Kullanıcı bulunamadı"
 }

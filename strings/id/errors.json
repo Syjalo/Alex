@@ -1,7 +1,9 @@
 {
-  "underDevelopment": "Perintah ini sedang dalam pembuatan",
   "cooldownExist": "Mohon menunggu. Anda bisa menggunakan {command} {timestamp}",
+  "playerNotFound": "Player couldn't be found",
+  "notForYou": "This menu is not for you",
   "notTextChannel": "Channel harus berupa channel teks",
-  "userNotFound": "Tidak dapat menemukan pengguna",
-  "unexpectedError": "Terjadi kesalahan yang tidak terduga"
+  "underDevelopment": "Perintah ini sedang dalam pembuatan",
+  "unexpectedError": "Terjadi kesalahan yang tidak terduga",
+  "userNotFound": "Tidak dapat menemukan pengguna"
 }

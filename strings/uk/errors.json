@@ -1,7 +1,9 @@
 {
-  "underDevelopment": "Ця команда зараз у стадії розробки",
   "cooldownExist": "Будь ласка, зачекайте. Ви зможете використовувати {command} {timestamp}",
+  "playerNotFound": "Player couldn't be found",
+  "notForYou": "This menu is not for you",
   "notTextChannel": "Канал повинен бути текстовим",
-  "userNotFound": "Користувач не може бути знайденим",
-  "unexpectedError": "Сталася неочікувана помилка"
+  "underDevelopment": "Ця команда зараз у стадії розробки",
+  "unexpectedError": "Сталася неочікувана помилка",
+  "userNotFound": "Користувач не може бути знайденим"
 }

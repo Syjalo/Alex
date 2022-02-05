@@ -1,0 +1,12 @@
+{
+  "embed": {
+    "title": "{username}'s name history",
+    "field": {
+      "name": {
+        "values": {
+          "unknown": "Unknown"
+        }
+      }
+    }
+  }
+}

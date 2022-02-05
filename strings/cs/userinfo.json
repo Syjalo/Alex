@@ -28,7 +28,7 @@
         "name": "Vylepšuje server od"
       },
       "roles": {
-        "name": "{count, plural, one {Role (#)} other {Role (#)}}"
+        "name": "{count, plural, =1 {Role (#)} other {Roles (#)}}"
       }
     }
   }
