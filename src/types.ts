@@ -51,6 +51,7 @@ export type Locales =
   | 'hi'
   | 'hr'
   | 'hu'
+  | 'id'
   | 'it'
   | 'ja'
   | 'ko'
