@@ -1,6 +1,6 @@
 import { setTimeout } from 'node:timers';
 import { Collection, CommandInteraction, GuildMember, MessageEmbed, TextChannel } from 'discord.js';
-import IntlMessageFormat from 'intl-messageformat';
+import MessageFormat from '@messageformat/core';
 import { DBUser, GetStringOptions, Locales } from '../../types';
 import { AlexClient } from '../../util/AlexClient';
 import { ids } from '../../util/Constants';
@@ -40,20 +40,7 @@ export default async (interaction: CommandInteraction, client: AlexClient) => {
       if (strings) string = strings;
       else string = enStrings;
 
-      if (variables && typeof strings === 'string') {
-        try {
-          string = new IntlMessageFormat(string, locale, undefined, { ignoreTag: true }).format(variables);
-        } catch (err) {
-          const embed = new MessageEmbed()
-            .setTitle('There is a string with unexpected variables here')
-            .setDescription(`${err}\nLocale: \`${locale}\` File: \`${fileName}\` Key: \`${key}\``)
-            .setColor('RED');
-          (client.channels.resolve(ids.channels.botLog) as TextChannel).send({
-            content: `<@${ids.users.syjalo}>`,
-            embeds: [embed],
-          });
-        }
-      }
+      if (variables && typeof strings === 'string') string = new MessageFormat(locale).compile(string)(variables);
 
       return string;
     };

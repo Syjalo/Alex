@@ -19,11 +19,11 @@
   },
   "homepage": "https://github.com/Syjalo/Alex#readme",
   "dependencies": {
+    "@messageformat/core": "^3.0.1",
     "axios": "^0.25.0",
     "discord-api-types": "^0.26.1",
     "discord.js": "^13.6.0",
     "dotenv": "^16.0.0",
-    "intl-messageformat": "^9.11.4",
     "mongodb": "^4.3.1"
   },
   "devDependencies": {
