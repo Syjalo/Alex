@@ -35,27 +35,6 @@ export interface NameHistory {
   changedToAt?: number;
 }
 
-interface SpotifyArtist {
-  external_urls: {
-    spotify: string;
-  };
-  name: string;
-}
-
-export interface SpotifyTrack {
-  album: {
-    external_urls: {
-      spotify: string;
-    };
-    name: string;
-  };
-  artists: SpotifyArtist[];
-  external_urls: {
-    spotify: string;
-  };
-  name: string;
-}
-
 export type GetString = <T extends any>(key: string, options?: GetStringOptions) => T;
 
 export type Locales =

@@ -1,6 +1,5 @@
-import axios from 'axios';
-import { GuildMember, MessageEmbed, Snowflake, User } from 'discord.js';
-import { Command, SpotifyTrack } from '../../types';
+import { GuildMember, MessageEmbed, User } from 'discord.js';
+import { Command } from '../../types';
 import { Util } from '../../util/Util';
 
 const command: Command = {
@@ -100,14 +99,7 @@ const command: Command = {
 
       const spotify = activities.find((a) => a.id === 'spotify:1');
       if (spotify) {
-        const res = await axios
-          .get<SpotifyTrack>(`https://api.spotify.com/v1/tracks/${spotify.syncId}`, {
-            headers: {
-              authorization: `Bearer ${process.env.SPOTIFY_TOKEN}`,
-              'content-type': 'application/json',
-            },
-          })
-          .then((res) => res.data);
+        const res = await client.spotify.tracks.get(spotify.syncId!);
         activitiesFieldValue += `**Spotify**\n${getString('embed.field.activity.values.spotify.value', {
           variables: {
             name: `[${res.name}](${res.external_urls.spotify})`,
