@@ -1,5 +1,6 @@
+import axios from 'axios';
 import { GuildMember, MessageEmbed, Snowflake, User } from 'discord.js';
-import { Command } from '../../types';
+import { Command, SpotifyTrack } from '../../types';
 import { Util } from '../../util/Util';
 
 const command: Command = {
@@ -85,6 +86,49 @@ const command: Command = {
       .map((role) => `${role}`);
     if (roles && roles.length)
       embed.addField(getString('embed.field.roles.name', { variables: { count: roles.length } }), roles.join(', '));
+    let activities = member?.presence?.activities;
+    if (activities) {
+      let activitiesFieldValue = '';
+
+      const custom = activities.find((a) => a.id === 'custom');
+      if (custom) {
+        let status = '';
+        if (custom.emoji) status += `${custom.emoji} `;
+        status += custom.state;
+        activitiesFieldValue += `**${getString('embed.field.activity.values.custom.name')}**\n${status}\n`;
+      }
+
+      const spotify = activities.find((a) => a.id === 'spotify:1');
+      if (spotify) {
+        const res = await axios
+          .get<SpotifyTrack>(`https://api.spotify.com/v1/tracks/${spotify.syncId}`, {
+            headers: {
+              authorization: `Bearer ${process.env.SPOTIFY_TOKEN}`,
+              'content-type': 'application/json',
+            },
+          })
+          .then((res) => res.data);
+        activitiesFieldValue += `**Spotify**\n${getString('embed.field.activity.values.spotify.value', {
+          variables: {
+            name: `[${res.name}](${res.external_urls.spotify})`,
+            artists: res.artists.map((artist) => `[${artist.name}](${artist.external_urls.spotify})`).join(', '),
+            album: `[${res.album.name}](${res.album.external_urls.spotify})`,
+          },
+        })}\n`;
+      }
+
+      activities = activities.filter((activity) => !['custom', 'spotify:1'].includes(activity.id));
+      for (const activity of activities) {
+        activitiesFieldValue += `**${activity.name}**\n${(() => {
+          if (activity.details) return `${activity.details}\n`;
+          return '';
+        })()}${(() => {
+          if (activity.state) return `${activity.state}\n`;
+        })()}`;
+      }
+
+      embed.addField('Activity', activitiesFieldValue);
+    }
     if (user.banner) embed.setImage(user.bannerURL({ dynamic: true, size: 4096 })!);
 
     interaction.reply({ embeds: [embed] });

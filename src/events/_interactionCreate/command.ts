@@ -40,7 +40,7 @@ export default async (interaction: CommandInteraction, client: AlexClient) => {
       if (strings) string = strings;
       else string = enStrings;
 
-      if (variables && typeof strings === 'string') string = new MessageFormat(locale).compile(string)(variables);
+      if (variables && typeof string === 'string') string = new MessageFormat(locale).compile(string)(variables);
 
       return string;
     };
