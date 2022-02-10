@@ -86,7 +86,7 @@ const command: Command = {
     if (roles && roles.length)
       embed.addField(getString('embed.field.roles.name', { variables: { count: roles.length } }), roles.join(', '));
     let activities = member?.presence?.activities;
-    if (activities) {
+    if (activities?.length) {
       let activitiesFieldValue = '';
 
       const custom = activities.find((a) => a.id === 'custom');
