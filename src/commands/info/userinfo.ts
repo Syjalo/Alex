@@ -117,6 +117,7 @@ const command: Command = {
           return '';
         })()}${(() => {
           if (activity.state) return `${activity.state}\n`;
+          return '';
         })()}`;
       }
 
