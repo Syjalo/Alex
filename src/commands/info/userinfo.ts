@@ -113,6 +113,7 @@ const command: Command = {
             name: `[${res.name}](${res.external_urls.spotify})`,
             artists: res.artists.map((artist) => `[${artist.name}](${artist.external_urls.spotify})`).join(', '),
             album: `[${res.album.name}](${res.album.external_urls.spotify})`,
+            artistsNumber: res.artists.length,
           },
         })}\n`;
       }
