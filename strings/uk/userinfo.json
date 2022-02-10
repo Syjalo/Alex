@@ -28,7 +28,18 @@
         "name": "Бустер сервера з"
       },
       "roles": {
-        "name": "{count, plural, =1 {Role (#)} other {Roles (#)}}"
+        "name": "{count, plural, =1 {Роль (#)} other {Ролі (#)}}"
+      },
+      "activity": {
+        "name": "Activity",
+        "values": {
+          "custom": {
+            "name": "Custom Status"
+          },
+          "spotify": {
+            "value": "{name} by {artists} on {album}"
+          }
+        }
       }
     }
   }
