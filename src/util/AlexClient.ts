@@ -9,7 +9,7 @@ import { DataBase } from './DataBase';
 export class AlexClient extends Client<true> {
   public commands = new Collection<string, Command>();
 
-  public db: DataBase = new DataBase(process.env.MONGO_URL!);
+  public db = new DataBase(process.env.MONGO_URL!);
 
   public spotify = new SpotifyAPI({
     clientCredentials: {

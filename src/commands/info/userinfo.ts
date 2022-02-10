@@ -83,7 +83,7 @@ const command: Command = {
       .filter((role) => role.id !== member!.guild.id)
       .sort((role1, role2) => role2.rawPosition - role1.rawPosition)
       .map((role) => `${role}`);
-    if (roles && roles.length)
+    if (roles?.length)
       embed.addField(getString('embed.field.roles.name', { variables: { count: roles.length } }), roles.join(', '));
     let activities = member?.presence?.activities;
     if (activities?.length) {

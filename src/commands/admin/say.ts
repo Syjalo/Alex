@@ -1,4 +1,4 @@
-import { GuildChannel, TextChannel } from 'discord.js';
+import { GuildBasedChannel, GuildTextBasedChannel } from 'discord.js';
 import { Command } from '../../types';
 import { ids } from '../../util/Constants';
 
@@ -21,9 +21,9 @@ const command: Command = {
   allowedRoles: [ids.roles.communityManager],
   listener(interaction, client, getString) {
     const content = interaction.options.getString('content', true);
-    let channel = interaction.options.getChannel('channel') as GuildChannel;
+    let channel = interaction.options.getChannel('channel') as GuildBasedChannel;
 
-    channel ??= interaction.channel as TextChannel;
+    channel ??= interaction.channel as GuildTextBasedChannel;
     if (!channel.isText()) throw 'notTextChannel';
 
     channel.send(content);

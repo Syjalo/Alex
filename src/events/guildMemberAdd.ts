@@ -38,7 +38,7 @@ export default (client: AlexClient) => {
 
     const usersCollection = client.db.collection<DBUser>('users'),
       dbUser = await usersCollection.findOne({ id: member.id });
-    if (dbUser && dbUser.savedRoles) {
+    if (dbUser?.savedRoles) {
       member.roles.add(dbUser.savedRoles);
       usersCollection.findOneAndUpdate({ id: member.id }, { $unset: { savedRoles: true } });
     }
