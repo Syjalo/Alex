@@ -1,7 +1,7 @@
 {
   "cooldownExist": "Будь ласка, зачекайте. Ви зможете використовувати {command} {timestamp}",
-  "playerNotFound": "Player couldn't be found",
-  "notForYou": "This menu is not for you",
+  "playerNotFound": "Гравець не може бути знайденим",
+  "notForYou": "Це меню не для вас",
   "notTextChannel": "Канал повинен бути текстовим",
   "underDevelopment": "Ця команда зараз у стадії розробки",
   "unexpectedError": "Сталася неочікувана помилка",

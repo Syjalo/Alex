@@ -29,6 +29,17 @@
       },
       "roles": {
         "name": "{count, plural, =1 {Роль (#)} other {Роли (#)}}"
+      },
+      "activity": {
+        "name": "Активность",
+        "values": {
+          "custom": {
+            "name": "Пользовательский статус"
+          },
+          "spotify": {
+            "value": "{name} — {artists}\nАльбом: {album}"
+          }
+        }
       }
     }
   }
