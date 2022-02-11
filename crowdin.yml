@@ -1,5 +1,4 @@
-pull_request_title: 'chore: update translations'
-commit_message: 'chore: update %language% translations'
+pull_request_title: 'chore(strings): update translations'
 files:
   - source: /strings/en-US/*.json
     translation: /strings/%two_letters_code%/%original_file_name%
