@@ -28,16 +28,16 @@
         "name": "Vylepšuje server od"
       },
       "roles": {
-        "name": "{count, plural, =1 {Role (#)} other {Roles (#)}}"
+        "name": "{count, plural, =1 {Role (#)} few {Role (#)} other {Rolí (#)}}"
       },
       "activity": {
-        "name": "Activity",
+        "name": "Aktivita",
         "values": {
           "custom": {
-            "name": "Custom Status"
+            "name": "Vlastní status"
           },
           "spotify": {
-            "value": "{name} by {artists} on {album}"
+            "value": "{name} od {artists} v {album}"
           }
         }
       }

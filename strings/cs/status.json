@@ -7,7 +7,7 @@
         "value": "Můj ping je {ms}ms"
       },
       "onlineSince": {
-        "name": "Online since"
+        "name": "Online od"
       }
     }
   }

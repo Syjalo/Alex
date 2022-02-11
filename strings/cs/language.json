@@ -2,21 +2,21 @@
   "subcommand": {
     "set": {
       "notChangedEmbed": {
-        "title": "Your language hasn't changed",
-        "description": "This happened because you chose a language that is already set"
+        "title": "Váš jazyk se nezměnil",
+        "description": "K tomu došlo, jelikož jste si vybrali jazyk, jenž byl již nastaven"
       },
       "changedEmbed": {
-        "title": "Your language has been successfully changed",
-        "description": "Translations may not be completed and contain errors"
+        "title": "Váš jazyk byl úspěšně změněn",
+        "description": "Překlady nemusí být vyplněny a mohou obsahovat chyby"
       },
       "unknownLanguage": {
-        "title": "Unknown language",
-        "description": "Couldn't find a language by your query: {query}"
+        "title": "Neznámý jazyk",
+        "description": "Jazyk z vašeho dotazu nebyl nalezen: {query}"
       }
     },
     "reset": {
       "resetEmbed": {
-        "title": "Your language has been successfully reset"
+        "title": "Váš jazyk byl úspěšně resetován"
       }
     }
   }
