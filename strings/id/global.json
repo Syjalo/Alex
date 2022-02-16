@@ -1,8 +1,8 @@
 {
   "buttons": {
-    "first": "First page",
-    "previous": "Previous page",
-    "next": "Next page",
-    "last": "Last page"
+    "first": "Halaman pertama",
+    "previous": "Halaman sebelumnya",
+    "next": "Halaman selanjutnya",
+    "last": "Halaman terakhir"
   }
 }

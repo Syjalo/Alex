@@ -1,7 +1,7 @@
 {
   "cooldownExist": "Mohon menunggu. Anda bisa menggunakan {command} {timestamp}",
-  "playerNotFound": "Player couldn't be found",
-  "notForYou": "This menu is not for you",
+  "playerNotFound": "Tidak dapat menemukan player",
+  "notForYou": "Menu ini tidak untuk anda",
   "notTextChannel": "Channel harus berupa channel teks",
   "underDevelopment": "Perintah ini sedang dalam pembuatan",
   "unexpectedError": "Terjadi kesalahan yang tidak terduga",

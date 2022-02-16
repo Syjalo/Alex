@@ -31,13 +31,13 @@
         "name": "{count, plural, =1 {Role (#)} other {Roles (#)}}"
       },
       "activity": {
-        "name": "Activity",
+        "name": "Aktivitas",
         "values": {
           "custom": {
-            "name": "Custom Status"
+            "name": "Status Kustom"
           },
           "spotify": {
-            "value": "{name} by {artists} on {album}"
+            "value": "{name} oleh {artists} di {album}"
           }
         }
       }

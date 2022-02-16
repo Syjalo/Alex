@@ -1,10 +1,10 @@
 {
   "embed": {
-    "title": "{username}'s name history",
+    "title": "Sejarah nama {username}",
     "field": {
       "name": {
         "values": {
-          "unknown": "Unknown"
+          "unknown": "Tidak diketahui"
         }
       }
     }
