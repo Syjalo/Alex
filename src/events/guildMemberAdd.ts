@@ -1,4 +1,4 @@
-import { ColorResolvable, MessageEmbed, TextChannel } from 'discord.js';
+import { ColorResolvable, Colors, TextChannel, UnsafeEmbed as Embed } from 'discord.js';
 import { DBUser } from '../types';
 import { AlexClient } from '../util/AlexClient';
 import { ids } from '../util/Constants';
@@ -9,13 +9,13 @@ export default (client: AlexClient) => {
     const userCreatedAccountAgo = Date.now() - member.user.createdTimestamp;
     let color: ColorResolvable;
     if (userCreatedAccountAgo > 1000 * 60 * 60 * 24 * 28 /*4 weeks*/) {
-      color = 'GREEN';
+      color = Colors.Green;
     } else if (userCreatedAccountAgo > 1000 * 60 * 60 * 24 * 14 /*2 weeks*/) {
-      color = 'YELLOW';
+      color = Colors.Yellow;
     } else {
-      color = 'RED';
+      color = Colors.Red;
     }
-    const joinEmbed = new MessageEmbed()
+    const joinEmbed = new Embed()
       .setAuthor({
         iconURL: member.displayAvatarURL(),
         name: member.displayName,
@@ -23,7 +23,7 @@ export default (client: AlexClient) => {
       })
       .setTitle('Welcome!')
       .setDescription(`${member} \`${member.user.tag}\` (${member.id})`)
-      .addFields([
+      .addFields(
         {
           name: 'Created account',
           value: Util.makeFormattedTime(Math.floor(member.user.createdTimestamp / 1000)),
@@ -32,7 +32,7 @@ export default (client: AlexClient) => {
           name: 'Joined Server',
           value: Util.makeFormattedTime(Math.floor(member.joinedTimestamp! / 1000)),
         },
-      ])
+      )
       .setColor(color);
     (client.channels.resolve(ids.channels.joinLeave) as TextChannel).send({ embeds: [joinEmbed] });
 

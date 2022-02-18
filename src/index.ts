@@ -1,5 +1,5 @@
 import process from 'node:process';
-import { Intents, MessageEmbed, TextChannel } from 'discord.js';
+import { Colors, GatewayIntentBits, Partials, TextChannel, UnsafeEmbed as Embed } from 'discord.js';
 import { config as configENV } from 'dotenv';
 import { AlexClient } from './util/AlexClient';
 import { ids } from './util/Constants';
@@ -8,14 +8,20 @@ if (!process.env.DISCORD_TOKEN) configENV();
 
 const client = new AlexClient({
   intents: [
-    Intents.FLAGS.GUILDS,
-    Intents.FLAGS.GUILD_MEMBERS,
-    Intents.FLAGS.GUILD_INTEGRATIONS,
-    Intents.FLAGS.GUILD_PRESENCES,
-    Intents.FLAGS.GUILD_MESSAGES,
-    Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildIntegrations,
+    GatewayIntentBits.GuildMembers,
+    GatewayIntentBits.GuildMessageReactions,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.GuildPresences,
   ],
-  partials: ['CHANNEL', 'GUILD_MEMBER', 'MESSAGE', 'REACTION', 'USER'],
+  partials: [
+    Partials.Channel,
+    Partials.GuildMember,
+    Partials.Message,
+    Partials.Reaction,
+    Partials.User,
+  ],
 });
 
 client.login();
@@ -26,7 +32,7 @@ process.on('SIGINT', async () => {
   process.exit();
 });
 process.on('SIGTERM', async () => {
-  const destroyEmbed = new MessageEmbed().setTitle('Scheduled restart').setColor('YELLOW');
+  const destroyEmbed = new Embed().setTitle('Scheduled restart').setColor(Colors.Yellow);
   await Promise.all([
     (client.channels.resolve(ids.channels.botLog) as TextChannel).send({ embeds: [destroyEmbed] }),
     client.db.close(),

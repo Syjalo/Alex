@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Message, MessageActionRow, MessageButton, MessageEmbed } from 'discord.js';
+import { Message, ActionRow, ButtonComponent, UnsafeEmbed as Embed, ApplicationCommandOptionType, ButtonStyle, Colors, ComponentType } from 'discord.js';
 import { Command, NameHistory } from '../../types';
 import { Util } from '../../util/Util';
 
@@ -8,7 +8,7 @@ const command: Command = {
   description: 'Gives information about Minecraft player',
   options: [
     {
-      type: 'STRING',
+      type: ApplicationCommandOptionType.String,
       name: 'player',
       description: "Player's UUID or username to give information about",
       required: true,
@@ -44,46 +44,46 @@ const command: Command = {
       pages.push(names.splice(0, 10));
     } while (names.length);
     const lastPage = pages.length - 1,
-      buttons = new MessageActionRow().addComponents(
-        new MessageButton()
+      buttons = new ActionRow().addComponents(
+        new ButtonComponent()
           .setCustomId('first')
           .setLabel(getString('buttons.first', { fileName: 'global' }))
-          .setEmoji('⏮️')
-          .setStyle('PRIMARY'),
-        new MessageButton()
+          .setEmoji({ name: '⏮️' })
+          .setStyle(ButtonStyle.Primary),
+        new ButtonComponent()
           .setCustomId('previous')
           .setLabel(getString('buttons.previous', { fileName: 'global' }))
-          .setEmoji('◀️')
-          .setStyle('PRIMARY'),
-        new MessageButton()
+          .setEmoji({ name: '◀️' })
+          .setStyle(ButtonStyle.Primary),
+        new ButtonComponent()
           .setCustomId('next')
           .setLabel(getString('buttons.next', { fileName: 'global' }))
-          .setEmoji('▶️')
-          .setStyle('PRIMARY'),
-        new MessageButton()
+          .setEmoji({ name: '▶️' })
+          .setStyle(ButtonStyle.Primary),
+        new ButtonComponent()
           .setCustomId('last')
           .setLabel(getString('buttons.last', { fileName: 'global' }))
-          .setEmoji('⏭️')
-          .setStyle('PRIMARY'),
+          .setEmoji({ name: '⏭️' })
+          .setStyle(ButtonStyle.Primary),
       );
     let page = 0,
-      embeds!: MessageEmbed[],
-      components!: MessageActionRow[];
+      embeds!: Embed[],
+      components!: ActionRow[];
 
     const updateData = () => {
       embeds = [
-        new MessageEmbed()
+        new Embed()
           .setTitle(getString('embed.title', { variables: { username } }))
           .addFields(
-            pages[page].map((page) => ({
+            ...pages[page].map((page) => ({
               name: page.name,
               value: page.changedToAt
                 ? Util.makeFormattedTime(Math.floor(page.changedToAt / 1000))
-                : getString('embed.field.name.values.unknown'),
+                : getString<string>('embed.field.name.values.unknown'),
             })),
           )
           .setThumbnail(`https://mc-heads.net/body/${uuid}/4096/left`)
-          .setColor('GREEN'),
+          .setColor(Colors.Green),
       ];
 
       if (pages.length !== 1) {
@@ -100,7 +100,7 @@ const command: Command = {
     await interaction.reply({ embeds, components });
     if (pages.length === 1) return;
     const message = (await interaction.fetchReply()) as Message,
-      buttonsCollector = message.createMessageComponentCollector({ componentType: 'BUTTON', idle: 1000 * 60 * 2 });
+      buttonsCollector = message.createMessageComponentCollector({ componentType: ComponentType.Button, idle: 1000 * 60 * 2 });
 
     buttonsCollector.on('collect', async (buttonInteraction) => {
       if (buttonInteraction.isButton()) {
@@ -118,7 +118,7 @@ const command: Command = {
     });
 
     buttonsCollector.on('end', () => {
-      buttons.components.forEach((btn) => btn.setDisabled());
+      buttons.components.forEach((btn) => btn.setDisabled(true));
       interaction.editReply({ embeds, components });
     });
   },

@@ -1,4 +1,4 @@
-import { MessageEmbed } from 'discord.js';
+import { ApplicationCommandOptionType, Colors, UnsafeEmbed as Embed } from 'discord.js';
 import { Command, DBLanguage, DBUser, Locales } from '../../types';
 import { locales } from '../../util/Constants';
 
@@ -7,12 +7,12 @@ const command: Command = {
   description: 'Manages your language',
   options: [
     {
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand,
       name: 'set',
       description: 'Sets your language',
       options: [
         {
-          type: 'STRING',
+          type: ApplicationCommandOptionType.String,
           name: 'language',
           description: 'Language to set your language to',
           required: true,
@@ -21,7 +21,7 @@ const command: Command = {
       ],
     },
     {
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand,
       name: 'reset',
       description: 'Resets your language',
     },
@@ -42,35 +42,35 @@ const command: Command = {
       );
       if (dbLanguage) locale = dbLanguage.locale;
       if (!locales.includes(locale)) {
-        const unknownLanguage = new MessageEmbed()
+        const unknownLanguage = new Embed()
           .setTitle(getString('subcommand.set.unknownLanguage.title'))
           .setDescription(
             getString('subcommand.set.unknownLanguage.description', { variables: { query: `\`${locale}\`` } }),
           )
-          .setColor('RED');
+          .setColor(Colors.Red);
         interaction.reply({ embeds: [unknownLanguage], ephemeral: true });
         return;
       }
       if (dbUser?.locale === locale) {
-        const notChangedEmbed = new MessageEmbed()
+        const notChangedEmbed = new Embed()
           .setTitle(getString('subcommand.set.notChangedEmbed.title'))
           .setDescription(getString('subcommand.set.notChangedEmbed.description'))
-          .setColor('RED');
+          .setColor(Colors.Red);
         interaction.reply({ embeds: [notChangedEmbed], ephemeral: true });
       } else {
         await usersCollection.findOneAndUpdate({ id: interaction.user.id }, { $set: { locale } }, { upsert: true });
-        const changedEmbed = new MessageEmbed()
+        const changedEmbed = new Embed()
           .setTitle(getString('subcommand.set.changedEmbed.title', { locale }))
-          .setColor('GREEN');
+          .setColor(Colors.Green);
         if (locale !== 'en-US')
           changedEmbed.setDescription(getString('subcommand.set.changedEmbed.description', { locale }));
         interaction.reply({ embeds: [changedEmbed], ephemeral: true });
       }
     } else if (subcommand === 'reset') {
       await usersCollection.findOneAndUpdate({ id: interaction.user.id }, { $unset: { locale: true } });
-      const resetEmbed = new MessageEmbed()
+      const resetEmbed = new Embed()
         .setTitle(getString('subcommand.reset.resetEmbed.title', { locale: interaction.locale as Locales }))
-        .setColor('GREEN');
+        .setColor(Colors.Green);
       interaction.reply({ embeds: [resetEmbed], ephemeral: true });
     }
   },
