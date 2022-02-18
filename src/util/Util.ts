@@ -1,5 +1,4 @@
-import { Snowflake } from 'discord-api-types';
-import { MessageEmbed } from 'discord.js';
+import { MessageEmbed, Snowflake } from 'discord.js';
 import { GetString, Locales } from '../types';
 import { locales } from './Constants';
 
