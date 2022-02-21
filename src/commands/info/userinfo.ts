@@ -1,4 +1,4 @@
-import { GuildMember, MessageEmbed, User } from 'discord.js';
+import { ApplicationCommandOptionType, Colors, GuildMember, UnsafeEmbed as Embed, User } from 'discord.js';
 import { Command } from '../../types';
 import { Util } from '../../util/Util';
 
@@ -7,12 +7,12 @@ const command: Command = {
   description: 'Gives information about user',
   options: [
     {
-      type: 'USER',
+      type: ApplicationCommandOptionType.User,
       name: 'user',
       description: 'User to give information about',
     },
     {
-      type: 'STRING',
+      type: ApplicationCommandOptionType.String,
       name: 'id',
       description: 'Id of user to give information about',
     },
@@ -33,13 +33,11 @@ const command: Command = {
       member = interaction.member as GuildMember;
     }
 
-    const embed = new MessageEmbed()
+    const embed = new Embed()
       .setAuthor({ name: member?.displayName ?? user.username, url: Util.makeUserURL(user.id) })
       .setDescription(`${user} \`${user.tag}\` (${user.id})`)
-      .setThumbnail(
-        member?.displayAvatarURL({ dynamic: true, size: 4096 }) ?? user.displayAvatarURL({ dynamic: true, size: 4096 }),
-      )
-      .setColor(member?.displayColor || 'LIGHT_GREY');
+      .setThumbnail(member?.displayAvatarURL({ size: 4096 }) ?? user.displayAvatarURL({ size: 4096 }))
+      .setColor(member?.displayColor || Colors.LightGrey);
 
     if (member) {
       let emoji: string,
@@ -65,28 +63,31 @@ const command: Command = {
           ? `(${platforms.map((platform) => getString(`embed.field.status.values.platform.${platform}`)).join(', ')})`
           : '')()}`;
 
-      embed.addField(getString('embed.field.status.name'), status);
+      embed.addField({ name: getString('embed.field.status.name'), value: status });
     }
-    embed.addField(
-      getString('embed.field.createdAccount.name'),
-      Util.makeFormattedTime(Math.floor(user.createdTimestamp / 1000)),
-    );
+    embed.addField({
+      name: getString('embed.field.createdAccount.name'),
+      value: Util.makeFormattedTime(Math.floor(user.createdTimestamp / 1000)),
+    });
     if (member?.joinedTimestamp)
-      embed.addField(
-        getString('embed.field.joinedServer.name'),
-        Util.makeFormattedTime(Math.floor(member.joinedTimestamp / 1000)),
-      );
+      embed.addField({
+        name: getString('embed.field.joinedServer.name'),
+        value: Util.makeFormattedTime(Math.floor(member.joinedTimestamp / 1000)),
+      });
     if (member?.premiumSinceTimestamp)
-      embed.addField(
-        getString('embed.field.serverBooster.name'),
-        Util.makeFormattedTime(Math.floor(member.premiumSinceTimestamp / 1000)),
-      );
+      embed.addField({
+        name: getString('embed.field.serverBooster.name'),
+        value: Util.makeFormattedTime(Math.floor(member.premiumSinceTimestamp / 1000)),
+      });
     const roles = member?.roles.cache
       .filter((role) => role.id !== member!.guild.id)
       .sort((role1, role2) => role2.rawPosition - role1.rawPosition)
       .map((role) => `${role}`);
     if (roles?.length)
-      embed.addField(getString('embed.field.roles.name', { variables: { count: roles.length } }), roles.join(', '));
+      embed.addField({
+        name: getString('embed.field.roles.name', { variables: { count: roles.length } }),
+        value: roles.join(', '),
+      });
     let activities = member?.presence?.activities;
     if (activities?.length) {
       let activitiesFieldValue = '';
@@ -123,9 +124,9 @@ const command: Command = {
         })()}`;
       }
 
-      embed.addField('Activity', activitiesFieldValue);
+      embed.addField({ name: 'Activity', value: activitiesFieldValue });
     }
-    if (user.banner) embed.setImage(user.bannerURL({ dynamic: true, size: 4096 })!);
+    if (user.banner) embed.setImage(user.bannerURL({ size: 4096 })!);
 
     interaction.reply({ embeds: [embed] });
   },

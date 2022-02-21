@@ -1,4 +1,4 @@
-import { MessageActionRow, MessageButton, MessageEmbed, TextChannel } from 'discord.js';
+import { ActionRow, ButtonComponent, ButtonStyle, Colors, TextChannel, UnsafeEmbed as Embed } from 'discord.js';
 import { DBHostname } from '../types';
 import { AlexClient } from '../util/AlexClient';
 import { ids } from '../util/Constants';
@@ -40,7 +40,7 @@ export default (client: AlexClient) => {
         } else if (!hostnamesWhitelist.includes(hostname)) {
           if (pendingHostnames.includes(hostname)) continue;
           pendingHostnames.push(hostname);
-          const embed = new MessageEmbed()
+          const embed = new Embed()
               .setAuthor({
                 iconURL: message.author.displayAvatarURL(),
                 name: message.member?.displayName || message.author.username,
@@ -48,12 +48,18 @@ export default (client: AlexClient) => {
               })
               .setTitle('An unknown link was found')
               .setDescription(`${message.content}\n\n[Jump](${message.url})`)
-              .addField('Link', url.origin)
-              .setColor('RED'),
-            buttons = new MessageActionRow().addComponents([
-              new MessageButton().setCustomId(`hostname-allow:${hostname}`).setLabel('Allow').setStyle('SUCCESS'),
-              new MessageButton().setCustomId(`hostname-deny:${hostname}`).setLabel('Deny').setStyle('DANGER'),
-            ]);
+              .addField({ name: 'Link', value: url.origin })
+              .setColor(Colors.Red),
+            buttons = new ActionRow().addComponents(
+              new ButtonComponent()
+                .setCustomId(`hostname-allow:${hostname}`)
+                .setLabel('Allow')
+                .setStyle(ButtonStyle.Success),
+              new ButtonComponent()
+                .setCustomId(`hostname-deny:${hostname}`)
+                .setLabel('Deny')
+                .setStyle(ButtonStyle.Danger),
+            );
           (client.channels.resolve(ids.channels.reports) as TextChannel).send({
             embeds: [embed],
             components: [buttons],

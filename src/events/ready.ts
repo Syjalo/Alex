@@ -1,4 +1,4 @@
-import { MessageEmbed, TextChannel } from 'discord.js';
+import { ApplicationCommandPermissionType, Colors, TextChannel, UnsafeEmbed as Embed } from 'discord.js';
 import { AlexClient } from '../util/AlexClient';
 import { ids } from '../util/Constants';
 
@@ -16,7 +16,7 @@ export default (client: AlexClient) => {
             cmd.permissions.set({
               permissions: command.allowedRoles.map((id) => ({
                 id,
-                type: 'ROLE',
+                type: ApplicationCommandPermissionType.Role,
                 permission: true,
               })),
             });
@@ -25,7 +25,7 @@ export default (client: AlexClient) => {
       );
     console.log('Ready!');
     if (!process.env.PRODUCTION) return;
-    const readyEmbed = new MessageEmbed().setTitle('Ready!').setColor('GREEN');
+    const readyEmbed = new Embed().setTitle('Ready!').setColor(Colors.Green);
     (client.channels.resolve(ids.channels.botLog) as TextChannel).send({ embeds: [readyEmbed] });
   });
 };

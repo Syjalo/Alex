@@ -1,4 +1,4 @@
-import { MessageEmbed, Snowflake } from 'discord.js';
+import { Colors, Snowflake, UnsafeEmbed as Embed } from 'discord.js';
 import { GetString, Locales } from '../types';
 import { locales } from './Constants';
 
@@ -10,10 +10,10 @@ export class Util extends null {
 
   static makeErrorEmbed(error: any, getString: GetString) {
     return error.stack
-      ? new MessageEmbed()
+      ? new Embed()
           .setTitle(getString('unexpectedError', { fileName: 'errors', variables: { error: `${error.stack}` } }))
-          .setColor('RED')
-      : new MessageEmbed().setTitle(getString(error, { fileName: 'errors' })).setColor('RED');
+          .setColor(Colors.Red)
+      : new Embed().setTitle(getString(error, { fileName: 'errors' })).setColor(Colors.Red);
   }
 
   static makeUserURL(id: Snowflake) {

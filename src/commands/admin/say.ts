@@ -1,4 +1,4 @@
-import { GuildBasedChannel, GuildTextBasedChannel } from 'discord.js';
+import { ApplicationCommandOptionType, GuildBasedChannel, GuildTextBasedChannel } from 'discord.js';
 import { Command } from '../../types';
 import { ids } from '../../util/Constants';
 
@@ -7,13 +7,13 @@ const command: Command = {
   description: 'Sends message',
   options: [
     {
-      type: 'STRING',
+      type: ApplicationCommandOptionType.String,
       name: 'content',
       description: 'Message to send',
       required: true,
     },
     {
-      type: 'CHANNEL',
+      type: ApplicationCommandOptionType.Channel,
       name: 'channel',
       description: 'Channel to send message in',
     },
