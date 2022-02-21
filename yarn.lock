@@ -64,10 +64,10 @@
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-4.3.0.tgz#344fd9bf808a84567ba563d00cc54b2f428dbab1"
   integrity sha512-wwOvh0eO3PiTEivGJWiZ+b946SlMSb4pe+y+Ur/4S87cwo09pYi+FWHHnbrM3W9W7cBYKDqQXcrFYjYUCOJUEQ==
 
-"@statsfm/spotify.js@^1.7.3":
-  version "1.7.3"
-  resolved "https://registry.yarnpkg.com/@statsfm/spotify.js/-/spotify.js-1.7.3.tgz#2e30242d8d6752093ea8a77757736dee86284826"
-  integrity sha512-8aZbgvnjWWsDFTfoOruhDGIPrIe/NIOPc58xnOfdqQE8ejh5157xlR8hnK/lU4z3kSlTrhhRXap3ZXTdi5Mvxg==
+"@statsfm/spotify.js@^1.7.4":
+  version "1.7.4"
+  resolved "https://registry.yarnpkg.com/@statsfm/spotify.js/-/spotify.js-1.7.4.tgz#b12fe3d56f4b9ab23b89702b5b48470d5d534357"
+  integrity sha512-EGMyiRYqd8WJB3CD9ARlWRhQ9sre7dyIuZN3m8S8O2CfpWiHMpEXfyS/JFN4FOkqlBgBIEbsKU3MxHZtUbXIOg==
   dependencies:
     axios "^0.24.0"
 
