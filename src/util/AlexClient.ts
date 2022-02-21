@@ -15,8 +15,8 @@ export class AlexClient extends Client<true> {
     clientCredentials: {
       clientId: 'f57ed54bc6af45d0a770e985b6ea9bb7',
       clientSecret: process.env.SPOTIFY_SECRET,
-    }
-  })
+    },
+  });
 
   public async login(token?: string) {
     for (const command of Object.values(CommandsModule)) this.commands.set(command.default.name, command.default);

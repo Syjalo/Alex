@@ -51,8 +51,14 @@ export default (client: AlexClient) => {
               .addField({ name: 'Link', value: url.origin })
               .setColor(Colors.Red),
             buttons = new ActionRow().addComponents(
-              new ButtonComponent().setCustomId(`hostname-allow:${hostname}`).setLabel('Allow').setStyle(ButtonStyle.Success),
-              new ButtonComponent().setCustomId(`hostname-deny:${hostname}`).setLabel('Deny').setStyle(ButtonStyle.Danger),
+              new ButtonComponent()
+                .setCustomId(`hostname-allow:${hostname}`)
+                .setLabel('Allow')
+                .setStyle(ButtonStyle.Success),
+              new ButtonComponent()
+                .setCustomId(`hostname-deny:${hostname}`)
+                .setLabel('Deny')
+                .setStyle(ButtonStyle.Danger),
             );
           (client.channels.resolve(ids.channels.reports) as TextChannel).send({
             embeds: [embed],

@@ -1,4 +1,4 @@
-import { ColorResolvable, Colors, UnsafeEmbed as Embed } from 'discord.js';
+import { Colors, UnsafeEmbed as Embed } from 'discord.js';
 import { Command } from '../../types';
 import { Util } from '../../util/Util';
 

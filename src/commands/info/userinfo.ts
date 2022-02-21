@@ -84,7 +84,10 @@ const command: Command = {
       .sort((role1, role2) => role2.rawPosition - role1.rawPosition)
       .map((role) => `${role}`);
     if (roles?.length)
-      embed.addField({ name: getString('embed.field.roles.name', { variables: { count: roles.length } }), value: roles.join(', ') });
+      embed.addField({
+        name: getString('embed.field.roles.name', { variables: { count: roles.length } }),
+        value: roles.join(', '),
+      });
     let activities = member?.presence?.activities;
     if (activities?.length) {
       let activitiesFieldValue = '';
@@ -121,7 +124,7 @@ const command: Command = {
         })()}`;
       }
 
-      embed.addField({ name: 'Activity', value: activitiesFieldValue});
+      embed.addField({ name: 'Activity', value: activitiesFieldValue });
     }
     if (user.banner) embed.setImage(user.bannerURL({ size: 4096 })!);
 

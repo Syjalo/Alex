@@ -15,13 +15,7 @@ const client = new AlexClient({
     GatewayIntentBits.GuildMessages,
     GatewayIntentBits.GuildPresences,
   ],
-  partials: [
-    Partials.Channel,
-    Partials.GuildMember,
-    Partials.Message,
-    Partials.Reaction,
-    Partials.User,
-  ],
+  partials: [Partials.Channel, Partials.GuildMember, Partials.Message, Partials.Reaction, Partials.User],
 });
 
 client.login();

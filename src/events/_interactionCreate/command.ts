@@ -1,5 +1,12 @@
 import { setTimeout } from 'node:timers';
-import { ChatInputCommandInteraction, Collection, Colors, CommandInteraction, GuildMember, PermissionFlagsBits, TextChannel, UnsafeEmbed as Embed } from 'discord.js';
+import {
+  Collection,
+  Colors,
+  CommandInteraction,
+  GuildMember,
+  PermissionFlagsBits,
+  UnsafeEmbed as Embed,
+} from 'discord.js';
 import MessageFormat from '@messageformat/core';
 import { DBUser, GetStringOptions, Locales } from '../../types';
 import { AlexClient } from '../../util/AlexClient';

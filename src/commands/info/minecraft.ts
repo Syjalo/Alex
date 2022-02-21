@@ -1,5 +1,14 @@
 import axios from 'axios';
-import { Message, ActionRow, ButtonComponent, UnsafeEmbed as Embed, ApplicationCommandOptionType, ButtonStyle, Colors, ComponentType } from 'discord.js';
+import {
+  Message,
+  ActionRow,
+  ButtonComponent,
+  UnsafeEmbed as Embed,
+  ApplicationCommandOptionType,
+  ButtonStyle,
+  Colors,
+  ComponentType,
+} from 'discord.js';
 import { Command, NameHistory } from '../../types';
 import { Util } from '../../util/Util';
 
@@ -100,7 +109,10 @@ const command: Command = {
     await interaction.reply({ embeds, components });
     if (pages.length === 1) return;
     const message = (await interaction.fetchReply()) as Message,
-      buttonsCollector = message.createMessageComponentCollector({ componentType: ComponentType.Button, idle: 1000 * 60 * 2 });
+      buttonsCollector = message.createMessageComponentCollector({
+        componentType: ComponentType.Button,
+        idle: 1000 * 60 * 2,
+      });
 
     buttonsCollector.on('collect', async (buttonInteraction) => {
       if (buttonInteraction.isButton()) {

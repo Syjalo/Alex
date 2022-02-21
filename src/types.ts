@@ -1,4 +1,4 @@
-import { Awaitable, ChatInputApplicationCommandData, ChatInputCommandInteraction, CommandInteraction, Snowflake } from 'discord.js';
+import { Awaitable, ChatInputApplicationCommandData, ChatInputCommandInteraction, Snowflake } from 'discord.js';
 import { AlexClient } from './util/AlexClient';
 
 export interface Command extends ChatInputApplicationCommandData {
