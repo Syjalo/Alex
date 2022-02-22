@@ -84,12 +84,13 @@
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-4.4.0.tgz#e277e5bdbdf7cb1e20d320f02f5e2ed113cd3185"
   integrity sha512-QppPM/8l3Mawvh4rn9CNEYIU9bxpXUCRMaX9yUpvBk1nMKusLKpfXGDEKExKaPhLzcn3lzil7pR6rnJ11HgeRQ==
 
-"@statsfm/spotify.js@^1.7.4":
-  version "1.7.4"
-  resolved "https://registry.yarnpkg.com/@statsfm/spotify.js/-/spotify.js-1.7.4.tgz#b12fe3d56f4b9ab23b89702b5b48470d5d534357"
-  integrity sha512-EGMyiRYqd8WJB3CD9ARlWRhQ9sre7dyIuZN3m8S8O2CfpWiHMpEXfyS/JFN4FOkqlBgBIEbsKU3MxHZtUbXIOg==
+"@statsfm/spotify.js@^1.8.0":
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/@statsfm/spotify.js/-/spotify.js-1.8.0.tgz#d005c14a14a763e28dd5bbc106f45a98a347b88a"
+  integrity sha512-cOBCpbTfMRYA2KEHFpNJ2W1Y4fIqwWS4BvqExqgkV4UeDt5uHzfTpMdElKCpOELvKfSJhjToIYSJwZPBHr0WhQ==
   dependencies:
     axios "^0.24.0"
+    axios-better-stacktrace "^2.1.2"
 
 "@types/node-fetch@^2.5.12":
   version "2.5.12"
@@ -128,6 +129,11 @@ asynckit@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
   integrity sha1-x57Zf380y48robyXkLzDZkdLS3k=
+
+axios-better-stacktrace@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/axios-better-stacktrace/-/axios-better-stacktrace-2.1.2.tgz#f38677dea96443a5de662c61f26fa8956e356a43"
+  integrity sha512-/ikpK5W7UhCAdl9pQss1vpTfLtOQpbv8edRZ2a9wWSux2dnGmqjVHkFsMKnyllysxm046C016lqGjUgGNECcag==
 
 axios@^0.24.0:
   version "0.24.0"
