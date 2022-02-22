@@ -36,10 +36,16 @@ const command: Command = {
     const logEmbed = new Embed()
       .setTitle('Say command was used')
       .setDescription(`${interaction.user} used the command`)
-      .setFields({
-        name: 'Content',
-        value: content,
-      })
+      .setFields(
+        {
+          name: 'Channel',
+          value: `${channel}`,
+        },
+        {
+          name: 'Content',
+          value: content,
+        },
+      )
       .setColor(Colors.LightGrey);
     (client.channels.resolve(ids.channels.botLog)! as TextChannel).send({ embeds: [logEmbed] });
 
