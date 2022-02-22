@@ -13,7 +13,9 @@ export const ids = {
     main: '724163890803638273',
   },
   roles: {
-    communityManager: '749688507257323600',
+    developer: '724165923963142224',
+    managment: '943188711640805376',
+    moderators: '931064644234268722',
   },
   rolesToSave: [
     '786513508334305291',
