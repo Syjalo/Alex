@@ -7,6 +7,7 @@ import { ids } from './util/Constants';
 if (!process.env.DISCORD_TOKEN) configENV();
 
 const client = new AlexClient({
+  failIfNotExists: false,
   intents: [
     GatewayIntentBits.Guilds,
     GatewayIntentBits.GuildIntegrations,
