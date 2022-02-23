@@ -51,7 +51,7 @@ const command: Command = {
 
     const logEmbed = new Embed()
       .setTitle('Say command was used')
-      .setDescription(`${interaction.user} used the command\n\n[Jump](${message.url})`)
+      .setDescription(`${interaction.user} used the command\n[Jump](${message.url})`)
       .setFields(
         {
           name: 'Channel',
