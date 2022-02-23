@@ -36,7 +36,7 @@ const command: Command = {
     },
   ],
   allowedRoles: [ids.roles.developer, ids.roles.managment, ids.roles.moderators],
-  listener(interaction, client, getString) {
+  async listener(interaction, client, getString) {
     const content = interaction.options.getString('content', true),
       reply = interaction.options.getString('reply');
     let mention = interaction.options.getBoolean('mention'),
@@ -46,9 +46,12 @@ const command: Command = {
     channel ??= interaction.channel as GuildTextBasedChannel;
     if (!channel.isText()) throw 'notTextChannel';
 
+    const message = await channel.send({ content, allowedMentions: { repliedUser: mention }, reply: { messageReference: reply! } });
+    interaction.reply({ content: getString('sent', { variables: { channel: `${channel}` } }), ephemeral: true });
+
     const logEmbed = new Embed()
       .setTitle('Say command was used')
-      .setDescription(`${interaction.user} used the command`)
+      .setDescription(`${interaction.user} used the command\n\n[Jump](${message.url})`)
       .setFields(
         {
           name: 'Channel',
@@ -61,9 +64,6 @@ const command: Command = {
       )
       .setColor(Colors.LightGrey);
     (client.channels.resolve(ids.channels.botLog)! as TextChannel).send({ embeds: [logEmbed] });
-
-    channel.send({ content, allowedMentions: { repliedUser: mention }, reply: { messageReference: reply! } });
-    interaction.reply({ content: getString('sent', { variables: { channel: `${channel}` } }), ephemeral: true });
   },
 };
 
