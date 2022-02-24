@@ -2,7 +2,11 @@ import { Awaitable, ChatInputApplicationCommandData, ChatInputCommandInteraction
 import { AlexClient } from './util/AlexClient';
 
 export interface Command extends ChatInputApplicationCommandData {
-  listener(interaction: ChatInputCommandInteraction, client: AlexClient, getString: GetString): Awaitable<void>;
+  listener(
+    interaction: ChatInputCommandInteraction<'cached'>,
+    client: AlexClient,
+    getString: GetString,
+  ): Awaitable<void>;
   dev?: true;
   allowedRoles?: Snowflake[];
   cooldown?: number;

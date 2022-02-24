@@ -108,7 +108,7 @@ const command: Command = {
     updateData();
     await interaction.reply({ embeds, components });
     if (pages.length === 1) return;
-    const message = (await interaction.fetchReply()) as Message,
+    const message = await interaction.fetchReply(),
       buttonsCollector = message.createMessageComponentCollector({
         componentType: ComponentType.Button,
         idle: 1000 * 60 * 2,

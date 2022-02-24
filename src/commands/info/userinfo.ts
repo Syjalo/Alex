@@ -19,7 +19,7 @@ const command: Command = {
   ],
   async listener(interaction, client, getString) {
     let user: User,
-      member = interaction.options.getMember('user') as GuildMember | null,
+      member = interaction.options.getMember('user'),
       id = interaction.options.getString('id');
 
     if (member) user = await member.user.fetch();
@@ -30,7 +30,7 @@ const command: Command = {
       member = interaction.guild!.members.resolve(id);
     } else {
       user = await interaction.user.fetch();
-      member = interaction.member as GuildMember;
+      member = interaction.member;
     }
 
     const embed = new Embed()

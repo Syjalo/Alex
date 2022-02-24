@@ -15,7 +15,7 @@ import { Util } from '../../util/Util';
 
 const cooldowns = new Collection<string, Collection<string, number>>();
 
-export default async (interaction: CommandInteraction, client: AlexClient) => {
+export default async (interaction: CommandInteraction<'cached'>, client: AlexClient) => {
   if (!interaction.isChatInputCommand()) return;
   const { commandName } = interaction;
   const command = client.commands.get(commandName);

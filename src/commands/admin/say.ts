@@ -40,10 +40,10 @@ const command: Command = {
     const content = interaction.options.getString('content', true),
       reply = interaction.options.getString('reply');
     let mention = interaction.options.getBoolean('mention'),
-      channel = interaction.options.getChannel('channel') as GuildBasedChannel;
+      channel = interaction.options.getChannel('channel');
 
     if (mention === null) mention = true;
-    channel ??= interaction.channel as GuildTextBasedChannel;
+    channel ??= interaction.channel!;
     if (!channel.isText()) throw 'notTextChannel';
 
     const message = await channel.send({
