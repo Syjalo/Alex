@@ -46,7 +46,11 @@ const command: Command = {
     channel ??= interaction.channel as GuildTextBasedChannel;
     if (!channel.isText()) throw 'notTextChannel';
 
-    const message = await channel.send({ content, allowedMentions: { repliedUser: mention }, reply: { messageReference: reply! } });
+    const message = await channel.send({
+      content,
+      allowedMentions: { repliedUser: mention },
+      reply: { messageReference: reply! },
+    });
     interaction.reply({ content: getString('sent', { variables: { channel: `${channel}` } }), ephemeral: true });
 
     const logEmbed = new Embed()
