@@ -48,7 +48,7 @@ const command: Command = {
 
     const message = await channel.send({
       content,
-      allowedMentions: { repliedUser: mention },
+      allowedMentions: { parse: ['roles', 'users'], repliedUser: mention },
       reply: { messageReference: reply! },
     });
     interaction.reply({ content: getString('sent', { variables: { channel: `${channel}` } }), ephemeral: true });
