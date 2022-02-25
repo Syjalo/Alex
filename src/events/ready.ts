@@ -24,7 +24,7 @@ export default (client: AlexClient) => {
         }),
       );
     console.log('Ready!');
-    if (!process.env.PRODUCTION) return;
+    if (process.env.NODE_ENV === 'production') return;
     const readyEmbed = new Embed().setTitle('Ready!').setColor(Colors.Green);
     (client.channels.resolve(ids.channels.botLog) as TextChannel).send({ embeds: [readyEmbed] });
   });
