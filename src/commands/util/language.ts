@@ -28,12 +28,12 @@ const command: Command = {
   ],
   async listener(interaction, client, getString) {
     const subcommand = interaction.options.getSubcommand(true),
-      usersCollection = client.db.collection<DBUser>('users'),
+      usersCollection = client.db.users,
       dbUser = await usersCollection.findOne({ id: interaction.user.id });
     let locale = interaction.options.getString('language', subcommand === 'set') as Locales;
 
     if (subcommand === 'set') {
-      const dbLanguages = await client.db.collection<DBLanguage>('languages').find().toArray();
+      const dbLanguages = await client.db.languages.find().toArray();
       const dbLanguage = dbLanguages.find(
         (language) =>
           language.locale.toLowerCase().startsWith(locale.toLowerCase()) ||

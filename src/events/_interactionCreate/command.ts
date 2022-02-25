@@ -24,7 +24,7 @@ export default async (interaction: CommandInteraction<'cached'>, client: AlexCli
     return;
   }
 
-  const dbUser = await client.db.collection<DBUser>('users').findOne({ id: interaction.user.id }),
+  const dbUser = await client.db.users.findOne({ id: interaction.user.id }),
     getString = (key: string, options: GetStringOptions = {}) => {
       let { fileName = commandName, locale = dbUser?.locale ?? (interaction.locale as Locales), variables } = options;
       locale = Util.resolveLocale(locale);

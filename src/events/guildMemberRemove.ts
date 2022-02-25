@@ -31,9 +31,7 @@ export default (client: AlexClient) => {
 
     const rolesToSave = ids.rolesToSave.filter((roleId) => member.roles.cache.has(roleId));
     if (rolesToSave.length > 0) {
-      client.db
-        .collection<DBUser>('users')
-        .findOneAndUpdate({ id: member.id }, { $set: { savedRoles: rolesToSave } }, { upsert: true });
+      client.db.users.findOneAndUpdate({ id: member.id }, { $set: { savedRoles: rolesToSave } }, { upsert: true });
     }
   });
 };

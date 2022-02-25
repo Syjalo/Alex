@@ -24,12 +24,8 @@ export default (client: AlexClient) => {
     ];
     if (rawURLs.length) {
       const [hostnamesWhitelist, hostnamesBlacklist] = await Promise.all([
-        (
-          await client.db.collection<DBHostname>('hostnamesWhitelist').find().toArray()
-        ).map((dbHostname) => dbHostname.hostname),
-        (
-          await client.db.collection<DBHostname>('hostnamesBlacklist').find().toArray()
-        ).map((dbHostname) => dbHostname.hostname),
+        (await client.db.hostnamesWhitelist.find().toArray()).map((dbHostname) => dbHostname.hostname),
+        (await client.db.hostnamesBlacklist.find().toArray()).map((dbHostname) => dbHostname.hostname),
       ]);
       for (const rawURL of rawURLs) {
         const url = new URL(rawURL);

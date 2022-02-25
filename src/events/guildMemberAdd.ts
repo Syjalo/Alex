@@ -36,7 +36,7 @@ export default (client: AlexClient) => {
       .setColor(color);
     (client.channels.resolve(ids.channels.joinLeave) as TextChannel).send({ embeds: [joinEmbed] });
 
-    const usersCollection = client.db.collection<DBUser>('users'),
+    const usersCollection = client.db.users,
       dbUser = await usersCollection.findOne({ id: member.id });
     if (dbUser?.savedRoles) {
       member.roles.add(dbUser.savedRoles);

@@ -6,10 +6,10 @@ export default async (interaction: ButtonInteraction<'cached'>, client: AlexClie
   const [action, data] = interaction.customId.split(':');
   if (action.startsWith('hostname')) {
     if (action === 'hostname-allow') {
-      await client.db.collection<DBHostname>('hostnamesWhitelist').insertOne({ hostname: data }),
+      await client.db.hostnamesWhitelist.insertOne({ hostname: data }),
         interaction.reply({ content: 'This link has been successfully added to the whitelist', ephemeral: true });
     } else if (action === 'hostname-deny') {
-      await client.db.collection<DBHostname>('hostnamesBlacklist').insertOne({ hostname: data }),
+      await client.db.hostnamesBlacklist.insertOne({ hostname: data }),
         interaction.reply({ content: 'This link has been successfully added to the blacklist', ephemeral: true });
     }
     interaction.message.delete();

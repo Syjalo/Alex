@@ -5,7 +5,7 @@ import { AlexClient } from '../../util/AlexClient';
 export default async (interaction: AutocompleteInteraction<'cached'>, client: AlexClient) => {
   const { name, value } = interaction.options.getFocused(true);
   if (name === 'language' && typeof value === 'string') {
-    const languages = await client.db.collection<DBLanguage>('languages').find().toArray();
+    const languages = await client.db.languages.find().toArray();
     const results = languages.filter(
       (language) =>
         language.locale.toLowerCase().startsWith(value.toLowerCase()) ||
