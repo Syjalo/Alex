@@ -1,5 +1,4 @@
 import { ColorResolvable, Colors, TextChannel, UnsafeEmbed as Embed } from 'discord.js';
-import { DBUser } from '../types';
 import { AlexClient } from '../util/AlexClient';
 import { ids } from '../util/Constants';
 import { Util } from '../util/Util';

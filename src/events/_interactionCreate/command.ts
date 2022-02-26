@@ -8,7 +8,7 @@ import {
   UnsafeEmbed as Embed,
 } from 'discord.js';
 import MessageFormat from '@messageformat/core';
-import { DBUser, GetStringOptions, Locales } from '../../types';
+import { GetStringOptions } from '../../types';
 import { AlexClient } from '../../util/AlexClient';
 import { ids } from '../../util/Constants';
 import { Util } from '../../util/Util';
@@ -26,7 +26,7 @@ export default async (interaction: CommandInteraction<'cached'>, client: AlexCli
 
   const dbUser = await client.db.users.findOne({ id: interaction.user.id }),
     getString = (key: string, options: GetStringOptions = {}) => {
-      let { fileName = commandName, locale = dbUser?.locale ?? (interaction.locale as Locales), variables } = options;
+      let { fileName = commandName, locale = dbUser?.locale ?? interaction.locale, variables } = options;
       locale = Util.resolveLocale(locale);
       let enStrings = require(`../../../strings/en-US/${fileName}`);
       let strings: Record<string, any>;
