@@ -29,7 +29,7 @@ export default (client: AlexClient) => {
       for (const hostname of hostnames) {
         if (dbHostnames.some((dbHostname) => dbHostname.hostname === hostname)) {
           if (dbHostnames.find((dbHostname) => dbHostname.hostname === hostname)!.status === HostnameStatus.Denied)
-            await message.delete();
+            await message.delete().catch(() => null);
         } else {
           const dbHostname = await client.db.hostnames.insertOne({ hostname, status: HostnameStatus.Pending });
           const embed = new Embed()
