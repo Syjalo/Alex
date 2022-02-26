@@ -4,7 +4,5 @@ updates:
       directory: "/"
       schedule:
           interval: daily
-          time: "00:00"
-          timezone: Europe/London
-      assignees:
-          - syjalo
+          time: "21:00"
+          timezone: Asia/Yekaterinburg
