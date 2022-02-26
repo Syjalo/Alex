@@ -2,8 +2,6 @@ import { UnsafeEmbed as Embed } from '@discordjs/builders';
 import {
   ApplicationCommandOptionType,
   Colors,
-  GuildBasedChannel,
-  GuildTextBasedChannel,
   TextChannel,
 } from 'discord.js';
 import { Command } from '../../types';

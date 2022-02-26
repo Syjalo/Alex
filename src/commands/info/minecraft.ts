@@ -1,6 +1,5 @@
 import axios from 'axios';
 import {
-  Message,
   ActionRow,
   ButtonComponent,
   UnsafeEmbed as Embed,

@@ -1,4 +1,4 @@
-import { ApplicationCommandOptionType, Colors, GuildMember, UnsafeEmbed as Embed, User } from 'discord.js';
+import { ApplicationCommandOptionType, Colors, UnsafeEmbed as Embed, User } from 'discord.js';
 import { Command } from '../../types';
 import { Util } from '../../util/Util';
 

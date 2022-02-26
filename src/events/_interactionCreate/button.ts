@@ -1,4 +1,4 @@
-import { ButtonInteraction, Message } from 'discord.js';
+import { ButtonInteraction } from 'discord.js';
 import { ObjectId } from 'mongodb';
 import { HostnameStatus } from '../../types';
 import { AlexClient } from '../../util/AlexClient';

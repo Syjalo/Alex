@@ -1,5 +1,5 @@
 import { ApplicationCommandOptionType, Colors, UnsafeEmbed as Embed } from 'discord.js';
-import { Command, DBLanguage, DBUser, Locales } from '../../types';
+import { Command, Locales } from '../../types';
 import { locales } from '../../util/Constants';
 
 const command: Command = {
@@ -69,7 +69,7 @@ const command: Command = {
     } else if (subcommand === 'reset') {
       await usersCollection.findOneAndUpdate({ id: interaction.user.id }, { $unset: { locale: true } });
       const resetEmbed = new Embed()
-        .setTitle(getString('subcommand.reset.resetEmbed.title', { locale: interaction.locale as Locales }))
+        .setTitle(getString('subcommand.reset.resetEmbed.title', { locale: interaction.locale }))
         .setColor(Colors.Green);
       interaction.reply({ embeds: [resetEmbed], ephemeral: true });
     }
