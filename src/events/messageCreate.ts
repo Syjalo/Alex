@@ -6,7 +6,6 @@ import { ids } from '../util/Constants';
 import { Util } from '../util/Util';
 
 export default (client: AlexClient) => {
-  const pendingHostnames: string[] = [];
   client.on('messageCreate', async (message) => {
     if (!message.inGuild()) return;
 
