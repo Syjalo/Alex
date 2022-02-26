@@ -9,7 +9,7 @@ export default (client: AlexClient) => {
   client.on('messageCreate', async (message) => {
     if (!message.inGuild()) return;
 
-    const hostnames = [
+    const urls = [
       ...new Set(
         message.content
           .split(' ')
@@ -20,17 +20,17 @@ export default (client: AlexClient) => {
               return false;
             }
           })
-          .map((url) => new URL(url).hostname),
+          .map((url) => new URL(url).origin),
       ).values(),
-    ];
-    if (hostnames.length) {
+    ].map((url) => new URL(url));
+    if (urls.length) {
       const dbHostnames = await client.db.hostnames.find().toArray();
-      for (const hostname of hostnames) {
-        if (dbHostnames.some((dbHostname) => dbHostname.hostname === hostname)) {
-          if (dbHostnames.find((dbHostname) => dbHostname.hostname === hostname)!.status === HostnameStatus.Denied)
+      for (const url of urls) {
+        if (dbHostnames.some((dbHostname) => dbHostname.hostname === url.hostname)) {
+          if (dbHostnames.find((dbHostname) => dbHostname.hostname === url.hostname)!.status === HostnameStatus.Denied)
             await message.delete().catch(() => null);
         } else {
-          const dbHostname = await client.db.hostnames.insertOne({ hostname, status: HostnameStatus.Pending });
+          const dbHostname = await client.db.hostnames.insertOne({ hostname: url.hostname, status: HostnameStatus.Pending });
           const embed = new Embed()
               .setAuthor({
                 iconURL: message.author.displayAvatarURL(),
@@ -39,7 +39,7 @@ export default (client: AlexClient) => {
               })
               .setTitle('An unknown link was found')
               .setDescription(`${message.content}\n\n[Jump](${message.url})`)
-              .addField({ name: 'Link', value: hostname })
+              .addField({ name: 'Link', value: url.origin })
               .setColor(Colors.Red),
             buttons = new ActionRow().addComponents(
               new ButtonComponent()
