@@ -1,5 +1,4 @@
 import { AutocompleteInteraction } from 'discord.js';
-import { DBLanguage } from '../../types';
 import { AlexClient } from '../../util/AlexClient';
 
 export default async (interaction: AutocompleteInteraction<'cached'>, client: AlexClient) => {

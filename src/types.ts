@@ -20,6 +20,7 @@ export interface DBUser {
 
 export interface DBHostname {
   hostname: string;
+  status: HostnameStatus;
 }
 
 export interface DBLanguage {
@@ -37,6 +38,12 @@ export interface GetStringOptions {
 export interface NameHistory {
   name: string;
   changedToAt?: number;
+}
+
+export enum HostnameStatus {
+  Pending,
+  Allowed,
+  Denied,
 }
 
 export type GetString = <T extends any = any>(key: string, options?: GetStringOptions) => T;

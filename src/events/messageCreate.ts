@@ -1,5 +1,6 @@
 import { ActionRow, ButtonComponent, ButtonStyle, Colors, TextChannel, UnsafeEmbed as Embed } from 'discord.js';
-import { DBHostname } from '../types';
+import { ObjectId } from 'mongodb';
+import { DBHostname, HostnameStatus } from '../types';
 import { AlexClient } from '../util/AlexClient';
 import { ids } from '../util/Constants';
 import { Util } from '../util/Util';
@@ -8,34 +9,29 @@ export default (client: AlexClient) => {
   const pendingHostnames: string[] = [];
   client.on('messageCreate', async (message) => {
     if (!message.inGuild()) return;
-    const rawURLs = [
+
+    const hostnames = [
       ...new Set(
         message.content
-          .replaceAll('\n', ' ')
           .split(' ')
-          .filter((el) => {
+          .filter((contentPart) => {
             try {
-              return new URL(el).hostname.length;
+              return new URL(contentPart).hostname.length;
             } catch {
               return false;
             }
-          }),
+          })
+          .map((url) => new URL(url).hostname),
       ).values(),
     ];
-    if (rawURLs.length) {
-      const [hostnamesWhitelist, hostnamesBlacklist] = await Promise.all([
-        (await client.db.hostnamesWhitelist.find().toArray()).map((dbHostname) => dbHostname.hostname),
-        (await client.db.hostnamesBlacklist.find().toArray()).map((dbHostname) => dbHostname.hostname),
-      ]);
-      for (const rawURL of rawURLs) {
-        const url = new URL(rawURL);
-        const { hostname } = url;
-        if (hostnamesBlacklist.includes(hostname)) {
-          await message.delete();
-          return;
-        } else if (!hostnamesWhitelist.includes(hostname)) {
-          if (pendingHostnames.includes(hostname)) continue;
-          pendingHostnames.push(hostname);
+    if (hostnames.length) {
+      const dbHostnames = await client.db.hostnames.find().toArray();
+      for (const hostname of hostnames) {
+        if (dbHostnames.some((dbHostname) => dbHostname.hostname === hostname)) {
+          if (dbHostnames.find((dbHostname) => dbHostname.hostname === hostname)!.status === HostnameStatus.Denied)
+            return void (await message.delete());
+        } else {
+          const dbHostname = await client.db.hostnames.insertOne({ hostname, status: HostnameStatus.Pending });
           const embed = new Embed()
               .setAuthor({
                 iconURL: message.author.displayAvatarURL(),
@@ -44,15 +40,15 @@ export default (client: AlexClient) => {
               })
               .setTitle('An unknown link was found')
               .setDescription(`${message.content}\n\n[Jump](${message.url})`)
-              .addField({ name: 'Link', value: url.origin })
+              .addField({ name: 'Link', value: hostname })
               .setColor(Colors.Red),
             buttons = new ActionRow().addComponents(
               new ButtonComponent()
-                .setCustomId(`hostname-allow:${hostname}`)
+                .setCustomId(`hostname-allow:${dbHostname.insertedId}`)
                 .setLabel('Allow')
                 .setStyle(ButtonStyle.Success),
               new ButtonComponent()
-                .setCustomId(`hostname-deny:${hostname}`)
+                .setCustomId(`hostname-deny:${dbHostname.insertedId}`)
                 .setLabel('Deny')
                 .setStyle(ButtonStyle.Danger),
             );

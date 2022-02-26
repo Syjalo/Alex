@@ -2,12 +2,8 @@ import { MongoClient } from 'mongodb';
 import { DBHostname, DBLanguage, DBUser } from '../types';
 
 export class DataBase extends MongoClient {
-  public get hostnamesBlacklist() {
-    return this.db().collection<DBHostname>('hostnamesBlacklist');
-  }
-
-  public get hostnamesWhitelist() {
-    return this.db().collection<DBHostname>('hostnamesWhitelist');
+  public get hostnames() {
+    return this.db().collection<DBHostname>('hostnames');
   }
 
   public get languages() {
