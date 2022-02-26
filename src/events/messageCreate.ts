@@ -19,9 +19,9 @@ export default (client: AlexClient) => {
               return false;
             }
           })
-          .map((url) => new URL(url).origin),
+          .map((url) => new URL(url)),
       ).values(),
-    ].map((url) => new URL(url));
+    ];
     if (urls.length) {
       const dbHostnames = await client.db.hostnames.find().toArray();
       for (const url of urls) {
