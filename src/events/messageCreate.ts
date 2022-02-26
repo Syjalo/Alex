@@ -1,6 +1,5 @@
 import { ActionRow, ButtonComponent, ButtonStyle, Colors, TextChannel, UnsafeEmbed as Embed } from 'discord.js';
-import { ObjectId } from 'mongodb';
-import { DBHostname, HostnameStatus } from '../types';
+import { HostnameStatus } from '../types';
 import { AlexClient } from '../util/AlexClient';
 import { ids } from '../util/Constants';
 import { Util } from '../util/Util';
@@ -30,7 +29,10 @@ export default (client: AlexClient) => {
           if (dbHostnames.find((dbHostname) => dbHostname.hostname === url.hostname)!.status === HostnameStatus.Denied)
             await message.delete().catch(() => null);
         } else {
-          const dbHostname = await client.db.hostnames.insertOne({ hostname: url.hostname, status: HostnameStatus.Pending });
+          const dbHostname = await client.db.hostnames.insertOne({
+            hostname: url.hostname,
+            status: HostnameStatus.Pending,
+          });
           const embed = new Embed()
               .setAuthor({
                 iconURL: message.author.displayAvatarURL(),
@@ -59,19 +61,24 @@ export default (client: AlexClient) => {
       }
     }
 
-    if (message.channel.id === ids.channels.suggestions && !message.system) {
-      message.startThread({
-        name: `[${message.member?.displayName || message.author.username}] Suggestion Discussion`,
-        reason: 'New suggestion',
-      });
-      await message.react('857336659465076737').catch(() => null);
-      await message.react('857336659619348540').catch(() => null);
-      return;
-    } else if (message.channel.id === ids.channels.complaints && !message.system) {
-      message.startThread({
-        name: `[${message.member?.displayName || message.author.username}] Complaint Discussion`,
-        reason: 'New complaint',
-      });
+    if (!message.system) {
+      const username = message.member?.displayName || message.author.username;
+      switch (message.channel.id) {
+        case ids.channels.suggestions:
+          message.startThread({
+            name: `[${username}] Suggestion Discussion`,
+            reason: 'New suggestion',
+          });
+          await message.react('857336659465076737').catch(() => null);
+          await message.react('857336659619348540').catch(() => null);
+          break;
+        case ids.channels.complaints:
+          message.startThread({
+            name: `[${username}] Complaint Discussion`,
+            reason: 'New complaint',
+          });
+          break;
+      }
     }
   });
 };
