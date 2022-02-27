@@ -19,10 +19,10 @@
         }
       },
       "createdAccount": {
-        "name": "Created account"
+        "name": "Created the account"
       },
       "joinedServer": {
-        "name": "Joined server"
+        "name": "Joined the server"
       },
       "serverBooster": {
         "name": "Server Booster since"
