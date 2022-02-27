@@ -19,10 +19,10 @@
         }
       },
       "createdAccount": {
-        "name": "Vytvořil účet"
+        "name": "Created the account"
       },
       "joinedServer": {
-        "name": "Připojil se k serveru"
+        "name": "Joined the server"
       },
       "serverBooster": {
         "name": "Vylepšuje server od"
