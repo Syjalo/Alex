@@ -19,10 +19,10 @@
         }
       },
       "createdAccount": {
-        "name": "Створив обліковий запис"
+        "name": "Created the account"
       },
       "joinedServer": {
-        "name": "Приєднався до сервера"
+        "name": "Joined the server"
       },
       "serverBooster": {
         "name": "Бустер сервера з"
