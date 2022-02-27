@@ -15,13 +15,13 @@ export default (client: AlexClient) => {
       .setDescription(`${member} \`${member.user.tag}\` (${member.id})`)
       .setFields(
         {
-          name: 'Created account',
+          name: 'Created the account',
           value: `<t:${Math.floor(member.user.createdTimestamp / 1000)}> (<t:${Math.floor(
             member.user.createdTimestamp / 1000,
           )}:R>)`,
         },
         {
-          name: 'Leave Server',
+          name: 'Left the server',
           value: `<t:${Math.floor(Date.now() / 1000)}> (<t:${Math.floor(Date.now() / 1000)}:R>)`,
         },
       )

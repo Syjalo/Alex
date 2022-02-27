@@ -24,11 +24,11 @@ export default (client: AlexClient) => {
       .setDescription(`${member} \`${member.user.tag}\` (${member.id})`)
       .addFields(
         {
-          name: 'Created account',
+          name: 'Created the account',
           value: Util.makeFormattedTime(Math.floor(member.user.createdTimestamp / 1000)),
         },
         {
-          name: 'Joined Server',
+          name: 'Joined the server',
           value: Util.makeFormattedTime(Math.floor(member.joinedTimestamp! / 1000)),
         },
       )
