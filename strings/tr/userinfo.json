@@ -19,10 +19,10 @@
         }
       },
       "createdAccount": {
-        "name": "Hesabın oluşturulduğu tarih"
+        "name": "Created the account"
       },
       "joinedServer": {
-        "name": "Sunucuya katılma tarihi"
+        "name": "Joined the server"
       },
       "serverBooster": {
         "name": "Şu tarihten beri sunucu takviyecisi"
