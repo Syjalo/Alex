@@ -19,10 +19,10 @@
         }
       },
       "createdAccount": {
-        "name": "Akun dibuat"
+        "name": "Created the account"
       },
       "joinedServer": {
-        "name": "Mengikuti server sejak"
+        "name": "Joined the server"
       },
       "serverBooster": {
         "name": "Server Booster sejak"
