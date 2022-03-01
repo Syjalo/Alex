@@ -5,8 +5,11 @@ import { Util } from '../../util/Util';
 const command: Command = {
   name: 'status',
   description: 'Gives the bot status',
-  listener(interaction, client, getString) {
-    const { ping } = client.ws;
+  async listener(interaction, client, getString) {
+    const firstTimestamp = Date.now();
+    await interaction.deferReply();
+    const ping = Date.now() - firstTimestamp,
+      wsPing = client.ws.ping;
     let color: number;
     if (ping > 0 && ping < 250) color = Colors.Green;
     else if (ping < 500) color = Colors.Yellow;
@@ -19,12 +22,16 @@ const command: Command = {
           value: getString('embed.field.ping.value', { variables: { ms: ping } }),
         },
         {
+          name: getString('embed.field.wsPing.name'),
+          value: getString('embed.field.wsPing.value', { variables: { ms: wsPing } }),
+        },
+        {
           name: getString('embed.field.onlineSince.name'),
           value: Util.makeFormattedTime(Math.floor(client.readyTimestamp / 1000)),
         },
       )
       .setColor(color);
-    interaction.reply({ embeds: [embed] });
+    interaction.editReply({ embeds: [embed] });
   },
 };
 
