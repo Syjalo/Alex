@@ -75,7 +75,7 @@ export default (client: AlexClient) => {
       }
 
       const [randomActivityType, randonStatus] = statuses[Math.floor(Math.random() * statuses.length)];
-      client.user.setActivity({ type: randomActivityType, name: randonStatus });
+      client.user.setActivity({ type: randomActivityType, name: randonStatus.replace('{randomName}', randomName) });
     };
     setRandomActivity();
     setInterval(setRandomActivity, 1000 * 60);
