@@ -63,7 +63,7 @@ export default (client: AlexClient) => {
             'on 2po2jav with {randomName}',
             'with commands',
           ],
-          [ActivityType.Listening]: ['{randomName}', 'slash commands!'],
+          [ActivityType.Listening]: ['{randomName}', 'slash commands'],
           [ActivityType.Watching]: ['{randomName}', 'stupid errors'],
         };
       type MyActivityType = keyof typeof status;
