@@ -78,6 +78,6 @@ export default (client: AlexClient) => {
       client.user.setActivity({ type: randomActivityType, name: randonStatus.replace('{randomName}', randomName) });
     };
     setRandomActivity();
-    setInterval(setRandomActivity, 1000 * 60);
+    setInterval(setRandomActivity, 1000 * 20);
   });
 };
