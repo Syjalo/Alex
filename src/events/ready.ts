@@ -1,4 +1,11 @@
-import { ApplicationCommandPermissionType, Colors, TextChannel, UnsafeEmbed as Embed } from 'discord.js';
+import {
+  ActivityType,
+  ApplicationCommandPermissionType,
+  Colors,
+  Snowflake,
+  TextChannel,
+  UnsafeEmbed as Embed,
+} from 'discord.js';
 import { AlexClient } from '../util/AlexClient';
 import { ids } from '../util/Constants';
 
@@ -27,5 +34,40 @@ export default (client: AlexClient) => {
     if (process.env.NODE_ENV !== 'production') return;
     const readyEmbed = new Embed().setTitle('Ready!').setColor(Colors.Green);
     (client.channels.resolve(ids.channels.botLog) as TextChannel).send({ embeds: [readyEmbed] });
+
+    setInterval(() => {
+      const getMembersDisplayNamesByRoleId = (id: Snowflake) =>
+          client.guilds
+            .resolve('724163890803638273')!
+            .roles.resolve(id)!
+            .members.map((member) => member.displayName),
+        membersNames = [
+          ...new Set([
+            ...getMembersDisplayNamesByRoleId('724165923963142224'), // Developers
+            ...getMembersDisplayNamesByRoleId('943188711640805376'), // Menagment
+            ...getMembersDisplayNamesByRoleId('931064644234268722'), // Moderators
+            ...getMembersDisplayNamesByRoleId('888455491058036746'), // Helpers
+            ...getMembersDisplayNamesByRoleId('846351712368197632'), // Contributors
+          ]).values(),
+        ],
+        randomName = membersNames[Math.floor(Math.random() * membersNames.length)],
+        statuses = [ActivityType.Playing, ActivityType.Listening, ActivityType.Watching] as const,
+        randomActivityType = statuses[Math.floor(Math.random() * statuses.length)],
+        status = {
+          [ActivityType.Playing]: [
+            'with {randomName}',
+            'Minecraft via PojavLauncher',
+            'Minecraft with {randomName}',
+            'on 2po2jav with {randomName}',
+            'with commands',
+          ],
+          [ActivityType.Listening]: ['{randomName}', 'slash commands!'],
+          [ActivityType.Watching]: ['{randomName}', 'stupid errors'],
+        },
+        statusesList = status[randomActivityType],
+        randonStatus = statusesList[Math.floor(Math.random() * statusesList.length)].replace('{randomName}', randomName);
+
+      client.user.setActivity({ name: randonStatus, type: randomActivityType });
+    }, 1000 * 60);
   });
 };
