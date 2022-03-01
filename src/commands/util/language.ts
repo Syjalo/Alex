@@ -1,5 +1,5 @@
 import { ApplicationCommandOptionType, Colors, UnsafeEmbed as Embed } from 'discord.js';
-import { Command, Locales } from '../../types';
+import { Command, Locale } from '../../types';
 import { locales } from '../../util/Constants';
 
 const command: Command = {
@@ -30,7 +30,7 @@ const command: Command = {
     const subcommand = interaction.options.getSubcommand(true),
       usersCollection = client.db.users,
       dbUser = await usersCollection.findOne({ id: interaction.user.id });
-    let locale = interaction.options.getString('language', subcommand === 'set') as Locales;
+    let locale = interaction.options.getString('language', subcommand === 'set') as Locale;
 
     if (subcommand === 'set') {
       const dbLanguages = await client.db.languages.find().toArray();

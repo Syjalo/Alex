@@ -14,7 +14,7 @@ export interface Command extends ChatInputApplicationCommandData {
 
 export interface DBUser {
   id: Snowflake;
-  locale: Locales;
+  locale: Locale;
   savedRoles?: Snowflake[];
 }
 
@@ -24,7 +24,7 @@ export interface DBHostname {
 }
 
 export interface DBLanguage {
-  locale: Locales;
+  locale: Locale;
   name: string;
   nativeName: string;
 }
@@ -32,7 +32,7 @@ export interface DBLanguage {
 export interface GetStringOptions {
   variables?: Record<string, string | number>;
   fileName?: string;
-  locale?: Locales;
+  locale?: Locale;
 }
 
 export interface NameHistory {
@@ -48,35 +48,36 @@ export enum HostnameStatus {
 
 export type GetString = <T extends any = any>(key: string, options?: GetStringOptions) => T;
 
-export type Locales =
-  | 'bg'
-  | 'cs'
-  | 'da'
-  | 'de'
-  | 'el'
-  | 'en-GB'
-  | 'en-US'
-  | 'es-ES'
-  | 'fi'
-  | 'fr'
-  | 'hi'
-  | 'hr'
-  | 'hu'
-  | 'id'
-  | 'it'
-  | 'ja'
-  | 'ko'
-  | 'lt'
-  | 'nl'
-  | 'no'
-  | 'pl'
-  | 'pt-BR'
-  | 'ro'
-  | 'ru'
-  | 'sv-SE'
-  | 'th'
-  | 'tr'
-  | 'uk'
-  | 'vi'
-  | 'zh-CN'
-  | 'zh-TW';
+export enum Locale {
+	Bulgarian = 'bg',
+	Czech = 'cs',
+	Danish = 'da',
+	German = 'de',
+	Greek = 'el',
+	EnglishUS = 'en-US',
+	EnglishGB = 'en-GB',
+	SpanishES = 'es-ES',
+	Finnish = 'fi',
+	French = 'fr',
+	Hindi = 'hi',
+	Croatian = 'hr',
+	Hungarian = 'hu',
+  Indonesian = 'id',
+	Italian = 'it',
+	Japanese = 'ja',
+	Korean = 'ko',
+	Lithuanian = 'lt',
+	Dutch = 'nl',
+	Norwegian = 'no',
+	Polish = 'pl',
+	PortugueseBR = 'pt-BR',
+	Romanian = 'ro',
+	Russian = 'ru',
+	Swedish = 'sv-SE',
+	Thai = 'th',
+	Turkish = 'tr',
+	Ukrainian = 'uk',
+	Vietnamese = 'vi',
+	ChineseCN = 'zh-CN',
+	ChineseTW = 'zh-TW',
+}

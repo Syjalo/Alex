@@ -1,9 +1,9 @@
 import { Colors, Snowflake, UnsafeEmbed as Embed } from 'discord.js';
-import { GetString, Locales } from '../types';
+import { GetString, Locale } from '../types';
 import { locales } from './Constants';
 
 export class Util extends null {
-  static resolveLocale(locale?: Locales) {
+  static resolveLocale(locale?: Locale) {
     if (!locale || !locales.includes(locale)) return 'en-US';
     return locale;
   }

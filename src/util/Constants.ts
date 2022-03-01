@@ -1,5 +1,5 @@
 import { readdirSync } from 'node:fs';
-import { Locales } from '../types';
+import { Locale } from '../types';
 
 export const ids = {
   channels: {
@@ -31,4 +31,4 @@ export const ids = {
   },
 };
 
-export const locales = readdirSync('./strings') as Locales[];
+export const locales = readdirSync('./strings') as Locale[];
