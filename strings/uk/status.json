@@ -6,6 +6,10 @@
         "name": "Пінґ",
         "value": "Мій пінґ - {ms}мс"
       },
+      "wsPing": {
+        "name": "WebSoket ping",
+        "value": "WebSoket ping is {ms}ms"
+      },
       "onlineSince": {
         "name": "Онлайн з"
       }

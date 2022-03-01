@@ -6,6 +6,10 @@
         "name": "Ping",
         "value": "Ping saya adalah {ms}ms"
       },
+      "wsPing": {
+        "name": "WebSoket ping",
+        "value": "WebSoket ping is {ms}ms"
+      },
       "onlineSince": {
         "name": "Online sejak"
       }
