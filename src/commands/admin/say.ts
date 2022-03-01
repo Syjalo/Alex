@@ -1,9 +1,5 @@
 import { UnsafeEmbed as Embed } from '@discordjs/builders';
-import {
-  ApplicationCommandOptionType,
-  Colors,
-  TextChannel,
-} from 'discord.js';
+import { ApplicationCommandOptionType, Colors, TextChannel } from 'discord.js';
 import { Command } from '../../types';
 import { ids } from '../../util/Constants';
 
