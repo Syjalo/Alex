@@ -55,8 +55,6 @@ export default (client: AlexClient) => {
           ]).values(),
         ],
         randomName = membersNames[Math.floor(Math.random() * membersNames.length)],
-        statuses = [ActivityType.Playing, ActivityType.Listening, ActivityType.Watching] as const,
-        randomActivityType = statuses[Math.floor(Math.random() * statuses.length)],
         status = {
           [ActivityType.Playing]: [
             'with {randomName}',
@@ -67,14 +65,17 @@ export default (client: AlexClient) => {
           ],
           [ActivityType.Listening]: ['{randomName}', 'slash commands!'],
           [ActivityType.Watching]: ['{randomName}', 'stupid errors'],
-        },
-        statusesList = status[randomActivityType],
-        randonStatus = statusesList[Math.floor(Math.random() * statusesList.length)].replace(
-          '{randomName}',
-          randomName,
-        );
+        };
+      type MyActivityType = keyof typeof status;
+      const statuses: [MyActivityType, string][] = [];
+      for (const [activityType, activityNames] of Object.entries(status)) {
+        for (const activityName of activityNames) {
+          statuses.push([Number(activityType), activityName]);
+        }
+      }
 
-      client.user.setActivity({ name: randonStatus, type: randomActivityType });
+      const [randomActivityType, randonStatus] = statuses[Math.floor(Math.random() * statuses.length)];
+      client.user.setActivity({ type: randomActivityType, name: randonStatus });
     };
     setRandomActivity();
     setInterval(setRandomActivity, 1000 * 60);
