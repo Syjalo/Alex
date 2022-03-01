@@ -35,7 +35,7 @@ export default (client: AlexClient) => {
     const readyEmbed = new Embed().setTitle('Ready!').setColor(Colors.Green);
     (client.channels.resolve(ids.channels.botLog) as TextChannel).send({ embeds: [readyEmbed] });
 
-    setInterval(() => {
+    const setRandomActivity = () => {
       const getMembersDisplayNamesByRoleId = (id: Snowflake) =>
           client.guilds
             .resolve('724163890803638273')!
@@ -46,8 +46,12 @@ export default (client: AlexClient) => {
             ...getMembersDisplayNamesByRoleId('724165923963142224'), // Developers
             ...getMembersDisplayNamesByRoleId('943188711640805376'), // Menagment
             ...getMembersDisplayNamesByRoleId('931064644234268722'), // Moderators
+            ...getMembersDisplayNamesByRoleId('893112744197357658'), // Under Hiatus
+            ...getMembersDisplayNamesByRoleId('945793405370376202'), // Trial Under Hiatus
             ...getMembersDisplayNamesByRoleId('888455491058036746'), // Helpers
             ...getMembersDisplayNamesByRoleId('846351712368197632'), // Contributors
+            ...getMembersDisplayNamesByRoleId('846353111269507132'), // VIP
+            ...getMembersDisplayNamesByRoleId('748957661097361530'), // Boosters
           ]).values(),
         ],
         randomName = membersNames[Math.floor(Math.random() * membersNames.length)],
@@ -65,9 +69,14 @@ export default (client: AlexClient) => {
           [ActivityType.Watching]: ['{randomName}', 'stupid errors'],
         },
         statusesList = status[randomActivityType],
-        randonStatus = statusesList[Math.floor(Math.random() * statusesList.length)].replace('{randomName}', randomName);
+        randonStatus = statusesList[Math.floor(Math.random() * statusesList.length)].replace(
+          '{randomName}',
+          randomName,
+        );
 
       client.user.setActivity({ name: randonStatus, type: randomActivityType });
-    }, 1000 * 60);
+    };
+    setRandomActivity();
+    setInterval(setRandomActivity, 1000 * 60);
   });
 };
