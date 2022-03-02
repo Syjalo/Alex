@@ -1,5 +1,5 @@
 import { inspect } from 'node:util';
-import { ApplicationCommandOptionType, Colors, Formatters, UnsafeEmbed as Embed } from 'discord.js';
+import discord, { ApplicationCommandOptionType, Colors, Formatters, UnsafeEmbed as Embed } from 'discord.js';
 import { transpile, getParsedCommandLineOfConfigFile, sys } from 'typescript';
 import { Command } from '../../types';
 import { ids } from '../../util/Constants';
@@ -22,7 +22,8 @@ const command: Command = {
   ],
   allowedUsers: [ids.users.syjalo],
   async listener(interaction, client, getString) {
-    const ephemeral = !!interaction.options.getBoolean('ephemeral');
+    const ephemeral = !!interaction.options.getBoolean('ephemeral'),
+      Discord = discord;
     await interaction.deferReply({ ephemeral });
     let codeToEval = interaction.options.getString('code', true);
     if (codeToEval.includes('await')) codeToEval = `(async () => {\n${codeToEval}\n})()`;
