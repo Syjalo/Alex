@@ -37,7 +37,7 @@ const command: Command = {
           value: Formatters.codeBlock('ts', codeToEval.substring(0, 1015)),
         },
         {
-          name: 'Compoied code',
+          name: 'Compiled code',
           value: Formatters.codeBlock('js', compiledCode.substring(0, 1015)),
         },
       ];
