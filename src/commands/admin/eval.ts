@@ -44,7 +44,7 @@ const command: Command = {
 
     try {
       const firstTimestamp = Date.now(),
-        evaledCode = eval(compiledCode),
+        evaledCode = await eval(compiledCode),
         timeSpent = `${(Date.now() - firstTimestamp).toLocaleString()}ms`,
         inspectedReturn = inspect(evaledCode, { getters: true }),
         embed = new Embed()
