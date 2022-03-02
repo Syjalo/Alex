@@ -9,6 +9,7 @@ export interface Command extends ChatInputApplicationCommandData {
   ): Awaitable<void>;
   dev?: true;
   allowedRoles?: Snowflake[];
+  allowedUsers?: Snowflake[];
   cooldown?: number;
 }
 

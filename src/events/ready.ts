@@ -1,5 +1,6 @@
 import {
   ActivityType,
+  ApplicationCommandPermissionData,
   ApplicationCommandPermissionType,
   Colors,
   Snowflake,
@@ -18,15 +19,28 @@ export default (client: AlexClient) => {
       .then((cmds) =>
         cmds.forEach((cmd) => {
           const command = client.commands.get(cmd.name);
-          if (command?.allowedRoles) {
+          if (command?.allowedRoles || command?.allowedUsers) {
             if (cmd.defaultPermission) cmd.setDefaultPermission(false);
-            cmd.permissions.set({
-              permissions: command.allowedRoles.map((id) => ({
-                id,
-                type: ApplicationCommandPermissionType.Role,
-                permission: true,
-              })),
-            });
+            const permissions: ApplicationCommandPermissionData[] = [];
+            if (command.allowedRoles) {
+              permissions.push(
+                ...command.allowedRoles.map((id) => ({
+                  id,
+                  type: ApplicationCommandPermissionType.Role,
+                  permission: true,
+                })),
+              );
+            }
+            if (command.allowedUsers) {
+              permissions.push(
+                ...command.allowedUsers.map((id) => ({
+                  id,
+                  type: ApplicationCommandPermissionType.User,
+                  permission: true,
+                })),
+              );
+            }
+            cmd.permissions.set({ permissions });
           } else if (!cmd.defaultPermission) cmd.setDefaultPermission(true);
         }),
       );

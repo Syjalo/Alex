@@ -1,3 +1,4 @@
+export * as eval from './admin/eval';
 export * as say from './admin/say';
 
 export * as minecraft from './info/minecraft';
