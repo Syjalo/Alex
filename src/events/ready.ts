@@ -36,25 +36,30 @@ export default (client: AlexClient) => {
     (client.channels.resolve(ids.channels.botLog) as TextChannel).send({ embeds: [readyEmbed] });
 
     const setRandomActivity = () => {
-      const getMembersDisplayNamesByRoleId = (id: Snowflake) =>
-          client.guilds
-            .resolve('724163890803638273')!
-            .roles.resolve(id)!
-            .members.map((member) => member.displayName),
-        membersNames = [
+      const getMembersDisplayNamesByRoleId = (id: Snowflake, filterOffline?: boolean) => {
+          let members = client.guilds.resolve('724163890803638273')!.roles.resolve(id)!.members;
+          if (filterOffline)
+            members = members.filter((member) => !!member.presence && member.presence.status !== 'offline');
+          return members.map((member) => member.displayName);
+        },
+        getMembersDisplayNames = (filterOffline?: boolean) => [
           ...new Set([
-            ...getMembersDisplayNamesByRoleId('724165923963142224'), // Developers
-            ...getMembersDisplayNamesByRoleId('943188711640805376'), // Menagment
-            ...getMembersDisplayNamesByRoleId('931064644234268722'), // Moderators
-            ...getMembersDisplayNamesByRoleId('893112744197357658'), // Under Hiatus
-            ...getMembersDisplayNamesByRoleId('945793405370376202'), // Trial Under Hiatus
-            ...getMembersDisplayNamesByRoleId('888455491058036746'), // Helpers
-            ...getMembersDisplayNamesByRoleId('846351712368197632'), // Contributors
-            ...getMembersDisplayNamesByRoleId('846353111269507132'), // VIP
-            ...getMembersDisplayNamesByRoleId('748957661097361530'), // Boosters
+            ...getMembersDisplayNamesByRoleId('724165923963142224', filterOffline), // Developers
+            ...getMembersDisplayNamesByRoleId('943188711640805376', filterOffline), // Menagment
+            ...getMembersDisplayNamesByRoleId('931064644234268722', filterOffline), // Moderators
+            ...getMembersDisplayNamesByRoleId('893112744197357658', filterOffline), // Under Hiatus
+            ...getMembersDisplayNamesByRoleId('945793405370376202', filterOffline), // Trial Under Hiatus
+            ...getMembersDisplayNamesByRoleId('888455491058036746', filterOffline), // Helpers
+            ...getMembersDisplayNamesByRoleId('846351712368197632', filterOffline), // Contributors
+            ...getMembersDisplayNamesByRoleId('846353111269507132', filterOffline), // VIP
+            ...getMembersDisplayNamesByRoleId('748957661097361530', filterOffline), // Boosters
           ]).values(),
         ],
-        randomName = membersNames[Math.floor(Math.random() * membersNames.length)],
+        membersNames = getMembersDisplayNames(true),
+        allMembersNames = getMembersDisplayNames(),
+        randomName = membersNames.length
+          ? membersNames[Math.floor(Math.random() * membersNames.length)]
+          : allMembersNames[Math.floor(Math.random() * allMembersNames.length)],
         status = {
           [ActivityType.Playing]: [
             'with {randomName}',
