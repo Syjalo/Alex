@@ -8,6 +8,7 @@ export default (client: AlexClient) => {
   client.on('messageCreate', async (message) => {
     if (!message.inGuild()) return;
 
+    let isDeleted = false;
     const urls = [
       ...new Set(
         message.content
@@ -26,8 +27,15 @@ export default (client: AlexClient) => {
       const dbHostnames = await client.db.hostnames.find().toArray();
       for (const url of urls) {
         if (dbHostnames.some((dbHostname) => dbHostname.hostname === url.hostname)) {
-          if (dbHostnames.find((dbHostname) => dbHostname.hostname === url.hostname)!.status === HostnameStatus.Denied)
-            await message.delete().catch(() => null);
+          if (
+            dbHostnames.find((dbHostname) => dbHostname.hostname === url.hostname)!.status === HostnameStatus.Denied
+          ) {
+            if (isDeleted) continue;
+            else {
+              await message.delete().catch(() => null);
+              isDeleted = true;
+            }
+          }
         } else {
           const dbHostname = await client.db.hostnames.insertOne({
             hostname: url.hostname,
@@ -60,23 +68,28 @@ export default (client: AlexClient) => {
         }
       }
     }
+    if (isDeleted) return;
 
     if (!message.system) {
       const username = message.member?.displayName || message.author.username;
       switch (message.channel.id) {
         case ids.channels.suggestions:
-          message.startThread({
-            name: `[${username}] Suggestion Discussion`,
-            reason: 'New suggestion',
-          });
+          message
+            .startThread({
+              name: `[${username}] Suggestion Discussion`,
+              reason: 'New suggestion',
+            })
+            .catch(() => null);
           await message.react('857336659465076737').catch(() => null);
           await message.react('857336659619348540').catch(() => null);
           break;
         case ids.channels.complaints:
-          message.startThread({
-            name: `[${username}] Complaint Discussion`,
-            reason: 'New complaint',
-          });
+          message
+            .startThread({
+              name: `[${username}] Complaint Discussion`,
+              reason: 'New complaint',
+            })
+            .catch(() => null);
           break;
       }
     }
