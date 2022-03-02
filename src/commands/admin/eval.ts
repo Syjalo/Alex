@@ -14,10 +14,16 @@ const command: Command = {
       description: 'Code to eval',
       required: true,
     },
+    {
+      type: ApplicationCommandOptionType.Boolean,
+      name: 'ephemeral',
+      description: 'Whether the reply should be ephemeral',
+    },
   ],
   allowedUsers: [ids.users.syjalo],
   async listener(interaction, client, getString) {
-    await interaction.deferReply();
+    const ephemeral = !!interaction.options.getBoolean('ephemeral');
+    await interaction.deferReply({ ephemeral });
     let codeToEval = interaction.options.getString('code', true);
     if (codeToEval.includes('await')) codeToEval = `(async () => {\n${codeToEval}\n})()`;
 
