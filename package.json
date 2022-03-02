@@ -22,7 +22,7 @@
     "@messageformat/core": "^3.0.1",
     "@statsfm/spotify.js": "^1.8.2",
     "axios": "^0.26.0",
-    "discord.js": "^14.0.0-dev.1645876999.a8321d8",
+    "discord.js": "^14.0.0-dev.1646222610.53defb8",
     "dotenv": "^16.0.0",
     "mongodb": "^4.4.0",
     "prettier": "^2.5.1",
