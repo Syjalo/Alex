@@ -1,5 +1,6 @@
 import { inspect } from 'node:util';
 import discord, { ApplicationCommandOptionType, Colors, Formatters, UnsafeEmbed as Embed } from 'discord.js';
+import { format } from 'prettier';
 import { transpile, getParsedCommandLineOfConfigFile, sys } from 'typescript';
 import { Command } from '../../types';
 import { ids } from '../../util/Constants';
@@ -27,6 +28,8 @@ const command: Command = {
     await interaction.deferReply({ ephemeral });
     let codeToEval = interaction.options.getString('code', true);
     if (codeToEval.includes('await')) codeToEval = `(async () => {\n${codeToEval}\n})()`;
+    const prettierOptions = require('../../../.prettierrc.json');
+    codeToEval = format(codeToEval, { ...prettierOptions, parser: 'typescript', printWidth: 55 })
 
     const { options } = getParsedCommandLineOfConfigFile(
       'tsconfig.json',
@@ -37,7 +40,7 @@ const command: Command = {
       },
     )!;
     options.sourceMap = false;
-    const compiledCode = transpile(codeToEval, options),
+    const compiledCode = format(transpile(codeToEval, options), { ...prettierOptions, parser: 'babel', printWidth: 55 }),
       baseFields = [
         {
           name: 'Input code',
