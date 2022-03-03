@@ -24,12 +24,15 @@ const command: Command = {
   allowedUsers: [ids.users.syjalo],
   async listener(interaction, client, getString) {
     const ephemeral = !!interaction.options.getBoolean('ephemeral'),
-      Discord = discord;
+      Discord = discord,
+      Constants = require('../../util/Constants');
     await interaction.deferReply({ ephemeral });
     let codeToEval = interaction.options.getString('code', true);
-    if (codeToEval.includes('await')) codeToEval = `(async () => {\n${codeToEval}\n})()`;
-    const prettierOptions = require('../../../.prettierrc.json');
-    codeToEval = format(codeToEval, { ...prettierOptions, parser: 'typescript', printWidth: 55 })
+    const prettierOptions = { ...require('../../../.prettierrc.json'), printWidth: 55 };
+    codeToEval = format(codeToEval.includes('await ') ? `(async () => {\n${codeToEval}\n})()` : codeToEval, {
+      ...prettierOptions,
+      parser: 'typescript',
+    });
 
     const { options } = getParsedCommandLineOfConfigFile(
       'tsconfig.json',
@@ -40,7 +43,7 @@ const command: Command = {
       },
     )!;
     options.sourceMap = false;
-    const compiledCode = format(transpile(codeToEval, options), { ...prettierOptions, parser: 'babel', printWidth: 55 }),
+    const compiledCode = format(transpile(codeToEval, options), { ...prettierOptions, parser: 'babel' }),
       baseFields = [
         {
           name: 'Input code',
