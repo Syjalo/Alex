@@ -80,8 +80,8 @@ export default (client: AlexClient) => {
               reason: 'New suggestion',
             })
             .catch(() => null);
-          await message.react('857336659465076737').catch(() => null);
-          await message.react('857336659619348540').catch(() => null);
+          await message.react('948824918500474891').catch(() => null);
+          await message.react('948824918815043634').catch(() => null);
           break;
         case ids.channels.complaints:
           message
