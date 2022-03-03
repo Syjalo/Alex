@@ -23,6 +23,7 @@ const command: Command = {
   ],
   allowedUsers: [ids.users.syjalo],
   async listener(interaction, client, getString) {
+    if (!this.allowedUsers!.includes(interaction.user.id)) return;
     const ephemeral = !!interaction.options.getBoolean('ephemeral'),
       Discord = discord,
       Constants = require('../../util/Constants');
