@@ -44,16 +44,16 @@ const command: Command = {
         statusName = member?.presence?.status;
       switch (member?.presence?.status) {
         case 'online':
-          emoji = '<:online:857254722276294656>';
+          emoji = '<:online:948828497550409738>';
           break;
         case 'idle':
-          emoji = '<:idle:857254721281327145>';
+          emoji = '<:idle:948828495474229278>';
           break;
         case 'dnd':
-          emoji = '<:dnd:857254721748598786>';
+          emoji = '<:dnd:948828496841551892>';
           break;
         default:
-          emoji = '<:offline:857254722590343199>';
+          emoji = '<:offline:948828496027869194>';
           statusName = 'offline';
           break;
       }
