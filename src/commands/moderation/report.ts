@@ -54,7 +54,7 @@ const command: Command = {
       embeds: [embed],
       attachments: proof ? [proof] : undefined,
     });
-    interaction.reply({ content: getString('sent') });
+    interaction.reply({ content: getString('sent'), ephemeral: true });
   },
 };
 
