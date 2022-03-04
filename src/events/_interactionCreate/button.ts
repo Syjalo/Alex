@@ -13,7 +13,7 @@ export default async (interaction: ButtonInteraction<'cached'>, client: AlexClie
       await client.db.hostnames.updateOne({ _id: new ObjectId(data) }, { $set: { status: HostnameStatus.Denied } });
       interaction.reply({ content: 'This link has been successfully denied', ephemeral: true });
     }if (action === 'user-report-resolve') {
-      interaction.reply({ content: 'This report resolved' });
+      interaction.reply({ content: 'This report resolved', ephemeral: true });
     }
     await interaction.message.delete().catch(() => null);
     return;
