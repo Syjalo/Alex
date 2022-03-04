@@ -20,7 +20,7 @@
   "homepage": "https://github.com/Syjalo/Alex#readme",
   "dependencies": {
     "@messageformat/core": "^3.0.1",
-    "@statsfm/spotify.js": "^1.8.2",
+    "@statsfm/spotify.js": "^1.8.3",
     "axios": "^0.26.0",
     "discord.js": "^14.0.0-dev.1646222610.53defb8",
     "dotenv": "^16.0.0",
