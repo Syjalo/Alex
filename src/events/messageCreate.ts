@@ -83,14 +83,6 @@ export default (client: AlexClient) => {
           await message.react('948824918500474891').catch(() => null);
           await message.react('948824918815043634').catch(() => null);
           break;
-        case ids.channels.complaints:
-          message
-            .startThread({
-              name: `[${username}] Complaint Discussion`,
-              reason: 'New complaint',
-            })
-            .catch(() => null);
-          break;
       }
     }
   });
