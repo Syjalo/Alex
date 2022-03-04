@@ -49,7 +49,6 @@ const command: Command = {
         },
       )
       .setColor(Colors.Red);
-    console.log(proof);
 
     if (proof && proof.contentType?.startsWith('image')) embed.setImage(proof.url);
 
