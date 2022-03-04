@@ -63,19 +63,19 @@ const command: Command = {
           ? `(${platforms.map((platform) => getString(`embed.field.status.values.platform.${platform}`)).join(', ')})`
           : '')()}`;
 
-      embed.addField({ name: getString('embed.field.status.name'), value: status });
+      embed.addFields({ name: getString('embed.field.status.name'), value: status });
     }
-    embed.addField({
+    embed.addFields({
       name: getString('embed.field.createdAccount.name'),
       value: Util.makeFormattedTime(Math.floor(user.createdTimestamp / 1000)),
     });
     if (member?.joinedTimestamp)
-      embed.addField({
+      embed.addFields({
         name: getString('embed.field.joinedServer.name'),
         value: Util.makeFormattedTime(Math.floor(member.joinedTimestamp / 1000)),
       });
     if (member?.premiumSinceTimestamp)
-      embed.addField({
+      embed.addFields({
         name: getString('embed.field.serverBooster.name'),
         value: Util.makeFormattedTime(Math.floor(member.premiumSinceTimestamp / 1000)),
       });
@@ -84,7 +84,7 @@ const command: Command = {
       .sort((role1, role2) => role2.rawPosition - role1.rawPosition)
       .map((role) => `${role}`);
     if (roles?.length)
-      embed.addField({
+      embed.addFields({
         name: getString('embed.field.roles.name', { variables: { count: roles.length } }),
         value: roles.join(', '),
       });
@@ -124,7 +124,7 @@ const command: Command = {
         })()}`;
       }
 
-      embed.addField({ name: 'Activity', value: activitiesFieldValue });
+      embed.addFields({ name: 'Activity', value: activitiesFieldValue });
     }
     if (user.banner) embed.setImage(user.bannerURL({ size: 4096 })!);
 

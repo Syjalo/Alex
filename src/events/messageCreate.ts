@@ -49,7 +49,7 @@ export default (client: AlexClient) => {
               })
               .setTitle('An unknown link was found')
               .setDescription(`${message.content}\n\n[Jump](${message.url})`)
-              .addField({ name: 'Link', value: url.origin })
+              .addFields({ name: 'Link', value: url.origin })
               .setColor(Colors.Red),
             buttons = new ActionRow().addComponents(
               new ButtonComponent()
