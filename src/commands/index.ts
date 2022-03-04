@@ -6,4 +6,6 @@ export * as userinfo from './info/userinfo';
 
 export * as status from './misc/status';
 
+export * as report from './moderation/report';
+
 export * as language from './util/language';
