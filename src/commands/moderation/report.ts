@@ -1,5 +1,5 @@
 import { UnsafeEmbed as Embed } from '@discordjs/builders';
-import { ApplicationCommandOptionType, Colors, TextChannel } from 'discord.js';
+import { ActionRow, ApplicationCommandOptionType, ButtonComponent, ButtonStyle, Colors, TextChannel } from 'discord.js';
 import { Command } from '../../types';
 import { ids } from '../../util/Constants';
 import { Util } from '../../util/Util';
@@ -23,7 +23,7 @@ const command: Command = {
     {
       name: 'proof',
       type: ApplicationCommandOptionType.Attachment,
-      description: 'Proof for report',
+      description: 'Proof for report. Must be image or gif',
     },
   ],
   async listener(interaction, client, getString) {
@@ -49,12 +49,19 @@ const command: Command = {
         },
       )
       .setColor(Colors.Red);
+    console.log(proof);
+
+    if (proof && proof.contentType?.startsWith('image')) embed.setImage(proof.url);
+
+    const buttons = new ActionRow().addComponents(
+      new ButtonComponent().setCustomId('user-report-resolve').setLabel('Resolve').setStyle(ButtonStyle.Success),
+    );
 
     await (client.channels.resolve(ids.channels.reports) as TextChannel).send({
       embeds: [embed],
-      attachments: proof ? [proof] : undefined,
+      components: [buttons],
     });
-    interaction.reply({ content: getString('sent'), ephemeral: true });
+    interaction.reply({ content: getString('sent'), embeds: [embed], ephemeral: true });
   },
 };
 
