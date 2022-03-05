@@ -19,11 +19,6 @@ export interface DBUser {
   savedRoles?: Snowflake[];
 }
 
-export interface DBHostname {
-  hostname: string;
-  status: HostnameStatus;
-}
-
 export interface DBLanguage {
   locale: Locale;
   name: string;
@@ -57,12 +52,6 @@ export interface VirusTotalAnalysesGetResult {
       };
     };
   };
-}
-
-export enum HostnameStatus {
-  Pending,
-  Allowed,
-  Denied,
 }
 
 export type GetString = <T extends any = any>(key: string, options?: GetStringOptions) => T;
