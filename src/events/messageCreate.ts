@@ -1,74 +1,73 @@
-import { ActionRow, ButtonComponent, ButtonStyle, Colors, TextChannel, UnsafeEmbed as Embed } from 'discord.js';
-import { HostnameStatus } from '../types';
+import axios from 'axios';
+import { count } from 'console';
+import { VirusTotalAnalysesGetResult, VirusTotalURLsPostResult } from '../types';
 import { AlexClient } from '../util/AlexClient';
 import { ids } from '../util/Constants';
-import { Util } from '../util/Util';
 
 export default (client: AlexClient) => {
   client.on('messageCreate', async (message) => {
     if (!message.inGuild()) return;
 
-    let isDeleted = false;
     const urls = [
       ...new Set(
-        message.content
-          .split(' ')
-          .filter((contentPart) => {
-            try {
-              return new URL(contentPart).hostname.length;
-            } catch {
-              return false;
-            }
-          })
-          .map((url) => new URL(url)),
+        message.content.split(' ').filter((contentPart) => {
+          try {
+            return new URL(contentPart).protocol.startsWith('http');
+          } catch {
+            return false;
+          }
+        }),
       ).values(),
     ];
     if (urls.length) {
-      const dbHostnames = await client.db.hostnames.find().toArray();
       for (const url of urls) {
-        if (dbHostnames.some((dbHostname) => dbHostname.hostname === url.hostname)) {
-          if (
-            dbHostnames.find((dbHostname) => dbHostname.hostname === url.hostname)!.status === HostnameStatus.Denied
-          ) {
-            if (isDeleted) continue;
-            else {
-              await message.delete().catch(() => null);
-              isDeleted = true;
-            }
-          }
-        } else {
-          const dbHostname = await client.db.hostnames.insertOne({
-            hostname: url.hostname,
-            status: HostnameStatus.Pending,
+        const id = await axios
+          .post<VirusTotalURLsPostResult>(
+            'https://www.virustotal.com/api/v3/urls',
+            new URLSearchParams({ url }),
+            {
+              headers: {
+                'X-APIKey': process.env.VIRUSTOTAL_KEY!,
+              },
+            },
+          )
+          .then((res) => res.data.data.id)
+          .catch(() => null);
+        if (!id) continue;
+
+        const getAnalyses = (id: string) => {
+          const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+          return new Promise<VirusTotalAnalysesGetResult | null>(async (resolve) => {
+            let count = 0;
+            do {
+              const analyses = await axios
+                .get<VirusTotalAnalysesGetResult>(`https://www.virustotal.com/api/v3/analyses/${id}`, {
+                  headers: {
+                    'X-APIKey': process.env.VIRUSTOTAL_KEY!,
+                  },
+                })
+                .then((res) => res.data)
+                .catch(() => null);
+              if (!analyses) return null;
+              if (analyses.data.attributes.status === 'completed') {
+                resolve(analyses);
+                break;
+              }
+              if (++count > 5) {
+                resolve(null);
+                break;
+              }
+              await wait(5000);
+            } while (true);
           });
-          const embed = new Embed()
-              .setAuthor({
-                iconURL: message.author.displayAvatarURL(),
-                name: message.member?.displayName || message.author.username,
-                url: Util.makeUserURL(message.author.id),
-              })
-              .setTitle('An unknown link was found')
-              .setDescription(`${message.content}\n\n[Jump](${message.url})`)
-              .addFields({ name: 'Link', value: url.origin })
-              .setColor(Colors.Red),
-            buttons = new ActionRow().addComponents(
-              new ButtonComponent()
-                .setCustomId(`hostname-allow:${dbHostname.insertedId}`)
-                .setLabel('Allow')
-                .setStyle(ButtonStyle.Success),
-              new ButtonComponent()
-                .setCustomId(`hostname-deny:${dbHostname.insertedId}`)
-                .setLabel('Deny')
-                .setStyle(ButtonStyle.Danger),
-            );
-          (client.channels.resolve(ids.channels.reports) as TextChannel).send({
-            embeds: [embed],
-            components: [buttons],
-          });
-        }
+        };
+
+        const stats = await getAnalyses(id).then((analyses) => analyses?.data.attributes.stats);
+        if (!stats) continue;
+
+        if (stats.malicious >= 3 || stats.suspicious >= 3) return void (message.delete().catch(() => null));
       }
     }
-    if (isDeleted) return;
 
     if (!message.system) {
       const username = message.member?.displayName || message.author.username;

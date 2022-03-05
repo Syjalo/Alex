@@ -41,6 +41,24 @@ export interface NameHistory {
   changedToAt?: number;
 }
 
+export interface VirusTotalURLsPostResult {
+  data: {
+    id: string;
+  };
+}
+
+export interface VirusTotalAnalysesGetResult {
+  data: {
+    attributes: {
+      status: string;
+      stats: {
+        malicious: number;
+        suspicious: number;
+      };
+    };
+  };
+}
+
 export enum HostnameStatus {
   Pending,
   Allowed,
