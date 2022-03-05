@@ -32,10 +32,7 @@ export default (client: AlexClient) => {
             },
           )
           .then((res) => res.data.data.id)
-          .catch((error) => {
-            console.log(error);
-            return null;
-          });
+          .catch(() => null);
         if (!id) continue;
 
         const getAnalyses = (id: string) => {
@@ -50,10 +47,7 @@ export default (client: AlexClient) => {
                   },
                 })
                 .then((res) => res.data)
-                .catch((error) => {
-                  console.log(error);
-                  return null;
-                });
+                .catch(() => null);
               if (!analyses) return null;
               if (analyses.data.attributes.status === 'completed') {
                 resolve(analyses);
