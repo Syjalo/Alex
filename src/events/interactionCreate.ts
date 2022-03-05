@@ -7,7 +7,7 @@ export default (client: AlexClient) => {
   client.on('interactionCreate', (interaction) => {
     if (!interaction.inCachedGuild()) return;
     if (interaction.isAutocomplete()) autocomplete(interaction, client);
-    else if (interaction.isButton()) button(interaction, client);
+    else if (interaction.isButton()) button(interaction);
     else if (interaction.isCommand()) command(interaction, client);
   });
 };
