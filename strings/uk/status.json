@@ -7,8 +7,8 @@
         "value": "Мій пінґ - {ms}мс"
       },
       "wsPing": {
-        "name": "WebSoket ping",
-        "value": "WebSoket ping is {ms}ms"
+        "name": "Пінґ WebSoket",
+        "value": "Пінґ WebSoket - {ms} мс"
       },
       "onlineSince": {
         "name": "Онлайн з"
