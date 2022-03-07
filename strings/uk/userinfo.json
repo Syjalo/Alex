@@ -19,10 +19,10 @@
         }
       },
       "createdAccount": {
-        "name": "Created the account"
+        "name": "Створив обліковий запис"
       },
       "joinedServer": {
-        "name": "Joined the server"
+        "name": "Приєднався до сервера"
       },
       "serverBooster": {
         "name": "Бустер сервера з"
@@ -31,13 +31,13 @@
         "name": "{count, plural, =1 {Роль (#)} other {Ролі (#)}}"
       },
       "activity": {
-        "name": "Activity",
+        "name": "Активність",
         "values": {
           "custom": {
-            "name": "Custom Status"
+            "name": "Користувацький статус"
           },
           "spotify": {
-            "value": "{name} by {artists} on {album}"
+            "value": "{name} - {artists}\nАльбом - {album}"
           }
         }
       }
