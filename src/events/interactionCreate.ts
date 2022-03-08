@@ -40,7 +40,10 @@ export default (client: AlexClient) => {
         });
         let string: any;
         if (strings) string = strings;
-        else string = enStrings;
+        else {
+          locale = Locale.EnglishUS
+          string = enStrings;
+        }
 
         if (variables && typeof string === 'string') string = new MessageFormat(locale).compile(string)(variables);
 
