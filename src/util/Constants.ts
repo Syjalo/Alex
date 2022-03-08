@@ -13,8 +13,11 @@ export const ids = {
   },
   roles: {
     developer: '724165923963142224',
+    english: '942374071797157948',
     managment: '943188711640805376',
     moderators: '931064644234268722',
+    otherLanguages: '942663909494636544',
+    russian: '942374026758725662',
   },
   rolesToSave: [
     '786513508334305291',

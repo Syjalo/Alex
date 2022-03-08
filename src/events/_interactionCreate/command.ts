@@ -7,15 +7,14 @@ import {
   PermissionFlagsBits,
   UnsafeEmbed as Embed,
 } from 'discord.js';
-import MessageFormat from '@messageformat/core';
-import { GetStringOptions } from '../../types';
 import { AlexClient } from '../../util/AlexClient';
 import { ids } from '../../util/Constants';
 import { Util } from '../../util/Util';
+import { GetString } from '../../types';
 
 const cooldowns = new Collection<string, Collection<string, number>>();
 
-export default async (interaction: CommandInteraction<'cached'>, client: AlexClient) => {
+export default async (interaction: CommandInteraction<'cached'>, client: AlexClient, getString: GetString) => {
   if (!interaction.isChatInputCommand()) return;
   const { commandName } = interaction;
   const command = client.commands.get(commandName);
@@ -23,35 +22,6 @@ export default async (interaction: CommandInteraction<'cached'>, client: AlexCli
     console.log(`Failed to get ${commandName} command`);
     return;
   }
-
-  const dbUser = await client.db.users.findOne({ id: interaction.user.id }),
-    getString = (key: string, options: GetStringOptions = {}) => {
-      let { fileName = commandName, locale = dbUser?.locale ?? interaction.locale, variables } = options;
-      locale = Util.resolveLocale(locale);
-      let enStrings = require(`../../../strings/en-US/${fileName}`);
-      let strings: Record<string, any>;
-      try {
-        strings = require(`../../../strings/${locale}/${fileName}`);
-      } catch {
-        strings = require(`../../../strings/en-US/${fileName}`);
-      }
-
-      key.split('.').forEach((keyPart) => {
-        try {
-          enStrings = enStrings[keyPart];
-          strings = strings[keyPart];
-        } catch {
-          strings = enStrings;
-        }
-      });
-      let string: any;
-      if (strings) string = strings;
-      else string = enStrings;
-
-      if (variables && typeof string === 'string') string = new MessageFormat(locale).compile(string)(variables);
-
-      return string;
-    };
 
   if (command.dev && interaction.user.id !== ids.users.syjalo) {
     const embed = new Embed().setTitle(getString('underDevelopment', { fileName: 'errors' })).setColor(Colors.Red);

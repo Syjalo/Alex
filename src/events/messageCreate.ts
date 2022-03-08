@@ -22,15 +22,11 @@ export default (client: AlexClient) => {
     if (urls.length) {
       for (const url of urls) {
         const id = await axios
-          .post<VirusTotalURLsPostResult>(
-            'https://www.virustotal.com/api/v3/urls',
-            new URLSearchParams({ url }),
-            {
-              headers: {
-                'X-APIKey': process.env.VIRUSTOTAL_KEY!,
-              },
+          .post<VirusTotalURLsPostResult>('https://www.virustotal.com/api/v3/urls', new URLSearchParams({ url }), {
+            headers: {
+              'X-APIKey': process.env.VIRUSTOTAL_KEY!,
             },
-          )
+          })
           .then((res) => res.data.data.id)
           .catch(() => null);
         if (!id) continue;
@@ -65,7 +61,7 @@ export default (client: AlexClient) => {
         const stats = await getAnalyses(id).then((analyses) => analyses?.data.attributes.stats);
         if (!stats) continue;
 
-        if (stats.malicious >= 3 || stats.suspicious >= 3) return void (message.delete().catch(() => null));
+        if (stats.malicious >= 3 || stats.suspicious >= 3) return void message.delete().catch(() => null);
       }
     }
 
