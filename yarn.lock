@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@discordjs/builders@^0.13.0-dev", "@discordjs/builders@^0.13.0-dev.1646395406.6f7a366":
-  version "0.13.0-dev.1646395406.6f7a366"
-  resolved "https://registry.yarnpkg.com/@discordjs/builders/-/builders-0.13.0-dev.1646395406.6f7a366.tgz#a7114ce6fd748955bb466abf4764d9476652f170"
-  integrity sha512-rkY2eSjQ/S257mx8TrHeT45urX6YtYOWLi8501oKz7Vy/VTclobIk26yJWpnRLsELllGMuE6I04ImL6+0Ge6hQ==
+"@discordjs/builders@^0.13.0-dev", "@discordjs/builders@^0.13.0-dev.1646654924.b162f27":
+  version "0.13.0-dev.1646654924.b162f27"
+  resolved "https://registry.yarnpkg.com/@discordjs/builders/-/builders-0.13.0-dev.1646654924.b162f27.tgz#64d8da6e1a732e67b97b373e07d1db68872c9f5c"
+  integrity sha512-lVIsi4/37gnJA422UEG2jEbh8BflM0rRQLMqdUD4WugxFfFwjTwvJ1BXRsY6wUzAXTV3JUtLL8S14FsqzFV5ag==
   dependencies:
     "@sindresorhus/is" "^4.4.0"
     discord-api-types "^0.27.3"
