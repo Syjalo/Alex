@@ -12,7 +12,10 @@ export default async (interaction: SelectMenuInteraction<'cached'>, getString: G
 
     interaction.reply({
       content: getString('languageRolesUpdated', {
-        variables: { count: interaction.values.length, roles: interaction.values.map((value) => `<@&${value}>`).join(', ') },
+        variables: {
+          count: interaction.values.length,
+          roles: interaction.values.map((value) => `<@&${value}>`).join(', '),
+        },
       }),
       ephemeral: true,
     });

@@ -41,7 +41,7 @@ export default (client: AlexClient) => {
         let string: any;
         if (strings) string = strings;
         else {
-          locale = Locale.EnglishUS
+          locale = Locale.EnglishUS;
           string = enStrings;
         }
 
