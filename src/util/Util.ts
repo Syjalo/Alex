@@ -4,7 +4,7 @@ import { locales } from './Constants';
 
 export class Util extends null {
   static resolveLocale(locale?: Locale) {
-    if (!locale || !locales.includes(locale)) return 'en-US' as Locale;
+    if (!locale || !locales.includes(locale)) return Locale.EnglishUS;
     return locale;
   }
 

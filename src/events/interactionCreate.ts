@@ -1,6 +1,6 @@
 import MessageFormat from '@messageformat/core';
 import { CommandInteraction } from 'discord.js';
-import { GetStringOptions } from '../types';
+import { GetStringOptions, Locale } from '../types';
 import { AlexClient } from '../util/AlexClient';
 import { Util } from '../util/Util';
 import autocomplete from './_interactionCreate/autocomplete';
@@ -25,6 +25,7 @@ export default (client: AlexClient) => {
         try {
           strings = require(`../../strings/${locale}/${fileName}`);
         } catch {
+          locale = Locale.EnglishUS;
           strings = require(`../../strings/en-US/${fileName}`);
         }
 
@@ -33,6 +34,7 @@ export default (client: AlexClient) => {
             enStrings = enStrings[keyPart];
             strings = strings[keyPart];
           } catch {
+            locale = Locale.EnglishUS;
             strings = enStrings;
           }
         });
