@@ -4,5 +4,6 @@
     "previous": "Halaman sebelumnya",
     "next": "Halaman selanjutnya",
     "last": "Halaman terakhir"
-  }
+  },
+  "languageRolesUpdated": "Your roles has been successfully updated! Now you have {count, plural, one {# language role} other {# language roles}} ({roles})."
 }
