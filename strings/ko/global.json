@@ -4,5 +4,6 @@
     "previous": "Previous page",
     "next": "Next page",
     "last": "Last page"
-  }
+  },
+  "languageRolesUpdated": "Your roles has been successfully updated! Now you have {count, plural, one {# language role} other {# language roles}} ({roles})."
 }
