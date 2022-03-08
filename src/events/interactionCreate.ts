@@ -25,7 +25,6 @@ export default (client: AlexClient) => {
         try {
           strings = require(`../../strings/${locale}/${fileName}`);
         } catch {
-          locale = Locale.EnglishUS;
           strings = require(`../../strings/en-US/${fileName}`);
         }
 
@@ -34,16 +33,14 @@ export default (client: AlexClient) => {
             enStrings = enStrings[keyPart];
             strings = strings[keyPart];
           } catch {
-            locale = Locale.EnglishUS;
             strings = enStrings;
           }
         });
         let string: any;
         if (strings) string = strings;
-        else {
-          locale = Locale.EnglishUS;
-          string = enStrings;
-        }
+        else string = enStrings;
+
+        if (string === enStrings) locale = Locale.EnglishUS;
 
         if (variables && typeof string === 'string') string = new MessageFormat(locale).compile(string)(variables);
 
