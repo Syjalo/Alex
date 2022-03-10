@@ -4,11 +4,11 @@
     "field": {
       "ping": {
         "name": "Пинг",
-        "value": "Мой пинг — {ms} мс"
+        "value": "Мой пинг — {ms, number, integer} мс"
       },
       "wsPing": {
         "name": "Пинг WebSoket",
-        "value": "Пинг WebSoket — {ms} мс"
+        "value": "Пинг WebSoket — {ms, number, integer} мс"
       },
       "onlineSince": {
         "name": "Онлайн с"
