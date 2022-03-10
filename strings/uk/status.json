@@ -4,11 +4,11 @@
     "field": {
       "ping": {
         "name": "Пінґ",
-        "value": "Мій пінґ - {ms}мс"
+        "value": "Мій пінґ - {ms, number, integer}мс"
       },
       "wsPing": {
         "name": "Пінґ WebSoket",
-        "value": "Пінґ WebSoket - {ms} мс"
+        "value": "Пінґ WebSoket - {ms, number, integer} мс"
       },
       "onlineSince": {
         "name": "Онлайн з"
