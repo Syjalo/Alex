@@ -10,7 +10,7 @@
         "description": "Translations may not be completed and contain errors"
       },
       "unknownLanguage": {
-        "title": "Unknown language",
+        "title": "Ismeretlen nyelv",
         "description": "Couldn't find a language by your query: {query}"
       }
     },
