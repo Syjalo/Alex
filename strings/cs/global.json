@@ -5,5 +5,5 @@
     "next": "Další stránka",
     "last": "Poslední stránka"
   },
-  "languageRolesUpdated": "Your roles has been successfully updated! Now you have {count, plural, one {# language role} other {# language roles}} ({roles})."
+  "languageRolesUpdated": "Tvé role byly úspěšně aktualizovány! Teď máš {count, plural, one {# jazykovou roli} few {# jazykové role} other {# jazykových rolí}} ({roles})."
 }
