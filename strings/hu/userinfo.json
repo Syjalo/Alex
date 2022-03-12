@@ -2,27 +2,27 @@
   "embed": {
     "field": {
       "status": {
-        "name": "Status",
+        "name": "Állapot",
         "values": {
           "status": {
-            "online": "Online",
-            "idle": "Idle",
-            "dnd": "Do Not Disturb",
-            "invisible": "Invisible",
-            "offline": "Offline"
+            "online": "Elérhető",
+            "idle": "Tétlen",
+            "dnd": "Elfoglalt",
+            "invisible": "Láthatatlan",
+            "offline": "Nem elérhető"
           },
           "platform": {
             "web": "Web",
-            "mobile": "Mobile",
-            "desktop": "Desktop"
+            "mobile": "Mobil",
+            "desktop": "Asztali alkalmazás"
           }
         }
       },
       "createdAccount": {
-        "name": "Created the account"
+        "name": "Létrehozta a fiókot"
       },
       "joinedServer": {
-        "name": "Joined the server"
+        "name": "Csatlakozott a szerverhez"
       },
       "serverBooster": {
         "name": "Server Booster since"
@@ -31,10 +31,10 @@
         "name": "{count, plural, =1 {Role (#)} other {Roles (#)}}"
       },
       "activity": {
-        "name": "Activity",
+        "name": "Tevékenység",
         "values": {
           "custom": {
-            "name": "Custom Status"
+            "name": "Egyéni állapot"
           },
           "spotify": {
             "value": "{name} by {artists} on {album}"

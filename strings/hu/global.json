@@ -1,9 +1,9 @@
 {
   "buttons": {
-    "first": "First page",
-    "previous": "Previous page",
-    "next": "Next page",
-    "last": "Last page"
+    "first": "Első oldal",
+    "previous": "Előző oldal",
+    "next": "Következő oldal",
+    "last": "Utolsó oldal"
   },
   "languageRolesUpdated": "Your roles has been successfully updated! Now you have {count, plural, one {# language role} other {# language roles}} ({roles})."
 }
