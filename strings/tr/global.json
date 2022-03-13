@@ -1,9 +1,9 @@
 {
   "buttons": {
-    "first": "First page",
-    "previous": "Previous page",
-    "next": "Next page",
-    "last": "Last page"
+    "first": "İlk sayfa",
+    "previous": "Önceki sayfa",
+    "next": "Sonraki sayfa",
+    "last": "Son sayfa"
   },
-  "languageRolesUpdated": "Your roles has been successfully updated! Now you have {count, plural, one {# language role} other {# language roles}} ({roles})."
+  "languageRolesUpdated": "Rolleriniz başarılı bir şekilde güncellendi! Şimdi sizde {count, plural, other {# dil rolü}} var ({roles})."
 }
