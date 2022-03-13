@@ -28,7 +28,7 @@
         "name": "Vylepšuje server od"
       },
       "roles": {
-        "name": "{count, plural, one {Role (#)} few {Role (#)} other {Rolí (#)}}"
+        "name": "{count, plural, =1 {Role (#)} other {Rolí (#)}}"
       },
       "activity": {
         "name": "Aktivita",

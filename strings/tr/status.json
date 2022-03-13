@@ -4,14 +4,14 @@
     "field": {
       "ping": {
         "name": "Gecikme",
-        "value": "Gecikmem {ms}ms"
+        "value": "Gecikmem {ms, number, integer}ms"
       },
       "wsPing": {
-        "name": "WebSoket ping",
-        "value": "WebSoket ping is {ms, number, integer}ms"
+        "name": "WebSoket gecikmesi",
+        "value": "WebSoket gecikmesi {ms, number, integer}ms"
       },
       "onlineSince": {
-        "name": "Online since"
+        "name": "Şu zamandan beri çevrimiçi"
       }
     }
   }

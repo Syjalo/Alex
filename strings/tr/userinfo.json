@@ -19,25 +19,25 @@
         }
       },
       "createdAccount": {
-        "name": "Created the account"
+        "name": "Hesabın oluşturulduğu tarih"
       },
       "joinedServer": {
-        "name": "Joined the server"
+        "name": "Sunucuya katılma tarihi"
       },
       "serverBooster": {
         "name": "Şu tarihten beri sunucu takviyecisi"
       },
       "roles": {
-        "name": "{count, plural, =1 {Role (#)} other {Roles (#)}}"
+        "name": "{count, plural, =1 {Rol (#)} other {Roller (#)}}"
       },
       "activity": {
-        "name": "Activity",
+        "name": "Aktivite",
         "values": {
           "custom": {
-            "name": "Custom Status"
+            "name": "Özel Durum"
           },
           "spotify": {
-            "value": "{name} by {artists} on {album}"
+            "value": "{name} — {artists}\nAlbüm: {album}"
           }
         }
       }
