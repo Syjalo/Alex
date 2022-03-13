@@ -1,9 +1,9 @@
 {
   "cooldownExist": "Lütfen bekleyiniz. {command} {timestamp} komutunu kullanabileceksiniz",
-  "playerNotFound": "Player couldn't be found",
-  "notForYou": "This menu is not for you",
+  "playerNotFound": "Oyuncu bulunamadı",
+  "notForYou": "Bu menü sizin için değil",
   "notTextChannel": "Kanal metin kanalı olmalıdır",
   "underDevelopment": "Bu komut şuanlık geliştirme sürecinde",
-  "unexpectedError": "Beklenmeyen bir hata oluştu",
+  "unexpectedError": "Beklenmedik bir hata oluştu",
   "userNotFound": "Kullanıcı bulunamadı"
 }
