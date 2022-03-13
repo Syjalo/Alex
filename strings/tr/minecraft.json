@@ -1,10 +1,10 @@
 {
   "embed": {
-    "title": "{username}'s name history",
+    "title": "{username} kişisinin isim geçmişi",
     "field": {
       "name": {
         "values": {
-          "unknown": "Unknown"
+          "unknown": "Bilinmiyor"
         }
       }
     }
