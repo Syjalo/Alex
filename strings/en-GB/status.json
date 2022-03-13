@@ -4,7 +4,7 @@
     "field": {
       "ping": {
         "name": "Ping",
-        "value": "My ping is {ms}ms"
+        "value": "My ping is {ms, number, integer}ms"
       },
       "wsPing": {
         "name": "WebSoket ping",
