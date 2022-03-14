@@ -14,10 +14,10 @@
     tslib "^2.3.1"
     zod "^3.11.6"
 
-"@discordjs/collection@^0.6.0-dev", "@discordjs/collection@^0.6.0-dev.1646914071.dcd4797":
-  version "0.6.0-dev.1646914071.dcd4797"
-  resolved "https://registry.yarnpkg.com/@discordjs/collection/-/collection-0.6.0-dev.1646914071.dcd4797.tgz#c9beceff3e1e23cebb0c822d16b06c076f335254"
-  integrity sha512-dqPud6yY7W51K1zlmi1CrEnfj6IvueOJymE5SIcDEPb+1hWV/o0KpaXn2BXIB85o5thFmMuVY1H0C591TmTPDw==
+"@discordjs/collection@^0.6.0-dev", "@discordjs/collection@^0.6.0-dev.1647259738.2297c2b":
+  version "0.6.0-dev.1647259738.2297c2b"
+  resolved "https://registry.yarnpkg.com/@discordjs/collection/-/collection-0.6.0-dev.1647259738.2297c2b.tgz#d827b16b82bda345f3e1222a03c245fe08b108f8"
+  integrity sha512-A+c2qy2HCzVDD3MAoIsL+MKPJhI+jCrcZbIIc6nRZcnCKT544qlI2Sr972sw1bzOj97HD/m4Qd0ElUeQzkHsbQ==
 
 "@discordjs/rest@^0.4.0-dev", "@discordjs/rest@^0.4.0-dev.1646913818.dcd4797":
   version "0.4.0-dev.1646913818.dcd4797"
