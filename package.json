@@ -28,7 +28,7 @@
     "discord.js": "^14.0.0-dev.1646914074.dcd4797",
     "dotenv": "^16.0.0",
     "mongodb": "^4.4.1",
-    "prettier": "^2.5.1",
+    "prettier": "^2.6.0",
     "typescript": "^4.6.2"
   },
   "devDependencies": {
