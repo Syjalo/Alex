@@ -23,7 +23,7 @@
     "@discordjs/collection": "^0.6.0-dev.1646914071.dcd4797",
     "@discordjs/rest": "^0.4.0-dev.1646913818.dcd4797",
     "@messageformat/core": "^3.0.1",
-    "@statsfm/spotify.js": "^1.8.3",
+    "@statsfm/spotify.js": "^1.8.4",
     "axios": "^0.26.1",
     "discord.js": "^14.0.0-dev.1646914074.dcd4797",
     "dotenv": "^16.0.0",
