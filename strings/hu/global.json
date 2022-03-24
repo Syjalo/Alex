@@ -3,7 +3,9 @@
     "first": "Első oldal",
     "previous": "Előző oldal",
     "next": "Következő oldal",
-    "last": "Utolsó oldal"
+    "last": "Utolsó oldal",
+    "yes": "Yes",
+    "no": "No"
   },
   "languageRolesUpdated": "Your roles has been successfully updated! Now you have {count, plural, one {# language role} other {# language roles}} ({roles})."
 }
