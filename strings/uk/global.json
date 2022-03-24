@@ -3,7 +3,9 @@
     "first": "Перша сторінка",
     "previous": "Попередня сторінка",
     "next": "Наступна сторінка",
-    "last": "Остання сторінка"
+    "last": "Остання сторінка",
+    "yes": "Yes",
+    "no": "No"
   },
   "languageRolesUpdated": "Your roles has been successfully updated! Now you have {count, plural, one {# language role} other {# language roles}} ({roles})."
 }
