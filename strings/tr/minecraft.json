@@ -7,6 +7,9 @@
           "unknown": "Bilinmiyor"
         }
       }
+    },
+    "footer": {
+      "text": "Page {current}/{total}"
     }
   }
 }
