@@ -127,7 +127,7 @@ export const command: AlexBotChatInputApplicationCommandData = {
     });
 
     collector.once('end', async () => {
-      await interaction.editReply({ components: [makePageComponents(pages.length, -1)] });
+      if (pages.length > 1) await interaction.editReply({ components: [makePageComponents(pages.length, -1)] });
     });
   },
 };
