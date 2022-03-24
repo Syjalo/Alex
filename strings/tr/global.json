@@ -3,7 +3,9 @@
     "first": "İlk sayfa",
     "previous": "Önceki sayfa",
     "next": "Sonraki sayfa",
-    "last": "Son sayfa"
+    "last": "Son sayfa",
+    "yes": "Yes",
+    "no": "No"
   },
   "languageRolesUpdated": "Rolleriniz başarılı bir şekilde güncellendi! Şimdi sizde {count, plural, other {# dil rolü}} var ({roles})."
 }
