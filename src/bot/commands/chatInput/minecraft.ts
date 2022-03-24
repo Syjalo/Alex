@@ -103,6 +103,8 @@ export const command: AlexBotChatInputApplicationCommandData = {
       fetchReply: true,
     });
 
+    if (pages.length < 2) return;
+
     const message = await interaction.editReply(makeMessageOptions(pages, 0));
     const collector = message.createMessageComponentCollector({ idle: 150000, componentType: ComponentType.Button });
 
@@ -124,7 +126,7 @@ export const command: AlexBotChatInputApplicationCommandData = {
     });
 
     collector.once('end', async () => {
-      if (pages.length > 1) await interaction.editReply({ components: [makePageComponents(pages.length, -1)] });
+      await interaction.editReply({ components: [makePageComponents(pages.length, -1)] });
     });
   },
 };
