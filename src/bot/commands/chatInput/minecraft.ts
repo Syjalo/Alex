@@ -103,9 +103,10 @@ export const command: AlexBotChatInputApplicationCommandData = {
       fetchReply: true,
     });
 
+    const message = await interaction.editReply(makeMessageOptions(pages, 0));
+
     if (pages.length < 2) return;
 
-    const message = await interaction.editReply(makeMessageOptions(pages, 0));
     const collector = message.createMessageComponentCollector({ idle: 150000, componentType: ComponentType.Button });
 
     collector.on('collect', async (buttonInteraction) => {
