@@ -64,7 +64,7 @@ export const command: AlexBotChatInputApplicationCommandData = {
         })
         .setThumbnail(`https://mc-heads.net/body/${uuid}/4096/left`)
         .setColor(Colors.Green);
-      if (pageCount < 2)
+      if (pageCount > 1)
         embed.setFooter({
           text: getString('embed.footer.text', { variables: { current: pageIndex + 1, total: pageCount } }),
         });
