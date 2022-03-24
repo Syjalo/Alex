@@ -1,10 +1,10 @@
 import { AutocompleteInteraction } from 'discord.js';
-import { AlexClient } from '../../util/AlexClient';
+import { database } from '../../../database';
 
-export default async (interaction: AutocompleteInteraction<'cached'>, client: AlexClient) => {
+export const autocomplete = async (interaction: AutocompleteInteraction<'cached'>) => {
   const { name, value } = interaction.options.getFocused(true);
   if (name === 'language' && typeof value === 'string') {
-    const languages = await client.db.languages.find().toArray();
+    const languages = await database.languages.find().toArray();
     const results = languages.filter(
       (language) =>
         language.locale.toLowerCase().startsWith(value.toLowerCase()) ||
@@ -12,7 +12,7 @@ export default async (interaction: AutocompleteInteraction<'cached'>, client: Al
         language.nativeName.toLowerCase().startsWith(value.toLowerCase()),
     );
     results.sort((a, b) => (a.nativeName > b.nativeName ? 1 : -1)).splice(25);
-    interaction.respond(
+    await interaction.respond(
       results.map((language) => ({
         name: `${language.nativeName} (${language.name})`,
         value: language.locale,

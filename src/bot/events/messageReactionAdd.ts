@@ -1,12 +1,19 @@
-import { AlexClient } from '../util/AlexClient';
-import { ids } from '../util/Constants';
+import { AlexBotClientEvent } from '../types';
+import { Ids } from '../util/Constants';
 
-export default (client: AlexClient) => {
-  client.on('messageReactionAdd', async (reaction, user) => {
-    if (reaction.message.partial) await reaction.message.fetch().catch(() => null);
-    if (!reaction.message) return;
-    if (user.partial) await user.fetch();
-    if (reaction.message.channel.id === ids.channels.suggestions && reaction.message.author!.id === user.id)
-      reaction.users.remove(user.id);
-  });
+export const event: AlexBotClientEvent<'messageReactionAdd'> = {
+  name: 'messageReactionAdd',
+  listener: async (_, reaction, user) => {
+    if (reaction.partial) {
+      await reaction.fetch().catch(() => null);
+      if (reaction.partial) return;
+    }
+    if (reaction.message.partial) {
+      await reaction.message.fetch().catch(() => null);
+      if (reaction.message.partial) return;
+    }
+
+    if (reaction.message.channel.id === Ids.channels.suggestions && reaction.message.author.id === user.id)
+      await reaction.users.remove(user.id);
+  },
 };

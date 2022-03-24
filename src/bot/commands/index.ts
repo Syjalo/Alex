@@ -1,11 +1,7 @@
-export * as eval from './admin/eval';
-export * as say from './admin/say';
-
-export * as minecraft from './info/minecraft';
-export * as userinfo from './info/userinfo';
-
-export * as status from './misc/status';
-
-export * as report from './moderation/report';
-
-export * as language from './util/language';
+export * as eval from './chatInput/eval';
+export * as language from './chatInput/language';
+export * as minecraft from './chatInput/minecraft';
+export * as report from './chatInput/report';
+export * as say from './chatInput/say';
+export * as status from './chatInput/status';
+export * as userinfo from './chatInput/userinfo';

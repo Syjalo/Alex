@@ -1,13 +1,14 @@
-import { inspect } from 'node:util';
 import discord, { ApplicationCommandOptionType, Colors, Formatters, UnsafeEmbed as Embed } from 'discord.js';
 import { format } from 'prettier';
-import { transpile, getParsedCommandLineOfConfigFile, sys } from 'typescript';
-import { Command } from '../../types';
-import { ids } from '../../util/Constants';
+import { getParsedCommandLineOfConfigFile, sys, transpile } from 'typescript';
+import { inspect } from 'node:util';
+import { AlexBotChatInputApplicationCommandData } from '../../types';
+import { Ids } from '../../util/Constants';
 
-const command: Command = {
+export const command: AlexBotChatInputApplicationCommandData = {
   name: 'eval',
   description: 'Evals provided code',
+  defaultPermission: false,
   options: [
     {
       type: ApplicationCommandOptionType.String,
@@ -21,15 +22,19 @@ const command: Command = {
       description: 'Whether the reply should be ephemeral',
     },
   ],
-  allowedUsers: [ids.users.syjalo],
-  async listener(interaction, client, getString) {
-    if (!this.allowedUsers!.includes(interaction.user.id)) return;
+  allowedUsers: [Ids.developer],
+  listener: async (interaction) => {
+    // 2FA
+    if (!command.allowedUsers?.includes(interaction.user.id)) return;
+
     const ephemeral = !!interaction.options.getBoolean('ephemeral'),
       Discord = discord,
-      Constants = require('../../util/Constants');
+      Util = require('../../util');
+
     await interaction.deferReply({ ephemeral });
+
     let codeToEval = interaction.options.getString('code', true);
-    const prettierOptions = { ...require('../../../.prettierrc.json'), printWidth: 55 };
+    const prettierOptions = { ...require('../../../../.prettierrc.json'), printWidth: 55 };
     codeToEval = format(codeToEval.includes('await ') ? `(async () => {\n${codeToEval}\n})()` : codeToEval, {
       ...prettierOptions,
       parser: 'typescript',
@@ -75,7 +80,7 @@ const command: Command = {
             },
           )
           .setColor(Colors.Green);
-      interaction.editReply({ embeds: [embed] });
+      await interaction.editReply({ embeds: [embed] });
     } catch (error) {
       const embed = new Embed()
         .setTitle('An error occured while evaling provided code')
@@ -84,9 +89,7 @@ const command: Command = {
           value: Formatters.codeBlock((error.stack ?? inspect(error)).substring(0, 1017)),
         })
         .setColor(Colors.Red);
-      interaction.editReply({ embeds: [embed] });
+      await interaction.editReply({ embeds: [embed] });
     }
   },
 };
-
-export default command;

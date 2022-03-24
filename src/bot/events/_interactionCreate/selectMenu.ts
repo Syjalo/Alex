@@ -1,16 +1,16 @@
 import { SelectMenuInteraction } from 'discord.js';
 import { GetString } from '../../types';
-import { ids } from '../../util/Constants';
+import { Ids } from '../../util/Constants';
 
-export default async (interaction: SelectMenuInteraction<'cached'>, getString: GetString) => {
+export const selectMenu = async (interaction: SelectMenuInteraction<'cached'>, getString: GetString) => {
   if (interaction.customId === 'language-role') {
-    const languageRoles = [ids.roles.english, ids.roles.russian, ids.roles.otherLanguages],
+    const languageRoles = [Ids.roles.english, Ids.roles.russian, Ids.roles.otherLanguages],
       rolesToRemove = languageRoles.filter((roleId) => !interaction.values.includes(roleId));
 
     await interaction.member.roles.add(interaction.values);
     await interaction.member.roles.remove(rolesToRemove);
 
-    interaction.reply({
+    await interaction.reply({
       content: getString('languageRolesUpdated', {
         variables: {
           count: interaction.values.length,

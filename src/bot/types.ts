@@ -1,91 +1,58 @@
-import { Awaitable, ChatInputApplicationCommandData, ChatInputCommandInteraction, Snowflake } from 'discord.js';
-import { AlexClient } from './util/AlexClient';
+import { SlashCommandBuilder } from '@discordjs/builders';
+import { RESTPostAPIApplicationCommandsJSONBody } from 'discord-api-types/v10';
+import {
+  Awaitable,
+  ChatInputApplicationCommandData,
+  ChatInputCommandInteraction,
+  ClientEvents,
+  Locale as DiscordLocale,
+  Snowflake,
+} from 'discord.js';
+import { AlexBotClient } from './util/AlexBotClient';
 
-export interface Command extends ChatInputApplicationCommandData {
-  listener(
-    interaction: ChatInputCommandInteraction<'cached'>,
-    client: AlexClient,
-    getString: GetString,
-  ): Awaitable<void>;
-  dev?: true;
+export interface AlexBotChatInputApplicationCommandData extends ChatInputApplicationCommandData {
+  cooldown?: number;
   allowedRoles?: Snowflake[];
   allowedUsers?: Snowflake[];
-  cooldown?: number;
+  dev?: true;
+  listener: (
+    interaction: ChatInputCommandInteraction<'cached'>,
+    client: AlexBotClient,
+    getString: GetString,
+  ) => Awaitable<void>;
 }
 
-export interface DBUser {
-  id: Snowflake;
-  locale: Locale;
-  savedRoles?: Snowflake[];
-}
-
-export interface DBLanguage {
-  locale: Locale;
-  name: string;
-  nativeName: string;
+export interface AlexBotClientEvent<K extends keyof ClientEvents> {
+  name: K;
+  once?: true;
+  listener: (client: AlexBotClient, ...args: ClientEvents[K]) => Awaitable<void>;
 }
 
 export interface GetStringOptions {
   variables?: Record<string, string | number>;
   fileName?: string;
-  locale?: Locale;
+  locale?: Locale | DiscordLocale;
 }
 
-export interface NameHistory {
+export interface MojangAPINameHistory {
   name: string;
   changedToAt?: number;
 }
 
-export interface VirusTotalURLsPostResult {
-  data: {
-    id: string;
-  };
+export interface MojangAPIUsernameToUUID {
+  name: string;
+  id: string;
 }
 
-export interface VirusTotalAnalysesGetResult {
-  data: {
-    attributes: {
-      status: string;
-      stats: {
-        malicious: number;
-        suspicious: number;
-      };
-    };
-  };
-}
+export type GetString = (key: string, options?: GetStringOptions) => any;
 
-export type GetString = <T extends any = any>(key: string, options?: GetStringOptions) => T;
+export type MojangAPIUUIDToNameHistory = MojangAPINameHistory[];
 
 export enum Locale {
-  Bulgarian = 'bg',
   Czech = 'cs',
-  Danish = 'da',
-  German = 'de',
-  Greek = 'el',
   EnglishUS = 'en-US',
-  EnglishGB = 'en-GB',
-  SpanishES = 'es-ES',
-  Finnish = 'fi',
-  French = 'fr',
-  Hindi = 'hi',
-  Croatian = 'hr',
-  Hungarian = 'hu',
   Indonesian = 'id',
-  Italian = 'it',
-  Japanese = 'ja',
-  Korean = 'ko',
-  Lithuanian = 'lt',
-  Dutch = 'nl',
-  Norwegian = 'no',
-  Polish = 'pl',
-  PortugueseBR = 'pt-BR',
-  Romanian = 'ro',
   Russian = 'ru',
-  Swedish = 'sv-SE',
-  Thai = 'th',
   Turkish = 'tr',
   Ukrainian = 'uk',
-  Vietnamese = 'vi',
-  ChineseCN = 'zh-CN',
-  ChineseTW = 'zh-TW',
 }

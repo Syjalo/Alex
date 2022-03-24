@@ -1,22 +1,24 @@
-import { Colors, UnsafeEmbed as Embed } from 'discord.js';
-import { Command } from '../../types';
+import { ColorResolvable, Colors, UnsafeEmbed as Embed } from 'discord.js';
+import { AlexBotChatInputApplicationCommandData } from '../../types';
 import { Util } from '../../util/Util';
 
-const command: Command = {
+export const command: AlexBotChatInputApplicationCommandData = {
   name: 'status',
   description: 'Gives the bot status',
-  async listener(interaction, client, getString) {
+  listener: async (interaction, client, getString) => {
     const firstTimestamp = Date.now();
     await interaction.deferReply();
     const ping = Date.now() - firstTimestamp,
       wsPing = client.ws.ping;
-    let color: number;
-    if (ping > 0 && ping < 250) color = Colors.Green;
+
+    let color: ColorResolvable;
+    if (ping >= 0 && ping < 250) color = Colors.Green;
     else if (ping < 500) color = Colors.Yellow;
     else color = Colors.Red;
+
     const embed = new Embed()
       .setTitle(getString('embed.title'))
-      .addFields(
+      .setFields(
         {
           name: getString('embed.field.ping.name'),
           value: getString('embed.field.ping.value', { variables: { ms: ping } }),
@@ -31,8 +33,6 @@ const command: Command = {
         },
       )
       .setColor(color);
-    interaction.editReply({ embeds: [embed] });
+    await interaction.editReply({ embeds: [embed] });
   },
 };
-
-export default command;

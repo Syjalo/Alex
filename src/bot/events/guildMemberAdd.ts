@@ -1,28 +1,26 @@
-import { ColorResolvable, Colors, TextChannel, UnsafeEmbed as Embed } from 'discord.js';
-import { AlexClient } from '../util/AlexClient';
-import { ids } from '../util/Constants';
+import { ColorResolvable, Colors, Formatters, TextChannel, UnsafeEmbed as Embed } from 'discord.js';
+import { AlexBotClientEvent } from '../types';
+import { Ids } from '../util/Constants';
 import { Util } from '../util/Util';
 
-export default (client: AlexClient) => {
-  client.on('guildMemberAdd', async (member) => {
+export const event: AlexBotClientEvent<'guildMemberAdd'> = {
+  name: 'guildMemberAdd',
+  listener: async (client, member) => {
     const userCreatedAccountAgo = Date.now() - member.user.createdTimestamp;
     let color: ColorResolvable;
-    if (userCreatedAccountAgo > 1000 * 60 * 60 * 24 * 28 /*4 weeks*/) {
-      color = Colors.Green;
-    } else if (userCreatedAccountAgo > 1000 * 60 * 60 * 24 * 14 /*2 weeks*/) {
-      color = Colors.Yellow;
-    } else {
-      color = Colors.Red;
-    }
-    const joinEmbed = new Embed()
+    if (userCreatedAccountAgo > 2419200000 /*4 weeks*/) color = Colors.Green;
+    else if (userCreatedAccountAgo > 1209600000 /*2 weeks*/) color = Colors.Yellow;
+    else color = Colors.Red;
+
+    const embed = new Embed()
       .setAuthor({
-        iconURL: member.displayAvatarURL(),
+        iconURL: member.displayAvatarURL({ extension: 'png' }),
         name: member.displayName,
         url: Util.makeUserURL(member.id),
       })
       .setTitle('Welcome!')
-      .setDescription(`${member} \`${member.user.tag}\` (${member.id})`)
-      .addFields(
+      .setDescription(`${member} ${Formatters.inlineCode(member.user.tag)} (${member.id})`)
+      .setFields(
         {
           name: 'Created the account',
           value: Util.makeFormattedTime(Math.floor(member.user.createdTimestamp / 1000)),
@@ -33,6 +31,7 @@ export default (client: AlexClient) => {
         },
       )
       .setColor(color);
-    (client.channels.resolve(ids.channels.joinLeave) as TextChannel).send({ embeds: [joinEmbed] });
-  });
+
+    await (client.channels.resolve(Ids.channels.joinLeave) as TextChannel).send({ embeds: [embed] });
+  },
 };

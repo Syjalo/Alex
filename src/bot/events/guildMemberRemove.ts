@@ -1,36 +1,35 @@
-import { Colors, TextChannel, UnsafeEmbed as Embed } from 'discord.js';
-import { AlexClient } from '../util/AlexClient';
-import { ids } from '../util/Constants';
+import { Colors, Formatters, TextChannel, UnsafeEmbed as Embed } from 'discord.js';
+import { database } from '../../database';
+import { AlexBotClientEvent } from '../types';
+import { Ids } from '../util/Constants';
 import { Util } from '../util/Util';
 
-export default (client: AlexClient) => {
-  client.on('guildMemberRemove', (member) => {
-    const leaveEmbed = new Embed()
+export const event: AlexBotClientEvent<'guildMemberRemove'> = {
+  name: 'guildMemberRemove',
+  listener: async (client, member) => {
+    const embed = new Embed()
       .setAuthor({
-        iconURL: member.displayAvatarURL(),
+        iconURL: member.displayAvatarURL({ extension: 'png' }),
         name: member.displayName,
         url: Util.makeUserURL(member.id),
       })
       .setTitle('Goodbye!')
-      .setDescription(`${member} \`${member.user.tag}\` (${member.id})`)
+      .setDescription(`${member} ${Formatters.inlineCode(member.user.tag)} (${member.id})`)
       .setFields(
         {
           name: 'Created the account',
-          value: `<t:${Math.floor(member.user.createdTimestamp / 1000)}> (<t:${Math.floor(
-            member.user.createdTimestamp / 1000,
-          )}:R>)`,
+          value: Util.makeFormattedTime(Math.floor(Date.now() / 1000)),
         },
         {
           name: 'Left the server',
-          value: `<t:${Math.floor(Date.now() / 1000)}> (<t:${Math.floor(Date.now() / 1000)}:R>)`,
+          value: Util.makeFormattedTime(Math.floor(Date.now() / 1000)),
         },
       )
       .setColor(Colors.LightGrey);
-    (client.channels.resolve(ids.channels.joinLeave) as TextChannel).send({ embeds: [leaveEmbed] });
+    await (client.channels.resolve(Ids.channels.joinLeave) as TextChannel).send({ embeds: [embed] });
 
-    const rolesToSave = ids.rolesToSave.filter((roleId) => member.roles.cache.has(roleId));
-    if (rolesToSave.length > 0) {
-      client.db.users.findOneAndUpdate({ id: member.id }, { $set: { savedRoles: rolesToSave } }, { upsert: true });
-    }
-  });
+    const rolesToSave = Ids.rolesToSave.filter((id) => member.roles.cache.has(id));
+    if (rolesToSave.length > 0)
+      await database.users.findOneAndUpdate({ id: member.id }, { $set: { savedRoles: rolesToSave } }, { upsert: true });
+  },
 };

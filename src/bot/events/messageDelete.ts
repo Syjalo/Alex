@@ -1,12 +1,15 @@
 import { TextChannel } from 'discord.js';
-import { AlexClient } from '../util/AlexClient';
-import { ids } from '../util/Constants';
+import { AlexBotClientEvent } from '../types';
+import { Ids } from '../util/Constants';
 
-export default (client: AlexClient) => {
-  client.on('messageDelete', async (message) => {
-    if (message.channel.id === ids.channels.suggestions) {
+export const event: AlexBotClientEvent<'messageDelete'> = {
+  name: 'messageDelete',
+  listener: async (_, message) => {
+    if (message.system || !message.inGuild()) return;
+
+    if (message.channelId === Ids.channels.suggestions) {
       const thread = await (message.channel as TextChannel).threads.fetch(message.id).catch(() => null);
-      if (thread) thread.delete('Original message was deleted');
+      if (thread) await thread.delete('Original message was deleted');
     }
-  });
+  },
 };

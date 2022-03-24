@@ -1,8 +1,10 @@
-import { ApplicationCommandOptionType, Colors, UnsafeEmbed as Embed, User } from 'discord.js';
-import { Command } from '../../types';
+import { ApplicationCommandOptionType, Colors, Formatters, UnsafeEmbed as Embed } from 'discord.js';
+import { spotify } from '../../../spotify';
+import { AlexBotChatInputApplicationCommandData } from '../../types';
+import { Emojis } from '../../util/Constants';
 import { Util } from '../../util/Util';
 
-const command: Command = {
+export const command: AlexBotChatInputApplicationCommandData = {
   name: 'userinfo',
   description: 'Gives information about user',
   options: [
@@ -17,26 +19,21 @@ const command: Command = {
       description: 'Id of user to give information about',
     },
   ],
-  async listener(interaction, client, getString) {
-    let user: User,
-      member = interaction.options.getMember('user'),
-      id = interaction.options.getString('id');
+  listener: async (interaction, client, getString) => {
+    await interaction.deferReply();
 
-    if (member) user = await member.user.fetch();
-    else if (id) {
-      user = await client.users.fetch(id).catch(() => {
-        throw 'userNotFound';
-      });
-      member = interaction.guild!.members.resolve(id);
-    } else {
-      user = await interaction.user.fetch();
-      member = interaction.member;
-    }
+    let user = interaction.options.getUser('user');
+    const id = interaction.options.getString('id');
+
+    if (!(user || id)) user = interaction.user;
+    if (!user && id) user = await client.users.fetch(id).catch(() => null);
+    if (!user) throw 'userNotFound';
+    const member = await interaction.guild.members.fetch(user).catch(() => null);
 
     const embed = new Embed()
-      .setAuthor({ name: member?.displayName ?? user.username, url: Util.makeUserURL(user.id) })
-      .setDescription(`${user} \`${user.tag}\` (${user.id})`)
-      .setThumbnail(member?.displayAvatarURL({ size: 4096 }) ?? user.displayAvatarURL({ size: 4096 }))
+      .setAuthor({ name: member?.displayName || user.username, url: Util.makeUserURL(user.id) })
+      .setDescription(`${user}${user.bot ? ` ${Emojis.bot}` : ''} ${Formatters.inlineCode(user.tag)} (${user.id})`)
+      .setThumbnail(member?.displayAvatarURL({ size: 4096 }) || user.displayAvatarURL({ size: 4096 }))
       .setColor(member?.displayColor || Colors.LightGrey);
 
     if (member) {
@@ -44,16 +41,16 @@ const command: Command = {
         statusName = member?.presence?.status;
       switch (member?.presence?.status) {
         case 'online':
-          emoji = '<:online:948828497550409738>';
+          emoji = Emojis.online;
           break;
         case 'idle':
-          emoji = '<:idle:948828495474229278>';
+          emoji = Emojis.idle;
           break;
         case 'dnd':
-          emoji = '<:dnd:948828496841551892>';
+          emoji = Emojis.dnd;
           break;
         default:
-          emoji = '<:offline:948828496027869194>';
+          emoji = Emojis.offline;
           statusName = 'offline';
           break;
       }
@@ -96,13 +93,13 @@ const command: Command = {
       if (custom) {
         let status = '';
         if (custom.emoji) status += `${custom.emoji} `;
-        status += custom.state;
+        if (custom.state) status += custom.state;
         activitiesFieldValue += `**${getString('embed.field.activity.values.custom.name')}**\n${status}\n`;
       }
 
-      const spotify = activities.find((a) => a.id === 'spotify:1');
-      if (spotify) {
-        const res = await client.spotify.tracks.get(spotify.syncId!);
+      const spotifyActivity = activities.find((a) => a.id === 'spotify:1');
+      if (spotifyActivity) {
+        const res = await spotify.tracks.get(spotifyActivity.syncId!);
         activitiesFieldValue += `**Spotify**\n${getString('embed.field.activity.values.spotify.value', {
           variables: {
             name: `[${res.name}](${res.external_urls.spotify})`,
@@ -128,8 +125,6 @@ const command: Command = {
     }
     if (user.banner) embed.setImage(user.bannerURL({ size: 4096 })!);
 
-    interaction.reply({ embeds: [embed] });
+    await interaction.editReply({ embeds: [embed] });
   },
 };
-
-export default command;
