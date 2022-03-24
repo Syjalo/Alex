@@ -29,7 +29,7 @@ export const command: AlexBotChatInputApplicationCommandData = {
 
     const ephemeral = !!interaction.options.getBoolean('ephemeral'),
       Discord = discord,
-      Util = require('../../util');
+      Constants = require('../../util/Constants');
 
     await interaction.deferReply({ ephemeral });
 
