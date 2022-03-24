@@ -7,6 +7,9 @@
           "unknown": "Невідомо"
         }
       }
+    },
+    "footer": {
+      "text": "Page {current}/{total}"
     }
   }
 }

@@ -3,7 +3,9 @@
     "first": "Halaman pertama",
     "previous": "Halaman sebelumnya",
     "next": "Halaman selanjutnya",
-    "last": "Halaman terakhir"
+    "last": "Halaman terakhir",
+    "yes": "Yes",
+    "no": "No"
   },
   "languageRolesUpdated": "Role anda telah diperbarui! Sekarang anda punya {count, plural, other {# role bahasa}} ({roles})."
 }

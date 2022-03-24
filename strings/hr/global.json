@@ -3,7 +3,9 @@
     "first": "First page",
     "previous": "Previous page",
     "next": "Next page",
-    "last": "Last page"
+    "last": "Last page",
+    "yes": "Yes",
+    "no": "No"
   },
   "languageRolesUpdated": "Your roles has been successfully updated! Now you have {count, plural, one {# language role} other {# language roles}} ({roles})."
 }

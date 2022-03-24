@@ -7,6 +7,9 @@
           "unknown": "Неизвестна"
         }
       }
+    },
+    "footer": {
+      "text": "Страница {current} из {total}"
     }
   }
 }
