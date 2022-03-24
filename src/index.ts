@@ -9,9 +9,10 @@ import { Ids } from './bot/util/Constants';
 import { client, rest } from './bot';
 import { inspect } from 'util';
 import { Routes } from 'discord-api-types/v10';
+import { database } from './database';
 
 const signalsListener = async () => {
-  const promises: Promise<unknown>[] = [];
+  const promises: Promise<unknown>[] = [database.close()];
   if (process.env.NODE_ENV === 'production') {
     const embed = new Embed().setTitle('Scheduled restart').setColor(Colors.Yellow);
     promises.push(
