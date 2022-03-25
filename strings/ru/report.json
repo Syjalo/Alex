@@ -1,13 +1,13 @@
 {
   "doYouWantEmbed": {
-    "title": "Do you want to report {user}?",
+    "title": "Вы действительно хотите отправить жалобу на {user}?",
     "fields": {
       "reason": {
-        "name": "Reason"
+        "name": "Причина"
       }
     }
   },
   "sent": "Ваш отчёт был отправлен",
-  "canceled": "Your report has been canceled",
-  "timeout": "You haven't clicked a button for too long. Your report has been canceled"
+  "canceled": "Ваша жалоба отменена",
+  "timeout": "Вы слишком долго не нажимали на кнопки. Ваша жалоба отменена"
 }
