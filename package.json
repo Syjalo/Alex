@@ -33,7 +33,8 @@
   "devDependencies": {
     "@types/node": "16.11.26",
     "@types/prettier": "^2.4.4",
-    "prettier-plugin-organize-imports": "^2.3.4"
+    "prettier-plugin-organize-imports": "^2.3.4",
+    "husky": "^7.0.0"
   },
   "engines": {
     "node": "16.x"
