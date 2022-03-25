@@ -12,6 +12,7 @@ export const event: AlexBotClientEvent<'ready'> = {
   name: 'ready',
   once: true,
   listener: async (client) => {
+    console.log('Ready')
     if (process.env.NODE_ENV === 'production') {
       const embed = new Embed().setTitle('Ready').setColor(Colors.Green);
       await (client.channels.resolve(Ids.channels.botLog) as TextChannel).send({ embeds: [embed] });
