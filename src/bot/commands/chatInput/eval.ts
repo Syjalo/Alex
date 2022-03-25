@@ -1,10 +1,10 @@
+import { SlashCommandBuilder } from '@discordjs/builders';
 import discord, { Colors, Formatters, UnsafeEmbed as Embed } from 'discord.js';
+import { inspect } from 'node:util';
 import { format } from 'prettier';
 import { getParsedCommandLineOfConfigFile, sys, transpile } from 'typescript';
-import { inspect } from 'node:util';
 import { AlexBotChatInputCommand } from '../../types';
 import { Ids } from '../../util/Constants';
-import { SlashCommandBuilder } from '@discordjs/builders';
 
 export const command: AlexBotChatInputCommand = {
   data: new SlashCommandBuilder()

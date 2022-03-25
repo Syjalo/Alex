@@ -32,7 +32,8 @@
   },
   "devDependencies": {
     "@types/node": "16.11.26",
-    "@types/prettier": "^2.4.4"
+    "@types/prettier": "^2.4.4",
+    "prettier-plugin-organize-imports": "^2.3.4"
   },
   "engines": {
     "node": "16.x"

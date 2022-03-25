@@ -1,14 +1,15 @@
+// organize-imports-ignore
 import 'dotenv/config';
 import './bot';
 import './database';
 import './spotify';
 
-import process from 'node:process';
-import { Colors, Embed, Formatters, TextChannel } from 'discord.js';
-import { Ids } from './bot/util/Constants';
-import { client, rest } from './bot';
-import { inspect } from 'util';
 import { Routes } from 'discord-api-types/v10';
+import { Colors, Embed, Formatters } from 'discord.js';
+import process from 'node:process';
+import { inspect } from 'util';
+import { client, rest } from './bot';
+import { Ids } from './bot/util/Constants';
 import { database } from './database';
 
 const signalsListener = async () => {
