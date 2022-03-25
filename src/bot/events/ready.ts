@@ -12,14 +12,14 @@ export const event: AlexBotClientEvent<'ready'> = {
   name: 'ready',
   once: true,
   listener: async (client) => {
-    console.log('Ready')
+    console.log('Ready');
     if (process.env.NODE_ENV === 'production') {
       const embed = new Embed().setTitle('Ready').setColor(Colors.Green);
       await (client.channels.resolve(Ids.channels.botLog) as TextChannel).send({ embeds: [embed] });
     }
 
     const guild = client.guilds.resolve(Ids.guilds.main)!;
-    await guild.commands.set([...client.commands.values()]);
+    await guild.commands.set(client.commands.map((command) => command.data.toJSON()));
     for (const applicationCommand of guild.commands.cache.values()) {
       const command = client.commands.get(applicationCommand.name);
       if (!(command?.allowedRoles || command?.allowedUsers)) {

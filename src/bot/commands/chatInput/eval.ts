@@ -1,27 +1,18 @@
-import discord, { ApplicationCommandOptionType, Colors, Formatters, UnsafeEmbed as Embed } from 'discord.js';
+import discord, { Colors, Formatters, UnsafeEmbed as Embed } from 'discord.js';
 import { format } from 'prettier';
 import { getParsedCommandLineOfConfigFile, sys, transpile } from 'typescript';
 import { inspect } from 'node:util';
-import { AlexBotChatInputApplicationCommandData } from '../../types';
+import { AlexBotChatInputCommand } from '../../types';
 import { Ids } from '../../util/Constants';
+import { SlashCommandBuilder } from '@discordjs/builders';
 
-export const command: AlexBotChatInputApplicationCommandData = {
-  name: 'eval',
-  description: 'Evals provided code',
-  defaultPermission: false,
-  options: [
-    {
-      type: ApplicationCommandOptionType.String,
-      name: 'code',
-      description: 'Code to eval',
-      required: true,
-    },
-    {
-      type: ApplicationCommandOptionType.Boolean,
-      name: 'ephemeral',
-      description: 'Whether the reply should be ephemeral',
-    },
-  ],
+export const command: AlexBotChatInputCommand = {
+  data: new SlashCommandBuilder()
+    .setName('eval')
+    .setDescription('Evals provided code')
+    .setDefaultPermission(false)
+    .addStringOption((option) => option.setName('code').setDescription('Code to eval').setRequired(true))
+    .addBooleanOption((option) => option.setName('ephemeral').setDescription('Whether the reply should be ephemeral')),
   allowedUsers: [Ids.developer],
   listener: async (interaction) => {
     // 2FA

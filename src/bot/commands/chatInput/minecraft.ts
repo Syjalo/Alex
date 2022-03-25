@@ -1,25 +1,21 @@
-import { ActionRow, ButtonComponent } from '@discordjs/builders';
-import { ApplicationCommandOptionType, ButtonStyle, Colors, ComponentType, UnsafeEmbed as Embed } from 'discord.js';
+import { ActionRow, ButtonComponent, SlashCommandBuilder } from '@discordjs/builders';
+import { ButtonStyle, Colors, ComponentType, UnsafeEmbed as Embed } from 'discord.js';
 import fetch from 'node-fetch';
 import {
-  AlexBotChatInputApplicationCommandData,
+  AlexBotChatInputCommand,
   MojangAPINameHistory,
   MojangAPIUsernameToUUID,
   MojangAPIUUIDToNameHistory,
 } from '../../types';
 import { Util } from '../../util/Util';
 
-export const command: AlexBotChatInputApplicationCommandData = {
-  name: 'minecraft',
-  description: 'Gives information about Minecraft player',
-  options: [
-    {
-      type: ApplicationCommandOptionType.String,
-      name: 'player',
-      description: "Player's UUID or username to give information about",
-      required: true,
-    },
-  ],
+export const command: AlexBotChatInputCommand = {
+  data: new SlashCommandBuilder()
+    .setName('minecraft')
+    .setDescription('Gives information about Minecraft player')
+    .addStringOption((option) =>
+      option.setName('player').setDescription("Player's UUID or username to give information about").setRequired(true),
+    ),
   listener: async (interaction, _, getString) => {
     await interaction.deferReply({ fetchReply: true });
 

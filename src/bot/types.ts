@@ -1,3 +1,4 @@
+import { SlashCommandBuilder } from '@discordjs/builders';
 import {
   Awaitable,
   ChatInputApplicationCommandData,
@@ -8,7 +9,8 @@ import {
 } from 'discord.js';
 import { AlexBotClient } from './util/AlexBotClient';
 
-export interface AlexBotChatInputApplicationCommandData extends ChatInputApplicationCommandData {
+export interface AlexBotChatInputCommand {
+  data: Pick<SlashCommandBuilder, 'name' | 'toJSON'>;
   cooldown?: number;
   allowedRoles?: Snowflake[];
   allowedUsers?: Snowflake[];

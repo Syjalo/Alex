@@ -3,11 +3,11 @@ import { inspect } from 'util';
 import { database } from '../../database';
 import * as CommandsModule from '../commands';
 import * as EventsModule from '../events';
-import { AlexBotChatInputApplicationCommandData } from '../types';
+import { AlexBotChatInputCommand } from '../types';
 import { Ids } from './Constants';
 
 export class AlexBotClient extends Client<true> {
-  public commands = new Collection<string, AlexBotChatInputApplicationCommandData>();
+  public commands = new Collection<string, AlexBotChatInputCommand>();
 
   public constructor(options: ClientOptions) {
     super(options);
@@ -26,7 +26,7 @@ export class AlexBotClient extends Client<true> {
     });
     this.on('warn', console.log);
 
-    for (const module of Object.values(CommandsModule)) this.commands.set(module.command.name, module.command);
+    for (const module of Object.values(CommandsModule)) this.commands.set(module.command.data.name, module.command);
     for (const module of Object.values(EventsModule)) {
       if (module.event.once) {
         // @ts-ignore

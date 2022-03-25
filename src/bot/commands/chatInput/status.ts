@@ -1,10 +1,10 @@
+import { SlashCommandBuilder } from '@discordjs/builders';
 import { ColorResolvable, Colors, UnsafeEmbed as Embed } from 'discord.js';
-import { AlexBotChatInputApplicationCommandData } from '../../types';
+import { AlexBotChatInputCommand } from '../../types';
 import { Util } from '../../util/Util';
 
-export const command: AlexBotChatInputApplicationCommandData = {
-  name: 'status',
-  description: 'Gives the bot status',
+export const command: AlexBotChatInputCommand = {
+  data: new SlashCommandBuilder().setName('status').setDescription('Gives the bot status'),
   listener: async (interaction, client, getString) => {
     const firstTimestamp = Date.now();
     await interaction.deferReply();

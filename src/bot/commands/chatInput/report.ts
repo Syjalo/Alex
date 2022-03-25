@@ -1,38 +1,16 @@
-import { ActionRow, ButtonComponent } from '@discordjs/builders';
-import {
-  ApplicationCommandOptionType,
-  ButtonStyle,
-  Colors,
-  ComponentType,
-  TextChannel,
-  UnsafeEmbed as Embed,
-} from 'discord.js';
-import { AlexBotChatInputApplicationCommandData } from '../../types';
+import { ActionRow, ButtonComponent, SlashCommandBuilder } from '@discordjs/builders';
+import { ButtonStyle, Colors, ComponentType, TextChannel, UnsafeEmbed as Embed } from 'discord.js';
+import { AlexBotChatInputCommand } from '../../types';
 import { Ids } from '../../util/Constants';
 import { Util } from '../../util/Util';
 
-export const command: AlexBotChatInputApplicationCommandData = {
-  name: 'report',
-  description: 'Makes user report',
-  options: [
-    {
-      type: ApplicationCommandOptionType.User,
-      name: 'user',
-      description: 'User to report',
-      required: true,
-    },
-    {
-      type: ApplicationCommandOptionType.String,
-      name: 'reason',
-      description: 'Reason of report',
-      required: true,
-    },
-    {
-      type: ApplicationCommandOptionType.Attachment,
-      name: 'proof',
-      description: 'Proof for report. Must be image or gif',
-    },
-  ],
+export const command: AlexBotChatInputCommand = {
+  data: new SlashCommandBuilder()
+    .setName('report')
+    .setDescription('Makes user report')
+    .addUserOption((option) => option.setName('user').setDescription('User to report').setRequired(true))
+    .addStringOption((option) => option.setName('reason').setDescription('Reason of report').setRequired(true))
+    .addAttachmentOption((option) => option.setName('proof').setDescription('Proof for report. Must be image or gif')),
   listener: async (interaction, client, getString) => {
     const user = interaction.options.getUser('user', true),
       member = await interaction.guild.members.fetch(user).catch(() => null),

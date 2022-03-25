@@ -1,24 +1,16 @@
-import { ApplicationCommandOptionType, Colors, Formatters, UnsafeEmbed as Embed } from 'discord.js';
+import { SlashCommandBuilder } from '@discordjs/builders';
+import { Colors, Formatters, UnsafeEmbed as Embed } from 'discord.js';
 import { spotify } from '../../../spotify';
-import { AlexBotChatInputApplicationCommandData } from '../../types';
+import { AlexBotChatInputCommand } from '../../types';
 import { Emojis } from '../../util/Constants';
 import { Util } from '../../util/Util';
 
-export const command: AlexBotChatInputApplicationCommandData = {
-  name: 'userinfo',
-  description: 'Gives information about user',
-  options: [
-    {
-      type: ApplicationCommandOptionType.User,
-      name: 'user',
-      description: 'User to give information about',
-    },
-    {
-      type: ApplicationCommandOptionType.String,
-      name: 'id',
-      description: 'Id of user to give information about',
-    },
-  ],
+export const command: AlexBotChatInputCommand = {
+  data: new SlashCommandBuilder()
+    .setName('userinfo')
+    .setDescription('Gives information about user')
+    .addUserOption((option) => option.setName('user').setDescription('User to give information about'))
+    .addStringOption((option) => option.setName('id').setDescription('Id of user to give information about')),
   listener: async (interaction, client, getString) => {
     await interaction.deferReply();
 

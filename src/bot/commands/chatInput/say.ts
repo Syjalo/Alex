@@ -1,41 +1,32 @@
-import { ApplicationCommandOptionType, ChannelType, TextChannel } from 'discord.js';
-import { AlexBotChatInputApplicationCommandData } from '../../types';
+import { SlashCommandBuilder } from '@discordjs/builders';
+import { ChannelType, TextChannel } from 'discord.js';
+import { AlexBotChatInputCommand } from '../../types';
 import { Ids } from '../../util/Constants';
 
-export const command: AlexBotChatInputApplicationCommandData = {
-  name: 'say',
-  description: 'Sends message',
-  defaultPermission: false,
-  options: [
-    {
-      type: ApplicationCommandOptionType.String,
-      name: 'content',
-      description: 'Message to send',
-      required: true,
-    },
-    {
-      type: ApplicationCommandOptionType.String,
-      name: 'reply',
-      description: 'Message id to reply to',
-    },
-    {
-      type: ApplicationCommandOptionType.Boolean,
-      name: 'mention',
-      description: 'Whether the author of the message being replied to should be pinged. Default: True',
-    },
-    {
-      type: ApplicationCommandOptionType.Channel,
-      channelTypes: [
-        ChannelType.GuildNews,
-        ChannelType.GuildNewsThread,
-        ChannelType.GuildPrivateThread,
-        ChannelType.GuildPublicThread,
-        ChannelType.GuildText,
-      ],
-      name: 'channel',
-      description: 'Channel to send message in',
-    },
-  ],
+export const command: AlexBotChatInputCommand = {
+  data: new SlashCommandBuilder()
+    .setName('say')
+    .setDescription('Sends message')
+    .setDefaultPermission(false)
+    .addStringOption((option) => option.setName('content').setDescription('Message to send').setRequired(true))
+    .addStringOption((option) => option.setName('reply').setDescription('Message id to reply to'))
+    .addBooleanOption((option) =>
+      option
+        .setName('mention')
+        .setDescription('Whether the author of the message being replied to should be pinged. Default: True'),
+    )
+    .addChannelOption((option) =>
+      option
+        .setName('channel')
+        .setDescription('Channel to send message in')
+        .addChannelTypes(
+          ChannelType.GuildNews,
+          ChannelType.GuildNewsThread,
+          ChannelType.GuildPrivateThread,
+          ChannelType.GuildPublicThread,
+          ChannelType.GuildText,
+        ),
+    ),
   allowedRoles: [Ids.roles.developer, Ids.roles.managment, Ids.roles.moderators],
   listener: async (interaction) => {
     const content = interaction.options.getString('content', true),
