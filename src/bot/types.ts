@@ -1,5 +1,3 @@
-import { SlashCommandBuilder } from '@discordjs/builders';
-import { RESTPostAPIApplicationCommandsJSONBody } from 'discord-api-types/v10';
 import {
   Awaitable,
   ChatInputApplicationCommandData,

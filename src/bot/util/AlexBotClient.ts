@@ -12,7 +12,7 @@ export class AlexBotClient extends Client<true> {
   public constructor(options: ClientOptions) {
     super(options);
 
-    this.on('debug', console.log);
+    if (process.env.NODE_ENV !== 'production') this.on('debug', console.log);
     this.on('error', async (error) => {
       console.log(error);
       const embed = new Embed()
