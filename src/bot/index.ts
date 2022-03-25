@@ -2,7 +2,8 @@ import { REST } from '@discordjs/rest';
 import { Client, GatewayIntentBits, GuildMember, Partials, ThreadMember, User } from 'discord.js';
 import { AlexBotClient } from './util/AlexBotClient';
 
-const sweeperTime = 1_800,
+const sweeperInterval = 900,
+  structureLifetime = 1_800,
   sweeperDefaultFilter = () => () => true,
   sweeperUserFilter = () => (user: GuildMember | ThreadMember | User) =>
     user.id !== (user.client as Client<true>).user.id;
@@ -21,27 +22,27 @@ export const client = new AlexBotClient({
   partials: [Partials.Channel, Partials.GuildMember, Partials.Message, Partials.Reaction, Partials.User],
   sweepers: {
     guildMembers: {
-      interval: sweeperTime,
+      interval: sweeperInterval,
       filter: sweeperUserFilter,
     },
     messages: {
-      interval: sweeperTime,
-      lifetime: sweeperTime,
+      interval: sweeperInterval,
+      lifetime: structureLifetime,
     },
     presences: {
-      interval: sweeperTime,
+      interval: sweeperInterval,
       filter: sweeperDefaultFilter,
     },
     threadMembers: {
-      interval: sweeperTime,
+      interval: sweeperInterval,
       filter: sweeperUserFilter,
     },
     threads: {
-      interval: sweeperTime,
-      lifetime: sweeperTime,
+      interval: sweeperInterval,
+      lifetime: structureLifetime,
     },
     users: {
-      interval: sweeperTime,
+      interval: sweeperInterval,
       filter: sweeperUserFilter,
     },
   },
