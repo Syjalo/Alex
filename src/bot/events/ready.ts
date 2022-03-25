@@ -17,7 +17,7 @@ export const event: AlexBotClientEvent<'ready'> = {
       await (client.channels.resolve(Ids.channels.botLog) as TextChannel).send({ embeds: [embed] });
     }
 
-    const guild = client.guilds.resolve('724163890803638273')!;
+    const guild = client.guilds.resolve(Ids.guilds.main)!;
     await guild.commands.set([...client.commands.values()]);
     for (const applicationCommand of guild.commands.cache.values()) {
       const command = client.commands.get(applicationCommand.name);
