@@ -5,8 +5,8 @@ import { Locales } from './Constants';
 
 export class Util extends null {
   static resolveLocale(locale?: Locale | DiscordLocale) {
-    if (!locale || !Locales.includes(locale as Locale)) return Locale.EnglishUS;
-    return locale as Locale;
+    if (Locales.includes(locale as Locale)) return locale as Locale;
+    return Locale.EnglishUS;
   }
 
   static makeErrorEmbed(error: any, getString: GetString) {
