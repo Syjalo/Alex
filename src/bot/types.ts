@@ -18,6 +18,7 @@ export interface AlexBotChatInputCommand {
 export interface AlexBotClientEvent<K extends keyof ClientEvents> {
   name: K;
   once?: true;
+  condition?: boolean;
   listener: (client: AlexBotClient, ...args: ClientEvents[K]) => Awaitable<void>;
 }
 
