@@ -1,5 +1,5 @@
 import { SlashCommandBuilder } from '@discordjs/builders';
-import { ChannelType, TextChannel } from 'discord.js';
+import { ChannelType, TextChannel, UnsafeEmbed as Embed } from 'discord.js';
 import { AlexBotChatInputCommand } from '../../types';
 import { Ids } from '../../util/Constants';
 
@@ -28,17 +28,32 @@ export const command: AlexBotChatInputCommand = {
         ),
     ),
   allowedRoles: [Ids.roles.developer, Ids.roles.managment, Ids.roles.moderators],
-  listener: async (interaction) => {
+  listener: async (interaction, client) => {
     const content = interaction.options.getString('content', true),
       replyMessageId = interaction.options.getString('reply'),
       mention = interaction.options.getBoolean('mention'),
       repliedUser = mention === null ? true : mention,
       channel = (interaction.options.getChannel('channel') as TextChannel) || interaction.channel!;
 
-    await channel.send({
+    const message = await channel.send({
       content,
       allowedMentions: { parse: ['roles', 'users'], repliedUser },
       reply: { messageReference: replyMessageId! },
     });
+
+    const embed = new Embed()
+      .setTitle('Say command was used')
+      .setDescription(`${interaction.user} used the command\n\n[Jump](${message.url})`)
+      .setFields(
+        {
+          name: 'Channel',
+          value: `${channel}`,
+        },
+        {
+          name: 'Content',
+          value: content,
+        },
+      );
+    await (client.channels.resolve(Ids.channels.botLog) as TextChannel).send({ embeds: [embed] });
   },
 };
