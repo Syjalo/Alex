@@ -1,5 +1,5 @@
 import { SlashCommandBuilder } from '@discordjs/builders';
-import { ChannelType, TextChannel, UnsafeEmbed as Embed } from 'discord.js';
+import { ChannelType, Colors, TextChannel, UnsafeEmbed as Embed } from 'discord.js';
 import { AlexBotChatInputCommand } from '../../types';
 import { Ids } from '../../util/Constants';
 
@@ -28,7 +28,7 @@ export const command: AlexBotChatInputCommand = {
         ),
     ),
   allowedRoles: [Ids.roles.developer, Ids.roles.managment, Ids.roles.moderators],
-  listener: async (interaction, client) => {
+  listener: async (interaction, client, getString) => {
     const content = interaction.options.getString('content', true),
       replyMessageId = interaction.options.getString('reply'),
       mention = interaction.options.getBoolean('mention'),
@@ -40,6 +40,8 @@ export const command: AlexBotChatInputCommand = {
       allowedMentions: { parse: ['roles', 'users'], repliedUser },
       reply: { messageReference: replyMessageId! },
     });
+
+    await interaction.reply({ content: getString('sent', { variables: { channel: `${channel}` } }) });
 
     const embed = new Embed()
       .setTitle('Say command was used')
@@ -53,7 +55,8 @@ export const command: AlexBotChatInputCommand = {
           name: 'Content',
           value: content,
         },
-      );
+      )
+      .setColor(Colors.LightGrey);
     await (client.channels.resolve(Ids.channels.botLog) as TextChannel).send({ embeds: [embed] });
   },
 };
