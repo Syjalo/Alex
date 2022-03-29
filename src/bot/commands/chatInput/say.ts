@@ -41,7 +41,7 @@ export const command: AlexBotChatInputCommand = {
       reply: { messageReference: replyMessageId! },
     });
 
-    await interaction.reply({ content: getString('sent', { variables: { channel: `${channel}` } }) });
+    await interaction.reply({ content: getString('sent', { variables: { channel: `${channel}` } }), ephemeral: true });
 
     const embed = new Embed()
       .setTitle('Say command was used')
