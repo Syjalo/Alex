@@ -46,11 +46,8 @@ export const client = new AlexBotClient({
       filter: sweeperUserFilter,
     },
   },
-  rest: {
-    globalRequestsPerSecond: 50,
-  },
 });
 
-export const rest = new REST({ globalRequestsPerSecond: 50 }).setToken(process.env.DISCORD_TOKEN!);
+export const rest = new REST().setToken(process.env.DISCORD_TOKEN!);
 
 client.login();

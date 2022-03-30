@@ -8,8 +8,6 @@ export class DatabaseClient extends MongoClient {
     super(url, options);
 
     this.awaitReady = new Promise((resolve) => this.once('connectionReady', resolve));
-
-    this.connect();
   }
 
   public get languages() {
