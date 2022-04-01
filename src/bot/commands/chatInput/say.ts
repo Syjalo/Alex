@@ -1,5 +1,5 @@
 import { SlashCommandBuilder } from '@discordjs/builders';
-import { ChannelType, Colors, TextChannel, UnsafeEmbed as Embed } from 'discord.js';
+import { ChannelType, Colors, PermissionFlagsBits, TextChannel, UnsafeEmbed as Embed } from 'discord.js';
 import { AlexBotChatInputCommand } from '../../types';
 import { Ids } from '../../util/Constants';
 
@@ -34,6 +34,14 @@ export const command: AlexBotChatInputCommand = {
       mention = interaction.options.getBoolean('mention'),
       repliedUser = mention === null ? true : mention,
       channel = (interaction.options.getChannel('channel') as TextChannel) || interaction.channel!;
+
+    if (!channel.permissionsFor(interaction.user)?.has(PermissionFlagsBits.SendMessages)) {
+      interaction.reply({
+        content: getString('notAllowed', { variables: { channel: `${channel}` } }),
+        ephemeral: true,
+      });
+      return;
+    }
 
     const message = await channel.send({
       content,
