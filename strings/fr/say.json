@@ -1,3 +1,4 @@
 {
+  "notAllowed": "You can't send a message in {channel}",
   "sent": "Le message a été envoyé dans {channel}"
 }
