@@ -12,10 +12,10 @@ export const event: AlexBotClientEvent<'interactionCreate'> = {
   listener: async (client, interaction) => {
     if (!interaction.inCachedGuild()) return;
 
-    const dbUser = await database.members.findOne({ id: interaction.user.id, guildId: interaction.guildId }),
+    const dbMember = await database.members.findOne({ id: interaction.user.id, guildId: interaction.guildId }),
       getString = Util.makeGetStringFunction({
         defaultFileName: (interaction as ChatInputCommandInteraction<'cached'>).commandName,
-        defaultLocale: dbUser?.locale || interaction.locale,
+        defaultLocale: dbMember?.locale || interaction.locale,
       });
 
     if (interaction.isAutocomplete()) autocomplete(interaction);

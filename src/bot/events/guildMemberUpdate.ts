@@ -7,9 +7,9 @@ export const event: AlexBotClientEvent<'guildMemberUpdate'> = {
   listener: async (_, oldMember, newMember) => {
     let rolesAdded = false;
     if (oldMember.pending && !newMember.pending) {
-      const dbUser = await database.members.findOne({ id: newMember.id, guildId: newMember.guild.id });
-      if (dbUser?.savedRoles) {
-        await newMember.roles.add(dbUser.savedRoles);
+      const dbMember = await database.members.findOne({ id: newMember.id, guildId: newMember.guild.id });
+      if (dbMember?.savedRoles) {
+        await newMember.roles.add(dbMember.savedRoles);
         rolesAdded = true;
       }
     }
