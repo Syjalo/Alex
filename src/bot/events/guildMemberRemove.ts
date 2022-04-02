@@ -1,7 +1,6 @@
 import { Colors, Formatters, TextChannel, UnsafeEmbed as Embed } from 'discord.js';
-import { database } from '../../database';
 import { AlexBotClientEvent } from '../types';
-import { Ids, RolesToSave } from '../util/Constants';
+import { Ids } from '../util/Constants';
 import { Util } from '../util/Util';
 
 export const event: AlexBotClientEvent<'guildMemberRemove'> = {
@@ -18,7 +17,7 @@ export const event: AlexBotClientEvent<'guildMemberRemove'> = {
       .setFields(
         {
           name: 'Created the account',
-          value: Util.makeFormattedTime(Math.floor(Date.now() / 1000)),
+          value: Util.makeFormattedTime(Math.floor(member.user.createdTimestamp / 1000)),
         },
         {
           name: 'Left the server',
@@ -27,9 +26,5 @@ export const event: AlexBotClientEvent<'guildMemberRemove'> = {
       )
       .setColor(Colors.LightGrey);
     await (client.channels.resolve(Ids.channels.joinLeave) as TextChannel).send({ embeds: [embed] });
-
-    const rolesToSave = RolesToSave.filter((id) => member.roles.cache.has(id));
-    if (rolesToSave.length > 0)
-      await database.users.findOneAndUpdate({ id: member.id }, { $set: { savedRoles: rolesToSave } }, { upsert: true });
   },
 };
