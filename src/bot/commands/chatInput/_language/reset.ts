@@ -3,7 +3,10 @@ import { database } from '../../../../database';
 import { GetString } from '../../../types';
 
 export const reset = async (interaction: ChatInputCommandInteraction<'cached'>, getString: GetString) => {
-  await database.users.findOneAndUpdate({ id: interaction.user.id }, { $unset: { locale: true } });
+  await database.members.findOneAndUpdate(
+    { id: interaction.user.id, guildId: interaction.guildId },
+    { $unset: { locale: true } },
+  );
   const embed = new Embed()
     .setTitle(getString('subcommand.reset.resetEmbed.title', { locale: interaction.locale }))
     .setColor(Colors.Green);

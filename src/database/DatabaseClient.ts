@@ -1,5 +1,5 @@
 import { MongoClient, MongoClientOptions } from 'mongodb';
-import { DBLanguage, DBUser } from './types';
+import { DBLanguage, DBMember } from './types';
 
 export class DatabaseClient extends MongoClient {
   public awaitReady: Promise<void>;
@@ -14,7 +14,7 @@ export class DatabaseClient extends MongoClient {
     return this.db().collection<DBLanguage>('languages');
   }
 
-  public get users() {
-    return this.db().collection<DBUser>('users');
+  public get members() {
+    return this.db().collection<DBMember>('members');
   }
 }

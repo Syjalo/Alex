@@ -5,7 +5,7 @@ import { Locales } from '../../../util/Constants';
 
 export const set = async (interaction: ChatInputCommandInteraction<'cached'>, getString: GetString) => {
   let locale = interaction.options.getString('language', true) as Locale;
-  const dbUser = await database.users.findOne({ id: interaction.user.id }),
+  const dbUser = await database.members.findOne({ id: interaction.user.id, guildId: interaction.guildId }),
     dbLanguage = await database.languages
       .find()
       .toArray()
@@ -39,7 +39,7 @@ export const set = async (interaction: ChatInputCommandInteraction<'cached'>, ge
     return;
   }
 
-  await database.users.findOneAndUpdate({ id: interaction.user.id }, { $set: { locale } }, { upsert: true });
+  await database.members.findOneAndUpdate({ id: interaction.user.id }, { $set: { locale } }, { upsert: true });
   const embed = new Embed().setTitle(getString('subcommand.set.changedEmbed.title', { locale })).setColor(Colors.Green);
   if (locale !== 'en-US') embed.setDescription(getString('subcommand.set.changedEmbed.description', { locale }));
   await interaction.reply({ embeds: [embed], ephemeral: true });
