@@ -1,5 +1,5 @@
-import { ActionRow, ButtonComponent, SlashCommandBuilder } from '@discordjs/builders';
-import { ButtonStyle, Colors, ComponentType, UnsafeEmbed as Embed } from 'discord.js';
+import { ActionRowBuilder, SlashCommandBuilder, UnsafeButtonBuilder } from '@discordjs/builders';
+import { ButtonStyle, Colors, ComponentType, UnsafeEmbedBuilder as Embed } from 'discord.js';
 import fetch from 'node-fetch';
 import {
   AlexBotChatInputCommand,
@@ -65,26 +65,26 @@ export const command: AlexBotChatInputCommand = {
     };
 
     const makePageComponents = (pageCount: number, pageIndex: number) => {
-      return new ActionRow<ButtonComponent>().addComponents(
-        new ButtonComponent()
+      return new ActionRowBuilder<UnsafeButtonBuilder>().addComponents(
+        new UnsafeButtonBuilder()
           .setCustomId('first')
           .setLabel(getString('buttons.first', { fileName: 'global' }))
           .setEmoji({ name: '⏮️' })
           .setStyle(ButtonStyle.Primary)
           .setDisabled(pageIndex < 0 || pageIndex === 0),
-        new ButtonComponent()
+        new UnsafeButtonBuilder()
           .setCustomId(`scroll:${pageIndex - 1}`)
           .setLabel(getString('buttons.previous', { fileName: 'global' }))
           .setEmoji({ name: '◀️' })
           .setStyle(ButtonStyle.Primary)
           .setDisabled(pageIndex < 0 || pageIndex === 0),
-        new ButtonComponent()
+        new UnsafeButtonBuilder()
           .setCustomId(`scroll:${pageIndex + 1}`)
           .setLabel(getString('buttons.next', { fileName: 'global' }))
           .setEmoji({ name: '▶️' })
           .setStyle(ButtonStyle.Primary)
           .setDisabled(pageIndex < 0 || pageIndex === pageCount - 1),
-        new ButtonComponent()
+        new UnsafeButtonBuilder()
           .setCustomId('last')
           .setLabel(getString('buttons.last', { fileName: 'global' }))
           .setEmoji({ name: '⏭️' })

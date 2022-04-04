@@ -2,13 +2,13 @@
 # yarn lockfile v1
 
 
-"@discordjs/builders@^0.13.0-dev", "@discordjs/builders@^0.13.0-dev.1646913825.dcd4797":
-  version "0.13.0-dev.1646913825.dcd4797"
-  resolved "https://registry.yarnpkg.com/@discordjs/builders/-/builders-0.13.0-dev.1646913825.dcd4797.tgz#e91888abd63282906e6843242ce14af75bf9cc82"
-  integrity sha512-6FQ7yM3bio3wxQJOwQLLvBzt54ZkdoEm6jH5VChz0FiAGzjoOw8JLQE0S9k0AT6j95i8aP5B5W1zrOBot56yBA==
+"@discordjs/builders@^0.13.0-dev", "@discordjs/builders@^0.13.0-dev.1649030892-5748dbe":
+  version "0.13.0-dev.1649030892-5748dbe"
+  resolved "https://registry.yarnpkg.com/@discordjs/builders/-/builders-0.13.0-dev.1649030892-5748dbe.tgz#8b12634b08910062254aa10eb3763f15c6673962"
+  integrity sha512-a53Ph0/XEBO1Sv4HOyO+BeezGsgavYDFMsEyA8U8HwdhwQqDUkc4dBhYFM/fTVhohG1MhTULDkTuaFNd7juxNA==
   dependencies:
     "@sindresorhus/is" "^4.4.0"
-    discord-api-types "^0.27.3"
+    discord-api-types "^0.29.0"
     fast-deep-equal "^3.1.3"
     ts-mixer "^6.0.0"
     tslib "^2.3.1"
@@ -194,17 +194,23 @@ discord-api-types@^0.27.0, discord-api-types@^0.27.3:
   resolved "https://registry.yarnpkg.com/discord-api-types/-/discord-api-types-0.27.3.tgz#518e99a548b62a7912a09e94ad90d0612e2053c6"
   integrity sha512-HOG64DTpZ7CB5EU9eKbjHD50H5qG1pxKG8pmFfHUMKjKvEWeLBHfw0c9xF1cruiYLnBb3+n7m3jBWxZ3H1hcgQ==
 
-discord.js@^14.0.0-dev.1646914074.dcd4797:
-  version "14.0.0-dev.1646914074.dcd4797"
-  resolved "https://registry.yarnpkg.com/discord.js/-/discord.js-14.0.0-dev.1646914074.dcd4797.tgz#5be464dc195086052adbe35c17dad41e0cd71e6f"
-  integrity sha512-nuKdthYfIIPrrbrVttyMRCoYzUCiuaHadsrgehcMEzffB7RJvRmykBTw9lOZ5rxaREUpaMp5zitwXApf5cRF8A==
+discord-api-types@^0.29.0:
+  version "0.29.0"
+  resolved "https://registry.yarnpkg.com/discord-api-types/-/discord-api-types-0.29.0.tgz#8346352b623ddd8d8eed386b6eb758e2d82d6005"
+  integrity sha512-Ekq1ICNpOTVajXKZguNFrsDeTmam+ZeA38txsNLZnANdXUjU6QBPIZLUQTC6MzigFGb0Tt8vk4xLnXmzv0shNg==
+
+discord.js@^14.0.0-dev.1649030898-5748dbe:
+  version "14.0.0-dev.1649030898-5748dbe"
+  resolved "https://registry.yarnpkg.com/discord.js/-/discord.js-14.0.0-dev.1649030898-5748dbe.tgz#28d5e3ef39a2042c2d0da5319dfb48e9859f2087"
+  integrity sha512-8FupzXq5eilAt41n83O2fLUuBclWwPwy8zHcdPfs2lCPDYM0pz3mODYxu+GtE3Wyf5zIrgh/C+DP1SNfY9KnFw==
   dependencies:
     "@discordjs/builders" "^0.13.0-dev"
     "@discordjs/collection" "^0.6.0-dev"
     "@discordjs/rest" "^0.4.0-dev"
     "@sapphire/snowflake" "^3.1.0"
     "@types/ws" "^8.2.2"
-    discord-api-types "^0.27.3"
+    discord-api-types "^0.29.0"
+    fast-deep-equal "^3.1.3"
     lodash.snakecase "^4.1.1"
     undici "^4.14.1"
     ws "^8.5.0"
@@ -321,10 +327,10 @@ prettier-plugin-organize-imports@^2.3.4:
   resolved "https://registry.yarnpkg.com/prettier-plugin-organize-imports/-/prettier-plugin-organize-imports-2.3.4.tgz#65473861ae5ab7960439fff270a2258558fbe9ba"
   integrity sha512-R8o23sf5iVL/U71h9SFUdhdOEPsi3nm42FD/oDYIZ2PQa4TNWWuWecxln6jlIQzpZTDMUeO1NicJP6lLn2TtRw==
 
-prettier@^2.6.1:
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.6.1.tgz#d472797e0d7461605c1609808e27b80c0f9cfe17"
-  integrity sha512-8UVbTBYGwN37Bs9LERmxCPjdvPxlEowx2urIL6urHzdb3SDq4B/Z6xLFCblrSnE4iKWcS6ziJ3aOYrc1kz/E2A==
+prettier@^2.6.2:
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.6.2.tgz#e26d71a18a74c3d0f0597f55f01fb6c06c206032"
+  integrity sha512-PkUpF+qoXTqhOeWL9fu7As8LXsIUZ1WYaJiY/a7McAQzxjk82OF0tibkFXVCDImZtWxbvojFjerkiLb0/q8mew==
 
 punycode@^2.1.1:
   version "2.1.1"
