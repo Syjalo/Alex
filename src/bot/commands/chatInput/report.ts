@@ -1,5 +1,5 @@
 import { ActionRowBuilder, SlashCommandBuilder, UnsafeButtonBuilder } from '@discordjs/builders';
-import { ButtonStyle, Colors, ComponentType, EmbedBuilder as Embed, TextChannel } from 'discord.js';
+import { ButtonStyle, Colors, ComponentType, TextChannel, UnsafeEmbedBuilder as Embed } from 'discord.js';
 import { AlexBotChatInputCommand } from '../../types';
 import { Ids } from '../../util/Constants';
 import { Util } from '../../util/Util';
