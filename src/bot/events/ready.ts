@@ -3,7 +3,7 @@ import {
   ApplicationCommandPermissionType,
   Colors,
   TextChannel,
-  UnsafeEmbed as Embed,
+  UnsafeEmbedBuilder as Embed,
 } from 'discord.js';
 import { AlexBotClientEvent } from '../types';
 import { Ids } from '../util/Constants';
