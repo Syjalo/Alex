@@ -1,5 +1,5 @@
 import { ActionRowBuilder, SlashCommandBuilder, UnsafeButtonBuilder } from '@discordjs/builders';
-import { ButtonStyle, Colors, ComponentType, UnsafeEmbedBuilder as Embed } from 'discord.js';
+import { ButtonStyle, Colors, ComponentType, EmbedBuilder as Embed } from 'discord.js';
 import fetch from 'node-fetch';
 import {
   AlexBotChatInputCommand,

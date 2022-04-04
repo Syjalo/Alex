@@ -1,5 +1,5 @@
 import { SlashCommandBuilder } from '@discordjs/builders';
-import { ChannelType, Colors, PermissionFlagsBits, TextChannel, UnsafeEmbedBuilder as Embed } from 'discord.js';
+import { ChannelType, Colors, EmbedBuilder as Embed, PermissionFlagsBits, TextChannel } from 'discord.js';
 import { AlexBotChatInputCommand } from '../../types';
 import { Ids } from '../../util/Constants';
 

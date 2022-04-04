@@ -2,13 +2,13 @@ import {
   ChatInputCommandInteraction,
   Collection,
   Colors,
+  EmbedBuilder as Embed,
   Formatters,
   GuildMember,
   InteractionReplyOptions,
   PermissionFlagsBits,
   Snowflake,
   TextChannel,
-  UnsafeEmbedBuilder as Embed,
 } from 'discord.js';
 import { setTimeout } from 'timers';
 import { inspect } from 'util';

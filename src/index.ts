@@ -5,7 +5,7 @@ import './database';
 import './spotify';
 
 import { Routes } from 'discord-api-types/v10';
-import { Colors, Formatters, UnsafeEmbedBuilder as Embed } from 'discord.js';
+import { Colors, Formatters, EmbedBuilder as Embed } from 'discord.js';
 import process from 'node:process';
 import { inspect } from 'util';
 import { client, rest } from './bot';

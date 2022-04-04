@@ -1,5 +1,5 @@
 import MessageFormat from '@messageformat/core';
-import { Colors, Formatters, Locale as DiscordLocale, Snowflake, UnsafeEmbedBuilder as Embed } from 'discord.js';
+import { Colors, EmbedBuilder as Embed, Formatters, Locale as DiscordLocale, Snowflake } from 'discord.js';
 import { GetString, GetStringOptions, Locale } from '../types';
 import { Locales } from './Constants';
 
