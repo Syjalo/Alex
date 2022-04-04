@@ -1,5 +1,5 @@
 import { SlashCommandBuilder } from '@discordjs/builders';
-import { Colors, Formatters, UnsafeEmbed as Embed } from 'discord.js';
+import { Colors, Formatters, UnsafeEmbedBuilder as Embed } from 'discord.js';
 import { spotify } from '../../../spotify';
 import { AlexBotChatInputCommand } from '../../types';
 import { Emojis } from '../../util/Constants';
