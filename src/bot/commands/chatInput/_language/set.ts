@@ -1,4 +1,4 @@
-import { ChatInputCommandInteraction, Colors, UnsafeEmbed as Embed } from 'discord.js';
+import { ChatInputCommandInteraction, Colors, UnsafeEmbedBuilder as Embed } from 'discord.js';
 import { database } from '../../../../database';
 import { GetString, Locale } from '../../../types';
 import { Locales } from '../../../util/Constants';

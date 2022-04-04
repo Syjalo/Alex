@@ -8,7 +8,7 @@ import {
   PermissionFlagsBits,
   Snowflake,
   TextChannel,
-  UnsafeEmbed as Embed,
+  UnsafeEmbedBuilder as Embed,
 } from 'discord.js';
 import { setTimeout } from 'timers';
 import { inspect } from 'util';
