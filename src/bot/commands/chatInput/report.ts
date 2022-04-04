@@ -1,4 +1,4 @@
-import { ActionRow, ButtonComponent, SlashCommandBuilder } from '@discordjs/builders';
+import { ActionRowBuilder, SlashCommandBuilder, UnsafeButtonBuilder } from '@discordjs/builders';
 import { ButtonStyle, Colors, ComponentType, TextChannel, UnsafeEmbed as Embed } from 'discord.js';
 import { AlexBotChatInputCommand } from '../../types';
 import { Ids } from '../../util/Constants';
@@ -24,12 +24,12 @@ export const command: AlexBotChatInputCommand = {
         value: reason,
       })
       .setColor(Colors.LightGrey);
-    const buttons = new ActionRow<ButtonComponent>().addComponents(
-      new ButtonComponent()
+    const buttons = new ActionRowBuilder<UnsafeButtonBuilder>().addComponents(
+      new UnsafeButtonBuilder()
         .setCustomId('yes')
         .setLabel(getString('buttons.yes', { fileName: 'global' }))
         .setStyle(ButtonStyle.Success),
-      new ButtonComponent()
+      new UnsafeButtonBuilder()
         .setCustomId('no')
         .setLabel(getString('buttons.no', { fileName: 'global' }))
         .setStyle(ButtonStyle.Danger),
@@ -68,8 +68,11 @@ export const command: AlexBotChatInputCommand = {
           )
           .setColor(Colors.Red);
         if (proof && proof.contentType?.startsWith('image')) embed.setImage(proof.url);
-        const buttons = new ActionRow<ButtonComponent>().addComponents(
-          new ButtonComponent().setCustomId('user-report-resolve').setLabel('Resolve').setStyle(ButtonStyle.Success),
+        const buttons = new ActionRowBuilder<UnsafeButtonBuilder>().addComponents(
+          new UnsafeButtonBuilder()
+            .setCustomId('user-report-resolve')
+            .setLabel('Resolve')
+            .setStyle(ButtonStyle.Success),
         );
         await (client.channels.resolve(Ids.channels.report) as TextChannel).send({ embeds: [embed] });
         await buttonInteraction.update({ content: getString('sent'), embeds: [], components: [] });
