@@ -11,7 +11,7 @@
         "value": "WebSoket ping {ms, number, integer}ms"
       },
       "onlineSince": {
-        "name": "Online since"
+        "name": "Elérhető óta"
       }
     }
   }
