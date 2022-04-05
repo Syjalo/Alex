@@ -25,10 +25,10 @@
         "name": "Csatlakozott a szerverhez"
       },
       "serverBooster": {
-        "name": "Server Booster since"
+        "name": "Szerver gyorsító óta"
       },
       "roles": {
-        "name": "{count, plural, =1 {Role (#)} other {Roles (#)}}"
+        "name": "{count, plural, one {} =1 {Rang (#)} other {Rangok (#)}}"
       },
       "activity": {
         "name": "Tevékenység",
@@ -37,7 +37,7 @@
             "name": "Egyéni állapot"
           },
           "spotify": {
-            "value": "{name} by {artists} on {album}"
+            "value": "{name} {artists} által {album}"
           }
         }
       }
