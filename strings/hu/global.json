@@ -4,8 +4,8 @@
     "previous": "Előző oldal",
     "next": "Következő oldal",
     "last": "Utolsó oldal",
-    "yes": "Yes",
-    "no": "No"
+    "yes": "Igen",
+    "no": "Nem"
   },
-  "languageRolesUpdated": "Your roles has been successfully updated! Now you have {count, plural, one {# language role} other {# language roles}} ({roles})."
+  "languageRolesUpdated": "A rangjaid sikeresen frissítve lettek! Most már {count, plural, one {# nyelvi rangod} other {# nyelvi rangod}} ({roles}) van."
 }
