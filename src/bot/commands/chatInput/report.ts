@@ -74,7 +74,10 @@ export const command: AlexBotChatInputCommand = {
             .setLabel('Resolve')
             .setStyle(ButtonStyle.Success),
         );
-        await (client.channels.resolve(Ids.channels.report) as TextChannel).send({ embeds: [embed] });
+        await (client.channels.resolve(Ids.channels.report) as TextChannel).send({
+          embeds: [embed],
+          components: [buttons],
+        });
         await buttonInteraction.update({ content: getString('sent'), embeds: [], components: [] });
       } else if (buttonInteraction.customId === 'no')
         await buttonInteraction.update({ content: getString('canceled'), embeds: [], components: [] });
