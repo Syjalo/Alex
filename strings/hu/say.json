@@ -1,4 +1,4 @@
 {
-  "notAllowed": "You can't send a message in {channel}",
-  "sent": "Message has been sent in {channel}"
+  "notAllowed": "Nem tudsz üzenetet küldeni a(z) {channel} csatornán",
+  "sent": "Az üzenet el lett küldve a(z) {channel} csatornába"
 }
