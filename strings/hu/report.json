@@ -1,13 +1,13 @@
 {
   "doYouWantEmbed": {
-    "title": "Do you want to report {user}?",
+    "title": "Szeretnéd jelenteni {user} felhasználót?",
     "fields": {
       "reason": {
-        "name": "Reason"
+        "name": "Ok"
       }
     }
   },
-  "sent": "Your report has been successfully sent",
-  "canceled": "Your report has been canceled",
-  "timeout": "You haven't clicked a button for too long. Your report has been canceled"
+  "sent": "A jelentésed sikeresen el lett küldve",
+  "canceled": "A jelentésed törölve lett",
+  "timeout": "Túl sokáig nem kattintottál egy gombra sem. A jelentésed törölve lett"
 }
