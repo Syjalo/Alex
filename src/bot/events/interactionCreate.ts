@@ -19,7 +19,7 @@ export const event: AlexBotClientEvent<'interactionCreate'> = {
       });
 
     if (interaction.channel?.isVoiceBased() && interaction.isRepliable()) {
-      interaction.reply({
+      await interaction.reply({
         content: getString('interactionInVoiceChannel', { fileName: 'global' }),
         ephemeral: true,
       });
