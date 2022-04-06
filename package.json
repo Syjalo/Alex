@@ -20,7 +20,7 @@
   "dependencies": {
     "@discordjs/builders": "^0.13.0-dev.1649030892-5748dbe",
     "@discordjs/collection": "^0.6.0-dev.1649160495-402514f",
-    "@discordjs/rest": "^0.4.0-dev.1649030897-5748dbe",
+    "@discordjs/rest": "^0.4.0-dev.1649160494-402514f",
     "@messageformat/core": "^3.0.1",
     "@statsfm/spotify.js": "^1.8.4",
     "discord.js": "^14.0.0-dev.1649030898-5748dbe",
