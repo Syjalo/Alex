@@ -13,5 +13,6 @@
   "goodbye": "Goodbye!",
   "createdAccount": "Hesabın oluşturulduğu tarih",
   "joinedServer": "Sunucuya katılma tarihi",
-  "leftServer": "Left the server"
+  "leftServer": "Left the server",
+  "suggestionDiscussion": "Suggestion Discussion"
 }
