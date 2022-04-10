@@ -13,5 +13,6 @@
   "goodbye": "Goodbye!",
   "createdAccount": "Akun telah dibuat",
   "joinedServer": "Mengikuti server sejak",
-  "leftServer": "Left the server"
+  "leftServer": "Left the server",
+  "suggestionDiscussion": "Suggestion Discussion"
 }
