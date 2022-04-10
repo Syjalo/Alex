@@ -9,9 +9,10 @@
   },
   "interactionInVoiceChannel": "Sorry, you can't interact with me in voice channel yet",
   "rolesUpdated": "Your roles has been successfully updated! Now you {count, plural, =0 {don't have any roles} one {have # role ({roles})} other {have # roles ({roles})}}.",
-  "welcome": "Welcome!",
-  "goodbye": "Goodbye!",
+  "welcome": "Üdvözlünk!",
+  "goodbye": "Viszlát!",
   "createdAccount": "Létrehozta a fiókot",
   "joinedServer": "Csatlakozott a szerverhez",
-  "leftServer": "Left the server"
+  "leftServer": "Elhagyta a szervert",
+  "suggestionDiscussion": "Suggestion Discussion"
 }
