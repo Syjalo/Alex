@@ -6,21 +6,23 @@ import { Util } from '../util/Util';
 export const event: AlexBotClientEvent<'guildMemberRemove'> = {
   name: 'guildMemberRemove',
   listener: async (client, member) => {
+    const getString = Util.makeGetStringFunction({ defaultLocale: member.guild.preferredLocale });
+
     const embed = new Embed()
       .setAuthor({
         iconURL: member.displayAvatarURL({ extension: 'png' }),
         name: member.displayName,
         url: Util.makeUserURL(member.id),
       })
-      .setTitle('Goodbye!')
+      .setTitle(getString('goodbye'))
       .setDescription(`${member} ${Formatters.inlineCode(member.user.tag)} (${member.id})`)
       .setFields(
         {
-          name: 'Created the account',
+          name: getString('createdAccount'),
           value: Util.makeFormattedTime(Math.floor(member.user.createdTimestamp / 1000)),
         },
         {
-          name: 'Left the server',
+          name: getString('leftServer'),
           value: Util.makeFormattedTime(Math.floor(Date.now() / 1000)),
         },
       )

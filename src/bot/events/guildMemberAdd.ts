@@ -12,21 +12,23 @@ export const event: AlexBotClientEvent<'guildMemberAdd'> = {
     else if (userCreatedAccountAgo > 1209600000 /*2 weeks*/) color = Colors.Yellow;
     else color = Colors.Red;
 
+    const getString = Util.makeGetStringFunction({ defaultLocale: member.guild.preferredLocale });
+
     const embed = new Embed()
       .setAuthor({
         iconURL: member.displayAvatarURL({ extension: 'png' }),
         name: member.displayName,
         url: Util.makeUserURL(member.id),
       })
-      .setTitle('Welcome!')
+      .setTitle(getString('welcome'))
       .setDescription(`${member} ${Formatters.inlineCode(member.user.tag)} (${member.id})`)
       .setFields(
         {
-          name: 'Created the account',
+          name: getString('createdAccount'),
           value: Util.makeFormattedTime(Math.floor(member.user.createdTimestamp / 1000)),
         },
         {
-          name: 'Joined the server',
+          name: getString('joinedServer'),
           value: Util.makeFormattedTime(Math.floor(member.joinedTimestamp! / 1000)),
         },
       )
