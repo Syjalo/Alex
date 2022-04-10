@@ -8,5 +8,5 @@
     "no": "No"
   },
   "interactionInVoiceChannel": "Sorry, you can't interact with me in voice channel yet",
-  "languageRolesUpdated": "Your roles has been successfully updated! Now you have {count, plural, one {# language role} other {# language roles}} ({roles})."
+  "rolesUpdated": "Your roles has been successfully updated! Now you {count, plural, =0 {don't have any roles} one {have # role ({roles})} other {have # roles ({roles})}}."
 }

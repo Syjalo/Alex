@@ -1,6 +1,6 @@
 import { Colors, EmbedBuilder as Embed, Formatters, TextChannel } from 'discord.js';
+import { database } from '../../database';
 import { AlexBotClientEvent } from '../types';
-import { Ids } from '../util/Constants';
 import { Util } from '../util/Util';
 
 export const event: AlexBotClientEvent<'guildMemberRemove'> = {
@@ -25,6 +25,9 @@ export const event: AlexBotClientEvent<'guildMemberRemove'> = {
         },
       )
       .setColor(Colors.LightGrey);
-    await (client.channels.resolve(Ids.channels.joinLeave) as TextChannel).send({ embeds: [embed] });
+
+    const dbGuild = await database.guilds.findOne({ id: member.guild.id });
+
+    await (client.channels.resolve(dbGuild!.channelIds.joinLeave) as TextChannel).send({ embeds: [embed] });
   },
 };

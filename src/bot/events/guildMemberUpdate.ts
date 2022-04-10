@@ -1,6 +1,5 @@
 import { database } from '../../database';
 import { AlexBotClientEvent } from '../types';
-import { RolesToSave } from '../util/Constants';
 
 export const event: AlexBotClientEvent<'guildMemberUpdate'> = {
   name: 'guildMemberUpdate',
@@ -13,11 +12,12 @@ export const event: AlexBotClientEvent<'guildMemberUpdate'> = {
         rolesAdded = true;
       }
     }
+    const dbGuild = await database.guilds.findOne({ id: newMember.guild.id });
 
     if (!rolesAdded) {
-      const rolesToSave = [...newMember.roles.cache.filter((role) => RolesToSave.includes(role.id)).values()].map(
-        (role) => role.id,
-      );
+      const rolesToSave = [
+        ...newMember.roles.cache.filter((role) => dbGuild!.roleIdsToSave.includes(role.id)).values(),
+      ].map((role) => role.id);
       if (rolesToSave.length > 0)
         await database.members.findOneAndUpdate(
           { id: newMember.id, guildId: newMember.guild.id },
