@@ -13,5 +13,6 @@
   "goodbye": "Goodbye!",
   "createdAccount": "Vytvořil/a účet",
   "joinedServer": "Připojil/a se k serveru",
-  "leftServer": "Left the server"
+  "leftServer": "Left the server",
+  "suggestionDiscussion": "Suggestion Discussion"
 }

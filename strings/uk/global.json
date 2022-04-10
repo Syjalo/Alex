@@ -13,5 +13,6 @@
   "goodbye": "Goodbye!",
   "createdAccount": "Створив обліковий запис",
   "joinedServer": "Приєднався до сервера",
-  "leftServer": "Left the server"
+  "leftServer": "Left the server",
+  "suggestionDiscussion": "Suggestion Discussion"
 }

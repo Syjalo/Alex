@@ -13,5 +13,6 @@
   "goodbye": "До свидания!",
   "createdAccount": "Создал учётную запись",
   "joinedServer": "Присоединился к серверу",
-  "leftServer": "Вышел из сервера"
+  "leftServer": "Вышел из сервера",
+  "suggestionDiscussion": "Обсуждение предложения"
 }
