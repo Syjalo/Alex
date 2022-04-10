@@ -13,5 +13,6 @@
   "goodbye": "Goodbye!",
   "createdAccount": "Created the account",
   "joinedServer": "Joined the server",
-  "leftServer": "Left the server"
+  "leftServer": "Left the server",
+  "suggestionDiscussion": "Suggestion Discussion"
 }
