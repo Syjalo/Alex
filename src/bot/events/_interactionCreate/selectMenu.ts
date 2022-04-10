@@ -16,15 +16,15 @@ export const selectMenu = async (interaction: SelectMenuInteraction<'cached'>, g
     await interaction.editReply({
       content: getString('languageRolesUpdated', {
         variables: {
-          count: interaction.values.length,
-          roles: interaction.values.map((value) => `<@&${value}>`).join(', '),
+          count: rolesToAdd.length,
+          roles: rolesToAdd.map((value) => `<@&${value}>`).join(', '),
         },
       }),
     });
 
     if (interaction.values.includes(Ids.roles.russian)) {
       await interaction.followUp({
-        content: 'Вот ссылка на русский сервер: https://discord.gg/aA2MM4XgM8',
+        content: 'Вот ссылка на русский сервер: https://discord.gg/UFZrUJXKRG',
         ephemeral: true,
       });
     }
