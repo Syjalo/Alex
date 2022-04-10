@@ -8,5 +8,10 @@
     "no": "No"
   },
   "interactionInVoiceChannel": "Sorry, you can't interact with me in voice channel yet",
-  "languageRolesUpdated": "Rolleriniz başarılı bir şekilde güncellendi! Şimdi sizde {count, plural, other {# dil rolü}} var ({roles})."
+  "rolesUpdated": "Your roles has been successfully updated! Now you {count, plural, =0 {don't have any roles} one {have # role ({roles})} other {have # roles ({roles})}}.",
+  "welcome": "Welcome!",
+  "goodbye": "Goodbye!",
+  "createdAccount": "Hesabın oluşturulduğu tarih",
+  "joinedServer": "Sunucuya katılma tarihi",
+  "leftServer": "Left the server"
 }

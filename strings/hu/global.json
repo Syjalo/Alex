@@ -8,5 +8,10 @@
     "no": "Nem"
   },
   "interactionInVoiceChannel": "Sorry, you can't interact with me in voice channel yet",
-  "languageRolesUpdated": "A rangjaid sikeresen frissítve lettek! Most már {count, plural, one {# nyelvi rangod} other {# nyelvi rangod}} ({roles}) van."
+  "rolesUpdated": "Your roles has been successfully updated! Now you {count, plural, =0 {don't have any roles} one {have # role ({roles})} other {have # roles ({roles})}}.",
+  "welcome": "Welcome!",
+  "goodbye": "Goodbye!",
+  "createdAccount": "Létrehozta a fiókot",
+  "joinedServer": "Csatlakozott a szerverhez",
+  "leftServer": "Left the server"
 }
