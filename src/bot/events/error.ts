@@ -11,7 +11,7 @@ export const event: AlexBotClientEvent<'error'> = {
       .setTitle('An error occurred')
       .setDescription(Formatters.codeBlock(inspect(error).substring(0, 4089)))
       .setColor(Colors.Red);
-    await (client.channels.resolve(Ids.channels.botLog) as TextChannel).send({
+    await ((await client.channels.fetch(Ids.channels.botLog)) as TextChannel).send({
       content: `<@${Ids.developer}>`,
       embeds: [embed],
     });

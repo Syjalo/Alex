@@ -35,7 +35,7 @@ export const chatInputCommand = async (
         value: commandName,
       })
       .setColor(Colors.Red);
-    await (client.channels.resolve(Ids.channels.botLog) as TextChannel).send({
+    await ((await client.channels.fetch(Ids.channels.botLog)) as TextChannel).send({
       content: `<@${Ids.developer}>`,
       embeds: [embed],
     });
