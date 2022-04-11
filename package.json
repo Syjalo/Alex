@@ -36,6 +36,9 @@
     "prettier-plugin-organize-imports": "^2.3.4",
     "husky": "^7.0.0"
   },
+  "resolutions": {
+    "@discordjs/builders/discord-api-types": "^0.31.1" 
+  },
   "engines": {
     "node": "16.x"
   }
