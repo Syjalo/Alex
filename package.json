@@ -23,7 +23,7 @@
     "@discordjs/rest": "^0.4.0-dev.1649505800-3c0bbac",
     "@messageformat/core": "^3.0.1",
     "@statsfm/spotify.js": "^1.8.4",
-    "discord.js": "^14.0.0-dev.1649160496-402514f",
+    "discord.js": "^14.0.0-dev.1649505803-3c0bbac",
     "dotenv": "^16.0.0",
     "mongodb": "^4.4.1",
     "node-fetch": "^2.6.7",
