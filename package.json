@@ -19,7 +19,7 @@
   "homepage": "https://github.com/Syjalo/Alex#readme",
   "dependencies": {
     "@discordjs/builders": "^0.13.0-dev.1649160523-402514f",
-    "@discordjs/collection": "^0.6.0-dev.1649160495-402514f",
+    "@discordjs/collection": "^0.6.0-dev.1649505807-3c0bbac",
     "@discordjs/rest": "^0.4.0-dev.1649160494-402514f",
     "@messageformat/core": "^3.0.1",
     "@statsfm/spotify.js": "^1.8.4",
