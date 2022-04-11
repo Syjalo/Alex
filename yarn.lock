@@ -2,17 +2,17 @@
 # yarn lockfile v1
 
 
-"@discordjs/builders@^0.13.0-dev", "@discordjs/builders@^0.13.0-dev.1649160523-402514f":
-  version "0.13.0-dev.1649160523-402514f"
-  resolved "https://registry.yarnpkg.com/@discordjs/builders/-/builders-0.13.0-dev.1649160523-402514f.tgz#6db22def51959ba682fbb2355517161dfedd79c4"
-  integrity sha512-10yl4OIa0YE8tVYdCunbU374HW8X2gqkxwJaWGXjJbqmyWCvbgvxQwHYPhjvEgda8NMAoQyafHVpTAFjbttU4Q==
+"@discordjs/builders@^0.13.0-dev", "@discordjs/builders@^0.13.0-dev.1649505810-3c0bbac":
+  version "0.13.0-dev.1649505810-3c0bbac"
+  resolved "https://registry.yarnpkg.com/@discordjs/builders/-/builders-0.13.0-dev.1649505810-3c0bbac.tgz#5dcd28cc14e19a106f990aaca69ddc21a9e75233"
+  integrity sha512-ojgqqCbqO82nF1uH4awAecxYdjOY2GLUnk/HbKdYsdwYrSEjTnGDUnqEiWtnGljf3qaHLxsTKr1c9jEuV4VzyA==
   dependencies:
+    "@sapphire/shapeshift" "^2.0.0"
     "@sindresorhus/is" "^4.4.0"
     discord-api-types "^0.29.0"
     fast-deep-equal "^3.1.3"
     ts-mixer "^6.0.0"
     tslib "^2.3.1"
-    zod "^3.11.6"
 
 "@discordjs/collection@^0.6.0-dev", "@discordjs/collection@^0.6.0-dev.1649505807-3c0bbac":
   version "0.6.0-dev.1649505807-3c0bbac"
@@ -73,6 +73,11 @@
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/@sapphire/async-queue/-/async-queue-1.3.1.tgz#9d861e626dbffae02d808e13f823d4510e450a78"
   integrity sha512-FFTlPOWZX1kDj9xCAsRzH5xEJfawg1lNoYAA+ecOWJMHOfiZYb1uXOI3ne9U4UILSEPwfE68p3T9wUHwIQfR0g==
+
+"@sapphire/shapeshift@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@sapphire/shapeshift/-/shapeshift-2.0.0.tgz#18800ccba1c2f3ee91b646525540cbf582934aef"
+  integrity sha512-SKq4mKZXW2xB6O2Im4lBCDYy8pnuAMC3Zziw5Ub7WvZMt0fgwebDnqh+9MhoMYUSjkLyQcEO8ZS9d3ES7aRhBw==
 
 "@sapphire/snowflake@^3.1.0":
   version "3.2.1"
@@ -426,8 +431,3 @@ ws@^8.5.0:
   version "8.5.0"
   resolved "https://registry.yarnpkg.com/ws/-/ws-8.5.0.tgz#bfb4be96600757fe5382de12c670dab984a1ed4f"
   integrity sha512-BWX0SWVgLPzYwF8lTzEy1egjhS4S4OEAHfsO8o65WOVsrnSRGaSiUaa9e0ggGlkMTtBlmOpEXiie9RUcBO86qg==
-
-zod@^3.11.6:
-  version "3.14.4"
-  resolved "https://registry.yarnpkg.com/zod/-/zod-3.14.4.tgz#e678fe9e5469f4663165a5c35c8f3dc66334a5d6"
-  integrity sha512-U9BFLb2GO34Sfo9IUYp0w3wJLlmcyGoMd75qU9yf+DrdGA4kEx6e+l9KOkAlyUO0PSQzZCa3TR4qVlcmwqSDuw==
