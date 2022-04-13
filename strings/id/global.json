@@ -4,15 +4,15 @@
     "previous": "Halaman sebelumnya",
     "next": "Halaman selanjutnya",
     "last": "Halaman terakhir",
-    "yes": "Yes",
-    "no": "No"
+    "yes": "Iya",
+    "no": "Tidak"
   },
-  "interactionInVoiceChannel": "Sorry, you can't interact with me in voice channel yet",
-  "rolesUpdated": "Your roles has been successfully updated! Now you {count, plural, =0 {don't have any roles} one {have # role ({roles})} other {have # roles ({roles})}}.",
-  "welcome": "Welcome!",
-  "goodbye": "Goodbye!",
+  "interactionInVoiceChannel": "Maaf, anda tidak dapat berinteraksi dengan saya di channel voice pada saat ini",
+  "rolesUpdated": "Role anda telah diperbarui! Anda sekarang {count, plural, =0 {tidak punya role apapun} one {punya # role ({roles})} other {punya # roles ({roles})}}.",
+  "welcome": "Selamat datang!",
+  "goodbye": "Selamat tinggal!",
   "createdAccount": "Akun telah dibuat",
   "joinedServer": "Mengikuti server sejak",
-  "leftServer": "Left the server",
-  "suggestionDiscussion": "Suggestion Discussion"
+  "leftServer": "Meninggalkan server",
+  "suggestionDiscussion": "Saran Diskusi"
 }
