@@ -1,13 +1,13 @@
 import { Locale } from '../types';
 
 export const Emojis = {
-  allowed: '✅',
-  bot: '❎',
-  denied: '<:denied:948824918815043634>',
-  dnd: '<:dnd:948828496841551892>',
-  idle: '<:idle:948828495474229278>',
-  offline: '<:offline:948828496027869194>',
-  online: '<:online:948828497550409738>',
+  allowed: '<:allowed:963705732111400970>',
+  bot: '<:bot:963707842936836097>',
+  denied: '<:denied:963705732061085736>',
+  dnd: '<:dnd:963706086068715551>',
+  idle: '<:idle:963706086525923338>',
+  offline: '<:offline:963706086555263006>',
+  online: '<:online:963706086584627230>',
 };
 
 export const Ids = {
