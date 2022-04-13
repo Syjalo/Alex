@@ -1,8 +1,8 @@
 import { Locale } from '../types';
 
 export const Emojis = {
-  allowed: '<:allowed:948824918500474891>',
-  bot: '<:bot:956422453947682826>',
+  allowed: '✅',
+  bot: '❎',
   denied: '<:denied:948824918815043634>',
   dnd: '<:dnd:948828496841551892>',
   idle: '<:idle:948828495474229278>',
