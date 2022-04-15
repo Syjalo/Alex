@@ -1,5 +1,5 @@
 import { SlashCommandBuilder } from '@discordjs/builders';
-import discord, { Colors, EmbedBuilder as Embed, Formatters } from 'discord.js';
+import discord, { Colors, Formatters, UnsafeEmbedBuilder as Embed } from 'discord.js';
 import { inspect } from 'node:util';
 import { format } from 'prettier';
 import { getParsedCommandLineOfConfigFile, sys, transpile } from 'typescript';

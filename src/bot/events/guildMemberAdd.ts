@@ -1,4 +1,4 @@
-import { ColorResolvable, Colors, EmbedBuilder as Embed, Formatters, TextChannel } from 'discord.js';
+import { ColorResolvable, Colors, Formatters, TextChannel, UnsafeEmbedBuilder as Embed } from 'discord.js';
 import { database } from '../../database';
 import { AlexBotClientEvent } from '../types';
 import { Util } from '../util/Util';
