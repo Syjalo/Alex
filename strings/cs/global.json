@@ -7,5 +7,12 @@
     "yes": "Yes",
     "no": "No"
   },
-  "languageRolesUpdated": "Tvé role byly úspěšně aktualizovány! Teď máš {count, plural, one {# jazykovou roli} few {# jazykové role} other {# jazykových rolí}} ({roles})."
+  "interactionInVoiceChannel": "Sorry, you can't interact with me in voice channel yet",
+  "rolesUpdated": "Your roles has been successfully updated! Now you {count, plural, =0 {don't have any roles} one {have # role ({roles})} other {have # roles ({roles})}}.",
+  "welcome": "Welcome!",
+  "goodbye": "Goodbye!",
+  "createdAccount": "Vytvořil/a účet",
+  "joinedServer": "Připojil/a se k serveru",
+  "leftServer": "Left the server",
+  "suggestionDiscussion": "Suggestion Discussion"
 }

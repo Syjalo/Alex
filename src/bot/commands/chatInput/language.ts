@@ -20,7 +20,7 @@ export const command: AlexBotChatInputCommand = {
         ),
     )
     .addSubcommand((subcommand) => subcommand.setName('reset').setDescription('Resets your language')),
-  listener: async (interaction, client, getString) => {
+  listener: (interaction, client, getString) => {
     const subcommand = interaction.options.getSubcommand(true);
     if (subcommand === 'reset') reset(interaction, getString);
     else if (subcommand === 'set') set(interaction, getString);

@@ -12,6 +12,7 @@ import {
 } from 'discord.js';
 import { setTimeout } from 'timers';
 import { inspect } from 'util';
+import { database } from '../../../database';
 import { GetString } from '../../types';
 import { AlexBotClient } from '../../util/AlexBotClient';
 import { Ids } from '../../util/Constants';
@@ -34,7 +35,7 @@ export const chatInputCommand = async (
         value: commandName,
       })
       .setColor(Colors.Red);
-    await (client.channels.resolve(Ids.channels.botLog) as TextChannel).send({
+    await ((await client.channels.fetch(Ids.channels.botLog)) as TextChannel).send({
       content: `<@${Ids.developer}>`,
       embeds: [embed],
     });
@@ -95,7 +96,10 @@ export const chatInputCommand = async (
         },
       )
       .setColor(Colors.Red);
-    await (client.channels.resolve(Ids.channels.botLog) as TextChannel).send({
+
+    const dbGuild = await database.guilds.findOne({ id: interaction.guild.id });
+
+    await (client.channels.resolve(dbGuild!.channelIds.botLog) as TextChannel).send({
       content: `<@${Ids.developer}>`,
       embeds: [embed],
     });

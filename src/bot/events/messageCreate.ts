@@ -1,5 +1,7 @@
+import { database } from '../../database';
 import { AlexBotClientEvent } from '../types';
-import { Emojis, Ids } from '../util/Constants';
+import { Emojis } from '../util/Constants';
+import { Util } from '../util/Util';
 
 export const event: AlexBotClientEvent<'messageCreate'> = {
   name: 'messageCreate',
@@ -9,11 +11,13 @@ export const event: AlexBotClientEvent<'messageCreate'> = {
       await message.guild.members.fetch(message.author).catch(() => null);
       if (!message.member) return;
     }
+    const dbGuild = await database.guilds.findOne({ id: message.guild.id }),
+      getString = Util.makeGetStringFunction({ defaultLocale: message.guild.preferredLocale });
 
-    if (message.channelId === Ids.channels.suggestions) {
+    if (message.channelId === dbGuild!.channelIds.suggestions) {
       await message
         .startThread({
-          name: `[${message.member.displayName}] Suggestion Discussion`,
+          name: `[${message.member.displayName}] ${getString('suggestionDiscussion')}`,
           reason: 'New suggestion',
         })
         .catch(() => null);

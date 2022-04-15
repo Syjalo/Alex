@@ -1,5 +1,5 @@
 import { MongoClient, MongoClientOptions } from 'mongodb';
-import { DBLanguage, DBMember } from './types';
+import { DBGuild, DBLanguage, DBMember } from './types';
 
 export class DatabaseClient extends MongoClient {
   public awaitReady: Promise<void>;
@@ -8,6 +8,10 @@ export class DatabaseClient extends MongoClient {
     super(url, options);
 
     this.awaitReady = new Promise((resolve) => this.once('connectionReady', resolve));
+  }
+
+  public get guilds() {
+    return this.db().collection<DBGuild>('guilds');
   }
 
   public get languages() {

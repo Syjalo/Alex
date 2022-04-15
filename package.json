@@ -18,23 +18,26 @@
   },
   "homepage": "https://github.com/Syjalo/Alex#readme",
   "dependencies": {
-    "@discordjs/builders": "^0.13.0-dev.1649030892-5748dbe",
-    "@discordjs/collection": "^0.6.0-dev.1649030901.5748dbe",
-    "@discordjs/rest": "^0.4.0-dev.1649030897-5748dbe",
+    "@discordjs/builders": "^0.13.0-dev.1649937819-b01f414",
+    "@discordjs/collection": "^0.6.0-dev.1649937819-b01f414",
+    "@discordjs/rest": "^0.4.0-dev.1649937819-b01f414",
     "@messageformat/core": "^3.0.1",
     "@statsfm/spotify.js": "^1.8.4",
-    "discord.js": "^14.0.0-dev.1649030898-5748dbe",
+    "discord.js": "^14.0.0-dev.1649937833-b01f414",
     "dotenv": "^16.0.0",
-    "mongodb": "^4.4.1",
+    "mongodb": "^4.5.0",
     "node-fetch": "^2.6.7",
     "prettier": "^2.6.2",
     "typescript": "^4.6.3"
   },
   "devDependencies": {
-    "@types/node": "16.11.26",
-    "@types/prettier": "^2.4.4",
-    "prettier-plugin-organize-imports": "^2.3.4",
-    "husky": "^7.0.0"
+    "@types/node": "16.11.27",
+    "@types/prettier": "^2.6.0",
+    "husky": "^7.0.4",
+    "prettier-plugin-organize-imports": "^2.3.4"
+  },
+  "resolutions": {
+    "discord-api-types": "^0.31.1"
   },
   "engines": {
     "node": "16.x"

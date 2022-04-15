@@ -2,21 +2,21 @@
   "subcommand": {
     "set": {
       "notChangedEmbed": {
-        "title": "Your language hasn't changed",
-        "description": "This happened because you chose a language that is already set"
+        "title": "A nyelv nem változott",
+        "description": "Ez azért történt, mert olyan nyelvet választotál, ami már be van állítva"
       },
       "changedEmbed": {
-        "title": "Your language has been successfully changed",
-        "description": "Translations may not be completed and contain errors"
+        "title": "A nyelv sikeresen meg lett változtatva",
+        "description": "Lehet, hogy a fordítások nem teljesek és hibákat tartalmaznak"
       },
       "unknownLanguage": {
         "title": "Ismeretlen nyelv",
-        "description": "Couldn't find a language by your query: {query}"
+        "description": "Nem találtam nyelvet a lekérdezésed alapján: {query}"
       }
     },
     "reset": {
       "resetEmbed": {
-        "title": "Your language has been successfully reset"
+        "title": "A nyelv sikeresen vissza lett állítva"
       }
     }
   }

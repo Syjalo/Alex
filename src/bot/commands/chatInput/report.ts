@@ -1,7 +1,7 @@
 import { ActionRowBuilder, SlashCommandBuilder, UnsafeButtonBuilder } from '@discordjs/builders';
 import { ButtonStyle, Colors, ComponentType, TextChannel, UnsafeEmbedBuilder as Embed } from 'discord.js';
+import { database } from '../../../database';
 import { AlexBotChatInputCommand } from '../../types';
-import { Ids } from '../../util/Constants';
 import { Util } from '../../util/Util';
 
 export const command: AlexBotChatInputCommand = {
@@ -74,7 +74,11 @@ export const command: AlexBotChatInputCommand = {
             .setLabel('Resolve')
             .setStyle(ButtonStyle.Success),
         );
-        await (client.channels.resolve(Ids.channels.report) as TextChannel).send({ embeds: [embed] });
+        const dbGuild = await database.guilds.findOne({ id: interaction.guild.id });
+        await (client.channels.resolve(dbGuild!.channelIds.report) as TextChannel).send({
+          embeds: [embed],
+          components: [buttons],
+        });
         await buttonInteraction.update({ content: getString('sent'), embeds: [], components: [] });
       } else if (buttonInteraction.customId === 'no')
         await buttonInteraction.update({ content: getString('canceled'), embeds: [], components: [] });

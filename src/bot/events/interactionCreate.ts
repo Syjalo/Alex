@@ -18,6 +18,14 @@ export const event: AlexBotClientEvent<'interactionCreate'> = {
         defaultLocale: dbMember?.locale || interaction.locale,
       });
 
+    if (interaction.channel?.isVoiceBased() && interaction.isRepliable()) {
+      await interaction.reply({
+        content: getString('interactionInVoiceChannel', { fileName: 'global' }),
+        ephemeral: true,
+      });
+      return;
+    }
+
     if (interaction.isAutocomplete()) autocomplete(interaction);
     else if (interaction.isButton()) button(interaction);
     else if (interaction.isChatInputCommand()) chatInputCommand(interaction, client, getString);

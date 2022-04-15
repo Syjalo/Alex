@@ -1,9 +1,9 @@
 {
-  "cooldownExist": "Please wait. You'll be able to use {command} {timestamp}",
-  "playerNotFound": "Player couldn't be found",
-  "notForYou": "This menu is not for you",
+  "cooldownExist": "Kérjük, várj. A(z) {command} parancsot {timestamp} múlva használhatod",
+  "playerNotFound": "A játékos nem található",
+  "notForYou": "Ez a menü nem számodra van",
   "notTextChannel": "A csatornának szöveges csatornának kell lennie",
-  "underDevelopment": "This command is currently under development",
+  "underDevelopment": "Ez a parancs jelenleg fejlesztés alatt áll",
   "unexpectedError": "Váratlan hiba történt",
   "userNotFound": "A felhasználó nem található"
 }

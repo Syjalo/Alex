@@ -45,6 +45,7 @@ export type MojangAPIUUIDToNameHistory = MojangAPINameHistory[];
 export enum Locale {
   Czech = 'cs',
   EnglishUS = 'en-US',
+  Hungarian = 'hu',
   Indonesian = 'id',
   Russian = 'ru',
   Turkish = 'tr',

@@ -1,6 +1,6 @@
 {
   "embed": {
-    "title": "{username}'s name history",
+    "title": "{username} nevének előzménye",
     "field": {
       "name": {
         "values": {
@@ -9,7 +9,7 @@
       }
     },
     "footer": {
-      "text": "Page {current}/{total}"
+      "text": "Oldal {current}/{total}"
     }
   }
 }

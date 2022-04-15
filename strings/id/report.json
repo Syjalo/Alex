@@ -1,13 +1,13 @@
 {
   "doYouWantEmbed": {
-    "title": "Do you want to report {user}?",
+    "title": "Apa anda mau melapor {user}?",
     "fields": {
       "reason": {
-        "name": "Reason"
+        "name": "Alasan"
       }
     }
   },
   "sent": "Laporan anda telah dikirim",
-  "canceled": "Your report has been canceled",
-  "timeout": "You haven't clicked a button for too long. Your report has been canceled"
+  "canceled": "Laporan anda telah dibatalkan",
+  "timeout": "Anda tidak mengklik sebuah tombol terlalu lama. Laporan anda telah dibatalkan"
 }

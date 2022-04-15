@@ -65,6 +65,6 @@ export const command: AlexBotChatInputCommand = {
         },
       )
       .setColor(Colors.LightGrey);
-    await (client.channels.resolve(Ids.channels.botLog) as TextChannel).send({ embeds: [embed] });
+    await ((await client.channels.fetch(Ids.channels.botLog)) as TextChannel).send({ embeds: [embed] });
   },
 };
