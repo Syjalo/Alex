@@ -21,6 +21,7 @@ export const command: AlexBotChatInputCommand = {
     if (!user && id) user = await client.users.fetch(id).catch(() => null);
     if (!user) throw 'userNotFound';
     const member = await interaction.guild.members.fetch(user).catch(() => null);
+    member?.guild.members.fetch({ user, withPresences: true });
 
     const embed = new Embed()
       .setAuthor({ name: member?.displayName || user.username, url: Util.makeUserURL(user.id) })
