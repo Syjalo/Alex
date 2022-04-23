@@ -4,15 +4,15 @@
     "previous": "Önceki sayfa",
     "next": "Sonraki sayfa",
     "last": "Son sayfa",
-    "yes": "Yes",
-    "no": "No"
+    "yes": "Evet",
+    "no": "Hayır"
   },
-  "interactionInVoiceChannel": "Sorry, you can't interact with me in voice channel yet",
-  "rolesUpdated": "Your roles has been successfully updated! Now you {count, plural, =0 {don't have any roles} one {have # role ({roles})} other {have # roles ({roles})}}.",
-  "welcome": "Welcome!",
-  "goodbye": "Goodbye!",
+  "interactionInVoiceChannel": "Üzgünüm, şu anlık benimle ses kanalında etkileşime giremezsin",
+  "rolesUpdated": "Rollerin başarıyla güncellendi! Artık {count, plural, =0 {hiç rolün yok} one {# rolün var ({roles})} other {# rolün var ({roles})}}.",
+  "welcome": "Hoşgeldin!",
+  "goodbye": "Güle güle!",
   "createdAccount": "Hesabın oluşturulduğu tarih",
   "joinedServer": "Sunucuya katılma tarihi",
-  "leftServer": "Left the server",
-  "suggestionDiscussion": "Suggestion Discussion"
+  "leftServer": "Sunucudan ayrıldı",
+  "suggestionDiscussion": "Öneri tartışması"
 }
