@@ -1,18 +1,18 @@
 {
   "buttons": {
-    "first": "First page",
-    "previous": "Previous page",
-    "next": "Next page",
-    "last": "Last page",
-    "yes": "Yes",
-    "no": "No"
+    "first": "Erste Seite",
+    "previous": "Vorherige Seite",
+    "next": "Nächste Seite",
+    "last": "Letzte Seite",
+    "yes": "Ja",
+    "no": "Nein"
   },
-  "interactionInVoiceChannel": "Sorry, you can't interact with me in voice channel yet",
-  "rolesUpdated": "Your roles has been successfully updated! Now you {count, plural, =0 {don't have any roles} one {have # role ({roles})} other {have # roles ({roles})}}.",
-  "welcome": "Welcome!",
-  "goodbye": "Goodbye!",
-  "createdAccount": "Created the account",
-  "joinedServer": "Joined the server",
-  "leftServer": "Left the server",
-  "suggestionDiscussion": "Suggestion Discussion"
+  "interactionInVoiceChannel": "Entschuldigung, du kannst mit mir im Sprachkanal noch nicht interagieren",
+  "rolesUpdated": "Deine Rollen wurden erfolgreich aktualisiert! Jetzt {count, plural, =0 {hast du keine Rollen} one {hast du # Rolle ({roles})} other {hast du # Rollen ({roles})}}.",
+  "welcome": "Herzlich Willkommen!",
+  "goodbye": "Auf Wiedersehen!",
+  "createdAccount": "Konto erstellt",
+  "joinedServer": "Dem Server beigetreten",
+  "leftServer": "Den Server verlassen",
+  "suggestionDiscussion": "Diskussion über Vorschläge"
 }
