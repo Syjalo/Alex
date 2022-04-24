@@ -1,15 +1,15 @@
 {
   "embed": {
-    "title": "{username}'s name history",
+    "title": "{username}'s Namenshistorie",
     "field": {
       "name": {
         "values": {
-          "unknown": "Unknown"
+          "unknown": "Unbekannt"
         }
       }
     },
     "footer": {
-      "text": "Page {current}/{total}"
+      "text": "Seite {current}/{total}"
     }
   }
 }
