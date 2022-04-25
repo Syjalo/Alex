@@ -6,7 +6,7 @@
         "values": {
           "status": {
             "online": "Online",
-            "idle": "Inaktiv",
+            "idle": "Abwesend",
             "dnd": "Bitte nicht stören",
             "invisible": "Unsichtbar",
             "offline": "Offline"
