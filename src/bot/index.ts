@@ -15,6 +15,7 @@ export const client = new AlexBotClient({
   failIfNotExists: false,
   intents: [
     GatewayIntentBits.GuildMembers,
+    GatewayIntentBits.GuildMessageReactions,
     GatewayIntentBits.GuildMessages,
     GatewayIntentBits.GuildPresences,
     GatewayIntentBits.Guilds,
