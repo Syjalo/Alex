@@ -1,12 +1,10 @@
 import { SlashCommandBuilder } from '@discordjs/builders';
-import { Awaitable, ChatInputCommandInteraction, ClientEvents, Locale as DiscordLocale, Snowflake } from 'discord.js';
+import { Awaitable, ChatInputCommandInteraction, ClientEvents, Locale as DiscordLocale } from 'discord.js';
 import { AlexBotClient } from './util/AlexBotClient';
 
 export interface AlexBotChatInputCommand {
   data: Pick<SlashCommandBuilder, 'name' | 'toJSON'>;
   cooldown?: number;
-  allowedRoles?: Snowflake[];
-  allowedUsers?: Snowflake[];
   dev?: true;
   listener: (
     interaction: ChatInputCommandInteraction<'cached'>,

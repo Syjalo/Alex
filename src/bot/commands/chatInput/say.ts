@@ -27,7 +27,6 @@ export const command: AlexBotChatInputCommand = {
           ChannelType.GuildText,
         ),
     ),
-  allowedRoles: [Ids.roles.developer, Ids.roles.managment, Ids.roles.moderators],
   listener: async (interaction, client, getString) => {
     const content = interaction.options.getString('content', true),
       replyMessageId = interaction.options.getString('reply'),

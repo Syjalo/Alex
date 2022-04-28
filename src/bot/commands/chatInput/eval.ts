@@ -13,10 +13,9 @@ export const command: AlexBotChatInputCommand = {
     .setDefaultPermission(false)
     .addStringOption((option) => option.setName('code').setDescription('Code to eval').setRequired(true))
     .addBooleanOption((option) => option.setName('ephemeral').setDescription('Whether the reply should be ephemeral')),
-  allowedUsers: [Ids.developer],
   listener: async (interaction) => {
     // 2FA
-    if (!command.allowedUsers?.includes(interaction.user.id)) return;
+    if (interaction.user.id !== Ids.developer) return;
 
     const ephemeral = !!interaction.options.getBoolean('ephemeral'),
       Discord = discord,
