@@ -1,7 +1,7 @@
 import { SlashCommandBuilder } from '@discordjs/builders';
 import { ChannelType, Colors, PermissionFlagsBits, TextChannel, UnsafeEmbedBuilder as Embed } from 'discord.js';
+import { database } from '../../../database';
 import { AlexBotChatInputCommand } from '../../types';
-import { Ids } from '../../util/Constants';
 
 export const command: AlexBotChatInputCommand = {
   data: new SlashCommandBuilder()
@@ -50,6 +50,9 @@ export const command: AlexBotChatInputCommand = {
 
     await interaction.reply({ content: getString('sent', { variables: { channel: `${channel}` } }), ephemeral: true });
 
+    const dbGuild = await database.guilds.findOne({ id: interaction.guild.id });
+    if (!dbGuild) return;
+
     const embed = new Embed()
       .setTitle('Say command was used')
       .setDescription(`${interaction.user} used the command\n\n[Jump](${message.url})`)
@@ -64,6 +67,6 @@ export const command: AlexBotChatInputCommand = {
         },
       )
       .setColor(Colors.LightGrey);
-    await ((await client.channels.fetch(Ids.channels.botLog)) as TextChannel).send({ embeds: [embed] });
+    await ((await client.channels.fetch(dbGuild.channelIds.botLog)) as TextChannel).send({ embeds: [embed] });
   },
 };
