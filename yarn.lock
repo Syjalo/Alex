@@ -14,10 +14,15 @@
     ts-mixer "^6.0.0"
     tslib "^2.3.1"
 
-"@discordjs/collection@^0.6.0-dev", "@discordjs/collection@^0.6.0-dev.1649937819-b01f414":
+"@discordjs/collection@^0.6.0-dev":
   version "0.6.0-dev.1649937819-b01f414"
   resolved "https://registry.yarnpkg.com/@discordjs/collection/-/collection-0.6.0-dev.1649937819-b01f414.tgz#b298282603d17d26a9f4f667156eca26fe790d66"
   integrity sha512-PHMoMGQzj2mXrEVIVuqqH0LMHn5o5vc5JN1PLWBrkv7BtT5rClMXzSVD0gCY/YovYMa3W/Jb/CDjveq7sSd1MA==
+
+"@discordjs/collection@^0.7.0-dev.1651147743-679dcda":
+  version "0.7.0-dev.1651147743-679dcda"
+  resolved "https://registry.yarnpkg.com/@discordjs/collection/-/collection-0.7.0-dev.1651147743-679dcda.tgz#3a51f6725e0a95257ad20205701657dffaa314b1"
+  integrity sha512-4Ciqaxrg2pE75Wo0z7lyEi2u3D0lV9GO6+M6kEyxQqlsYoYcF0i3ylfS5XWvERAXqPNTiafA9GW+7Oq76ikC0A==
 
 "@discordjs/rest@^0.4.0-dev", "@discordjs/rest@^0.4.0-dev.1649937819-b01f414":
   version "0.4.0-dev.1649937819-b01f414"
