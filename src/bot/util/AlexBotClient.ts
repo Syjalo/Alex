@@ -7,9 +7,8 @@ import { AlexBotChatInputCommand } from '../types';
 export class AlexBotClient extends Client<true> {
   public commands = new Collection<string, AlexBotChatInputCommand>();
 
-  public constructor(options: ClientOptions) {
-    super(options);
-
+  public async login(token?: string) {
+    await database.awaitReady;
     for (const module of Object.values(CommandsModule)) this.commands.set(module.command.data.name, module.command);
     for (const module of Object.values(EventsModule)) {
       if (typeof module.event.condition !== 'undefined' && !module.event.condition) continue;
@@ -21,10 +20,6 @@ export class AlexBotClient extends Client<true> {
         this.on(module.event.name, (...args) => module.event.listener(this, ...args));
       }
     }
-  }
-
-  public async login(token?: string) {
-    await database.awaitReady;
     return super.login(token);
   }
 }
