@@ -65,7 +65,7 @@ export const command: AlexBotChatInputCommand = {
     };
 
     const makePageComponents = (pageCount: number, pageIndex: number) => {
-      return new ActionRowBuilder<UnsafeButtonBuilder>().addComponents(
+      return new ActionRowBuilder<UnsafeButtonBuilder>().addComponents([
         new UnsafeButtonBuilder()
           .setCustomId('first')
           .setLabel(getString('buttons.first', { fileName: 'global' }))
@@ -90,7 +90,7 @@ export const command: AlexBotChatInputCommand = {
           .setEmoji({ name: '⏭️' })
           .setStyle(ButtonStyle.Primary)
           .setDisabled(pageIndex < 0 || pageIndex === pageCount - 1),
-      );
+      ]);
     };
 
     const makeMessageOptions = (pages: MojangAPINameHistory[][], pageIndex: number) => ({
