@@ -30,10 +30,12 @@ export const chatInputCommand = async (
   if (!command) {
     const embed = new Embed()
       .setTitle('An unexpected chat input command interaction')
-      .setFields({
-        name: 'Command name',
-        value: commandName,
-      })
+      .setFields([
+        {
+          name: 'Command name',
+          value: commandName,
+        },
+      ])
       .setColor(Colors.Red);
     await ((await client.channels.fetch(Ids.channels.botLog)) as TextChannel).send({
       content: `<@${Ids.developer}>`,
@@ -85,7 +87,7 @@ export const chatInputCommand = async (
 
     const embed = new Embed()
       .setTitle(`An unexpected error occurred while running a command`)
-      .setFields(
+      .setFields([
         {
           name: 'Command name',
           value: commandName,
@@ -94,7 +96,7 @@ export const chatInputCommand = async (
           name: 'Error',
           value: Formatters.codeBlock(inspect(error).substring(0, 1017)),
         },
-      )
+      ])
       .setColor(Colors.Red);
 
     const dbGuild = await database.guilds.findOne({ id: interaction.guild.id });

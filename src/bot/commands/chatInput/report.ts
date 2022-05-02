@@ -19,10 +19,12 @@ export const command: AlexBotChatInputCommand = {
 
     const embed = new Embed()
       .setTitle(getString('doYouWantEmbed.title', { variables: { user: member?.displayName || user.username } }))
-      .setFields({
-        name: getString('doYouWantEmbed.fields.reason.name'),
-        value: reason,
-      })
+      .setFields([
+        {
+          name: getString('doYouWantEmbed.fields.reason.name'),
+          value: reason,
+        },
+      ])
       .setColor(Colors.LightGrey);
     const buttons = new ActionRowBuilder<UnsafeButtonBuilder>().addComponents(
       new UnsafeButtonBuilder()
@@ -56,7 +58,7 @@ export const command: AlexBotChatInputCommand = {
             url: Util.makeUserURL(interaction.user.id),
           })
           .setTitle('New user report')
-          .setFields(
+          .setFields([
             {
               name: 'User',
               value: `${user}`,
@@ -65,7 +67,7 @@ export const command: AlexBotChatInputCommand = {
               name: 'Reason',
               value: reason,
             },
-          )
+          ])
           .setColor(Colors.Red);
         if (proof && proof.contentType?.startsWith('image')) embed.setImage(proof.url);
         const buttons = new ActionRowBuilder<UnsafeButtonBuilder>().addComponents(
