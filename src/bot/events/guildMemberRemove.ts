@@ -16,7 +16,7 @@ export const event: AlexBotClientEvent<'guildMemberRemove'> = {
       })
       .setTitle(getString('goodbye'))
       .setDescription(`${member} ${Formatters.inlineCode(member.user.tag)} (${member.id})`)
-      .setFields(
+      .setFields([
         {
           name: getString('createdAccount'),
           value: Util.makeFormattedTime(Math.floor(member.user.createdTimestamp / 1000)),
@@ -25,7 +25,7 @@ export const event: AlexBotClientEvent<'guildMemberRemove'> = {
           name: getString('leftServer'),
           value: Util.makeFormattedTime(Math.floor(Date.now() / 1000)),
         },
-      )
+      ])
       .setColor(Colors.LightGrey);
 
     const dbGuild = await database.guilds.findOne({ id: member.guild.id });

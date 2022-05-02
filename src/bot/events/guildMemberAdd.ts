@@ -22,7 +22,7 @@ export const event: AlexBotClientEvent<'guildMemberAdd'> = {
       })
       .setTitle(getString('welcome'))
       .setDescription(`${member} ${Formatters.inlineCode(member.user.tag)} (${member.id})`)
-      .setFields(
+      .setFields([
         {
           name: getString('createdAccount'),
           value: Util.makeFormattedTime(Math.floor(member.user.createdTimestamp / 1000)),
@@ -31,7 +31,7 @@ export const event: AlexBotClientEvent<'guildMemberAdd'> = {
           name: getString('joinedServer'),
           value: Util.makeFormattedTime(Math.floor(member.joinedTimestamp! / 1000)),
         },
-      )
+      ])
       .setColor(color);
 
     const dbGuild = await database.guilds.findOne({ id: member.guild.id });

@@ -47,14 +47,14 @@ export const command: AlexBotChatInputCommand = {
     const makePageEmbed = (pageNameData: MojangAPINameHistory[], pageCount: number, pageIndex: number) => {
       const embed = new Embed()
         .setTitle(getString('embed.title', { variables: { username } }))
-        .setFields(
+        .setFields([
           ...pageNameData.map((nameData) => ({
             name: nameData.name,
             value: nameData.changedToAt
               ? Util.makeFormattedTime(Math.floor(nameData.changedToAt / 1000))
               : getString('embed.field.name.values.unknown'),
           })),
-        )
+        ])
         .setThumbnail(`https://mc-heads.net/body/${uuid}/4096/left`)
         .setColor(Colors.Green);
       if (pageCount > 1)

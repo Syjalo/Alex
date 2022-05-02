@@ -56,7 +56,7 @@ export const command: AlexBotChatInputCommand = {
     const embed = new Embed()
       .setTitle('Say command was used')
       .setDescription(`${interaction.user} used the command\n\n[Jump](${message.url})`)
-      .setFields(
+      .setFields([
         {
           name: 'Channel',
           value: `${channel}`,
@@ -65,7 +65,7 @@ export const command: AlexBotChatInputCommand = {
           name: 'Content',
           value: content,
         },
-      )
+      ])
       .setColor(Colors.LightGrey);
     await ((await client.channels.fetch(dbGuild.channelIds.botLog)) as TextChannel).send({ embeds: [embed] });
   },

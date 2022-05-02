@@ -18,7 +18,7 @@ export const command: AlexBotChatInputCommand = {
 
     const embed = new Embed()
       .setTitle(getString('embed.title'))
-      .setFields(
+      .setFields([
         {
           name: getString('embed.field.ping.name'),
           value: getString('embed.field.ping.value', { variables: { ms: ping } }),
@@ -31,7 +31,7 @@ export const command: AlexBotChatInputCommand = {
           name: getString('embed.field.onlineSince.name'),
           value: Util.makeFormattedTime(Math.floor(client.readyTimestamp / 1000)),
         },
-      )
+      ])
       .setColor(color);
     await interaction.editReply({ embeds: [embed] });
   },

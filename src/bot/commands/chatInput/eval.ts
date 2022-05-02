@@ -58,7 +58,7 @@ export const command: AlexBotChatInputCommand = {
         inspectedReturn = inspect(evaledCode, { getters: true }),
         embed = new Embed()
           .setTitle('The code was evaled successfully')
-          .setFields(
+          .setFields([
             ...baseFields,
             {
               name: 'Eval result',
@@ -68,16 +68,19 @@ export const command: AlexBotChatInputCommand = {
               name: 'Time spent',
               value: timeSpent,
             },
-          )
+          ])
           .setColor(Colors.Green);
       await interaction.editReply({ embeds: [embed] });
     } catch (error) {
       const embed = new Embed()
         .setTitle('An error occured while evaling provided code')
-        .setFields(...baseFields, {
-          name: 'Error',
-          value: Formatters.codeBlock((error.stack ?? inspect(error)).substring(0, 1017)),
-        })
+        .setFields([
+          ...baseFields,
+          {
+            name: 'Error',
+            value: Formatters.codeBlock((error.stack ?? inspect(error)).substring(0, 1017)),
+          },
+        ])
         .setColor(Colors.Red);
       await interaction.editReply({ embeds: [embed] });
     }
