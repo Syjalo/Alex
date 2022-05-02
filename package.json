@@ -22,7 +22,6 @@
     "@discordjs/collection": "^0.7.0-dev.1651493036-4ba0f56",
     "@discordjs/rest": "^0.4.1",
     "@messageformat/core": "^3.0.1",
-    "@statsfm/spotify.js": "^1.8.5",
     "discord.js": "^14.0.0-dev.1651493371-4ba0f56",
     "dotenv": "^16.0.0",
     "mongodb": "^4.5.0",

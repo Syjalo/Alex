@@ -2,7 +2,6 @@
 import 'dotenv/config';
 import './bot';
 import './database';
-import './spotify';
 
 import { Routes } from 'discord-api-types/v10';
 import { Colors, Formatters, UnsafeEmbedBuilder as Embed } from 'discord.js';
