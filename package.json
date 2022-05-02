@@ -2,12 +2,14 @@
   "name": "alex",
   "private": true,
   "main": "dist/index.js",
+  "type": "module",
   "author": "Synbulat Biishev <syjalo.dev@gmail.com>",
   "license": "MIT",
   "scripts": {
     "compile": "tsc -w",
     "format": "prettier --write src",
-    "postinstall": "tsc"
+    "postinstall": "tsc",
+    "start": "node --experimental-specifier-resolution=node ."
   },
   "repository": {
     "type": "git",
