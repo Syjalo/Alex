@@ -26,7 +26,7 @@ export const command: AlexBotChatInputCommand = {
         },
       ])
       .setColor(Colors.LightGrey);
-    const buttons = new ActionRowBuilder<UnsafeButtonBuilder>().addComponents(
+    const buttons = new ActionRowBuilder<UnsafeButtonBuilder>().addComponents([
       new UnsafeButtonBuilder()
         .setCustomId('yes')
         .setLabel(getString('buttons.yes', { fileName: 'global' }))
@@ -35,7 +35,7 @@ export const command: AlexBotChatInputCommand = {
         .setCustomId('no')
         .setLabel(getString('buttons.no', { fileName: 'global' }))
         .setStyle(ButtonStyle.Danger),
-    );
+    ]);
     const message = await interaction.reply({
       embeds: [embed],
       components: [buttons],
@@ -70,12 +70,12 @@ export const command: AlexBotChatInputCommand = {
           ])
           .setColor(Colors.Red);
         if (proof && proof.contentType?.startsWith('image')) embed.setImage(proof.url);
-        const buttons = new ActionRowBuilder<UnsafeButtonBuilder>().addComponents(
+        const buttons = new ActionRowBuilder<UnsafeButtonBuilder>().addComponents([
           new UnsafeButtonBuilder()
             .setCustomId('user-report-resolve')
             .setLabel('Resolve')
             .setStyle(ButtonStyle.Success),
-        );
+        ]);
         const dbGuild = await database.guilds.findOne({ id: interaction.guild.id });
         await (client.channels.resolve(dbGuild!.channelIds.report) as TextChannel).send({
           embeds: [embed],
