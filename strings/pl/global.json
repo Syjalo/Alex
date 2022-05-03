@@ -7,7 +7,6 @@
     "yes": "Yes",
     "no": "No"
   },
-  "interactionInVoiceChannel": "Sorry, you can't interact with me in voice channel yet",
   "rolesUpdated": " Twoje role zostały pomyślnie zaktualizowane! {count,plural,=0{Nie masz teraz żadnych ról} one{Masz teraz # rolę} few{Masz teraz # role} many{Masz teraz # roli} other{Masz teraz # role}}.",
   "welcome": "Welcome!",
   "goodbye": "Goodbye!",
