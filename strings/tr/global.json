@@ -7,7 +7,6 @@
     "yes": "Evet",
     "no": "Hayır"
   },
-  "interactionInVoiceChannel": "Üzgünüm, şu anlık benimle ses kanalında etkileşime giremezsin",
   "rolesUpdated": "Rollerin başarıyla güncellendi! Artık {count, plural, =0 {hiç rolün yok} one {# rolün var ({roles})} other {# rolün var ({roles})}}.",
   "welcome": "Hoşgeldin!",
   "goodbye": "Güle güle!",
