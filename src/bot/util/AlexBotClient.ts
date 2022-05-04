@@ -1,4 +1,4 @@
-import { Client, ClientOptions, Collection } from 'discord.js';
+import { Client, Collection } from 'discord.js';
 import { database } from '../../database';
 import * as CommandsModule from '../commands';
 import * as EventsModule from '../events';
