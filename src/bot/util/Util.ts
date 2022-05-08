@@ -52,7 +52,13 @@ export class Util extends null {
 
       if (string === enStrings) locale = Locale.EnglishUS;
 
-      if (variables && typeof string === 'string') string = new MessageFormat(locale).compile(string)(variables);
+      if (variables && typeof string === 'string')
+        string = new MessageFormat(
+          {
+            [locale]: (value: string | number, ord?: boolean) =>
+              new Intl.PluralRules(locale, { type: ord ? 'ordinal' : 'cardinal' }).select(Number(value)),
+          }[locale],
+        ).compile(string)(variables);
 
       return string;
     };

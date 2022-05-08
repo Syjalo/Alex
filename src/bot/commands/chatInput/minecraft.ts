@@ -37,7 +37,8 @@ export const command: AlexBotChatInputCommand = {
     if (!nameHistory) throw 'playerNotFound';
 
     const username = nameHistory.at(-1)!.name.replace('_', '\\_');
-    for (let i = 0; i < nameHistory.length; i++) nameHistory[i].name = `${i + 1}. ${nameHistory[i].name.replace('_', '\\_')}`;
+    for (let i = 0; i < nameHistory.length; i++)
+      nameHistory[i].name = `${i + 1}. ${nameHistory[i].name.replace('_', '\\_')}`;
     nameHistory.reverse();
 
     const pages: MojangAPINameHistory[][] = [[]];
