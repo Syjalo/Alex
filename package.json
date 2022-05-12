@@ -7,7 +7,8 @@
   "scripts": {
     "compile": "tsc -w",
     "format": "prettier --write src",
-    "postinstall": "tsc"
+    "postinstall": "tsc",
+    "start": "node --experimental-fetch ."
   },
   "repository": {
     "type": "git",
@@ -23,7 +24,6 @@
     "discord.js": "^14.0.0-dev.1651493371-4ba0f56",
     "dotenv": "^16.0.1",
     "mongodb": "^4.5.0",
-    "node-fetch": "^2.6.7",
     "prettier": "^2.6.2",
     "typescript": "^4.6.4"
   },
@@ -34,6 +34,6 @@
     "prettier-plugin-organize-imports": "^2.3.4"
   },
   "engines": {
-    "node": "16.x"
+    "node": "16.15.0"
   }
 }
