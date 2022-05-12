@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@discordjs/builders@^0.14.0-dev", "@discordjs/builders@^0.14.0-dev.1651493044-4ba0f56":
+"@discordjs/builders@^0.14.0-dev":
   version "0.14.0-dev.1651493044-4ba0f56"
   resolved "https://registry.yarnpkg.com/@discordjs/builders/-/builders-0.14.0-dev.1651493044-4ba0f56.tgz#c68bb0c7b2f7576400bd66c74235fff8961cd688"
   integrity sha512-SA2d0Fadpk2n/CtYsnPlWPB5gbO4d/KZG3lTWx90yGAgvf1yf+Tx+8TKcA8wI2bKgsy9hEwGOn7DdxYKePUNRw==
@@ -14,7 +14,7 @@
     ts-mixer "^6.0.1"
     tslib "^2.3.1"
 
-"@discordjs/collection@^0.7.0-dev", "@discordjs/collection@^0.7.0-dev.1651493036-4ba0f56":
+"@discordjs/collection@^0.7.0-dev":
   version "0.7.0-dev.1651493036-4ba0f56"
   resolved "https://registry.yarnpkg.com/@discordjs/collection/-/collection-0.7.0-dev.1651493036-4ba0f56.tgz#9d3ff2dd9e3eb21a754b4d54ead686750b117f42"
   integrity sha512-/6eYweo3mprHqYO+DTM89mZNp1AdvZelMZGSeiCUtMadhsdjycR1cfA08fRtivDGaRnvmecDaKIEfig9mXaRxw==
