@@ -1,4 +1,4 @@
-import { SlashCommandBuilder } from '@discordjs/builders';
+import { SlashCommandBuilder } from 'discord.js';
 import { AlexBotChatInputCommand } from '../../types';
 import { reset } from './_language/reset';
 import { set } from './_language/set';

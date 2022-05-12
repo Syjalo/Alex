@@ -1,5 +1,10 @@
-import { SlashCommandBuilder } from '@discordjs/builders';
-import { Awaitable, ChatInputCommandInteraction, ClientEvents, Locale as DiscordLocale } from 'discord.js';
+import {
+  Awaitable,
+  ChatInputCommandInteraction,
+  ClientEvents,
+  Locale as DiscordLocale,
+  SlashCommandBuilder,
+} from 'discord.js';
 import { AlexBotClient } from './util/AlexBotClient';
 
 export interface AlexBotChatInputCommand {

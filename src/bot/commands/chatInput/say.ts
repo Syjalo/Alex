@@ -1,5 +1,11 @@
-import { SlashCommandBuilder } from '@discordjs/builders';
-import { ChannelType, Colors, PermissionFlagsBits, TextChannel, UnsafeEmbedBuilder as Embed } from 'discord.js';
+import {
+  ChannelType,
+  Colors,
+  PermissionFlagsBits,
+  SlashCommandBuilder,
+  TextChannel,
+  UnsafeEmbedBuilder as Embed,
+} from 'discord.js';
 import { database } from '../../../database';
 import { AlexBotChatInputCommand } from '../../types';
 

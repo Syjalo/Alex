@@ -1,5 +1,4 @@
-import { SlashCommandBuilder } from '@discordjs/builders';
-import { ColorResolvable, Colors, UnsafeEmbedBuilder as Embed } from 'discord.js';
+import { ColorResolvable, Colors, SlashCommandBuilder, UnsafeEmbedBuilder as Embed } from 'discord.js';
 import { AlexBotChatInputCommand } from '../../types';
 import { Util } from '../../util/Util';
 
