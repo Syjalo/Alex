@@ -198,10 +198,10 @@ discord-api-types@^0.31.1:
   resolved "https://registry.yarnpkg.com/discord-api-types/-/discord-api-types-0.31.1.tgz#e83208fef3669c263bb48e68c9c84ecf3e286b01"
   integrity sha512-QBWl1/x20ZyKAiY750wuWAWokudhlOnQzXhCTEkQsCNOOM9tU/HIqkpLgZqJI1EFmZMeWHdaRKzpiD7n7iCS+w==
 
-discord.js@^14.0.0-dev.1652350334-4515a1e:
-  version "14.0.0-dev.1652350334-4515a1e"
-  resolved "https://registry.yarnpkg.com/discord.js/-/discord.js-14.0.0-dev.1652350334-4515a1e.tgz#1d2b71225d897b310a3fec3155c46955a1964e61"
-  integrity sha512-lBgXt7fyDily9Ph+5nfDyYQB74aT+77vL6d/C4CBlBlQlwkvPqYMlPX+qqobSFUxoHBKeh1ob99cfaG45F6yng==
+discord.js@^14.0.0-dev.1652443445-d522320:
+  version "14.0.0-dev.1652443445-d522320"
+  resolved "https://registry.yarnpkg.com/discord.js/-/discord.js-14.0.0-dev.1652443445-d522320.tgz#6d26cf739eaf91b63a71936ff4b26ff54fd7a27a"
+  integrity sha512-K4Yt1ZZv94irpKkjrd9ZGGbTyZk/QY/oKwQTxSmVKceTA7YqfFCFkhVb9NGh6JJ9Ima0moRp5nJPlhEs1QVG1w==
   dependencies:
     "@discordjs/builders" "^0.14.0-dev"
     "@discordjs/collection" "^0.7.0-dev"
@@ -212,7 +212,7 @@ discord.js@^14.0.0-dev.1652350334-4515a1e:
     fast-deep-equal "^3.1.3"
     lodash.snakecase "^4.1.1"
     tslib "^2.3.1"
-    undici "^4.16.0"
+    undici "^5.2.0"
     ws "^8.5.0"
 
 dotenv@^16.0.1:
@@ -391,10 +391,10 @@ typescript@^4.6.4:
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.6.4.tgz#caa78bbc3a59e6a5c510d35703f6a09877ce45e9"
   integrity sha512-9ia/jWHIEbo49HfjrLGfKbZSuWo9iTMwXO+Ca3pRsSpbsMbc7/IU8NKdCZVRRBafVPGnoJeFL76ZOAA84I9fEg==
 
-undici@^4.16.0:
-  version "4.16.0"
-  resolved "https://registry.yarnpkg.com/undici/-/undici-4.16.0.tgz#469bb87b3b918818d3d7843d91a1d08da357d5ff"
-  integrity sha512-tkZSECUYi+/T1i4u+4+lwZmQgLXd4BLGlrc7KZPcLIW7Jpq99+Xpc30ONv7nS6F5UNOxp/HBZSSL9MafUrvJbw==
+undici@^5.2.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/undici/-/undici-5.2.0.tgz#18c5bd59f8f1b1ed8dcc9dca2f754c44ec994059"
+  integrity sha512-XY6+NS3WH9b3TKOHeNz2CjR+qrVz/k4fO9g3etPpLozRvULoQmZ1+dk9JbIz40ehn27xzFk4jYVU2MU3Nle62A==
 
 webidl-conversions@^3.0.0:
   version "3.0.1"
