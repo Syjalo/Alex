@@ -1,9 +1,9 @@
 {
-  "cooldownExist": "Please wait. You'll be able to use {command} {timestamp}",
-  "playerNotFound": "Player couldn't be found",
-  "notForYou": "This menu is not for you",
-  "notTextChannel": "Channel must be text channel",
-  "underDevelopment": "This command is currently under development",
-  "unexpectedError": "Unexpected error has occurred",
-  "userNotFound": "User couldn't be found"
+  "cooldownExist": "Por favor, espere. Você poderá usar {command} {timestamp}",
+  "playerNotFound": "Jogador não pôde ser encontrado",
+  "notForYou": "Este menu não é para você",
+  "notTextChannel": "O canal deve ser de texto",
+  "underDevelopment": "Este comnado está em desenvolvimento no momento",
+  "unexpectedError": "Ocorreu um erro inesperado",
+  "userNotFound": "Usuário não pôde ser encontrado"
 }
