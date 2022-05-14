@@ -7,7 +7,7 @@
     "yes": "Sim",
     "no": "Não"
   },
-  "rolesUpdated": "Seus cargos foram atualizados com sucesso! Agora você {count, plural,=0 {não tem nenhum cargo}one {tem # cargo ({roles})} other {têm # cargos ({roles})}}.",
+  "rolesUpdated": "Seus cargos foram atualizados com sucesso! Agora você {count, plural, =0 {não tem nenhum cargo} one {tem # cargo ({roles})} other {têm # cargos ({roles})}}.",
   "welcome": "Bem-vindo!",
   "goodbye": "Até mais!",
   "createdAccount": "Criou a conta",
