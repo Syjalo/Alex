@@ -28,7 +28,7 @@
         "name": "Impulsionando o servidor desde"
       },
       "roles": {
-        "name": "{count, plural,1 {Cargo (#)}other {Cargos (#)}}"
+        "name": "{count, plural, =1 {Cargo (#)} other {Cargos (#)}}"
       },
       "activity": {
         "name": "Atividade",
