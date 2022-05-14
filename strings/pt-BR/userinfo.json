@@ -5,39 +5,39 @@
         "name": "Status",
         "values": {
           "status": {
-            "online": "Online",
-            "idle": "Idle",
-            "dnd": "Do Not Disturb",
-            "invisible": "Invisible",
-            "offline": "Offline"
+            "online": "Disponível",
+            "idle": "Ausente",
+            "dnd": "Não pertubar",
+            "invisible": "Invisível",
+            "offline": "Invisível"
           },
           "platform": {
             "web": "Web",
-            "mobile": "Mobile",
-            "desktop": "Desktop"
+            "mobile": "Celular",
+            "desktop": "Computador"
           }
         }
       },
       "createdAccount": {
-        "name": "Created the account"
+        "name": "Criou a conta"
       },
       "joinedServer": {
-        "name": "Joined the server"
+        "name": "Entrou no servidor"
       },
       "serverBooster": {
-        "name": "Server Booster since"
+        "name": "Impulsionando o servidor desde"
       },
       "roles": {
-        "name": "{count, plural, =1 {Role (#)} other {Roles (#)}}"
+        "name": "{count, plural,1 {Cargo (#)}other {Cargos (#)}}"
       },
       "activity": {
-        "name": "Activity",
+        "name": "Atividade",
         "values": {
           "custom": {
-            "name": "Custom Status"
+            "name": "Status personalizado"
           },
           "spotify": {
-            "value": "{name} by {artists} on {album}"
+            "value": "{name} por {artists} em {album}"
           }
         }
       }
