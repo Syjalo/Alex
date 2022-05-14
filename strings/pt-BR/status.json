@@ -4,14 +4,14 @@
     "field": {
       "ping": {
         "name": "Ping",
-        "value": "My ping is {ms, number, integer}ms"
+        "value": "Meu ping é {ms, number, integer}ms"
       },
       "wsPing": {
-        "name": "WebSoket ping",
-        "value": "WebSoket ping is {ms, number, integer}ms"
+        "name": "Ping do WebSoket",
+        "value": "O ping do WebSoket é {ms, number, integer}ms"
       },
       "onlineSince": {
-        "name": "Online since"
+        "name": "Online desde"
       }
     }
   }
