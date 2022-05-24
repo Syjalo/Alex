@@ -1,6 +1,6 @@
 {
   "embed": {
-    "title": "Status",
+    "title": "Estado",
     "field": {
       "ping": {
         "name": "Ping",
