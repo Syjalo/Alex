@@ -2,19 +2,19 @@
   "embed": {
     "field": {
       "status": {
-        "name": "Status",
+        "name": "Estado",
         "values": {
           "status": {
-            "online": "Online",
-            "idle": "Idle",
-            "dnd": "Do Not Disturb",
+            "online": "En línea",
+            "idle": "Ausente",
+            "dnd": "No molestar",
             "invisible": "Invisible",
             "offline": "Offline"
           },
           "platform": {
             "web": "Web",
             "mobile": "Mobile",
-            "desktop": "Desktop"
+            "desktop": "Computadora"
           }
         }
       },
