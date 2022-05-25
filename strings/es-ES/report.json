@@ -3,7 +3,7 @@
     "title": "Do you want to report {user}?",
     "fields": {
       "reason": {
-        "name": "Reason"
+        "name": "Razón"
       }
     }
   },
