@@ -1,16 +1,16 @@
 {
   "buttons": {
-    "first": "First page",
-    "previous": "Previous page",
-    "next": "Next page",
-    "last": "Last page",
-    "yes": "Yes",
+    "first": "Primera página",
+    "previous": "Página anterior",
+    "next": "Siguiente página",
+    "last": "Última página",
+    "yes": "Sí",
     "no": "No"
   },
-  "rolesUpdated": "Your roles has been successfully updated! Now you {count, plural, =0 {don't have any roles} one {have # role ({roles})} other {have # roles ({roles})}}.",
-  "welcome": "Welcome!",
-  "goodbye": "Goodbye!",
-  "createdAccount": "Created the account",
+  "rolesUpdated": "¡Tus roles han sido actualizados con éxito! Ahora tú {count, plural,=0 {no tienen ningún rol}one {tienen # rol ({roles})}other {tienen # roles ({roles})}}.",
+  "welcome": "¡Bienvenido!",
+  "goodbye": "¡Adiós!",
+  "createdAccount": "Cuenta creada en",
   "joinedServer": "Joined the server",
   "leftServer": "Left the server",
   "suggestionDiscussion": "Suggestion Discussion"
