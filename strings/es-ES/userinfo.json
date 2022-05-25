@@ -9,7 +9,7 @@
             "idle": "Ausente",
             "dnd": "No molestar",
             "invisible": "Invisible",
-            "offline": "Offline"
+            "offline": "Desconectado"
           },
           "platform": {
             "web": "Web",
@@ -19,25 +19,25 @@
         }
       },
       "createdAccount": {
-        "name": "Created the account"
+        "name": "Cuenta creada en"
       },
       "joinedServer": {
         "name": "Joined the server"
       },
       "serverBooster": {
-        "name": "Server Booster since"
+        "name": "Mejorando servidores desde"
       },
       "roles": {
-        "name": "{count, plural, =1 {Role (#)} other {Roles (#)}}"
+        "name": "{count, plural,=1 {Rol (#)}other {Roles (#)}}"
       },
       "activity": {
-        "name": "Activity",
+        "name": "Actividad",
         "values": {
           "custom": {
-            "name": "Custom Status"
+            "name": "Estado personalizado"
           },
           "spotify": {
-            "value": "{name} by {artists} on {album}"
+            "value": "{name} por {artists} en {album}"
           }
         }
       }
