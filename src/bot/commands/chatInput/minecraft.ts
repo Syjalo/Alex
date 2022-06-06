@@ -7,6 +7,7 @@ import {
   UnsafeButtonBuilder,
   UnsafeEmbedBuilder as Embed,
 } from 'discord.js';
+import fetch from 'node-fetch';
 import {
   AlexBotChatInputCommand,
   MojangAPINameHistory,
