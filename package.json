@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/Syjalo/Alex#readme",
   "dependencies": {
-    "@discordjs/rest": "^0.4.1",
+    "@discordjs/rest": "^0.5.0",
     "@messageformat/core": "^3.0.1",
     "discord.js": "^14.0.0-dev.1653480262-68d5169",
     "dotenv": "^16.0.1",
