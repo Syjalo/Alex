@@ -50,7 +50,7 @@ export enum Locale {
   EnglishUS = 'en-US',
   Hungarian = 'hu',
   Indonesian = 'id',
-  PortugueseBR = "pt-BR",
+  PortugueseBR = 'pt-BR',
   Russian = 'ru',
   Turkish = 'tr',
   Ukrainian = 'uk',
