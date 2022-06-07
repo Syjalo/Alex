@@ -36,6 +36,6 @@
     "prettier-plugin-organize-imports": "^2.3.4"
   },
   "engines": {
-    "node": "16.15.0"
+    "node": ">=16.6"
   }
 }
