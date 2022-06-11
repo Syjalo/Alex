@@ -1,4 +1,4 @@
-import { ChatInputCommandInteraction } from 'discord.js';
+import { ChatInputCommandInteraction, InteractionType } from 'discord.js';
 import { database } from '../../database';
 import { AlexBotClientEvent } from '../types';
 import { Util } from '../util/Util';
@@ -18,7 +18,7 @@ export const event: AlexBotClientEvent<'interactionCreate'> = {
         defaultLocale: dbMember?.locale || interaction.locale,
       });
 
-    if (interaction.isAutocomplete()) autocomplete(interaction);
+    if (interaction.type === InteractionType.ApplicationCommandAutocomplete) autocomplete(interaction);
     else if (interaction.isButton()) button(interaction);
     else if (interaction.isChatInputCommand()) chatInputCommand(interaction, client, getString);
     else if (interaction.isSelectMenu()) selectMenu(interaction, getString);

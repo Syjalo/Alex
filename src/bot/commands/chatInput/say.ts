@@ -2,6 +2,7 @@ import {
   ChannelType,
   Colors,
   PermissionFlagsBits,
+  PermissionsBitField,
   SlashCommandBuilder,
   TextChannel,
   UnsafeEmbedBuilder as Embed,
@@ -13,7 +14,8 @@ export const command: AlexBotChatInputCommand = {
   data: new SlashCommandBuilder()
     .setName('say')
     .setDescription('Sends message')
-    .setDefaultPermission(false)
+    .setDefaultMemberPermissions(new PermissionsBitField([PermissionFlagsBits.Administrator, PermissionFlagsBits.ManageGuild, PermissionFlagsBits.KickMembers]).bitfield)
+    .setDMPermission(false)
     .addStringOption((option) => option.setName('content').setDescription('Message to send').setRequired(true))
     .addStringOption((option) => option.setName('reply').setDescription('Message id to reply to'))
     .addBooleanOption((option) =>
