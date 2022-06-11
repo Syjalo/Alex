@@ -7,6 +7,7 @@ export const command: AlexBotChatInputCommand = {
   data: new SlashCommandBuilder()
     .setName('userinfo')
     .setDescription('Gives information about user')
+    .setDMPermission(false)
     .addUserOption((option) => option.setName('user').setDescription('User to give information about'))
     .addStringOption((option) => option.setName('id').setDescription('Id of user to give information about')),
   listener: async (interaction, client, getString) => {

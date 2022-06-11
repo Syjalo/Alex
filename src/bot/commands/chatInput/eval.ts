@@ -9,7 +9,8 @@ export const command: AlexBotChatInputCommand = {
   data: new SlashCommandBuilder()
     .setName('eval')
     .setDescription('Evals provided code')
-    .setDefaultPermission(false)
+    .setDefaultMemberPermissions('0')
+    .setDMPermission(false)
     .addStringOption((option) => option.setName('code').setDescription('Code to eval').setRequired(true))
     .addBooleanOption((option) => option.setName('ephemeral').setDescription('Whether the reply should be ephemeral')),
   listener: async (interaction) => {

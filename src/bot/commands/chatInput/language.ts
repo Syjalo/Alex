@@ -7,6 +7,7 @@ export const command: AlexBotChatInputCommand = {
   data: new SlashCommandBuilder()
     .setName('language')
     .setDescription('Manages your language')
+    .setDMPermission(false)
     .addSubcommand((subcommand) =>
       subcommand
         .setName('set')
