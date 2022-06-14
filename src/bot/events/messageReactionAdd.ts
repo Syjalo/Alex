@@ -1,4 +1,4 @@
-import { Util } from 'discord.js';
+import { parseEmoji } from 'discord.js';
 import { database } from '../../database';
 import { AlexBotClientEvent } from '../types';
 import { Emojis } from '../util/Constants';
@@ -20,7 +20,7 @@ export const event: AlexBotClientEvent<'messageReactionAdd'> = {
       reaction.message.reactions.cache
         .find(
           (r) =>
-            [Emojis.allowed, Emojis.denied].map((emoji) => Util.parseEmoji(emoji)!.id).includes(r.emoji.id) &&
+            [Emojis.allowed, Emojis.denied].map((emoji) => parseEmoji(emoji)!.id).includes(r.emoji.id) &&
             r.users.cache.has(user.id) &&
             r.emoji.id! !== reaction.emoji.id!,
         )
