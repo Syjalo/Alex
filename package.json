@@ -33,7 +33,7 @@
     "@types/node-fetch": "^2.6.1",
     "@types/prettier": "^2.6.3",
     "husky": "^8.0.1",
-    "prettier-plugin-organize-imports": "^2.3.4",
+    "prettier-plugin-organize-imports": "^3.0.0",
     "tslib": "^2.4.0"
   },
   "engines": {
