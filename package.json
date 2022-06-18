@@ -8,7 +8,7 @@
     "compile": "tsc -w",
     "format": "prettier --write src",
     "postinstall": "tsc",
-    "start": "node ."
+    "start": "node --enable-source-maps ."
   },
   "repository": {
     "type": "git",
