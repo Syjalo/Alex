@@ -13,6 +13,8 @@ export const Emojis = {
 export const Ids = {
   channels: {
     botLog: '837363584434176120',
+    devChat: '749684966413041807',
+    devVoice: '920726481573929001',
   },
   developer: '406028548034396160',
   guilds: {
@@ -29,3 +31,5 @@ export const Ids = {
 };
 
 export const Locales = Object.values(Locale);
+
+export const PrivateChannels = [Ids.channels.devChat, Ids.channels.devVoice];

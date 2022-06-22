@@ -1,4 +1,5 @@
 export * as eval from './chatInput/eval';
+export * as giveaccess from './chatInput/giveaccess';
 export * as language from './chatInput/language';
 export * as minecraft from './chatInput/minecraft';
 export * as report from './chatInput/report';

@@ -14,7 +14,13 @@ export const command: AlexBotChatInputCommand = {
   data: new SlashCommandBuilder()
     .setName('say')
     .setDescription('Sends message')
-    .setDefaultMemberPermissions(new PermissionsBitField([PermissionFlagsBits.Administrator, PermissionFlagsBits.ManageGuild, PermissionFlagsBits.KickMembers]).bitfield)
+    .setDefaultMemberPermissions(
+      new PermissionsBitField([
+        PermissionFlagsBits.Administrator,
+        PermissionFlagsBits.ManageGuild,
+        PermissionFlagsBits.KickMembers,
+      ]).bitfield,
+    )
     .setDMPermission(false)
     .addStringOption((option) => option.setName('content').setDescription('Message to send').setRequired(true))
     .addStringOption((option) => option.setName('reply').setDescription('Message id to reply to'))

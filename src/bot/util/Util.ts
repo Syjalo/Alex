@@ -1,9 +1,32 @@
 import MessageFormat from '@messageformat/core';
-import { Colors, Formatters, Locale as DiscordLocale, Snowflake, UnsafeEmbedBuilder as Embed } from 'discord.js';
+import {
+  Collection,
+  Colors,
+  Formatters,
+  GuildBasedChannel,
+  GuildMember,
+  Locale as DiscordLocale,
+  PermissionFlagsBits,
+  Snowflake,
+  UnsafeEmbedBuilder as Embed,
+} from 'discord.js';
 import { GetString, GetStringOptions, Locale } from '../types';
-import { Locales } from './Constants';
+import { Locales, PrivateChannels } from './Constants';
 
 export class Util extends null {
+  static channelsToGiveAccess(channels: Collection<Snowflake, GuildBasedChannel>, query: string, member: GuildMember) {
+    return channels
+      .filter(
+        (channel) =>
+          !PrivateChannels.includes(channel.id) &&
+          !channel.isThread() &&
+          (channel.id === query || channel.name.toLowerCase().startsWith(query.toLowerCase())) &&
+          !channel.permissionsFor(member).has([PermissionFlagsBits.ManageChannels, PermissionFlagsBits.ViewChannel]),
+      )
+      .sort((a, b) => (a.name > b.name ? 1 : -1))
+      .first(25);
+  }
+
   static resolveLocale(locale?: Locale | DiscordLocale) {
     if (Locales.includes(locale as Locale)) return locale as Locale;
     return Locale.EnglishUS;
