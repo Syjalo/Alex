@@ -21,7 +21,7 @@
   "dependencies": {
     "@discordjs/rest": "^0.5.0",
     "@messageformat/core": "^3.0.1",
-    "discord.js": "^14.0.0-dev.1656158629-c4653f9",
+    "discord.js": "^14.0.0-dev.1656590649-525bf03",
     "dotenv": "^16.0.1",
     "mongodb": "^4.7.0",
     "node-fetch": "^2.6.7",
