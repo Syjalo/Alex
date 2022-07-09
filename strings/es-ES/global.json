@@ -11,7 +11,7 @@
   "welcome": "¡Bienvenido!",
   "goodbye": "¡Adiós!",
   "createdAccount": "Cuenta creada en",
-  "joinedServer": "Joined the server",
-  "leftServer": "Left the server",
-  "suggestionDiscussion": "Suggestion Discussion"
+  "joinedServer": "Se unió al servidor",
+  "leftServer": "Abandonó el servidor",
+  "suggestionDiscussion": "Discusión de sugerencias"
 }

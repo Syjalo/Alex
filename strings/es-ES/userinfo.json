@@ -13,7 +13,7 @@
           },
           "platform": {
             "web": "Web",
-            "mobile": "Mobile",
+            "mobile": "Móvil",
             "desktop": "Computadora"
           }
         }
@@ -22,7 +22,7 @@
         "name": "Cuenta creada en"
       },
       "joinedServer": {
-        "name": "Joined the server"
+        "name": "Se unió al servidor"
       },
       "serverBooster": {
         "name": "Mejorando servidores desde"

@@ -3,15 +3,15 @@
     "set": {
       "notChangedEmbed": {
         "title": "Tu idioma no fue cambiado",
-        "description": "This happened because you chose a language that is already set"
+        "description": "Esto ocurrió porque elegiste un idioma que ya está establecido"
       },
       "changedEmbed": {
-        "title": "Your language has been successfully changed",
-        "description": "Translations may not be completed and contain errors"
+        "title": "Tu idioma ha sido cambiado con éxito",
+        "description": "Las traducciones pueden no estar completas y contener errores"
       },
       "unknownLanguage": {
         "title": "Idioma desconocido",
-        "description": "Couldn't find a language by your query: {query}"
+        "description": "No se pudo encontrar un idioma para tu consulta: {query}"
       }
     },
     "reset": {

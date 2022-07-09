@@ -1,13 +1,13 @@
 {
   "doYouWantEmbed": {
-    "title": "Do you want to report {user}?",
+    "title": "¿Quieres reportar a {user}?",
     "fields": {
       "reason": {
         "name": "Razón"
       }
     }
   },
-  "sent": "Your report has been successfully sent",
-  "canceled": "Your report has been canceled",
-  "timeout": "You haven't clicked a button for too long. Your report has been canceled"
+  "sent": "Tu reporte ha sido enviado con éxito",
+  "canceled": "Tu reporte ha sido cancelado",
+  "timeout": "No has tocado ningún botón por demasiado tiempo. Tu reporte ha sido cancelado"
 }
