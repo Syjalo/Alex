@@ -8,7 +8,7 @@
       },
       "wsPing": {
         "name": "WebSoket ping",
-        "value": "WebSoket ping is {ms, number, integer}ms"
+        "value": "El Ping de WebSoket es/son {ms, number, integer}ms"
       },
       "onlineSince": {
         "name": "En línea desde"
