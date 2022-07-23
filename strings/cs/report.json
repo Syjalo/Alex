@@ -1,13 +1,13 @@
 {
   "doYouWantEmbed": {
-    "title": "Do you want to report {user}?",
+    "title": "Chceš nahlásit {user}?",
     "fields": {
       "reason": {
-        "name": "Reason"
+        "name": "Důvod"
       }
     }
   },
   "sent": "Vaše zpráva byla úspěšně odeslána",
-  "canceled": "Your report has been canceled",
-  "timeout": "You haven't clicked a button for too long. Your report has been canceled"
+  "canceled": "Tvoje nahlášení bylo zrušeno",
+  "timeout": "Neklikal/a jsi na tlačítko příliš dlouho. Tvoje hlášení bylo zrušeno"
 }
