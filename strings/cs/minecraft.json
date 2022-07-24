@@ -9,7 +9,7 @@
       }
     },
     "footer": {
-      "text": "Page {current}/{total}"
+      "text": "Strana {current}/{total}"
     }
   }
 }
