@@ -4,14 +4,14 @@
     "previous": "Předchozí stránka",
     "next": "Další stránka",
     "last": "Poslední stránka",
-    "yes": "Yes",
-    "no": "No"
+    "yes": "Ano",
+    "no": "Ne"
   },
-  "rolesUpdated": "Your roles has been successfully updated! Now you {count, plural, =0 {don't have any roles} one {have # role ({roles})} other {have # roles ({roles})}}.",
-  "welcome": "Welcome!",
-  "goodbye": "Goodbye!",
+  "rolesUpdated": "Tvé role byly úspěšně aktualizovány! Teď {count, plural, =0 {nemáš žádné role} one {máš # roli ({roles})} few {máš # role ({roles})} other {máš # rolí ({roles})}}.",
+  "welcome": "Vítej!",
+  "goodbye": "Sbohem!",
   "createdAccount": "Vytvořil/a účet",
   "joinedServer": "Připojil/a se k serveru",
-  "leftServer": "Left the server",
-  "suggestionDiscussion": "Suggestion Discussion"
+  "leftServer": "Opustil server",
+  "suggestionDiscussion": "Diskuze o návrhu"
 }
