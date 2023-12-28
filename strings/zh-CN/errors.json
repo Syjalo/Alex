@@ -1,9 +1,9 @@
 {
-  "cooldownExist": "Please wait. You'll be able to use {command} {timestamp}",
-  "playerNotFound": "Player couldn't be found",
-  "notForYou": "This menu is not for you",
-  "notTextChannel": "Channel must be text channel",
-  "underDevelopment": "This command is currently under development",
-  "unexpectedError": "Unexpected error has occurred",
-  "userNotFound": "User couldn't be found"
+  "cooldownExist": "请稍等。您将能够使用 {command} {timestamp}",
+  "playerNotFound": "找不到玩家",
+  "notForYou": "此菜单不适合您",
+  "notTextChannel": "频道必须是文字频道",
+  "underDevelopment": "该命令目前正在开发中",
+  "unexpectedError": "发生意外错误",
+  "userNotFound": "找不到用户"
 }
