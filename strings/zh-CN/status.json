@@ -1,17 +1,17 @@
 {
   "embed": {
-    "title": "Status",
+    "title": "状态",
     "field": {
       "ping": {
-        "name": "Ping",
-        "value": "My ping is {ms, number, integer}ms"
+        "name": "延迟",
+        "value": "我的延迟是 {ms, number, integer}ms"
       },
       "wsPing": {
-        "name": "WebSoket ping",
-        "value": "WebSoket ping is {ms, number, integer}ms"
+        "name": "WebSocket 延迟",
+        "value": "WebSocket 延迟是 {ms, number, integer}ms"
       },
       "onlineSince": {
-        "name": "Online since"
+        "name": "上次在线"
       }
     }
   }
