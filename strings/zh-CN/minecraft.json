@@ -1,15 +1,15 @@
 {
   "embed": {
-    "title": "{username}'s name history",
+    "title": "{username} 的名称历史",
     "field": {
       "name": {
         "values": {
-          "unknown": "Unknown"
+          "unknown": "未知"
         }
       }
     },
     "footer": {
-      "text": "Page {current}/{total}"
+      "text": "第 {current}/{total} 页"
     }
   }
 }

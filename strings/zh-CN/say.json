@@ -1,4 +1,4 @@
 {
-  "notAllowed": "You can't send a message in {channel}",
-  "sent": "Message has been sent in {channel}"
+  "notAllowed": "您无法在 {channel} 中发送消息",
+  "sent": "消息已在 {channel} 中发送"
 }

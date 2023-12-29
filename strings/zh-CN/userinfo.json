@@ -2,42 +2,42 @@
   "embed": {
     "field": {
       "status": {
-        "name": "Status",
+        "name": "状态",
         "values": {
           "status": {
-            "online": "Online",
-            "idle": "Idle",
-            "dnd": "Do Not Disturb",
-            "invisible": "Invisible",
-            "offline": "Offline"
+            "online": "在线",
+            "idle": "空闲",
+            "dnd": "请勿打扰",
+            "invisible": "隐身",
+            "offline": "离线"
           },
           "platform": {
-            "web": "Web",
-            "mobile": "Mobile",
-            "desktop": "Desktop"
+            "web": "网页",
+            "mobile": "手机",
+            "desktop": "桌面"
           }
         }
       },
       "createdAccount": {
-        "name": "Created the account"
+        "name": "已创建帐户"
       },
       "joinedServer": {
-        "name": "Joined the server"
+        "name": "已加入服务器"
       },
       "serverBooster": {
-        "name": "Server Booster since"
+        "name": "上次服务器助力"
       },
       "roles": {
-        "name": "{count, plural, =1 {Role (#)} other {Roles (#)}}"
+        "name": "{count, plural, =1 {角色 (#)} other {角色 (#)}}"
       },
       "activity": {
-        "name": "Activity",
+        "name": "活动",
         "values": {
           "custom": {
-            "name": "Custom Status"
+            "name": "自定义状态"
           },
           "spotify": {
-            "value": "{name} by {artists} on {album}"
+            "value": "曲名：{name}\n{artistsNumber, plural, =1 {艺人} other {艺人}}：{artists}\n专辑：{album}"
           }
         }
       }
