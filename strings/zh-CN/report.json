@@ -1,13 +1,13 @@
 {
   "doYouWantEmbed": {
-    "title": "Do you want to report {user}?",
+    "title": "您想举报 {user} 吗？",
     "fields": {
       "reason": {
-        "name": "Reason"
+        "name": "理由"
       }
     }
   },
-  "sent": "Your report has been successfully sent",
-  "canceled": "Your report has been canceled",
-  "timeout": "You haven't clicked a button for too long. Your report has been canceled"
+  "sent": "您的举报已成功发送",
+  "canceled": "您的举报已被取消",
+  "timeout": "您已经太久没有点击按钮了。您的举报已被取消"
 }
